@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,6 +24,13 @@
     <div class="sufee-login d-flex align-content-center flex-wrap">
         <div class="container">
             <div class="login-content">
+            <div class="form-group text-center">
+            <?php $mark = (preg_match('/\?/', url()->current())) ? '&' : '?'; ?>
+                {{ trans('app.select_language') }}: 
+                <a href="{{ url(url()->current() . $mark . 'lang=my') }}">my</a> |
+                <a href="{{ url(url()->current() . $mark . 'lang=en') }}">
+                eng</a> 
+            </div>
                 <div class="login-logo">
                     <a href="index.html">
                         <img class="align-content" src="images/logo_piCa.png" alt="Pica Logo">
@@ -32,18 +39,18 @@
                 <div class="login-form">
                     <form>
                         <div class="form-group">
-                            <label>Username</label>
-                            <input type="email" class="form-control" placeholder="Email">
+                            <label>{{ trans('app.username') }}</label>
+                            <input type="email" class="form-control" placeholder="{{ trans('app.placeholder_username') }}">
                         </div>
                         <div class="form-group">
-                            <label>Password</label>
-                            <input type="password" class="form-control" placeholder="Password">
+                            <label>{{ trans('app.password') }}</label>
+                            <input type="password" class="form-control" placeholder="{{ trans('app.placeholder_password') }}">
                         </div>
                   
-                        <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Login</button>
+                        <button type="submit" class="btn btn-info btn-flat m-b-30 m-t-30 btn-md">Login</button>
                         
                         <div class="register-link m-t-15 text-center">
-                             <a href="Forgot_Password.html">Forgot Password?</a>
+                             <a href="Forgot_Password.html">{{ trans('app.forgot_password') }}</a>
                         </div>
                     </form>
                 </div>
