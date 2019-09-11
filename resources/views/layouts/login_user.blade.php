@@ -1,95 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html class="no-js" lang="">
 <head>
     <meta charset="utf-8">
-    <title>PICA Control</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ASCC Login</title>
+    <meta name="description" content="ASCC, Pica image">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
-    <meta name="author" content="Modular soft">
 
-    <!-- The styles -->
-    <link id="bs-css" href="{{ asset('css/bootstrap-cerulean.min.css') }}" rel="stylesheet">
+    <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
+    <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png">
 
-    <link href="{{ asset('css/charisma-app.css') }} " rel="stylesheet">
-    <link href='{{ asset("css/jquery.noty.css") }}' rel='stylesheet'>
-    <link href='{{ asset("css/noty_theme_default.css") }}' rel='stylesheet'>
-    <link href='{{ asset("css/elfinder.min.css") }}' rel='stylesheet'>
-    <link href='{{ asset("css/elfinder.theme.css") }}' rel='stylesheet'>
-    <link href='{{ asset("css/jquery.iphone.toggle.css") }}' rel='stylesheet'>
-    <link href='{{ asset("css/uploadify.css") }}' rel='stylesheet'>
-    <link href='{{ asset("css/animate.min.css") }}' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/cs-skin-elastic.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
-    <link rel="shortcut icon" href="img/favicon.ico">
-
-</head>
-
-<body>
-<div class="ch-container" style="background-color: lightslategray; height: 1000px">
-    <div class="row">
-
-    <div class="row">
-        <div class="col-md-12 center login-header">
-        </div>
-        <!--/span-->
-    </div><!--/row-->
-
-    <div class="row">
-        <div class="well col-md-5 center login-box">
-                <a><img src="images/modular_logo.png" alt="Logo" width="500px" height="80px"></a>
-
-            <div class="alert alert-info" style="margin-top: 20px">
-                Please login with your Username and Password.
+<body class="bg-white">
+    <div class="sufee-login d-flex align-content-center flex-wrap">
+        <div class="container">
+            <div class="login-content">
+                <div class="login-logo">
+                    <a href="index.html">
+                        <img class="align-content" src="images/logo_piCa.png" alt="Pica Logo">
+                    </a>
+                </div>
+                <div class="login-form">
+                    <form>
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="email" class="form-control" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" placeholder="Password">
+                        </div>
+                  
+                        <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Login</button>
+                        
+                        <div class="register-link m-t-15 text-center">
+                             <a href="Forgot_Password.html">Forgot Password?</a>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <form class="form-horizontal" action="" method="post">
-                <fieldset>
-                    <div class="input-group input-group-md">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-user red"></i></span>
-                        <input type="text" class="form-control" placeholder="Username" >
-                    </div>
-                    <div class="clearfix"></div><br>
-
-                    <div class="input-group input-group-md">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock red"></i></span>
-                        <input type="password" class="form-control" placeholder="Password">
-                    </div>
-                    <div class="clearfix"></div>
-
-                    <div class="input-prepend">
-                        <a style="float: right" class="remember" for="remember">Forgot Password</a>
-                    </div>
-                    <div class="clearfix"></div>
-
-                    <p class="center col-md-5">
-                        <a type="submit" class="btn btn-primary" href="">Login</a>
-                    </p>
-                </fieldset>
-            </form>
         </div>
-        <!--/span-->
-    </div><!--/row-->
-</div><!--/fluid-row-->
+    </div>
 
-</div><!--/.fluid-container-->
-
-<!-- library for cookie management -->
-<script src="{{ asset('js/jquery.cookie.js') }}"></script>
-<!-- data table plugin -->
-<script src='{{ asset("js/jquery.dataTables.min.js") }}'></script>
-<!-- notification plugin -->
-<script src="{{ asset('js/jquery.noty.js') }}"></script>
-<!-- star rating plugin -->
-<script src="{{ asset('js/jquery.raty.min.js') }}"></script>
-<!-- for iOS style toggle switch -->
-<script src="{{ asset('js/jquery.iphone.toggle.js') }}"></script>
-<!-- autogrowing textarea plugin -->
-<script src="{{ asset('js/jquery.autogrow-textarea.js') }}"></script>
-<!-- multiple file upload plugin -->
-<script src="{{ asset('js/jquery.uploadify-3.1.min.js') }}"></script>
-<!-- history.js for cross-browser state change on ajax -->
-<script src="{{ asset('js/jquery.history.js') }}"></script>
-<!-- application script for Charisma demo -->
-<script src="{{ asset('js/charisma.js') }}"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
 
 </body>
 </html>

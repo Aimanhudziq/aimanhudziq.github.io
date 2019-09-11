@@ -1730,11 +1730,11 @@ header .form-inline {
     font-size: 24px; }
 
 .login-content {
-  max-width: 540px;
+  max-width: 280px;
   margin: 8vh auto; }
 
 .login-form {
-  background: #ffffff;
+  background: #EDFEFF;
   padding: 30px 30px 20px;
   border-radius: 2px; }
 
@@ -2502,24 +2502,5 @@ footer.site-footer {
   #cellPaiChart #pieLabel0 {
     left: inherit !important;
     right: 20px !important; }
-
-#popUpMain{
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.6);
-  z-index: 1001;
-}
-
-#popup{
-  width: 250px;
-  height: 250px;
-  background-size: cover;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: 2px,2px,5px,3px white; 
-}
 
 /*# sourceMappingURL=style.css.map */
