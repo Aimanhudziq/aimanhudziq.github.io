@@ -13,4 +13,4 @@
 
 
 Route::get('/', 'UserController@login_user');
-//Route::get('/images', 'UserController@images');
+Route::get('/dashboard', 'UserController@dashboard');

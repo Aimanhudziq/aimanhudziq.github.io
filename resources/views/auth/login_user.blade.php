@@ -25,10 +25,11 @@
             <div class="login-content">
             <div class="form-group text-center">
             <?php $mark = (preg_match('/\?/', url()->current())) ? '&' : '?'; ?>
-                {{ trans('app.select_language') }}: 
+                {{ trans('login.select_language') }}: 
                 <a href="{{ url(url()->current() . $mark . 'lang=my') }}">my</a> |
                 <a href="{{ url(url()->current() . $mark . 'lang=en') }}">
                 eng</a> 
+                <hr>
             </div>
                 <div class="login-logo">
                     <a href="index.html">
@@ -36,20 +37,20 @@
                     </a>
                 </div>
                 <div class="login-form">
-                    <form>
+                    <form action="{{ url('/dashboard') }}">
                         <div class="form-group">
-                            <label>{{ trans('app.username') }}</label>
-                            <input type="email" class="form-control" placeholder="{{ trans('app.placeholder_username') }}">
+                            <label>{{ trans('login.username') }}</label>
+                            <input type="email" class="form-control" placeholder="{{ trans('login.placeholder_username') }}">
                         </div>
                         <div class="form-group">
-                            <label>{{ trans('app.password') }}</label>
-                            <input type="password" class="form-control" placeholder="{{ trans('app.placeholder_password') }}">
+                            <label>{{ trans('login.password') }}</label>
+                            <input type="password" class="form-control" placeholder="{{ trans('login.placeholder_password') }}">
                         </div>
                   
-                        <button type="submit" class="btn btn-info btn-flat m-b-30 m-t-30 btn-md">Login</button>
+                         <button type="submit" class="btn btn-info btn-flat m-b-30 m-t-30 btn-md" >Login</button>
                         
                         <div class="register-link m-t-15 text-center">
-                             <a href="Forgot_Password.html">{{ trans('app.forgot_password') }}</a>
+                             <a href="Forgot_Password.html">{{ trans('login.forgot_password') }}</a>
                         </div>
                     </form>
                 </div>

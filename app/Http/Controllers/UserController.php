@@ -8,11 +8,11 @@ class UserController extends Controller
 {
     public function login_user()
     {
-    	return view('layouts.login_user');
+    	return view('auth.login_user');
     }
 
-    public function images()
+    public function dashboard()
     {
-    	return view('test_img');
+    	return view('dashboard');
     }
 }
