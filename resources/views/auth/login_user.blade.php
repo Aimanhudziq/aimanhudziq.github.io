@@ -46,7 +46,8 @@
                         </ul>
                     </div>
                 @endif
-                    <form action="{{ url('/login') }}">
+                    <form method="POST" action="{{ url('/login') }}">
+                       {{ csrf_field() }}
                         <div class="form-group">
                             <label>{{ trans('login.username') }}</label>
                             <input type="text" class="form-control" name="username" placeholder="{{ trans('login.placeholder_username') }}" value="">
@@ -54,6 +55,7 @@
                         <div class="form-group">
                             <label>{{ trans('login.password') }}</label>
                             <input type="password" class="form-control" name="password" placeholder="{{ trans('login.placeholder_password') }}" value="">
+                            
                         </div>
                   
                          <button type="submit" class="btn btn-info btn-flat m-b-30 m-t-30 btn-md" >Login</button>

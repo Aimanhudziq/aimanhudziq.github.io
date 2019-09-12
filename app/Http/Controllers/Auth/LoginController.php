@@ -42,8 +42,12 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'username' => 'required',
-            'password' => 'required|min:8',
+            'username' => ['required'],
+            'password' => ['required','string','min:8', 
+            'regex:/[a-z]/',      // must contain at least one lowercase letter
+            'regex:/[A-Z]/',      // must contain at least one uppercase letter
+            'regex:/[0-9]/',      // must contain at least one digit
+            'regex:/[@$!%*#?&]/'] // must contain a special character],
         ]);
     
         if ($validator->fails()) {
