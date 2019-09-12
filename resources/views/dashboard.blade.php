@@ -86,7 +86,7 @@
     <div class="col-lg-4">
         <div class="card">
             <div class="card-body">
-                <h4 class="mb-3">Status Summary</h4>
+                <h4 class="mb-3">{{ trans('dashboard.status_summary') }}</h4>
                 <canvas id="doughutChart"></canvas>
             </div>
         </div>
@@ -94,7 +94,7 @@
     <div class="col-lg-8">
         <div class="card">
             <div class="card-body">
-                <h4 class="mb-3">Status by Month</h4>
+                <h4 class="mb-3">{{trans('dashboard.status_month')}}</h4>
                 <canvas id="lineChart"></canvas>
             </div>
         </div>

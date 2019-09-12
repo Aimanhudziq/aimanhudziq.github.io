@@ -76,5 +76,9 @@
             });
             */
       </script>  
+      <script>
+        var locale = '{{ config('app.locale') }}';
+        console.log(locale);
+    </script>
 </body>
 </html>
