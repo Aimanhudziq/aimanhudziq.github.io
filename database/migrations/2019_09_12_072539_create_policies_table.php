@@ -14,7 +14,7 @@ class CreatePoliciesTable extends Migration
     public function up()
     {
         Schema::create('policies', function (Blueprint $table) {
-            $table->bigIncrements('id'); 
+            $table->increments('id'); 
             $table->string('policy_no');
             $table->string('policy_name');
             $table->string('policy_source');

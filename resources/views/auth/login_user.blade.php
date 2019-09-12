@@ -40,7 +40,7 @@
                     <form action="{{ url('/dashboard') }}">
                         <div class="form-group">
                             <label>{{ trans('login.username') }}</label>
-                            <input type="email" class="form-control" placeholder="{{ trans('login.placeholder_username') }}">
+                            <input type="text" class="form-control" placeholder="{{ trans('login.placeholder_username') }}">
                         </div>
                         <div class="form-group">
                             <label>{{ trans('login.password') }}</label>

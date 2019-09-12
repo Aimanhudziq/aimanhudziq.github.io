@@ -14,7 +14,7 @@ class CreateCardApplicationsTable extends Migration
     public function up()
     {
         Schema::create('card_applications', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->integer('card_id');
             $table->integer('approved_by')->unsigned();
             $table->string('reference');

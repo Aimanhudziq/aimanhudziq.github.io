@@ -14,7 +14,7 @@ class CreateKivsTable extends Migration
     public function up()
     {
         Schema::create('kivs', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->integer('status_id');
             $table->timestamps('status_change_datetime');
             $table->timestamps('created_at');

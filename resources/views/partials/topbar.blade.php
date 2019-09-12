@@ -22,7 +22,7 @@
                 <div class="user-menu dropdown-menu">
                     <a class="nav-link" data-toggle="modal" data-target="#myModal">Select Bank</a>
                     <a class="nav-link" href="Change_Password.html">Change Password</a>
-                    <a class="nav-link" href="Home_Page.html">Logout</a>
+                    <a class="nav-link" href="{{ url('/') }}">Logout</a>
                 </div>
             </div>
         </div>
