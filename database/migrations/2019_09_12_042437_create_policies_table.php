@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Policies extends Migration
+class CreatePoliciesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,14 +14,15 @@ class Policies extends Migration
     public function up()
     {
         Schema::create('policies', function (Blueprint $table) {
-            $table->increments('policy_id'); 
-            $table->string('code');
-            $table->string('name');
-            $table->string('source');
-            $table->string('regulation');
-            $table->string('allowed');
-            $table->string('not_allowed');
-            $table->timestamps();
+            $table->bigIncrements('id'); 
+            $table->string('policy_no');
+            $table->string('policy_name');
+            $table->string('policy_source');
+            $table->string('policy_regulation');
+            $table->string('policy_allowed');
+            $table->string('policy_not_allowed');
+            $table->timestamps('created_at');
+            $table->timestamps('updated_at');
         });
     }
 
