@@ -37,14 +37,23 @@
                     </a>
                 </div>
                 <div class="login-form">
-                    <form action="{{ url('/dashboard') }}">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                    <form action="{{ url('/login') }}">
                         <div class="form-group">
                             <label>{{ trans('login.username') }}</label>
-                            <input type="text" class="form-control" placeholder="{{ trans('login.placeholder_username') }}">
+                            <input type="text" class="form-control" name="username" placeholder="{{ trans('login.placeholder_username') }}" value="">
                         </div>
                         <div class="form-group">
                             <label>{{ trans('login.password') }}</label>
-                            <input type="password" class="form-control" placeholder="{{ trans('login.placeholder_password') }}">
+                            <input type="password" class="form-control" name="password" placeholder="{{ trans('login.placeholder_password') }}" value="">
                         </div>
                   
                          <button type="submit" class="btn btn-info btn-flat m-b-30 m-t-30 btn-md" >Login</button>
