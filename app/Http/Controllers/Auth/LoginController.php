@@ -40,7 +40,11 @@ class LoginController extends Controller
     }
 
     public function login(Request $request)
-    {
+    {      
+        //$user->username = $request->username
+        $username = $request->input('username');
+        $password = $request->input('password');
+
         $validator = Validator::make($request->all(), [
             'username' => ['required'],
             'password' => ['required','string','min:8', 
@@ -49,7 +53,8 @@ class LoginController extends Controller
             'regex:/[0-9]/',      // must contain at least one digit
             'regex:/[@$!%*#?&]/'] // must contain a special character],
         ]);
-    
+        //$input = $request->input('username');
+        //dd($input);
         if ($validator->fails()) {
             return redirect('/')->withErrors($validator)->withInput();
         }

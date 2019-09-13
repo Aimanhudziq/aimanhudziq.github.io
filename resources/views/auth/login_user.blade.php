@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/cs-skin-elastic.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
-
+ç
 <body class="bg-white">
     <div class="sufee-login d-flex align-content-center flex-wrap">
         <div class="container">
@@ -50,14 +50,25 @@
                        {{ csrf_field() }}
                         <div class="form-group">
                             <label>{{ trans('login.username') }}</label>
-                            <input type="text" class="form-control" name="username" placeholder="{{ trans('login.placeholder_username') }}" value="">
+                            <input type="text" class="form-control {{ $errors->has('username') ? 'has-error' : '' }}" name="username" 
+                            placeholder="{{ trans('login.placeholder_username') }}" value="{{ old('username') }}">
+                            @if ($errors->has('username'))
+                            <span class="help-block">
+                                <strong style='color: #a94442'>{{ $errors->first('username') }}</strong>
+                            </span>
+                            @endif
                         </div>
                         <div class="form-group">
                             <label>{{ trans('login.password') }}</label>
-                            <input type="password" class="form-control" name="password" placeholder="{{ trans('login.placeholder_password') }}" value="">
-                            
+                            <input type="password" class="form-control {{ $errors->has('password') ? 'has-error' : '' }}" name="password" 
+                            placeholder="{{ trans('login.placeholder_password') }}" value="{{ old('password') }}">
+                            @if ($errors->has('password'))
+                            <span class="help-block">
+                                <strong style='color: #a94442'>{{ $errors->first('password') }}</strong>
+                            </span>
+                            @endif
                         </div>
-                  
+
                          <button type="submit" class="btn btn-info btn-flat m-b-30 m-t-30 btn-md" >Login</button>
                         
                         <div class="register-link m-t-15 text-center">
