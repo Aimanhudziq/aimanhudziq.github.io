@@ -24,8 +24,8 @@ class CreateCardApplicationsTable extends Migration
             $table->string('ic_no');
             $table->string('address');
             $table->string('image_url');
-            //$table->foreign('status_id')->references('status_id')->on('statuses');
-            //$table->foreign('approved_by')->references('user_type')->on('user');
+            $table->string('fuser_id', 10);
+            //$table->foreign('fuser_id')->references('user_id')->on('users')->onDelete('cascade');
             $table->timestamp('status_change_datetime');
             $table->timestamps();
         });
