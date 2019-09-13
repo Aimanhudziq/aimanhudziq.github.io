@@ -16,6 +16,7 @@ class CreateKivsTable extends Migration
         Schema::create('kivs', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('status_id')->unsigned()->nullable();
+            $table->string('approved_by');
             $table->timestamp('status_change_datetime');
             $table->timestamp('deleted_at');
             $table->timestamps();

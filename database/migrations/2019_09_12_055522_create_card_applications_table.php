@@ -16,7 +16,7 @@ class CreateCardApplicationsTable extends Migration
         Schema::create('card_applications', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('card_id')->unsigned();
-            $table->integer('approved_by')->unsigned();
+            $table->string('approved_by');
             $table->integer('status_id')->unsigned();
             $table->string('reference');
             $table->string('email')->unique();
