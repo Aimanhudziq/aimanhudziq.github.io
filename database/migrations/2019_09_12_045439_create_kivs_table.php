@@ -15,11 +15,10 @@ class CreateKivsTable extends Migration
     {
         Schema::create('kivs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('status_id');
-            $table->timestamps('status_change_datetime');
-            $table->timestamps('created_at');
-            $table->timestamps('updated_at');
-            $table->timestamps('deleted_at');
+            $table->integer('status_id')->unsigned()->nullable();
+            $table->timestamp('status_change_datetime');
+            $table->timestamp('deleted_at');
+            $table->timestamps();
         });
     }
 

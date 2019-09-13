@@ -17,8 +17,7 @@ class CreateBanksTable extends Migration
             $table->increments('id');
             $table->integer('bank_id');
             $table->string('bank_name');
-            $table->timestamps('created_at');
-            $table->timestamps('updated_at');
+            $table->timestamps();
         });
     }
 

@@ -15,19 +15,19 @@ class CreateCardApplicationsTable extends Migration
     {
         Schema::create('card_applications', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('card_id');
+            $table->integer('card_id')->unsigned();
             $table->integer('approved_by')->unsigned();
+            $table->integer('status_id')->unsigned();
             $table->string('reference');
             $table->string('email')->unique();
             $table->string('phone_number');
             $table->string('ic_no');
             $table->string('address');
             $table->string('image_url');
-            $table->foreign('status_id')->references('status_id')->on('status');
-            $table->foreign('approved_by')->references('user_type')->on('user');
-            $table->timestamps('status_change_datetime');
-            $table->timestamps('created_at');
-            $table->timestamps('updated_at');
+            //$table->foreign('status_id')->references('status_id')->on('statuses');
+            //$table->foreign('approved_by')->references('user_type')->on('user');
+            $table->timestamp('status_change_datetime');
+            $table->timestamps();
         });
     }
 

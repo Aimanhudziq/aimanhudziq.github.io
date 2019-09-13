@@ -13,7 +13,7 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('first_name');
             $table->string('last_name');
@@ -22,10 +22,9 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('user_type');
             $table->string('bank_assign');
-            $table->integer('bank_id')->unsigned();
-            $table->foreign('bank_id')->references('bank_id')->on('bank');
-            $table->timestamps('created_at');
-            $table->timestamps('updated_at');
+            $table->integer('bank_id');
+            //$table->foreign('bank_id')->references('bank_id')->on('banks');
+            $table->timestamps();
         });
     }
 
@@ -36,7 +35,7 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             //
         });
     }
