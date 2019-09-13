@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use \Validator;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -39,12 +40,10 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function login(Request $request)
+    public function login(Request $request, User $user)
     {      
         //$user->username = $request->username
-        $username = $request->input('username');
-        $password = $request->input('password');
-
+        
         $validator = Validator::make($request->all(), [
             'username' => ['required'],
             'password' => ['required','string','min:8', 
@@ -55,9 +54,21 @@ class LoginController extends Controller
         ]);
         //$input = $request->input('username');
         //dd($input);
+
         if ($validator->fails()) {
             return redirect('/')->withErrors($validator)->withInput();
         }
-        return "validation succesful";
+
+       $validate_input=[
+            $user->username = $request->input('username'),
+            $user->password = $request->input('password'),
+       ];
+
+        $result = User::where('username','=', $user->username);
+        if($result->count()==0){
+            return "username anda tidak wujud dalam database";
+        }
+        return "username anda wujud";
+
     }
 }

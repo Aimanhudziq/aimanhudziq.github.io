@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Kiv extends Model
 {
     protected $fillable = [
-
+        'fuser_id',
         'status_id',
         'approved_by',
         'status_change_datetime',
