@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function login_user()
+    public function loginUser()
     {
     	return view('auth.login_user');
     }

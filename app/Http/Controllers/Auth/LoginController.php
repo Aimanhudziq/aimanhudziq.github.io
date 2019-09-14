@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use \Validator;
 use App\User;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -38,9 +39,10 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        $this->middleware('auth');
     }
 
-    public function login(Request $request, User $user)
+    public function loginCheck(Request $request, User $user)
     {      
         //$user->username = $request->username
         
@@ -59,16 +61,21 @@ class LoginController extends Controller
             return redirect('/')->withErrors($validator)->withInput();
         }
 
-       $validate_input=[
-            $user->username = $request->input('username'),
-            $user->password = $request->input('password'),
-       ];
+        $user->username = $request->input('username');
+        $user->password = $request->input('password');
 
-        $result = User::where('username','=', $user->username);
-        if($result->count()==0){
-            return "username anda tidak wujud dalam database";
+        $result = User::where('username','=', $user->username)->first();
+        $user_data = User::where('username','=', $user->username)->where('password', '=', $user->password);
+        if(!$result)
+        {
+            return "username does not exist in database";
         }
-        return "username anda wujud";
+        else if(Auth::user())
+        {
+            //dd("dfd");
+            return redirect()->intended('/dashboard');
+        }
+        return "username and passowrd does not match";
 
     }
 }

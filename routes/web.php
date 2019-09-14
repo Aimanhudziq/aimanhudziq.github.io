@@ -11,10 +11,9 @@
 |
 */
 
+//login page http//127.0.0.1:8000
+Route::get('/', 'UserController@loginUser')->name('login-page');
 
-Route::get('/', 'UserController@login_user');
-Route::get('/dashboard', 'UserController@dashboard');
-
-Auth::routes();
-
-Route::get('/login', 'Auth\LoginController@login')->name('login_user');
+//authenticate user login
+Route::get('login', 'Auth\LoginController@loginCheck')->name('login-check');
+Route::get('/dashboard', 'UserController@dashboard')->name('dashboard');

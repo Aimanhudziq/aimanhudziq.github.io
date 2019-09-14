@@ -46,7 +46,7 @@
                         </ul>
                     </div>
                 @endif
-                    <form method="POST" action="{{ url('/login') }}">
+                    <form method="GET" action="{{ url('login') }}">
                        {{ csrf_field() }}
                         <div class="form-group">
                             <label>{{ trans('login.username') }}</label>
@@ -72,7 +72,7 @@
                          <button type="submit" class="btn btn-info btn-flat m-b-30 m-t-30 btn-md" >Login</button>
                         
                         <div class="register-link m-t-15 text-center">
-                             <a href="Forgot_Password.html">{{ trans('login.forgot_password') }}</a>
+                             <a href="{{ url('/') }}">{{ trans('login.forgot_password') }}</a>
                         </div>
                     </form>
                 </div>
