@@ -46,6 +46,13 @@
                         </ul>
                     </div>
                 @endif
+
+                @if(Session::has('errMsg'))
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <i class="fa fa-info-circle"></i> {{ Session::get('errMsg') }}
+                    </div>
+                @endif
                     <form method="GET" action="{{ url('login') }}">
                        {{ csrf_field() }}
                         <div class="form-group">

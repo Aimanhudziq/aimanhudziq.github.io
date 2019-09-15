@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use \Validator;
 use App\User;
 use Auth;
+//use Illuminate\Support\Facades\Input;
 
 class LoginController extends Controller
 {
@@ -29,7 +30,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -39,7 +40,7 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     public function loginCheck(Request $request, User $user)
@@ -67,15 +68,21 @@ class LoginController extends Controller
         $result = User::where('username','=', $user->username)->first();
         $user_data = User::where('username','=', $user->username)->where('password', '=', $user->password);
         if(!$result)
-        {
-            return "username does not exist in database";
+        {   
+            //return "username does not exist in database";
+            \Session::flash('errMsg','username does not exist in database');
+            return redirect()->back();
         }
+        $user = Auth::user();
+        dd($user);
+        /*
         else if(Auth::user())
         {
             //dd("dfd");
             return redirect()->intended('/dashboard');
-        }
+        }*/
         return "username and passowrd does not match";
+        
 
     }
 }
