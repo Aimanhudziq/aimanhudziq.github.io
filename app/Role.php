@@ -12,4 +12,9 @@ class Role extends Model
         'created_at',
         'updated_at',
     ];
+
+
+    public function users(){
+        return $this->belongsTo('App\User');
+    }
 }
