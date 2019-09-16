@@ -32,7 +32,7 @@
                 <hr>
             </div>
                 <div class="login-logo">
-                    <a href="index.html">
+                    <a href="">
                         <img class="align-content" src="images/logo_piCa.png" alt="Pica Logo">
                     </a>
                 </div>
@@ -47,12 +47,7 @@
                     </div>
                 @endif
 
-                @if(Session::has('errMsg'))
-                    <div class="alert alert-danger">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <i class="fa fa-info-circle"></i> {{ Session::get('errMsg') }}
-                    </div>
-                @endif
+                    @include('partials.session_msg')
                     <form method="GET" action="{{ url('login') }}">
                        {{ csrf_field() }}
                         <div class="form-group">

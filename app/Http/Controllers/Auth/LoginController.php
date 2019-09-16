@@ -30,16 +30,17 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '';
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(User $user)
     {
         $this->middleware('guest')->except('logout');
+        //$this->user = $user;
         //$this->middleware('auth');
     }
 
@@ -55,8 +56,6 @@ class LoginController extends Controller
             'regex:/[0-9]/',      // must contain at least one digit
             'regex:/[@$!%*#?&]/'] // must contain a special character],
         ]);
-        //$input = $request->input('username');
-        //dd($input);
 
         if ($validator->fails()) {
             return redirect('/')->withErrors($validator)->withInput();
@@ -66,23 +65,29 @@ class LoginController extends Controller
         $user->password = $request->input('password');
 
         $result = User::where('username','=', $user->username)->first();
-        $user_data = User::where('username','=', $user->username)->where('password', '=', $user->password);
+
         if(!$result)
         {   
             //return "username does not exist in database";
             \Session::flash('errMsg','username does not exist in database');
             return redirect()->back();
         }
-        $user = Auth::user();
-        dd($user);
-        /*
-        else if(Auth::user())
-        {
-            //dd("dfd");
-            return redirect()->intended('/dashboard');
-        }*/
-        return "username and passowrd does not match";
+        else{
+            $user = Auth::attempt(['username' =>$user->username, 'password' => $user->password, 'user_type'=> 'admin']);
+            if($user){
+                return redirect()->intended('/dashboard');
+            }
+        }
+        \Session::flash('infoMsg','username and password does not match!');
+        return redirect()->back();
         
 
+    }
+
+    public function logout(){
+        Auth::logout();
+        \Session::flush();
+        return redirect()->intended('/');
+        
     }
 }
