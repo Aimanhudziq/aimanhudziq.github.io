@@ -73,9 +73,16 @@ class LoginController extends Controller
             return redirect()->back();
         }
         else{
-            $user = Auth::attempt(['username' =>$user->username, 'password' => $user->password, 'user_type'=> 'admin']);
-            if($user){
-                return redirect()->intended('/dashboard');
+            $credentials = [
+                'username' => $user->username,
+                'password' => bcrypt($user->password)
+            ];
+           
+            //dd($credentials);
+           
+            //$user = Auth::attempt(['username' =>$user->username, 'password' => $user->password, 'user_type'=> 'admin']);
+            if (Auth::attempt($credentials)) {
+                return redirect()->route('/dashboard');
             }
         }
         \Session::flash('infoMsg','username and password does not match!');
