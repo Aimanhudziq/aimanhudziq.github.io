@@ -40,14 +40,12 @@ class LoginController extends Controller
     public function __construct(User $user)
     {
         $this->middleware('guest')->except('logout');
-        //$this->user = $user;
+        $this->user = $user;
         //$this->middleware('auth');
     }
 
     public function loginCheck(Request $request, User $user)
-    {      
-        //$user->username = $request->username
-        
+    {              
         $validator = Validator::make($request->all(), [
             'username' => ['required'],
             'password' => ['required','string','min:8', 
@@ -68,21 +66,21 @@ class LoginController extends Controller
 
         if(!$result)
         {   
-            //return "username does not exist in database";
             \Session::flash('errMsg','username does not exist in database');
             return redirect()->back();
         }
         else{
             $credentials = [
                 'username' => $user->username,
-                'password' => bcrypt($user->password)
+                'password' => $user->password,
             ];
-           
-            //dd($credentials);
-           
-            //$user = Auth::attempt(['username' =>$user->username, 'password' => $user->password, 'user_type'=> 'admin']);
+
             if (Auth::attempt($credentials)) {
-                return redirect()->route('/dashboard');
+                //dd($credentials);
+                $user = Auth::user()->username;
+                //dd($user);
+                //dd($user->first_name, $user->last_name);
+                return redirect()->intended('dashboard')->with(['user'=>$user]);
             }
         }
         \Session::flash('infoMsg','username and password does not match!');

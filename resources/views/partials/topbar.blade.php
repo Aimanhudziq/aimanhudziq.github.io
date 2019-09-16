@@ -9,9 +9,11 @@
     <div class="top-right">
         <div class="header-menu">
             <div class="user-area dropdown float-right">
+                Hello,
                 <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-user"></i></a>
-
+                 {{ Session::get('user') }}
+               <i class="fa fa-user"></i><span class="caret"></span></a>
+               
                 <!-- language selection -->       
                 <div class="user-area">
                     <?php $mark = (preg_match('/\?/', url()->current())) ? '&' : '?'; ?>
