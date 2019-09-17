@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>PICA Control</title>
+    <title>Admin PICA Control</title>
     <meta name="description" content="ASCC, picture card">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -29,18 +29,15 @@
 </head>
 
 <body>
-
-    @include('partials.modal_bank_selection')
-  
         
     <!-- side bar -->
-    @include('partials.sidebar')
+    @include('partials.admin_sidebar')
     <!-- /side bar -->
 
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
         <!-- Top bar-->
-        @include('partials.topbar')
+        @include('partials.admin_topbar')
 
         <!-- Content -->
         <div class="content">
@@ -68,14 +65,7 @@
     <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
     <script src="{{ asset('assets/js/init/fullcalendar-init.js') }}"></script>
-    <script src="{{ asset('assets/js/dashboardjs/dashboard_chart.js') }}"></script>
-    <script>
-            /*
-            $(window).on('load',function(){
-                $('#myModal').modal('show');
-            });
-            */
-      </script>  
+
       <script>
         var locale = '{{ config('app.locale') }}';
         console.log(locale);

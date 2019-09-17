@@ -9,4 +9,8 @@ return[
     'approved' => 'Di Terima',
     'status_summary' => 'Status Keseluruhan',
     'status_month' => 'Status perBulan',
+
+    'user' => 'Pengguna',
+    'policy' => 'Terma & Syarat',
+    'bank' => 'Bank',
 ];

@@ -6,13 +6,14 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    //user and admin login
     public function loginUser()
     {
     	return view('auth.login_user');
     }
 
-    public function dashboard()
+    public function userDashboard()
     {
-    	return view('dashboard');
+    	return view('user_dashboard');
     }
 }

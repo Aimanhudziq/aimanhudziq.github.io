@@ -19,4 +19,5 @@ Route::get('/', ['as'=>'/', 'uses'=>'UserController@loginUser']);
 //authenticate user login
 Route::get('login', 'Auth\LoginController@loginCheck')->name('login-check');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
-Route::get('dashboard', 'UserController@dashboard')->name('dashboard');
+Route::get('user_dashboard', 'UserController@userDashboard')->name('user-dashboard');
+Route::get('admin_dashboard', 'AdminController@adminDashboard')->name('admin-dashboard');

@@ -39,7 +39,7 @@ class LoginController extends Controller
      */
     public function __construct(User $user)
     {
-        $this->middleware('guest')->except('logout');
+        //$this->middleware('guest')->except('logout');
         $this->user = $user;
         //$this->middleware('auth');
     }
@@ -80,16 +80,16 @@ class LoginController extends Controller
                 $user = Auth::user()->username;
                 //dd($user);
                 //dd($user->first_name, $user->last_name);
-                return redirect()->intended('dashboard')->with(['user'=>$user]);
+                return redirect()->intended('user_dashboard')->with(['user'=>$user]);
             }
         }
         \Session::flash('infoMsg','username and password does not match!');
-        return redirect()->back();
+        return redirect()->back()->withInput();
         
 
     }
 
-    public function logout(){
+    public function logout(Request $requset){
         Auth::logout();
         \Session::flush();
         return redirect()->intended('/');

@@ -2,11 +2,15 @@
 
 return[
 
-    //status
+    //status user
     'new' => 'New',
     'kiv' => 'KIV',
     'rejected' => 'Rejected',
     'approved' => 'Approved',
     'status_summary' => 'Status Summary',
     'status_month' => 'Status by Month',
+
+    'user' => 'Users',
+    'policy' => 'Policy',
+    'bank' => 'Bank',
 ];
