@@ -97,9 +97,8 @@ class LoginController extends Controller
             }
         }
         \Session::flash('infoMsg','username and password does not match!');
-        return redirect()->back()->withInput($request->only('username'));
         
-
+        return redirect()->back()->withInput($request->only('username')); 
     }
 
     public function logout(Request $requset)
