@@ -5,8 +5,8 @@ return[
     //status user
     'new' => 'New',
     'kiv' => 'KIV',
-    'rejected' => 'Rejected',
-    'approved' => 'Approved',
+    'rejected' => 'Reject',
+    'approved' => 'Approve',
     'status_summary' => 'Status Summary',
     'status_month' => 'Status by Month',
 

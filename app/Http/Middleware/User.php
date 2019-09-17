@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Auth;
 
-class Administrator
+class User
 {
     /**
      * Handle an incoming request.
@@ -15,9 +15,10 @@ class Administrator
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {
+    {   
         //dd(Auth::user()->frole_id);
-        if(Auth::user() && Auth::user()->frole_id == 1){
+        if(Auth::user() && (Auth::user()->frole_id == 2 || Auth::user()->frole_id == 3))  
+        {
             return $next($request);
         }
         return redirect('/');

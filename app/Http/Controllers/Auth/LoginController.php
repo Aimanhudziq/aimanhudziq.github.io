@@ -41,7 +41,7 @@ class LoginController extends Controller
     {
         //$this->middleware('guest')->except('logout');
         $this->user = $user;
-        //$this->middleware('auth');
+        //$this->middleware('admin');
     }
 
     public function loginCheck(Request $request, User $user)
