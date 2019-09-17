@@ -1,4 +1,4 @@
-@extends('layouts.user_master')
+@extends('layouts.admin_master')
 
 @section('content')
 <!-- Animated -->

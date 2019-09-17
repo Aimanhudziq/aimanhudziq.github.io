@@ -8,6 +8,6 @@ return [
 
     //admin
     'user' => 'Users',
-    'policy' => 'Terma & Syarat',
+    'policy' => 'Policy',
     'bank' => 'Bank'
 ];

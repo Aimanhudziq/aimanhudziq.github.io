@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="{{ asset('assets/css/cs-skin-elastic.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
-ç
 <body class="bg-white">
     <div class="sufee-login d-flex align-content-center flex-wrap">
         <div class="container">
@@ -60,19 +59,20 @@
                             </span>
                             @endif
                         </div>
+                        
                         <div class="form-group">
                             <label>{{ trans('login.password') }}</label>
                             <input type="password" class="form-control {{ $errors->has('password') ? 'has-error' : '' }}" name="password" 
-                            placeholder="{{ trans('login.placeholder_password') }}" value="{{ old('password') }}">
+                            placeholder="{{ trans('login.placeholder_password') }}" value="{{ old('password') }}"
+                            title="{{ trans('login.password') }}" data-toggle="popover"
+                            data-content="{{ trans('login.popover_info') }}">
                             @if ($errors->has('password'))
                             <span class="help-block">
                                 <strong style='color: #a94442'>{{ $errors->first('password') }}</strong>
                             </span>
                             @endif
                         </div>
-
                          <button type="submit" class="btn btn-info btn-flat m-b-30 m-t-30 btn-md" >Login</button>
-                        
                         <div class="register-link m-t-15 text-center">
                              <a href="{{ url('/') }}">{{ trans('login.forgot_password') }}</a>
                         </div>
@@ -86,6 +86,16 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+    <script type='text/javascript'src='http://code.jquery.com/jquery-1.9.1.js'></script>
+    <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <script type='text/javascript'src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
+    <!-- tooltip -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </body>
+    <script>
+        $("[data-toggle=popover]").popover();
+    </script>
+
 </html>
