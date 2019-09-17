@@ -13,10 +13,12 @@ return[
     'password' => 'Password',
     'forgot_password' => 'Forgot Password?',
     'popover_info' =>
-        'Password must contain at least eight character
+        'Password must contain at least eight characters
          Password must contain at least one lowercase letter
          Password must contain at least one uppercase letter
          Password must contain at least one digit of number
          Passowrd must contain a special character (eg: #$%^)',
+
+    'welcome' => 'Welcome',
 
 ];

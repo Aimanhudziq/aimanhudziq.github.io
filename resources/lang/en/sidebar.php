@@ -4,6 +4,7 @@ return [
     //users
     'new' => 'New',
     'log' => 'Log',
+    'kiv' => 'KIV',
     'search' => 'Search',
 
     //admin

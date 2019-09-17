@@ -9,9 +9,9 @@
     <div class="top-right">
         <div class="header-menu">
             <div class="user-area dropdown float-right">
-                Hello, Admin
+                {{ trans('login.welcome') }},  
                 <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                 
+                 {{ Auth::user()->username }} ({{ (Auth::user()->user_type) }})
                <i class="fa fa-user"></i><span class="caret"></span></a>
                
                 <!-- language selection -->       

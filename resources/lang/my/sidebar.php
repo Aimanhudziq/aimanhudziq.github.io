@@ -5,6 +5,7 @@ return [
     //users
     'new' => 'Baru',
     'log' => 'Log',
+    'kiv' => 'KIV',
     'search' => 'Carian Data',
 
     //admin

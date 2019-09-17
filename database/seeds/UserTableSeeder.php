@@ -11,15 +11,33 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'user_id' => '1234',
-            'first_name' => 'Jasvin',
-            'last_name' => 'Liyun',
-            'username' => 'mrjasvin',
-            'email' => 'jasvinliyun@yahoo.com',
-            'password' => '12345',
-            'user_type' => 'admin',
-            'frole_id' => 1,
-        ]);
+        if(DB::table('users')->get()->count() < 5){
+            DB::table('users')->insert([
+                [
+                    'user_id' => '12345',
+                    'first_name' => 'Jurin',
+                    'last_name' => 'Liyun',
+                    'username' => 'mrjurin',
+                    'email' => 'jurinliyun@yahoo.com',
+                    'password' => '12345',
+                    'user_type' => 'reviewer',
+                    'frole_id' => 2,
+                ],
+                [
+                    'user_id' => '123456',
+                    'first_name' => 'Jukvin',
+                    'last_name' => 'Liyun',
+                    'username' => 'mrjukvin',
+                    'email' => 'jukvinliyun@yahoo.com',
+                    'password' => '12345',
+                    'user_type' => 'normal_user',
+                    'frole_id' => 3,
+                ]
+                
+            ]);
+        }
+        else{
+            echo "Table is not empty";
+        }
     }
 }

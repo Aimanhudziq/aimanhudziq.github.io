@@ -45,7 +45,7 @@ class LoginController extends Controller
     }
 
     public function loginCheck(Request $request, User $user)
-    {              
+    {         
         $validator = Validator::make($request->all(), [
             'username' => ['required'],
             'password' => ['required','string','min:8', 
@@ -69,18 +69,31 @@ class LoginController extends Controller
             \Session::flash('errMsg','username does not exist in database');
             return redirect()->back();
         }
-        else{
+        else
+        {
             $credentials = [
                 'username' => $user->username,
                 'password' => $user->password,
             ];
-
-            if (Auth::attempt($credentials)) {
+            //dd($credentials);
+            if (Auth::attempt($credentials))
+            {
                 //dd($credentials);
                 $user = Auth::user()->username;
-                //dd($user);
-                //dd($user->first_name, $user->last_name);
-                return redirect()->intended('user_dashboard')->with(['user'=>$user]);
+
+                $frole_id = Auth::user()->frole_id;
+                //dd($frole_id);
+                //$user_role = Auth::check($frole_id);
+
+                if($frole_id == 1)
+                {
+                    return redirect()->intended('admin_dashboard')->with(['user'=>$user]);
+                }
+                else if($frole_id == 2 || $frole_id == 3)
+                {
+                    return redirect()->intended('user_dashboard')->with(['user'=>$user]);
+                }
+                return redirect()->back();
             }
         }
         \Session::flash('infoMsg','username and password does not match!');
@@ -89,7 +102,8 @@ class LoginController extends Controller
 
     }
 
-    public function logout(Request $requset){
+    public function logout(Request $requset)
+    {
         Auth::logout();
         \Session::flush();
         return redirect()->intended('/');
