@@ -52,7 +52,9 @@
                         <div class="form-group">
                             <label>{{ trans('login.username') }}</label>
                             <input type="text" class="form-control {{ $errors->has('username') ? 'has-error' : '' }}" name="username" 
-                            placeholder="{{ trans('login.placeholder_username') }}" value="{{ old('username') }}">
+                            placeholder="{{ trans('login.placeholder_username') }}" value="{{ old('username') }}"
+                            title="{{ trans('login.username') }}" data-toggle="popover"
+                            data-content="{{ trans('login.popover_info_username') }}">
                             @if ($errors->has('username'))
                             <span class="help-block">
                                 <strong style='color: #a94442'>{{ $errors->first('username') }}</strong>
@@ -65,7 +67,7 @@
                             <input type="password" class="form-control {{ $errors->has('password') ? 'has-error' : '' }}" name="password" 
                             placeholder="{{ trans('login.placeholder_password') }}" value="{{ old('password') }}"
                             title="{{ trans('login.password') }}" data-toggle="popover"
-                            data-content="{{ trans('login.popover_info') }}">
+                            data-content="{{ trans('login.popover_info_password') }}">
                             @if ($errors->has('password'))
                             <span class="help-block">
                                 <strong style='color: #a94442'>{{ $errors->first('password') }}</strong>

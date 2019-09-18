@@ -21,3 +21,12 @@ Route::get('login', 'Auth\LoginController@loginCheck')->name('login-check');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('user_dashboard', 'UserController@userDashboard')->name('user-dashboard')->middleware('user');
 Route::get('admin_dashboard', 'AdminController@adminDashboard')->name('admin-dashboard')->middleware('admin');
+
+Route::get('user_new_task', 'UserController@userNewTask')->name('user-new-task')->middleware('user');
+/*
+Route::group(['prefix' => 'admin',  'middleware' => 'auth'], function()
+{
+    //All the routes that belongs to the group goes here
+    Route::get('dashboard', function() {} );
+});
+*/

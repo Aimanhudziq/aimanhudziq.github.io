@@ -41,7 +41,11 @@
 
         <!-- Content -->
         <div class="content">
-            @yield('content')
+            <div class="animated fadeIn">
+                <div class="row">
+                    @yield('content')
+                </div>
+            </div>
         </div>
 
         <!-- Footer -->

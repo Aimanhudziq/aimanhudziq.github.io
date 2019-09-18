@@ -12,8 +12,8 @@ return[
     'username' => 'Nama Pengguna',
     'password' => 'Kata Laluan',
     'forgot_password' => 'Lupa Kata Laluan?',
-
-    'popover_info' =>
+    'popover_info_username' => 'Masukkan nama pengguna anda. cth: mrjasvin',
+    'popover_info_password' =>
         'Kata laluan mestilah sekurang-kurangnya 8 aksara huruf
          Kata laluan mestilah sekurang-kurangnya 1 huruf kecil
          Kata laluan mestilah sekurang-kurangnya 1 huruf besar

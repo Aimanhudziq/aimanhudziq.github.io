@@ -16,4 +16,9 @@ class UserController extends Controller
     {
     	return view('user_dashboard');
     }
+
+    public function userNewTask()
+    {
+        return view('normaluser.user_new_task');
+    }
 }

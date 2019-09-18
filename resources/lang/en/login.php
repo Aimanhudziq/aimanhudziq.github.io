@@ -12,7 +12,8 @@ return[
     'username' => 'Username',
     'password' => 'Password',
     'forgot_password' => 'Forgot Password?',
-    'popover_info' =>
+    'popover_info_username' => 'Please enter your username. eg: mrjasvin',
+    'popover_info_password' =>
         'Password must contain at least eight characters
          Password must contain at least one lowercase letter
          Password must contain at least one uppercase letter
