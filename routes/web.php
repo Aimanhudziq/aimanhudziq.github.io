@@ -23,6 +23,8 @@ Route::get('user_dashboard', 'UserController@userDashboard')->name('user-dashboa
 Route::get('admin_dashboard', 'AdminController@adminDashboard')->name('admin-dashboard')->middleware('admin');
 
 Route::get('user_new_task', 'UserController@userNewTask')->name('user-new-task')->middleware('user');
+
+//Route::get('policy', 'PolicyController@policyList');
 /*
 Route::group(['prefix' => 'admin',  'middleware' => 'auth'], function()
 {

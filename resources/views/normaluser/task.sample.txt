@@ -1,0 +1,113 @@
+<div class="checkbox">
+    <label for="checkbox2" class="form-check-label ">
+        <input type="checkbox" id="checkbox2" name="checkbox2" value="option2" class="form-check-input">Portraits of third parties
+    </label>
+</div>
+<div class="checkbox">
+    <label for="checkbox3" class="form-check-label ">
+        <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Outside/Inside buildings
+    </label>
+</div>           
+<div class="checkbox">
+    <label for="checkbox3" class="form-check-label ">
+        <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Artworks (paintings, statues, song texts)
+    </label>
+</div>       
+<div class="checkbox">
+<label for="checkbox3" class="form-check-label ">
+    <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">(Company) Logos
+</label>
+</div>          
+<div class="checkbox">
+<label for="checkbox3" class="form-check-label ">
+    <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Company names
+</label>
+</div>    
+<div class="checkbox">
+<label for="checkbox3" class="form-check-label ">
+    <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Olympic Marks, logos, designation, or authentication statements
+</label>
+</div>                      
+<div class="checkbox">
+<label for="checkbox3" class="form-check-label ">
+    <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Names
+</label>
+</div>                  
+<div class="checkbox">
+<label for="checkbox3" class="form-check-label ">
+    <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Text/wording
+</label>
+</div>     
+<div class="checkbox">
+    <label for="checkbox3" class="form-check-label ">
+        <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Poems, book text
+    </label>
+</div>
+<div class="checkbox">
+    <label for="checkbox3" class="form-check-label ">
+        <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Cartoon figures
+    </label>
+</div>
+<div class="checkbox">
+    <label for="checkbox3" class="form-check-label ">
+        <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Politicians, political symbols, logos of political parties
+    </label>
+</div>
+<div class="checkbox">
+    <label for="checkbox3" class="form-check-label ">
+        <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Racist symbols or pictures
+    </label>
+</div>
+<div class="checkbox">
+    <label for="checkbox3" class="form-check-label ">
+        <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Flags
+    </label>
+</div>                
+</div><!--/ col-xs-6 -->
+
+<div class="col-md-6">   
+<div class="checkbox">
+    <label for="checkbox3" class="form-check-label ">
+        <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Cards, motorcycles, vehicles, clothes, advertising, commercials
+    </label>
+</div>
+<div class="checkbox">
+    <label for="checkbox3" class="form-check-label ">
+        <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Personal- or company data (address, phone nr., web address)
+    </label>
+</div>  
+<div class="checkbox">
+    <label for="checkbox3" class="form-check-label ">
+        <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Nudity, any sexual related matter
+    </label>
+</div>
+<div class="checkbox">
+    <label for="checkbox3" class="form-check-label ">
+        <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Mistreatment, violence
+    </label>
+</div>
+<div class="checkbox">
+    <label for="checkbox3" class="form-check-label ">
+        <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Religious pictures/symbols
+    </label>
+</div>
+<div class="checkbox">
+    <label for="checkbox3" class="form-check-label ">
+        <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Gambling scenes or places
+    </label>
+</div>
+<div class="checkbox">
+    <label for="checkbox3" class="form-check-label ">
+        <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Alcohol, tobacco, drugs, medicines
+    </label>
+</div>
+<div class="checkbox">
+    <label for="checkbox3" class="form-check-label ">
+        <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Pictures which might bring confusion (card would look like it has a different function) names
+    </label>
+</div>  
+<div class="checkbox">
+    <label for="checkbox3" class="form-check-label ">
+        <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Pictures which might bring negative impact to the payment organization brand
+    </label>
+</div>

@@ -4,6 +4,14 @@
 <div class="animated fadeIn">
     <div class="row">
         <div class="col-md-12">
+            <div class="row">
+                <div class="alert alert-info col-sm-5 col-md-offset-4" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign" 
+                    aria-hidden="true"></span>
+                    Find someone with <strong><u>No IC</u></strong> or 
+                    </strong><strong><u>Phone Number</u></strong>
+                </div>
+            </div>
             <div class="card">
                 <div class="card-header">
                     <strong class="card-title">New Task</strong>
@@ -21,11 +29,11 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>013-8976113</td>
-                                <td>2019-08-29</td>
-                                <td>New</td>
+                                <td><span class="badge bg-secondary">013-8976113</span></td>
+                                <td><span class="badge bg-dark">18-09-2019</span></td>
+                                <td><span class="badge bg-info">New</span></td>
                                 <td>
-                                    <a  type="button" class="btn btn-white mb-1" data-toggle="modal" 
+                                    <a type="button" class="btn btn-white mb-1" data-toggle="modal" 
                                         data-target="#largeModal"><i  class="fa fa-cog"></i>
                                     </a>
                                 </td>
@@ -39,7 +47,8 @@
 </div><!-- .animated -->
 
 <!--Modal Body Start-->
-<div class="modal fade"  id="largeModal" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
+<div class="modal fade"  id="largeModal" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" 
+aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header" >
@@ -62,10 +71,10 @@
                 <!--Body start-->
         <div class="modal-body">
             <div class="row">
-                <div class="col-lg-6">
-                    <img src="images/demo.png" alt="Logo" style="height: min-content">
+                <div class="col-md-3">
+                    <img src="images/demo.png" alt="Logo" height="180px" width="200px">
                 </div>
-                <div class="col-lg-6">
+                <div class="col-md-6">
                     <div class="row form-group" style="margin-right: 20px">
                             <label for="textarea-input" class=" form-control-label ml-3">Remarks</label>
                             <textarea name="textarea-input" id="textarea-input" rows="5" placeholder="Content..." 
@@ -80,124 +89,21 @@
                                 <strong>Policy</strong>
                             </div> <!--/card header -->
                             <div class="card-body" style="font-size: small">
-                                <div class="form-check" >
-                                    <div class="checkbox">
-                                        <label for="checkbox1" class="form-check-label " >
-                                            <input type="checkbox" id="checkbox1" name="checkbox1" value="option1" class="form-check-input">Cardholders picture/portrait
-                                        </label>
+                                <form action="" method="GET">
+                                    <div class="form-check" >
+                                        @foreach($policy as $p)
+                                            <div class="col-xs-6">
+                                                <div class="checkbox">
+                                                    <label for="policy" class="form-check-label " >
+                                                        <input type="checkbox" id="policy" name="policy[]" value="{{ $p->id }}" 
+                                                            class="form-check-input" v-model='policy'>
+                                                        {{ $p->policy_name }}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        @endforeach
                                     </div>
-                                    <div class="checkbox">
-                                        <label for="checkbox2" class="form-check-label ">
-                                            <input type="checkbox" id="checkbox2" name="checkbox2" value="option2" class="form-check-input">Portraits of third parties
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label for="checkbox3" class="form-check-label ">
-                                            <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Outside/Inside buildings
-                                        </label>
-                                    </div>           
-                                    <div class="checkbox">
-                                        <label for="checkbox3" class="form-check-label ">
-                                            <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Artworks (paintings, statues, song texts)
-                                        </label>
-                                    </div>       
-                                    <div class="checkbox">
-                                        <label for="checkbox3" class="form-check-label ">
-                                            <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">(Company) Logos
-                                        </label>
-                                    </div>          
-                                    <div class="checkbox">
-                                        <label for="checkbox3" class="form-check-label ">
-                                            <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Company names
-                                        </label>
-                                    </div>    
-                                    <div class="checkbox">
-                                        <label for="checkbox3" class="form-check-label ">
-                                            <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Olympic Marks, logos, designation, or authentication statements
-                                        </label>
-                                    </div>
-                                                            
-                                    <div class="checkbox">
-                                        <label for="checkbox3" class="form-check-label ">
-                                            <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Names
-                                        </label>
-                                    </div>                  
-                                    <div class="checkbox">
-                                        <label for="checkbox3" class="form-check-label ">
-                                            <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Text/wording
-                                        </label>
-                                    </div>     
-                                    <div class="checkbox">
-                                        <label for="checkbox3" class="form-check-label ">
-                                            <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Poems, book text
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label for="checkbox3" class="form-check-label ">
-                                            <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Cartoon figures
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label for="checkbox3" class="form-check-label ">
-                                            <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Politicians, political symbols, logos of political parties
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label for="checkbox3" class="form-check-label ">
-                                            <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Racist symbols or pictures
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label for="checkbox3" class="form-check-label ">
-                                            <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Flags
-                                        </label>
-                                    </div>                 
-                                    <div class="checkbox">
-                                        <label for="checkbox3" class="form-check-label ">
-                                            <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Cards, motorcycles, vehicles, clothes, advertising, commercials
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label for="checkbox3" class="form-check-label ">
-                                            <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Personal- or company data (address, phone nr., web address)
-                                        </label>
-                                    </div>  
-                                    <div class="checkbox">
-                                        <label for="checkbox3" class="form-check-label ">
-                                            <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Nudity, any sexual related matter
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label for="checkbox3" class="form-check-label ">
-                                            <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Mistreatment, violence
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label for="checkbox3" class="form-check-label ">
-                                            <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Religious pictures/symbols
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label for="checkbox3" class="form-check-label ">
-                                            <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Gambling scenes or places
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label for="checkbox3" class="form-check-label ">
-                                            <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Alcohol, tobacco, drugs, medicines
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label for="checkbox3" class="form-check-label ">
-                                            <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Pictures which might bring confusion (card would look like it has a different function) names
-                                        </label>
-                                    </div>  
-                                    <div class="checkbox">
-                                        <label for="checkbox3" class="form-check-label ">
-                                            <input type="checkbox" id="checkbox3" name="checkbox3" value="option3" class="form-check-input">Pictures which might bring negative impact to the payment organization brand
-                                        </label>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div><!--  /.col-lg-6 -->
@@ -205,12 +111,12 @@
             </div>
             <!--Body end-->
 
-                <div class="modal-footer">
-                        <a type="submit" class="btn btn-sm btn-dark mt-3 mb-3 text-white">Approve</a>
-                        <a type="submit" class="btn btn-sm btn-dark mt-3 mb-3 text-white">Reject</a>
-                        <a type="submit" class="btn btn-sm btn-dark mt-3 mb-3 text-white">KIV</a>
-                    <a type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</a>
-                </div>
+            <div class="modal-footer">
+                <a  class="btn btn-sm btn-success mt-3 mb-3 text-white" id="approve">Approve</a>
+                <a class="btn btn-sm btn-danger mt-3 mb-3 text-white">Reject</a>
+                <a class="btn btn-sm btn-warning mt-3 mb-3 text-white">KIV</a>
+                <a class="btn btn-secondary" data-dismiss="modal">Cancel</a>
+            </div>
         </div>
     </div>
 </div>

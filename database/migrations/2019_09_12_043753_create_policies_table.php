@@ -19,8 +19,6 @@ class CreatePoliciesTable extends Migration
             $table->string('policy_name');
             $table->string('policy_source');
             $table->string('policy_regulation');
-            $table->string('policy_allowed');
-            $table->string('policy_not_allowed');
             $table->timestamps();
         });
     }

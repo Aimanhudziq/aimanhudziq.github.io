@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\policy;
 
 class UserController extends Controller
 {
@@ -19,6 +20,7 @@ class UserController extends Controller
 
     public function userNewTask()
     {
-        return view('normaluser.user_new_task');
+        $policy = Policy::all();
+        return view('normaluser.user_new_task')->with('policy', $policy);
     }
 }

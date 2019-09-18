@@ -80,12 +80,14 @@
     <script src="{{ asset('assets/js/lib/data-table/buttons.colVis.min.js') }}"></script>
     <script src="{{ asset('assets/js/init/datatables-init.js') }}"></script>
     <script>
-            /*
-            $(window).on('load',function(){
-                $('#myModal').modal('show');
-            });
-            */
-      </script>  
+       $('#policy').click(function() {
+        if ($(this).is(':checked')) {
+            $('#approve').attr('disabled', 'disabled');
+        } else {
+            $('#approve').removeAttr('disabled');
+        }
+    });
+    </script>  
       <script>
         var locale = '{{ config('app.locale') }}';
         console.log(locale);
@@ -94,6 +96,6 @@
         $(document).ready(function() {
           $('#bootstrap-data-table-export').DataTable();
       } );
-  </script>
+    </script>
 </body>
 </html>
