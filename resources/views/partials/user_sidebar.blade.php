@@ -11,10 +11,10 @@
                     <a href="{{ url('user_new_task') }}"><i class="menu-icon ti ti-plus"></i>{{ trans('sidebar.new') }} </a>
                 </li>
                 <li>
-                    <a href="User_Log.html"><i class="menu-icon ti ti-folder"></i>{{ trans('sidebar.log') }} </a>
+                    <a href="{{ url('user_track_log') }}"><i class="menu-icon ti ti-folder"></i>{{ trans('sidebar.log') }} </a>
                 </li>
                 <li>
-                    <a href="User_Search.html"><i class="menu-icon ti ti-search"></i>{{ trans('sidebar.search') }} </a>
+                    <a href="{{ url('user_search') }}"><i class="menu-icon ti ti-search"></i>{{ trans('sidebar.search') }} </a>
                 </li>
                 @endif
 
@@ -27,10 +27,10 @@
                     <a href="User_New.html"><i class="menu-icon ti ti-plus"></i>{{ trans('sidebar.kiv') }} </a>
                 </li>
                 <li>
-                    <a href="User_Log.html"><i class="menu-icon ti ti-folder"></i>{{ trans('sidebar.log') }} </a>
+                    <a href="{{ url('user_track_log') }}"><i class="menu-icon ti ti-folder"></i>{{ trans('sidebar.log') }} </a>
                 </li>
                 <li>
-                    <a href="User_Search.html"><i class="menu-icon ti ti-search"></i>{{ trans('sidebar.search') }} </a>
+                    <a href="{{ url('user_search') }}"><i class="menu-icon ti ti-search"></i>{{ trans('sidebar.search') }} </a>
                 </li>
                 @endif
             </ul>

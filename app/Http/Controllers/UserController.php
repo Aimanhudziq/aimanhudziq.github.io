@@ -21,6 +21,16 @@ class UserController extends Controller
     public function userNewTask()
     {
         $policy = Policy::all();
-        return view('normaluser.user_new_task')->with('policy', $policy);
+        return view('users.user_new_task')->with('policy', $policy);
+    }
+
+    public function userSearch()
+    {
+        return view('users.user_search');
+    }
+
+    public function userTrackLog()
+    {
+        return view('users.user_track_log');
     }
 }

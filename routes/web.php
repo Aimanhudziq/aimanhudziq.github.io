@@ -19,12 +19,28 @@ Route::get('/', ['as'=>'/', 'uses'=>'UserController@loginUser']);
 //authenticate user login
 Route::get('login', 'Auth\LoginController@loginCheck')->name('login-check');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
-Route::get('user_dashboard', 'UserController@userDashboard')->name('user-dashboard')->middleware('user');
-Route::get('admin_dashboard', 'AdminController@adminDashboard')->name('admin-dashboard')->middleware('admin');
-
-Route::get('user_new_task', 'UserController@userNewTask')->name('user-new-task')->middleware('user');
-
 Route::get('password_reset', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+
+Route::get('user_dashboard', 'UserController@userDashboard')
+                ->name('user-dashboard')
+                ->middleware('user'); //access both users(normal user/reviewer)
+
+Route::get('user_new_task', 'UserController@userNewTask')
+                ->name('user-new-task')
+                ->middleware('normal_user'); //access by normal user only
+
+Route::get('user_track_log', 'UserController@userTrackLog')
+                ->name('user-track-log')
+                ->middleware('user'); //access both users(normal user/reviewer)
+
+Route::get('user_search', 'UserController@userSearch')
+                ->name('user-search')
+                ->middleware('user'); //access both users(normal user/reviewer)
+
+Route::get('admin_dashboard', 'AdminController@adminDashboard')
+                ->name('admin-dashboard')
+                ->middleware('admin'); // access by admin only
+
 //Route::post('password_email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password-email');
 //Route::get('password/reset', 'Auth\ResetPasswordController@reset');
 //Route::get('policy', 'PolicyController@policyList');

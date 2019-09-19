@@ -18,6 +18,15 @@
     <link rel="stylesheet" href="{{ asset('assets/css/cs-skin-elastic.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+    <style>
+        .field-icon {
+            float: right;
+            margin-left: -25px;
+            margin-top: -25px;
+            position: relative;
+            z-index: 2;
+        }           
+    </style>
 <body class="bg-white">
     <div class="sufee-login d-flex align-content-center flex-wrap">
         <div class="container">
@@ -52,9 +61,9 @@
                         <div class="form-group">
                             <label>{{ trans('login.username') }}</label>
                             <input type="text" class="form-control {{ $errors->has('username') ? 'has-error' : '' }}" name="username" 
-                            placeholder="{{ trans('login.placeholder_username') }}" value="{{ old('username') }}"
-                            title="{{ trans('login.username') }}" data-toggle="popover"
-                            data-content="{{ trans('login.popover_info_username') }}">
+                                placeholder="{{ trans('login.placeholder_username') }}" value="{{ old('username') }}"
+                                    title="{{ trans('login.username') }}" data-toggle="popover"
+                                        data-content="{{ trans('login.popover_info_username') }}">
                             @if ($errors->has('username'))
                             <span class="help-block">
                                 <strong style='color: #a94442'>{{ $errors->first('username') }}</strong>
@@ -65,9 +74,10 @@
                         <div class="form-group">
                             <label>{{ trans('login.password') }}</label>
                             <input type="password" class="form-control {{ $errors->has('password') ? 'has-error' : '' }}" name="password" 
-                            placeholder="{{ trans('login.placeholder_password') }}" value="{{ old('password') }}"
-                            title="{{ trans('login.password') }}" data-toggle="popover"
-                            data-content="{{ trans('login.popover_info_password') }}">
+                                placeholder="{{ trans('login.placeholder_password') }}" value="{{ old('password') }}" id="password-field"
+                                    title="{{ trans('login.password') }}" data-toggle="popover"
+                                        data-content="{{ trans('login.popover_info_password') }}">
+                                        <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                             @if ($errors->has('password'))
                             <span class="help-block">
                                 <strong style='color: #a94442'>{{ $errors->first('password') }}</strong>
@@ -98,6 +108,20 @@
 </body>
     <script>
         $("[data-toggle=popover]").popover();
+    </script>
+    <script>
+        $(".toggle-password").click(function() {
+            $(this).toggleClass("fa-eye fa-eye-slash");
+            var input = $($(this).attr("toggle"));
+            if (input.attr("type") == "password") 
+            {
+                input.attr("type", "text");
+            } 
+            else 
+            {
+                input.attr("type", "password");
+            }
+        });
     </script>
 
 </html>
