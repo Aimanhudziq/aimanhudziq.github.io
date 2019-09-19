@@ -24,6 +24,9 @@ Route::get('admin_dashboard', 'AdminController@adminDashboard')->name('admin-das
 
 Route::get('user_new_task', 'UserController@userNewTask')->name('user-new-task')->middleware('user');
 
+Route::get('password_reset', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+//Route::post('password_email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password-email');
+//Route::get('password/reset', 'Auth\ResetPasswordController@reset');
 //Route::get('policy', 'PolicyController@policyList');
 /*
 Route::group(['prefix' => 'admin',  'middleware' => 'auth'], function()
