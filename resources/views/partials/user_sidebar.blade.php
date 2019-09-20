@@ -4,10 +4,10 @@
             <ul class="nav navbar-nav">
                 <!-- Normal user dashboard-->
                 @if(@Auth::user()->frole_id == 3)
-                <li class="active">
+                <li class="{{ Route::currentRouteNamed('about') ? 'active' : '' }}">
                     <a href="{{ url('user_dashboard') }}"><i class="menu-icon ti ti-layout "></i>Dashboard </a>
                 </li>
-                <li>
+                <li class="@yield('user_new_task')">
                     <a href="{{ url('user_new_task') }}"><i class="menu-icon ti ti-plus"></i>{{ trans('sidebar.new') }} </a>
                 </li>
                 <li>
