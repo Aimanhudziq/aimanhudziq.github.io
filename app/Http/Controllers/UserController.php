@@ -13,6 +13,11 @@ class UserController extends Controller
     	return view('auth.login_user');
     }
 
+    public function forgotPassword()
+    {
+        return view('users.forgot_password');
+    }
+
     public function userDashboard()
     {
     	return view('user_dashboard');

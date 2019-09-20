@@ -79,13 +79,47 @@
     <script src="{{ asset('assets/js/lib/data-table/buttons.print.min.js') }}"></script>
     <script src="{{ asset('assets/js/lib/data-table/buttons.colVis.min.js') }}"></script>
     <script src="{{ asset('assets/js/init/datatables-init.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
-       $('#policy').click(function() {
-        if ($(this).is(':checked')) {
-            $('#approve').attr('disabled', 'disabled');
-        } else {
-            $('#approve').removeAttr('disabled');
-        }
+    /*
+        new Vue({
+            el: '#app',
+                ready(){
+                    console.log("hello world");
+                },
+                data: {
+                    policy: false
+                },
+                methods:{
+                    disabledBtnApp:function(){
+                        var policy=document.getElementsByName("policy");
+                        for(var i=0; i< policy.length; i++) {
+                            if(policy[i].checked){
+                                console.log("ID checkbox=>", policy[i].id)
+                                btn = document.querySelector('.btn');
+                                btn.disabled = true;
+                            }
+                        }
+                    }
+                },
+                computed: {
+                    isDisabled: function(){
+                        console.log(this.policy);
+                        return this.policy;
+                }
+            }
+        })
+        */
+        $(document).ready(function () {
+        $(":checkbox").click(function () {
+            var checkbox = $("input:checked").length;
+            if (checkbox >= 1) {
+                $("#approve").attr("disabled","disabled");
+            }
+            else {
+                $("#approve").removeAttr("disabled");
+            }
+        });
     });
     </script>  
       <script>

@@ -4,33 +4,37 @@
             <ul class="nav navbar-nav">
                 <!-- Normal user dashboard-->
                 @if(@Auth::user()->frole_id == 3)
-                <li class="{{ Route::currentRouteNamed('about') ? 'active' : '' }}">
-                    <a href="{{ url('user_dashboard') }}"><i class="menu-icon ti ti-layout "></i>Dashboard </a>
+                <li class="{{ Route::currentRouteNamed('user-dashboard') ? 'active' : '' }}">
+                    <a href="{{ url('user_dashboard') }}"><i class="menu-icon ti ti-layout ">
+                    </i>Dashboard </a>
                 </li>
-                <li class="@yield('user_new_task')">
-                    <a href="{{ url('user_new_task') }}"><i class="menu-icon ti ti-plus"></i>{{ trans('sidebar.new') }} </a>
+                <li class="{{ Route::currentRouteNamed('user-new-task') ? 'active' : '' }}">
+                    <a href="{{ url('user_new_task') }}"><i class="menu-icon ti ti-plus">
+                    </i>{{ trans('sidebar.new') }} </a>
                 </li>
-                <li>
+                <li class="{{ Route::currentRouteNamed('user-track-log') ? 'active' : '' }}">
                     <a href="{{ url('user_track_log') }}"><i class="menu-icon ti ti-folder"></i>{{ trans('sidebar.log') }} </a>
                 </li>
-                <li>
+                <li class="{{ Route::currentRouteNamed('user-search') ? 'active' : '' }}">
                     <a href="{{ url('user_search') }}"><i class="menu-icon ti ti-search"></i>{{ trans('sidebar.search') }} </a>
                 </li>
                 @endif
 
                 <!-- Reviewer dashboard-->
                 @if(@Auth::user()->frole_id == 2)
-                <li class="active">
-                    <a href="{{ url('user_dashboard') }}"><i class="menu-icon ti ti-layout "></i>Dashboard </a>
+                <li class="{{ Route::currentRouteNamed('user-dashboard') ? 'active': '' }}">
+                    <a href="{{ url('user_dashboard') }}">
+                    <i class="menu-icon ti ti-layout "></i>Dashboard </a>
                 </li>
-                <li>
+                <li class="{{ Route::currentRouteNamed('user-kiv') ? 'active': '' }}">
                     <a href="User_New.html"><i class="menu-icon ti ti-plus"></i>{{ trans('sidebar.kiv') }} </a>
                 </li>
-                <li>
+                <li class="{{ Route::currentRouteNamed('user-track-log') ? 'active': '' }}">
                     <a href="{{ url('user_track_log') }}"><i class="menu-icon ti ti-folder"></i>{{ trans('sidebar.log') }} </a>
                 </li>
-                <li>
-                    <a href="{{ url('user_search') }}"><i class="menu-icon ti ti-search"></i>{{ trans('sidebar.search') }} </a>
+                <li class="{{ Route::currentRouteNamed('user-search') ? 'active': '' }}">
+                    <a href="{{ url('user_search') }}">
+                    <i class="menu-icon ti ti-search"></i>{{ trans('sidebar.search') }} </a>
                 </li>
                 @endif
             </ul>

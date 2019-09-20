@@ -41,6 +41,9 @@ Route::get('admin_dashboard', 'AdminController@adminDashboard')
                 ->name('admin-dashboard')
                 ->middleware('admin'); // access by admin only
 
+Route::get('forgot_password', 'UserController@forgotPassword')
+                ->name('forgot-password');
+
 //Route::post('password_email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password-email');
 //Route::get('password/reset', 'Auth\ResetPasswordController@reset');
 //Route::get('policy', 'PolicyController@policyList');

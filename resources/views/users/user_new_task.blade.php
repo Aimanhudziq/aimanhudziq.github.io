@@ -91,32 +91,34 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                             <div class="card-body" style="font-size: small">
                                 <form action="" method="GET">
                                     <div class="form-check" >
+                                        <div id="app">
                                         @foreach($policy as $p)
-                                            <div class="col-xs-6">
-                                                <div class="checkbox">
+                                            <div class="checkbox">
+                                                <div class="col-xs-6">
                                                     <label for="policy" class="form-check-label " >
-                                                        <input type="checkbox" id="policy" name="policy[]" value="{{ $p->id }}" 
-                                                            class="form-check-input" v-model='policy'>
+                                                        <input type="checkbox" id="policy" name="policy" value="{{ $p->id }}" 
+                                                            class="form-check-input" @click="disabledBtnApp">
                                                         {{ $p->policy_name }}
+                                                        
                                                     </label>
                                                 </div>
                                             </div>
                                         @endforeach
-                                    </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-sm btn-success mt-3 mb-3 text-white" id="approve">Approve</button>
+                                                <button class="btn btn-sm btn-danger mt-3 mb-3 text-white">Reject</button>
+                                                <button class="btn btn-sm btn-warning mt-3 mb-3 text-white">KIV</button>
+                                                <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </div><!-- form check class-->
                                 </form>
                             </div>
                         </div>
                     </div><!--  /.col-lg-6 -->
                 </div>
             </div>
-            <!--Body end-->
-
-            <div class="modal-footer">
-                <a  class="btn btn-sm btn-success mt-3 mb-3 text-white" id="approve">Approve</a>
-                <a class="btn btn-sm btn-danger mt-3 mb-3 text-white">Reject</a>
-                <a class="btn btn-sm btn-warning mt-3 mb-3 text-white">KIV</a>
-                <a class="btn btn-secondary" data-dismiss="modal">Cancel</a>
-            </div>
+            <!--Body end-->            
         </div>
     </div>
 </div>
