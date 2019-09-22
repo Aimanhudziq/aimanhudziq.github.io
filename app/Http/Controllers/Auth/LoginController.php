@@ -81,15 +81,15 @@ class LoginController extends Controller
                 //dd($credentials);
                 $user = Auth::user()->username;
 
-                $frole_id = Auth::user()->frole_id;
-                //dd($frole_id);
-                //$user_role = Auth::check($frole_id);
+                $frole_code = Auth::user()->frole_code;
+                //dd($frole_code);
+                //$user_role = Auth::check($frole_code);
 
-                if($frole_id == 1)
+                if($frole_code == 1)
                 {
                     return redirect()->intended('admin_dashboard')->with(['user'=>$user]);
                 }
-                else if($frole_id == 2 || $frole_id == 3)
+                else if($frole_code == 2 || $frole_code == 3)
                 {
                     return redirect()->intended('user_dashboard')->with(['user'=>$user]);
                 }

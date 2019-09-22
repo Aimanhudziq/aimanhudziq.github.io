@@ -3,7 +3,7 @@
         <div id="main-menu" class="main-menu collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <!-- Normal user dashboard-->
-                @if(@Auth::user()->frole_id == 3)
+                @if(@Auth::user()->frole_code == 3)
                 <li class="{{ Route::currentRouteNamed('user-dashboard') ? 'active' : '' }}">
                     <a href="{{ url('user_dashboard') }}"><i class="menu-icon ti ti-layout ">
                     </i>Dashboard </a>
@@ -21,7 +21,7 @@
                 @endif
 
                 <!-- Reviewer dashboard-->
-                @if(@Auth::user()->frole_id == 2)
+                @if(@Auth::user()->frole_code == 2)
                 <li class="{{ Route::currentRouteNamed('user-dashboard') ? 'active': '' }}">
                     <a href="{{ url('user_dashboard') }}">
                     <i class="menu-icon ti ti-layout "></i>Dashboard </a>

@@ -14,34 +14,44 @@ class UserTableSeeder extends Seeder
         if(DB::table('users')->get()->count() < 5){
             DB::table('users')->insert([
                 [
-                    'user_id' => '123',
+                    'user_staff_id' => '123',
                     'first_name' => 'Jasvin',
                     'last_name' => 'Liyun',
                     'username' => 'mrjasvin',
                     'email' => 'jasvinliyun@yahoo.com',
-                    'password' => 'mrjasvin',
+                    'password' => \Hash::make('Mrjasvin009@'),
                     'user_type' => 'Admin',
-                    'frole_id' => 1,
+                    'frole_code' => 1,
                 ],
                 [
-                    'user_id' => '12345',
+                    'user_staff_id' => '12345',
                     'first_name' => 'Jurin',
                     'last_name' => 'Liyun',
                     'username' => 'mrjurin',
                     'email' => 'jurinliyun@yahoo.com',
-                    'password' => '12345',
+                    'password' => \Hash::make('Mrjurin009@'),
                     'user_type' => 'Reviewer',
-                    'frole_id' => 2,
+                    'frole_code' => 2,
                 ],
                 [
-                    'user_id' => '123456',
+                    'user_staff_id' => '123456',
                     'first_name' => 'Jukvin',
                     'last_name' => 'Liyun',
                     'username' => 'mrjukvin',
                     'email' => 'jukvinliyun@yahoo.com',
-                    'password' => '12345',
+                    'password' => \Hash::make('Mrjukvin009@'),
                     'user_type' => 'Normal User',
-                    'frole_id' => 3,
+                    'frole_code' => 3,
+                ],
+                [
+                    'user_staff_id' => '111',
+                    'first_name' => 'Jukchin',
+                    'last_name' => 'Liyun',
+                    'username' => 'mrjukchin',
+                    'email' => 'jukchin@yahoo.com',
+                    'password' => \Hash::make('Mrjukchin009@'),
+                    'user_type' => 'Normal User',
+                    'frole_code' => 3,
                 ]
                 
             ]);

@@ -17,7 +17,7 @@ class NormalUserOnly
     public function handle($request, Closure $next)
     {
        //dd(Auth::user()->frole_id);
-       if(Auth::user() && Auth::user()->frole_id == 3)
+       if(Auth::user() && Auth::user()->frole_code == 3)
        {
            return $next($request);
        }

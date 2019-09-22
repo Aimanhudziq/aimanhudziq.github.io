@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Kiv extends Model
+class Reviewer extends Model
 {
     protected $fillable = [
         'fuser_id',

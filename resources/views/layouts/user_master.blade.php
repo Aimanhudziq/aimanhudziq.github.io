@@ -79,7 +79,6 @@
     <script src="{{ asset('assets/js/lib/data-table/buttons.print.min.js') }}"></script>
     <script src="{{ asset('assets/js/lib/data-table/buttons.colVis.min.js') }}"></script>
     <script src="{{ asset('assets/js/init/datatables-init.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
     /*
         new Vue({

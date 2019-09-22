@@ -15,10 +15,12 @@ class CreateTrackRecordsTable extends Migration
     {
         Schema::create('track_records', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('freference_no')->null(); //freference_no refer to the table card (reference)
-            $table->integer('policy_name')->null();
-            $table->string('status')->null();
+            $table->string('freference_no')->unique(); //freference_no refer to the table card (reference)
+            $table->string('policy_name')->null();
+            $table->string('status_code')->null();
             $table->timestamps();
+
+            $table->foreign('freference_no')->references('reference_no')->on('client_details')->onDelete('cascade');
         });
     }
 

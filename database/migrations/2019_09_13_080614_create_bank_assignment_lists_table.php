@@ -15,9 +15,11 @@ class CreateBankAssignmentListsTable extends Migration
     {
         Schema::create('bank_assignment_lists', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('fuser_id'); //foreign key from users
-            $table->integer('fbank_id'); //foreign key from banks
+            $table->string('fuser_staff_id')->unique(); //foreign key from users
+            $table->integer('fbank_code')->unsigned()->index(); //foreign key from banks
             $table->timestamps();
+
+            $table->foreign('fbank_code')->references('bank_code')->on('banks')->onDelete('cascade');
         });
     }
 
