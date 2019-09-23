@@ -24,6 +24,7 @@ return[
     'from' => 'Dari',
     'to' => 'Kepada',
     'policy_violated' => 'Kesalahan Dasar',
+    'user search' => 'Carian Pengguna',
     
 
     
