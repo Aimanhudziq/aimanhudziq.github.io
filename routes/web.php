@@ -44,6 +44,14 @@ Route::get('admin_dashboard', 'AdminController@adminDashboard')
 Route::get('forgot_password', 'UserController@forgotPassword')
                 ->name('forgot-password');
 
+Route::get('admin_user_list', 'AdminController@getAllUser')
+                ->name('admin-user-list')
+                ->middleware('admin');
+
+Route::post('add_new_user', 'AdminController@addUser')
+                ->name('add-new-user')
+                ->middleware('admin');
+
 //Route::post('password_email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password-email');
 //Route::get('password/reset', 'Auth\ResetPasswordController@reset');
 //Route::get('policy', 'PolicyController@policyList');

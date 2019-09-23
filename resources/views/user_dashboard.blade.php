@@ -11,7 +11,7 @@
                     <div class="card-left float-left text-left">
                         <i class="icon fade-5 icon-lg fa fa-plus-circle"></i>
                     </div><!-- /.card-left -->
-                    @if(Auth::user()->frole_id == 3)
+                    @if(Auth::user()->frole_code == 3)
                     <a href="{{ url('user_new_task') }}" class="">
                         <div class="card-right  float-right">
                             <h3 class="mb-0 fw-r">
@@ -39,7 +39,7 @@
                     <div class="card-left float-left text-left">
                         <i class="icon fade-5 icon-lg fa fa-eye"></i>
                     </div><!-- /.card-left -->
-                    @if(Auth::user()->frole_id == 2)
+                    @if(Auth::user()->frole_code == 2)
                     <a href="{{ url('user_kiv_list') }}" class="">
                         <div class="card-right  float-right">
                             <h3 class="mb-0 fw-r">

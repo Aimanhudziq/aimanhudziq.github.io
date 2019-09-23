@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends Model
 {
     protected $fillable = [
-        'role_id',
+        'role_code',
         'role_name',
         'created_at',
         'updated_at',
@@ -15,6 +15,6 @@ class Role extends Model
 
 
     public function users(){
-        return $this->belongsTo('App\User');
+        return $this->hasMany('App\User','frole_code');
     }
 }

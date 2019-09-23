@@ -7,7 +7,7 @@
                     </i>Dashboard </a>
                 </li>
                 <li class="{{ Route::currentRouteNamed('admin-user-list') ? 'active': '' }}">
-                    <a href="admin-user-list.html"><i class="menu-icon ti ti-user ">
+                    <a href="{{ url('admin_user_list') }}"><i class="menu-icon ti ti-user ">
                     </i>{{ trans('sidebar.user') }}</a>
                 </li>
                 <li class="{{ Route::currentRouteNamed('admin-policy') ? 'active': '' }}">

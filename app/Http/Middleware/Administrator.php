@@ -17,7 +17,7 @@ class Administrator
     public function handle($request, Closure $next)
     {
         //dd(Auth::user()->frole_id);
-        if(Auth::user() && Auth::user()->frole_id == 1){
+        if(Auth::user() && Auth::user()->frole_code == 1){
             return $next($request);
         }
         return redirect('/');
