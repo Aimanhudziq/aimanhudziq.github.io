@@ -45,12 +45,12 @@ class User extends Authenticatable
 
     //1 user has 1 role
     public function role(){
-        return $this->hasOne('App\Role');
+        return $this->belongsTo('App\Role', 'role_code');
     }
 
     // 1 users hv many banks but 1 bank own by 1 user
     public function bank_assignment_list(){
-        return $this->belongsToMany('App\BankAssignmentList', 'fuser_id');
+        return $this->belongsToMany('App\BankAssignmentList');
     }
 
 }

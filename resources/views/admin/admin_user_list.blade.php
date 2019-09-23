@@ -5,8 +5,8 @@
     <div class="card">
         <div class="card-header">
             <strong class="card-title">User List</strong>
-            <button type="button" class="btn btn-secondary mb-1 float-right" data-toggle="modal" data-target="#smallmodal">
-                <i class="ti ti-plus"></i>&nbsp; Add New User
+            <button type="button" class="btn btn-secondary mb-1 float-right" data-toggle="modal" data-target="#add_user">
+                <i class="fa fa-user-plus"></i>&nbsp; Add New User
             </button>
         </div>
 
@@ -45,8 +45,9 @@
                             Bank
                         </td>
                         <td>
-                            <a type="button" class="btn btn-white mb-1" data-toggle="modal" 
-                                data-target="#largeModal"><i  class="fa fa-cog"></i>
+                            <a  href="{{$user->id}}" onclick="return confirm('Are you sure want to delete this user {{ $user->first_name }}?')" 
+                                    class="btn btn-danger mb-1" data-toggle="modal">
+                                <i  class="fa fa-trash-o"></i>
                             </a>
                         </td>
                     </tr>
@@ -58,4 +59,6 @@
 </div> <!--/ col-md-12 -->
 
 @include('admin.admin_new_user_form')
+
+
 @endsection
