@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/cs-skin-elastic.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/lib/datatable/dataTables.bootstrap.min.css') }}"><!-- css data tables -->
     <link href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.css" rel="stylesheet" />
@@ -69,10 +70,26 @@
     <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
     <script src="{{ asset('assets/js/init/fullcalendar-init.js') }}"></script>
+    <script src="{{ asset('assets/js/init/fullcalendar-init.js') }}"></script>
+    <script src="{{ asset('assets/js/lib/data-table/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/js/lib/data-table/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/lib/data-table/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('assets/js/lib/data-table/buttons.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/lib/data-table/jszip.min.js') }}"></script>
+    <script src="{{ asset('assets/js/lib/data-table/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('assets/js/lib/data-table/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('assets/js/lib/data-table/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('assets/js/lib/data-table/buttons.colVis.min.js') }}"></script>
+    <script src="{{ asset('assets/js/init/datatables-init.js') }}"></script>
 
-      <script>
+    <script>
         var locale = '{{ config('app.locale') }}';
         console.log(locale);
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+          $('#bootstrap-data-table-export').DataTable();
+      } );
     </script>
 </body>
 </html>

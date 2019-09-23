@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RoleTableSeeder::class);
         $this->call(UserTableSeeder::class);
+        $this->call(PolicyTableSeeder::class);
 
         //1.run 'composer dump-autoload'
         //2.run 'php artisan db:seed or db:seed --class=UserTableSeeder' for singular
