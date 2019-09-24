@@ -9,9 +9,11 @@
             </div><!-- /.card-left -->
 
             <div class="card-right  float-right">
+            <a href="{{ url('admin_user_list') }}">
                 <h3 class="mb-0 fw-r">
-                    <span class="count">23</span>
+                    <span class="count">{{ $user_list }}</span>
                 </h3>
+            </a>
                 <p class="text-light mt-1 m-0">{{ trans('dashboard.user') }}</p>
             </div><!-- /.card-right -->
         </div>
@@ -23,9 +25,11 @@
     <div class="card text-white bg-flat-color-2">
         <div class="card-body">
             <div class="card-right pt-1 float-right">
+            <a href="{{ url('admin_policy_list') }}">
                 <h3 class="mb-0 fw-r">
-                    <span class="count">14</span>
+                    <span class="count">{{ $policy_list }}</span>
                 </h3>
+            </a>
                 <p class="text-light mt-1 m-0">{{ trans('dashboard.policy') }}</p>
             </div><!-- /.card-left -->
 
@@ -41,9 +45,11 @@
     <div class="card text-white bg-danger">
         <div class="card-body">
             <div class="card-right pt-1 float-right">
+            <a href="">
                 <h3 class="mb-0 fw-r">
                     <span class="count">6</span>
                 </h3>
+            </a>
                 <p class="text-light mt-1 m-0">{{ trans('dashboard.bank') }}</p>
             </div><!-- /.card-left -->
 

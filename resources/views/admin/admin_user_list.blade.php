@@ -60,5 +60,4 @@
 
 @include('admin.admin_new_user_form')
 
-
 @endsection

@@ -10,9 +10,9 @@
                     <a href="{{ url('admin_user_list') }}"><i class="menu-icon ti ti-user ">
                     </i>{{ trans('sidebar.user') }}</a>
                 </li>
-                <li class="{{ Route::currentRouteNamed('admin-policy') ? 'active': '' }}">
-                    <a href="admin-bank-list.html"><i class="menu-icon ti ti-shield">
-                    </i>{{ trans('sidebar.policy') }} </a>
+                <li class="{{ Route::currentRouteNamed('admin-policy-list') ? 'active': '' }}">
+                    <a href="{{ url('admin_policy_list') }}"><i class="menu-icon ti ti-shield">
+                    </i>{{ trans('sidebar.policy') }}</a>
                 </li>
                 <li class="{{ Route::currentRouteNamed('admin-bank-list') ? 'active': '' }}">
                     <a href="User_Search.html"><i class="menu-icon ti ti-credit-card">

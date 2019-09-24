@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Role;
+use App\Policy;
 use Carbon\Carbon;
 
 class AdminActionController extends Controller
 {
     public function addUser(Request $request)
     {
-        $validator = $this->validate($request,[
+        $this->validate($request,[
             'user_staff_id'=>'required',
             'first_name'=>'required',
             'last_name'=>'required',
@@ -35,12 +36,39 @@ class AdminActionController extends Controller
         $user->frole_code = $request->input('role_category');
         $user->created_at = Carbon::now();
 
-        \DB::beginTransaction();
         $user->save();
 
         \Session::flash('createMsg','Staff : '.$user->first_name. 'Successful added in the system');
         return redirect('admin_user_list');
-        //$user->password = $request->input('user_staff');
+
+    }
+
+    public function addPolicy(Request $request)
+    {
+    
+        $this->validate($request,[
+            //'policy_no'=>'policy_no',
+            'policy_name'=>'required',
+            'policy_source'=>'required',
+            'policy_regulation'=>'required',
+        ]);
+
+        $policy = new Policy;
+        
+        //randomize the policy number to DB insertion
+        $pol_no = substr(str_shuffle("0123456789"), 0, 3);
+        $policy_code = 'P'.$pol_no;
+
+        $policy->policy_no = $policy_code;
+        $policy->policy_name = $request->input('policy_name');
+        $policy->policy_source = $request->input('policy_source');
+        $policy->policy_regulation = $request->input('policy_regulation');
+
+        $policy->save();
+
+        \Session::flash('createPolicy','Staff : '.$policy->policy_name. 'Successful added to the policy list');
+        return redirect('admin_policy_list');
+
     }
 
     public function autoGeneratePwd()
@@ -57,4 +85,14 @@ class AdminActionController extends Controller
     	return redirect('admin_user_list');
 
     }
+
+    public function deletePolicy($policy_no)
+    {
+        $policy = Policy::where('policy_no', $policy_no)->first();
+        $policy->delete();
+        \Session::flash('delMsg','Policy : '.$policy->policy_name. 'Successful removed from the system');
+        return redirect('admin_policy_list');
+        
+    }
+
 }

@@ -56,6 +56,18 @@ Route::get('user/delete/{staff_id}', 'AdminActionController@deleteUser')
                 ->name('delete-user')
                 ->middleware('admin');
 
+Route::get('admin_policy_list', 'AdminController@getPolicyList')
+                ->name('admin-policy-list')
+                ->middleware('admin');
+
+Route::post('add_new_policy', 'AdminActionController@addPolicy')
+                ->name('add-new-policy')
+                ->middleware('admin');
+
+Route::get('policy/delete/{policy_no}', 'AdminActionController@deletePolicy')
+                ->name('delete-policy')
+                ->middleware('admin');
+
 //Route::post('password_email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password-email');
 //Route::get('password/reset', 'Auth\ResetPasswordController@reset');
 //Route::get('policy', 'PolicyController@policyList');

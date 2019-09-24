@@ -10,6 +10,7 @@
             </div>
             <div class="modal-body">
                 <div class="card">
+                    @include('partials.session_msg')
                     <div class="card-body card-block">
                         <form action="{{ url('add_new_user') }}" method="POST">
                             {{ csrf_field() }}
