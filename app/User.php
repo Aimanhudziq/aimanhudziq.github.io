@@ -12,17 +12,18 @@ class User extends Authenticatable
 
     
     public $timestamps = true;
-    
+    //public $user_type = null;
+
     protected $fillable = [
-        'user_id',
+        'user_staff_id',
         'first_name',
         'last_name', 
         'username',
-        'password', 
         'email', 
+        'password', 
         'user_type', 
+        'frole_code',
         'created_at',
-        'updated_at',
     ];
 
     /**

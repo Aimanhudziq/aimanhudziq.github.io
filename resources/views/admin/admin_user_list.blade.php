@@ -9,7 +9,7 @@
                 <i class="fa fa-user-plus"></i>&nbsp; Add New User
             </button>
         </div>
-
+        @include('partials.session_msg')
         <div class="card-body">
             <table id="bootstrap-data-table" class="table table-striped table-bordered">
                 <thead>
@@ -45,8 +45,8 @@
                             Bank
                         </td>
                         <td>
-                            <a  href="{{$user->id}}" onclick="return confirm('Are you sure want to delete this user {{ $user->first_name }}?')" 
-                                    class="btn btn-danger mb-1" data-toggle="modal">
+                            <a href="{{ url('user/delete',$user->user_staff_id) }}" onclick="return confirm('Are you sure want to delete this user {{ $user->first_name }}?')" 
+                                    class="btn btn-danger mb-1" >
                                 <i  class="fa fa-trash-o"></i>
                             </a>
                         </td>

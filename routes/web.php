@@ -48,8 +48,12 @@ Route::get('admin_user_list', 'AdminController@getAllUser')
                 ->name('admin-user-list')
                 ->middleware('admin');
 
-Route::post('add_new_user', 'AdminController@addUser')
+Route::post('add_new_user', 'AdminActionController@addUser')
                 ->name('add-new-user')
+                ->middleware('admin');
+
+Route::get('user/delete/{staff_id}', 'AdminActionController@deleteUser')
+                ->name('delete-user')
                 ->middleware('admin');
 
 //Route::post('password_email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password-email');

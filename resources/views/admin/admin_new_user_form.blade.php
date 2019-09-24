@@ -10,17 +10,21 @@
             </div>
             <div class="modal-body">
                 <div class="card">
-                @if (count($errors) > 0)
-    <script>
-        $( document ).ready(function() {
-            $('#add_user').modal('show');
-        });
-    </script>
-@endif
-                    @include('partials.session_msg')
                     <div class="card-body card-block">
                         <form action="{{ url('add_new_user') }}" method="POST">
                             {{ csrf_field() }}
+
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-id-badge"></i></div>
+                                    <input type="text" id="user_staff_id" name="user_staff_id" value="{{ old('user_staff_id') }}"
+                                        placeholder="staff id" class="form-control {{ $errors->has('user_staff_id') ? 'has-error' : '' }}">
+                                </div>
+                                @if($errors->has('user_staff_id'))
+                                <span class="help-block">
+                                <strong style='color: #a94442'>{{ $errors->first('user_staff_id') }}</strong>
+                                @endif
+                            </div>
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-addon"><i class="fa fa-user"></i></div>
@@ -47,24 +51,13 @@
                                 <div class="input-group">
                                     <div class="input-group-addon"><i class="fa fa-user-circle"></i></div>
                                     <input type="text" id="username" name="username" value="{{ old('username') }}"
-                                        placeholder="username" class="form-control">
+                                        placeholder="username" class="form-control {{ $errors->has('username') ? 'has-error' : '' }}">
                                 </div>
                                 @if($errors->has('username'))
                                 <span class="help-block">
                                 <strong style='color: #a94442'>{{ $errors->first('username') }}</strong>
                                 @endif
                             </span>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-addon"><i class="fa fa-id-badge"></i></div>
-                                    <input type="text" id="staff_id" name="staff_id" value="{{ old('user_staff_id') }}"
-                                        placeholder="staff id" class="form-control {{ $errors->has('user_staff_id') ? 'has-error' : '' }}">
-                                </div>
-                                @if($errors->has('user_staff_id'))
-                                <span class="help-block">
-                                <strong style='color: #a94442'>{{ $errors->first('user_staff_id') }}</strong>
-                                @endif
                             </div>
                             <div class="form-group">
                                 <div class="input-group">
@@ -82,7 +75,6 @@
                                     <div class="input-group-addon"><i class="fa fa-asterisk"></i></div>
                                     <input type="password" id="password" name="password" placeholder="Password" class="form-control">
                                 </div>
-                                
                             </div>
                             <div class="form-group">                                                                            
                                 <select name="role_category" id="role_category" class="form-control">
@@ -106,4 +98,10 @@
         </div>
     </div>
 </div>
-
+@if (count($errors) > 0)
+<script>
+    $( document ).ready(function() {
+        $('#add_user').modal('show');
+    });
+</script>
+@endif
