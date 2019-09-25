@@ -1,7 +1,8 @@
 <?php
 
 namespace App;
-
+use App\NotAllowed;
+use App\Policy;
 use Illuminate\Database\Eloquent\Model;
 
 class Policy extends Model
@@ -19,12 +20,12 @@ class Policy extends Model
 
   public function not_alloweds()
   {
-    return $this->hasMany('App\NotAllowed','fpolicy_no');
+    return $this->hasMany('App\NotAllowed','fpolicy_no','policy_no');
   }
 
   public function alloweds()
   {
-    return $this->hasMany('App\Allowed','fpolicy_no');
+    return $this->hasMany('App\Allowed','fpolicy_no', 'policy_no');
   }
 
 }

@@ -27,12 +27,12 @@
                         <td><span class="badge bg-dark">
                             {{ $policy->policy_source }}
                         </span></td>
-                        <td class="col-sm-3">
+                        <td class="col-sm-3" >
                         <span class="bg-info">{{ $policy->policy_regulation }}
                         </span></td>
                         <td>
                             <a  class="btn btn-sm btn-primary mb-1" data-toggle="modal" 
-                                    data-target="#view_policy_details">
+                                    data-target="#view_policy_details{{$policy->policy_no}}">
                                 <i  class="fa fa-eye"></i>
                             </a>
                             <a href="{{ url('policy/delete',$policy->policy_no) }}" 
@@ -42,6 +42,7 @@
                             </a>
                         </td>
                     </tr>
+                    @include('admin.view_policy_form')
                     @endforeach
                 </tbody>
             </table>
@@ -50,6 +51,5 @@
 </div> <!--/ col-md-12 -->
 
 @include('admin.admin_new_policy_form')
-@include('admin.view_policy_form')
 
 @endsection
