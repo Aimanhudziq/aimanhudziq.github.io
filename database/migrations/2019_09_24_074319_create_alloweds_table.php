@@ -15,8 +15,8 @@ class CreateAllowedsTable extends Migration
     {
         Schema::create('alloweds', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('fpolicy_no')->unsigned()->index();
             $table->string('desc');
-            $table->string('fpolicy_no');
             $table->timestamps();
 
             $table->foreign('fpolicy_no')->references('policy_no')->on('policies')->onDelete('cascade');

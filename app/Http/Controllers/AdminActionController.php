@@ -57,7 +57,7 @@ class AdminActionController extends Controller
         
         //randomize the policy number to DB insertion
         $pol_no = substr(str_shuffle("0123456789"), 0, 3);
-        $policy_code = 'P'.$pol_no;
+        $policy_code = $pol_no;
 
         $policy->policy_no = $policy_code;
         $policy->policy_name = $request->input('policy_name');

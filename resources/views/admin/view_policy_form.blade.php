@@ -16,14 +16,14 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                 <div class="col-lg-6">
                     <h5><span class="badge bg-success">Allowed</span></h5>
                     <ul class="card-text" style="font-size: small">
-                        <li> allowed 1</li>
+                        <li></li>
                         <li> allowed 2</li>
                     </ul>
                 </div>
                 <div class="col-lg-6">
                     <h5><span class="badge bg-danger">Not Allowed</span></h5>
                     <ul class="card-text" style="font-size: small">
-                        <li>not allowed 1</li>
+                        <li>pp</li>
                         <li>not allowed 2</li>
                     </ul>
 

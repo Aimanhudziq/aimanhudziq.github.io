@@ -15,7 +15,7 @@ class CreatePoliciesTable extends Migration
     {
         Schema::create('policies', function (Blueprint $table) {
             $table->increments('id'); 
-            $table->string('policy_no');
+            $table->integer('policy_no')->unsigned()->index();
             $table->string('policy_name');
             $table->string('policy_source');
             $table->string('policy_regulation');
