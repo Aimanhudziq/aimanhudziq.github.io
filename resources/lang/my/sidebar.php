@@ -11,6 +11,7 @@ return [
     //admin
     'user' => 'Pengguna',
     'policy' => 'Terma & Syarat',
-    'bank' => 'Bank' 
+    'bank_assign' => 'Tetapkan Bank',
+    'bank_details' => 'Bank Terperinci'
 
 ];

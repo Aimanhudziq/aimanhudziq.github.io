@@ -76,6 +76,11 @@ class AdminActionController extends Controller
         return "pwd_generated";
     }
 
+    public function assignBank()
+    {   
+        return view('admin.admin_bank_assign');
+    }
+
     public function deleteUser($staff_id)
     {
         $user = User::where('user_staff_id', $staff_id)->first();

@@ -36,7 +36,7 @@
                             @if($user->frole_code == 1)
                             <span class="badge bg-info">Admin</span>
                             @elseif ($user->frole_code == 2)
-                            <span class="badge bg-info">Reviwer</span>
+                            <span class="badge bg-info">Reviewer</span>
                             @else
                             <span class="badge bg-info">Normal User</span>
                             @endif
