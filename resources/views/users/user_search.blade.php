@@ -14,17 +14,17 @@
             </div>
             <div class="card">
                 <div class="card-header">
-                    <strong class="card-title">User Search</strong>
+                    <strong class="card-title">{{trans('content.search')}}</strong>
                 </div>
 
                 <div class="card-body">
                     <table id="bootstrap-data-table" class="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>Reference Number</th>
-                                <th>Phone Number</th>
-                                <th>Date</th>
-                                <th>Status</th>
+                                <th>{{trans('content.ref_num')}}</th>
+                                <th>{{trans('content.phone_num')}}</th>
+                                <th>{{trans('content.date')}}</th>
+                                <th>{{trans('content.status')}}</th>
                             </tr>
                         </thead>
                         <tbody>

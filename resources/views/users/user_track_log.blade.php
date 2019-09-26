@@ -8,17 +8,17 @@
             </div>
             <div class="card">
                 <div class="card-header">
-                    <strong class="card-title">{{trans('contain.transaction_log')}}</strong>
+                    <strong class="card-title">{{trans('content.transaction_log')}}</strong>
                 </div>
 
                 <div class="card-body">
                     <table id="bootstrap-data-table" class="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>{{trans('contain.ref_num')}}</th>
-                                <th>Date</th>
-                                <th>Status</th>
-                                <th>Review</th>
+                                <th>{{trans('content.ref_num')}}</th>
+                                <th>{{trans('content.date')}}</th>
+                                <th>{{trans('content.status')}}</th>
+                                <th>{{trans('content.review')}}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -49,15 +49,15 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="mediumModalLabel1">Transaction Log</h4>
+                <h4 class="modal-title" id="mediumModalLabel1">{{trans('content.transaction_log')}}</h4>
                 <div class="row">
                     <div class="col-lg-6">
-                        <h6 class="card-text" style="font-size: small">Reference Number : 5106332553</h6>
-                        <h6 class="card-text" style="font-size: small">Status : New</h6>
+                        <h6 class="card-text" style="font-size: small">{{trans('content.ref_num')}} : 5106332553</h6>
+                        <h6 class="card-text" style="font-size: small">{{trans('content.status')}} : New</h6>
                     </div>
                     <div class="col-lg-6">
-                        <h6 class="card-text" style="font-size: small">Date : 2019-09-01</h6>
-                        <h6 class="card-text" style="font-size: small">Time : 16:04</h6>
+                        <h6 class="card-text" style="font-size: small">{{trans('content.date')}} : 2019-09-01</h6>
+                        <h6 class="card-text" style="font-size: small">{{trans('content.time')}} : 16:04</h6>
                     </div>
                 
                 </div>
@@ -72,9 +72,9 @@
                                 <nav>
                                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                         <a class="nav-item nav-link active" id="custom-nav-home-tab" data-toggle="tab" href="#custom-nav-home" 
-                                            role="tab" aria-controls="custom-nav-home" aria-selected="true">Image</a>
+                                            role="tab" aria-controls="custom-nav-home" aria-selected="true">{{trans('content.image')}}</a>
                                         <a class="nav-item nav-link" id="custom-nav-profile-tab" data-toggle="tab" href="#custom-nav-profile" 
-                                            role="tab" aria-controls="custom-nav-profile" aria-selected="false">History</a> 
+                                            role="tab" aria-controls="custom-nav-profile" aria-selected="false">{{trans('content.history')}}</a> 
                                     </div>
                                 </nav>
                                 <div class="tab-content pl-3 pt-2" id="nav-tabContent">
@@ -89,10 +89,10 @@
                                         <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <th>Date</th>
-                                                    <th>From</th>
-                                                    <th>To</th>
-                                                    <th>Policy Violated</th>
+                                                    <th>{{trans('content.date')}}</th>
+                                                    <th>{{trans('content.from')}}</th>
+                                                    <th>{{trans('content.to')}}</th>
+                                                    <th>{{trans('content.policy_violated')}}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

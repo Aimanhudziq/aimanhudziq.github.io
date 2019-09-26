@@ -26,6 +26,7 @@ return[
     'policy_violated' => 'Policy Violated',
     'search' => 'Search',
     'comment' => 'Comment',
+    'phone_num' => 'Phone Number',
 
     //Charts
     'january' => 'January',
