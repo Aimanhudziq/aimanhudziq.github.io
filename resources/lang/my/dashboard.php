@@ -8,7 +8,7 @@ return[
     'rejected' => 'Di Tolak',
     'approved' => 'Di Terima',
     'status_summary' => 'Status Keseluruhan',
-    'status_month' => 'Status perBulan',
+    'status_month' => 'Status per Bulan',
 
     'user' => 'Pengguna',
     'policy' => 'Terma & Syarat',
