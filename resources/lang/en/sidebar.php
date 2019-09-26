@@ -10,5 +10,6 @@ return [
     //admin
     'user' => 'Users',
     'policy' => 'Policy',
-    'bank' => 'Bank'
+    'bank_assign' => 'Assign Bank',
+    'bank_details' => 'Bank Details'
 ];

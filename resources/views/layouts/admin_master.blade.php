@@ -20,6 +20,7 @@
     <link href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet"/>
 
     <!-- Popup Start-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -81,15 +82,36 @@
     <script src="{{ asset('assets/js/lib/data-table/buttons.print.min.js') }}"></script>
     <script src="{{ asset('assets/js/lib/data-table/buttons.colVis.min.js') }}"></script>
     <script src="{{ asset('assets/js/init/datatables-init.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
 
     <script>
         var locale = '{{ config('app.locale') }}';
         console.log(locale);
     </script>
-    <script type="text/javascript">
+    <script type="text/javascript">//load data table
         $(document).ready(function() {
           $('#bootstrap-data-table-export').DataTable();
       } );
+    </script>
+    <script>// dropdown with text search in assign bank
+        $('.staff_name').select2({
+            placeholder: 'Select Staff Name'
+        });
+    </script>
+    <script>
+        $('.user_category').select2({
+            placeholder: 'Select User Category'
+        });
+    </script><!--close drop down-->
+
+    <script>
+        //admin-bank-assign(pass multiple value)
+        $('#select_data').change(function () {
+            var staff_id = $(this).find('option:selected').attr('value');
+            var staff_email = $(this).find('option:selected').attr('email-value');
+            $('#user_staff_id').val(staff_id);
+            $('#staff_email').val(staff_email);
+        });
     </script>
 </body>
 </html>

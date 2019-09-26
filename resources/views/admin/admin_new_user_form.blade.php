@@ -56,9 +56,9 @@
                                 </div>
                                 @if($errors->has('username'))
                                 <span class="help-block">
-                                <strong style='color: #a94442'>{{ $errors->first('username') }}</strong>
+                                    <strong style='color: #a94442'>{{ $errors->first('username') }}</strong>
                                 @endif
-                            </span>
+                                </span>
                             </div>
                             <div class="form-group">
                                 <div class="input-group">
