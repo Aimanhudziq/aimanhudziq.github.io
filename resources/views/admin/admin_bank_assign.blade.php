@@ -14,7 +14,7 @@
                 <div class="form-group row">
                     <label for="staff_name" class="col-sm-2 col-form-label">Staff Name</label>
                     <div class="col-sm-7">
-                        <select name="staff_name" id="select_data"
+                        <select name="staff_name" id="select_data" value="{{old('staff_name')}}"
                                         class="form-control staff_name {{ $errors->has('staff_name') ? 'has-error' : '' }}">
                             <option value="">select staff name</option>
                             @foreach($user_list as $ulist)
