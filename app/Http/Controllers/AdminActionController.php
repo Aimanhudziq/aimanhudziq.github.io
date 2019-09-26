@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Role;
 use App\Policy;
+use App\BankAssignmentList;
 use Carbon\Carbon;
 
 class AdminActionController extends Controller
@@ -76,9 +77,20 @@ class AdminActionController extends Controller
         return "pwd_generated";
     }
 
-    public function assignBank()
+    public function assignBankToStaff(Request $request)
     {   
-        return view('admin.admin_bank_assign');
+        $this->validate($request,[
+            'user_staff_id'=>'required',
+            'user_category'=>'required',
+        ]);
+
+        $assign_bank = new BankAssignmentList;
+        
+        $assign_bank->fuser_staff_id = $request->input('fuser_staff_id');
+        $assign_bank->fbank_code = $request->input('bank_code');
+        $assign_bank->frole_code = $request->input('user_category');
+
+        return redirect('assign_bank_to_staff');
     }
 
     public function deleteUser($staff_id)

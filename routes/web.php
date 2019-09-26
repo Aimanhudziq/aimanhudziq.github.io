@@ -68,8 +68,12 @@ Route::get('policy/delete/{policy_no}', 'AdminActionController@deletePolicy')
                 ->name('delete-policy')
                 ->middleware('admin');
 
-Route::get('admin_assign_bank', 'AdminActionController@assignBank')
+Route::get('admin_assign_bank', 'AdminController@getAssignStaff')
                 ->name('admin-assign-bank')
+                ->middleware('admin');
+
+Route::post('assign_bank_to_staff', 'AdminActionController@assignBankToStaff')
+                ->name('assign-bank-to-staff')
                 ->middleware('admin');
 
 //Route::post('password_email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password-email');

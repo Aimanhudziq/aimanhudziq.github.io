@@ -8,42 +8,62 @@
             <strong class="card-title">Assign Bank (Staff)</strong>
         </div>
         @include('partials.session_msg')
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-5">
-                    <label for="staff_list">Staff List</label>
-                    <select name="staff_name" id="staff_name" class="form-control">
-                        <option value="">--Select Staff Name--</option>
-                        <option value="">--Select Staff Name--</option>
-                        <option value="">--Select Staff Name--</option>
-                    </select>
-                </div> 
-                <div class="col-md-5">
-                    <label for="user_category">User Category</label>
-                    <select name="user_category" id="user_category" class="form-control">
-                        <option value="">--Select User Category--</option>
-                        <option value="">--Select Staff Name--</option>
-                        <option value="">--Select Staff Name--</option>
-                    </select>
-                </div>  
-                <div class="col-md-5">
-                    <label for="choose_bank">Choose Bank</label>
-                    <div>
-                        <label for="maybank">maybank</label>
-                        <input type="checkbox" name="bank" />
-
-                        <label for="cimb">cimb bank</label>
-                        <input type="checkbox" name="bank" />
-
-                        <label for="cimb">bimb bank</label>
-                        <input type="checkbox" name="bank" />
+        <div class="card-body card-block">
+            <form method="POST" action="{{url('assign_bank_to_staff')}}">
+                {{ @csrf_field() }}
+                <div class="form-group row">
+                    <label for="staff_name" class="col-sm-2 col-form-label">Staff Name</label>
+                    <div class="col-sm-7">
+                        <select name="user_staff_id" id="select_data"
+                                        class="form-control staff_name {{ $errors->has('user_staff_id') ? 'has-error' : '' }}">
+                            <option value="">select staff name</option>
+                            @foreach($user_list as $ulist)
+                            <option value="{{$ulist->user_staff_id}}" email-value="{{$ulist->email}}">
+                                    {{ $ulist->first_name }} {{ $ulist->last_name }}</option>
+                            @endforeach
+                        </select>
+                        <input type="hidden" name="user_staff_id" id="user_staff_id">
+                    @if($errors->has('user_staff_id'))
+                        <span class="help-block">
+                        <strong style='color: #a94442'>{{ $errors->first('user_staff_id') }}</strong>
+                    @endif
                     </div>
                 </div>
-                
-                <div class="form-actions form-group">
-                    <button class="btn btn-sm btn-info">Assign</button>
+                <div class="form-group row">
+                    <label for="user_category" class="col-sm-2 col-form-label">User Catgeory</label>
+                    <div class="col-sm-7">
+                        <select name="user_category" id="user_category"
+                                        class="form-control user_category {{ $errors->has('user_category') ? 'has-error' : '' }}">
+                            <option value="">select user category</option>
+                            <option value="2">Reviewer</option>
+                            <option value="3">Normal User</option>
+                        </select>
+                    @if($errors->has('user_category'))
+                        <span class="help-block">
+                        <strong style='color: #a94442'>{{ $errors->first('user_category') }}</strong>
+                    @endif
+                    </div>
                 </div>
-            </div>
+                <div class="form-group row">
+                    <label for="email" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-6">
+                        <input type="email" class="form-control" id="staff_email" readonly
+                            placeholder="Email" value="">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="user_category" class="col-sm-2 col-form-label">User Catgeory</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="maybank" value="">
+                        <label class="form-check-label" for="maybank">maybank</label>
+                    </div>
+                </div>
+                <div class="form-group row text-center">
+                    <div class="col-sm-10">
+                    <button type="submit" class="btn btn-info">Assign Bank</button>
+                    </div>
+                </div>
+            </form>
         </div><!--/carl-body -->
     </div>
 </div> <!--/ col-md-12 -->

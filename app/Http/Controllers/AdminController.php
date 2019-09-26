@@ -31,7 +31,14 @@ class AdminController extends Controller
         return view('admin.admin_user_list')
                             ->with(['user_list'=>$user_list, 'roles'=>$roles]);
     }
-    
+
+    public function getAssignStaff(Request $request)
+    {   
+        $user_list = User::whereIn('frole_code', ['2','3'])->get();
+
+        return view('admin.admin_bank_assign')->with(['user_list'=>$user_list]);
+    }
+
     public function getPolicyList()
     {  
         $policies = Policy::with('not_alloweds','alloweds')->get();
