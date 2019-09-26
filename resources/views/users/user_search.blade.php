@@ -4,20 +4,22 @@
 <div class="animated fadeIn">
     <div class="row">
         <div class="col-md-12">
-            <div class="row">
-                <div class="alert alert-info col-sm-5 col-md-offset-4" role="alert">
-                    <span class="glyphicon glyphicon-exclamation-sign" 
-                    aria-hidden="true"></span>
-                    Find someone with <strong><u>No IC</u></strong> or 
-                    </strong><strong><u>Phone Number</u></strong>
-                </div>
-            </div>
+            
             <div class="card">
                 <div class="card-header">
-                    <strong class="card-title">{{trans('content.search')}}</strong>
+
+                    <strong class="card-title float-left">{{trans('content.search')}}</strong>
+
+                    <div class="alert alert-info col-xs col-md-offset-3 float-right" style="font-size:12px" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign" 
+                    aria-hidden="true"></span>  
+                    {{trans('content.find_with')}} <strong><u>{{trans('content.ic_num')}}</u></strong> {{trans('content.or')}} 
+                    </strong><strong><u>{{trans('content.phone_num')}}</u></strong>
+                </div>
                 </div>
 
                 <div class="card-body">
+                    
                     <table id="bootstrap-data-table" class="table table-striped table-bordered">
                         <thead>
                             <tr>

@@ -27,6 +27,10 @@ return[
     'search' => 'Search',
     'comment' => 'Comment',
     'phone_num' => 'Phone Number',
+    'find_with' => 'Search with',
+    'ic_num' => 'IC number',
+    'or' => 'or',
+
 
     //Charts
     'january' => 'January',
