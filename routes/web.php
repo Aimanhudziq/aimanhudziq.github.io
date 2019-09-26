@@ -42,7 +42,8 @@ Route::get('admin_dashboard', 'AdminController@adminDashboard')
                 ->middleware('admin'); // access by admin only
 
 Route::get('forgot_password', 'UserController@forgotPassword')
-                ->name('forgot-password');
+                ->name('forgot-password')
+                ->middleware('user');
 
 Route::get('admin_user_list', 'AdminController@getAllUser')
                 ->name('admin-user-list')
