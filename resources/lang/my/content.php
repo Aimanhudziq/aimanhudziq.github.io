@@ -27,6 +27,11 @@ return[
     'policy_violated' => 'Kesalahan Polisi',
     'search' => 'Carian',
     'comment' => 'Komen',
+    'phone_num' => 'No. Telefon',
+    'find_with' => 'Carian dengan',
+    'ic_num' => 'No. IC',
+    'or' => 'atau',
+    
 
     //Charts
     'january' => 'Januari',

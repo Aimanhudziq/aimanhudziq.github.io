@@ -14,17 +14,17 @@
             </div>
             <div class="card">
                 <div class="card-header">
-                    <strong class="card-title">New Task</strong>
+                    <strong class="card-title">{{trans('content.new_task')}}</strong>
                 </div>
 
                 <div class="card-body">
                     <table id="bootstrap-data-table" class="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>Reference Number</th>
-                                <th>Date</th>
-                                <th>Status</th>
-                                <th>Review</th>
+                                <th>{{trans('content.ref_num')}}</th>
+                                <th>{{trans('content.date')}}</th>
+                                <th>{{trans('content.status')}}</th>
+                                <th>{{trans('content.review')}}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -55,15 +55,15 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-            <h4 class="modal-title" id="largeModalLabel">Picture Review</h4>
+            <h4 class="modal-title" id="largeModalLabel">{{trans('content.pic_review')}}</h4>
             <div class="row">
                 <div class="col-lg-6">
-                        <h6 class="card-text" style="font-size: small">Reference Number : 5106332553</h6>
-                        <h6 class="card-text" style="font-size: small">Status : New</h6>
+                        <h6 class="card-text" style="font-size: small">{{trans('content.ref_num')}} : 5106332553</h6>
+                        <h6 class="card-text" style="font-size: small">{{trans('content.status')}} : New</h6>
                 </div>
                 <div class="col-lg-6">
-                        <h6 class="card-text" style="font-size: small">Date : 2019-09-01</h6>
-                        <h6 class="card-text" style="font-size: small">Time : 16:04</h6>
+                        <h6 class="card-text" style="font-size: small">{{trans('content.date')}} : 2019-09-01</h6>
+                        <h6 class="card-text" style="font-size: small">{{trans('content.time')}} : 16:04</h6>
                 </div>  
             </div>   
         </div>
@@ -76,7 +76,7 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                 </div>
                 <div class="col-md-6">
                     <div class="row form-group" style="margin-right: 20px">
-                            <label for="textarea-input" class=" form-control-label ml-3">Remarks</label>
+                            <label for="textarea-input" class=" form-control-label ml-3">{{trans('content.remarks')}}</label>
                             <textarea name="textarea-input" id="textarea-input" rows="5" placeholder="Content..." 
                             class="form-control ml-3"></textarea>
                     </div>
@@ -86,7 +86,7 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                 <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong>Policy</strong>
+                                <strong>{{trans('content.policy')}}</strong>
                             </div> <!--/card header -->
                             <div class="card-body" style="font-size: small">
                                 <form action="" method="GET">
@@ -105,10 +105,10 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                                             </div>
                                         @endforeach
                                             <div class="modal-footer">
-                                                <button class="btn btn-sm btn-success mt-3 mb-3 text-white" id="approve">Approve</button>
-                                                <button class="btn btn-sm btn-danger mt-3 mb-3 text-white">Reject</button>
+                                                <button class="btn btn-sm btn-success mt-3 mb-3 text-white" id="approve">{{trans('content.approve')}}</button>
+                                                <button class="btn btn-sm btn-danger mt-3 mb-3 text-white">{{trans('content.reject')}}</button>
                                                 <button class="btn btn-sm btn-warning mt-3 mb-3 text-white">KIV</button>
-                                                <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                <button class="btn btn-secondary" data-dismiss="modal">{{trans('content.cancel')}}</button>
                                             </div>
                                         </div>
                                     </div><!-- form check class-->

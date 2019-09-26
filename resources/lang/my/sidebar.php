@@ -6,12 +6,12 @@ return [
     'new' => 'Baru',
     'log' => 'Log',
     'kiv' => 'KIV',
-    'search' => 'Carian Data',
+    'search' => 'Carian',
 
     //admin
     'user' => 'Pengguna',
-    'policy' => 'Terma & Syarat',
-    'bank_assign' => 'Tetapkan Bank',
-    'bank_details' => 'Bank Terperinci'
+    'policy' => 'Polisi',
+    'bank_assign' => 'Tugasan Bank',
+    'bank_details' => 'Butiran Bank'
 
 ];
