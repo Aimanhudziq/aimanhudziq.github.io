@@ -14,18 +14,18 @@
                 <div class="form-group row">
                     <label for="staff_name" class="col-sm-2 col-form-label">Staff Name</label>
                     <div class="col-sm-7">
-                        <select name="user_staff_id" id="select_data"
-                                        class="form-control staff_name {{ $errors->has('user_staff_id') ? 'has-error' : '' }}">
+                        <select name="staff_name" id="select_data"
+                                        class="form-control staff_name {{ $errors->has('staff_name') ? 'has-error' : '' }}">
                             <option value="">select staff name</option>
                             @foreach($user_list as $ulist)
                             <option value="{{$ulist->user_staff_id}}" email-value="{{$ulist->email}}">
                                     {{ $ulist->first_name }} {{ $ulist->last_name }}</option>
                             @endforeach
                         </select>
-                        <input type="hidden" name="user_staff_id" id="user_staff_id">
-                    @if($errors->has('user_staff_id'))
+                        <input type="text" name="user_staff_id" id="user_staff_id" >
+                    @if($errors->has('staff_name'))
                         <span class="help-block">
-                        <strong style='color: #a94442'>{{ $errors->first('user_staff_id') }}</strong>
+                        <strong style='color: #a94442'>{{ $errors->first('staff_name') }}</strong>
                     @endif
                     </div>
                 </div>
@@ -52,11 +52,15 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="user_category" class="col-sm-2 col-form-label">User Catgeory</label>
+                    <label for="bank_list" class="col-sm-2 col-form-label">User Catgeory</label>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="maybank" value="">
-                        <label class="form-check-label" for="maybank">maybank</label>
+                        <input class="form-check-input" type="checkbox" name="bank_list" id="maybank" value="2">
+                        <label class="form-check-label" for="bank_list">maybank</label>
                     </div>
+                    @if($errors->has('bank_list'))
+                            <span class="help-block">
+                        <strong style='color: #a94442'>{{ $errors->first('bank_list') }}</strong>
+                        @endif
                 </div>
                 <div class="form-group row text-center">
                     <div class="col-sm-10">

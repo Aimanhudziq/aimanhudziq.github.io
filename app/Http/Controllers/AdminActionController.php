@@ -80,15 +80,21 @@ class AdminActionController extends Controller
     public function assignBankToStaff(Request $request)
     {   
         $this->validate($request,[
-            'user_staff_id'=>'required',
+            'staff_name'=>'required',
             'user_category'=>'required',
+            'bank_list' => 'required'
         ]);
 
         $assign_bank = new BankAssignmentList;
         
-        $assign_bank->fuser_staff_id = $request->input('fuser_staff_id');
-        $assign_bank->fbank_code = $request->input('bank_code');
+        //$user_id = $request->input('staff_name');
+        $assign_bank->fuser_staff_id = $request->fuser_staff_id;
+        dd($assign_bank->fuser_staff_id);
         $assign_bank->frole_code = $request->input('user_category');
+        dd($assign_bank->frole_code);
+
+        $assign_bank->fbank_code = $request->input('bank_list');
+        dd($assign_bank->fbank_code);
 
         return redirect('assign_bank_to_staff');
     }
