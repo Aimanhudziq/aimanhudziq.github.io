@@ -84,18 +84,23 @@ class AdminActionController extends Controller
             'user_category'=>'required',
             'bank_list' => 'required'
         ]);
-
+        
         $assign_bank = new BankAssignmentList;
 
         $assign_bank->fuser_staff_id = $request->input('staff_name');
         $assign_bank->frole_code = $request->input('user_category');
+        $bank_list[] = implode('', $request->input('bank_list'));
+        
+        foreach($bank_list as $bank_code){
 
-        $assign_bank->fbank_code = $request->input('bank_list');
+            $assign_bank->fbank_code = $bank_code;
+        }
         //dd($assign_bank->fbank_code);
+
         \Session::flash('assignBank','Successfully assigned bank to user ID'.$assign_bank->fuser_staff_id);
         $assign_bank->save();
         
-        return redirect('assign_bank_to_staff');
+        return redirect('admin_assign_bank');
     }
 
     public function deleteUser($staff_id)

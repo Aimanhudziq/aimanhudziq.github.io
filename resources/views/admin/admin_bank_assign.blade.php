@@ -9,8 +9,8 @@
         </div>
         @include('partials.session_msg')
         <div class="card-body card-block">
-            <form method="POST" action="{{url('assign_bank_to_staff')}}">
-                {{ @csrf_field() }}
+            <form action="{{url('assign_bank_to_staff')}}" method="POST">
+                {{ csrf_field() }}
                 <div class="form-group row">
                     <label for="staff_name" class="col-sm-2 col-form-label">Staff Name</label>
                     <div class="col-sm-7">
@@ -55,12 +55,12 @@
                     <label for="bank_list" class="col-sm-2 col-form-label">User Catgeory</label>
                     <div class="form-check form-check-inline">
                         @foreach($bank_list as $bank)
-                        <input class="form-check-input" type="checkbox" name="bank_list[]" id="maybank" 
+                        <input class="form-check-input" type="checkbox" name="bank_list[]" id="bank_list" 
                                 onclick="" value="{{$bank->bank_code}}">
                         <label class="form-check-label" for="bank_list">{{$bank->bank_name}}</label>
                         @endforeach
                     </div>
-                    @if($errors->has('bank_list'))
+                        @if($errors->has('bank_list'))
                             <span class="help-block">
                         <strong style='color: #a94442'>{{ $errors->first('bank_list') }}</strong>
                         @endif

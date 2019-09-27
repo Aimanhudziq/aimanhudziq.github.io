@@ -51,7 +51,7 @@ class User extends Authenticatable
 
     // 1 users hv many banks but 1 bank own by 1 user
     public function bank_assignment_list(){
-        return $this->hasMany('App\BankAssignmentList','');
+        return $this->hasMany('App\BankAssignmentList','fuser_staff_id', 'user_staff_id');
     }
 
 }

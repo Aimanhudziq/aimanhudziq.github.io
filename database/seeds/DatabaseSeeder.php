@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PolicyTableSeeder::class);
         $this->call(NotAllowedTableSeeder::class);
         $this->call(AllowedTableSeeder::class);
+        $this->call(BankTableSeeder::class);
 
         //1.run 'composer dump-autoload'
         //2.run 'php artisan db:seed or db:seed --class=UserTableSeeder' for singular
