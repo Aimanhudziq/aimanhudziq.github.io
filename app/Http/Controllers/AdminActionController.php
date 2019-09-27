@@ -86,16 +86,15 @@ class AdminActionController extends Controller
         ]);
 
         $assign_bank = new BankAssignmentList;
-        
-        //$user_id = $request->input('staff_name');
-        $assign_bank->fuser_staff_id = $request->fuser_staff_id;
-        dd($assign_bank->fuser_staff_id);
+
+        $assign_bank->fuser_staff_id = $request->input('staff_name');
         $assign_bank->frole_code = $request->input('user_category');
-        dd($assign_bank->frole_code);
 
         $assign_bank->fbank_code = $request->input('bank_list');
-        dd($assign_bank->fbank_code);
-
+        //dd($assign_bank->fbank_code);
+        \Session::flash('assignBank','Successfully assigned bank to user ID'.$assign_bank->fuser_staff_id);
+        $assign_bank->save();
+        
         return redirect('assign_bank_to_staff');
     }
 

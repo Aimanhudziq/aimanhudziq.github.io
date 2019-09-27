@@ -14,7 +14,7 @@
                 <div class="form-group row">
                     <label for="staff_name" class="col-sm-2 col-form-label">Staff Name</label>
                     <div class="col-sm-7">
-                        <select name="staff_name" id="select_data"
+                        <select name="staff_name" id="select_data" value="{{old('staff_name')}}"
                                         class="form-control staff_name {{ $errors->has('staff_name') ? 'has-error' : '' }}">
                             <option value="">select staff name</option>
                             @foreach($user_list as $ulist)
@@ -54,8 +54,11 @@
                 <div class="form-group row">
                     <label for="bank_list" class="col-sm-2 col-form-label">User Catgeory</label>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="bank_list" id="maybank" value="2">
-                        <label class="form-check-label" for="bank_list">maybank</label>
+                        @foreach($bank_list as $bank)
+                        <input class="form-check-input" type="checkbox" name="bank_list[]" id="maybank" 
+                                onclick="" value="{{$bank->bank_code}}">
+                        <label class="form-check-label" for="bank_list">{{$bank->bank_name}}</label>
+                        @endforeach
                     </div>
                     @if($errors->has('bank_list'))
                             <span class="help-block">
