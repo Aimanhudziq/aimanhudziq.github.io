@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Policy;
 use App\Role;
+use App\Bank;
 
 class AdminController extends Controller
 {
@@ -36,7 +37,10 @@ class AdminController extends Controller
     {   
         $user_list = User::whereIn('frole_code', ['2','3'])->get();
 
-        return view('admin.admin_bank_assign')->with(['user_list'=>$user_list]);
+        $bank_list = Bank::all();
+
+        return view('admin.admin_bank_assign')->with(['user_list'=>$user_list, 
+                                                        'bank_list'=>$bank_list]);
     }
 
     public function getPolicyList()

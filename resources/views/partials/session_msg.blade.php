@@ -30,11 +30,18 @@
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <i class="fa fa-window-close-o"></i> {{ Session::get('createMsg') }}
     </div>
-@endif
+@endif 
 
 @if(Session::has('createPolicy'))
     <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <i class="fa fa-window-close-o"></i> {{ Session::get('createPolicy') }}
+    </div>
+@endif
+
+@if(Session::has('assignBank'))
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <i class="fa fa-window-close-o"></i> {{ Session::get('assignBank') }}
     </div>
 @endif
