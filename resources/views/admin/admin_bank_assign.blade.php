@@ -51,20 +51,30 @@
                             placeholder="Email" value="">
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label for="bank_list" class="col-sm-2 col-form-label">User Catgeory</label>
+
+                <fieldset>
+                    <legend style="font-size:15px">
+                        <div class="form-group row">
+                            <label for="bank_list" class="col-sm-2">Choose Bank</label>
+                        </div>
+                    </legend>
+
+                    <div class="form-group row">
                     <div class="form-check form-check-inline">
                         @foreach($bank_list as $bank)
-                        <input class="form-check-input" type="checkbox" name="bank_list[]" id="bank_list" 
+                        <input class="form-check-input" style="margin-left: 12px" type="checkbox" name="bank_list[]" id="bank_list"
                                 onclick="" value="{{$bank->bank_code}}">
-                        <label class="form-check-label" for="bank_list">{{$bank->bank_name}}</label>
+                        <label class="form-check-label" for="bank_list" style="font-size:12px">
+                                    {{strtoupper($bank->bank_name)}}</label>
                         @endforeach
                     </div>
                         @if($errors->has('bank_list'))
                             <span class="help-block">
                         <strong style='color: #a94442'>{{ $errors->first('bank_list') }}</strong>
                         @endif
-                </div>
+                    </div>
+                </fieldset>
+                
                 <div class="form-group row text-center">
                     <div class="col-sm-10">
                     <button type="submit" class="btn btn-info">Assign Bank</button>

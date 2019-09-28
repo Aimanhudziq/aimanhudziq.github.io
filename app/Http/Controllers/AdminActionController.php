@@ -67,7 +67,7 @@ class AdminActionController extends Controller
 
         $policy->save();
 
-        \Session::flash('createPolicy','Staff : '.$policy->policy_name. 'Successful added to the policy list');
+        \Session::flash('createPolicy','Staff name: '.$policy->policy_name. 'Successful added to the policy list');
         return redirect('admin_policy_list');
 
     }
@@ -95,7 +95,7 @@ class AdminActionController extends Controller
 
             $assign_bank->fbank_code = $bank_code;
         }
-        //dd($assign_bank->fbank_code);
+        dd($assign_bank->fbank_code);
 
         \Session::flash('assignBank','Successfully assigned bank to user ID'.$assign_bank->fuser_staff_id);
         $assign_bank->save();
