@@ -21,7 +21,7 @@ class AdminActionController extends Controller
             'email'=>'required|email|unique:users',
             //'password'=>'required',
             //'user_type'=>'required|email|unique:users',
-            //'frole_code'=>'required',
+            'role_category'=>'required',
         ]);
         //$input['autoOpenModal'] = 'true';
         
@@ -94,6 +94,7 @@ class AdminActionController extends Controller
         foreach($bank_list as $bank_code){
 
             $assign_bank->fbank_code = $bank_code;
+            
         }
         dd($assign_bank->fbank_code);
 

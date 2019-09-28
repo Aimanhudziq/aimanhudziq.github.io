@@ -84,6 +84,10 @@
                                     <option value="{{ $role->role_code }}">{{ $role->role_name }}</option>
                                     @endforeach
                                 </select>
+                                @if($errors->has('role_category'))
+                                <span class="help-block">
+                                <strong style='color: #a94442'>{{ $errors->first('role_category') }}</strong>
+                                @endif
                             </div>                                                                  
                             <div class="modal-footer">
                                 <div class="form-actions form-group">

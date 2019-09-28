@@ -32,7 +32,7 @@
                 <div class="form-group row">
                     <label for="user_category" class="col-sm-2 col-form-label">User Catgeory</label>
                     <div class="col-sm-7">
-                        <select name="user_category" id="user_category"
+                        <select name="user_category" id="user_category" readonly
                                         class="form-control user_category {{ $errors->has('user_category') ? 'has-error' : '' }}">
                             <option value="">select user category</option>
                             <option value="2">Reviewer</option>
@@ -74,7 +74,7 @@
                         @endif
                     </div>
                 </fieldset>
-                
+                <hr>
                 <div class="form-group row text-center">
                     <div class="col-sm-10">
                     <button type="submit" class="btn btn-info">Assign Bank</button>
