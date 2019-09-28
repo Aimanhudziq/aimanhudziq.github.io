@@ -45,3 +45,10 @@
         <i class="fa fa-window-close-o"></i> {{ Session::get('assignBank') }}
     </div>
 @endif
+
+@if(Session::has('dupMsg'))
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <i class="fa fa-window-close-o"></i> {{ Session::get('dupMsg') }}
+    </div>
+@endif

@@ -98,19 +98,16 @@
             placeholder: 'Select Staff Name'
         });
     </script>
-    <script>
-        $('.user_category').select2({
-            placeholder: 'Select User Category'
-        });
-    </script><!--close drop down-->
 
     <script>
         //admin-bank-assign(pass multiple value)
-        $('#select_data').change(function () {
+        $('#normal_user').change(function () {
             var staff_id = $(this).find('option:selected').attr('value');
             var staff_email = $(this).find('option:selected').attr('email-value');
+            var staff_category = $(this).find('option:selected').attr('category-value');
             $('#user_staff_id').val(staff_id);
             $('#staff_email').val(staff_email);
+            $('#user_category').val(staff_category);
         });
     </script>
 </body>

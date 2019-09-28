@@ -89,17 +89,35 @@ class AdminActionController extends Controller
 
         $assign_bank->fuser_staff_id = $request->input('staff_name');
         $assign_bank->frole_code = $request->input('user_category');
-        $bank_list[] = implode('', $request->input('bank_list'));
-        
-        foreach($bank_list as $bank_code){
+        $bank_list = $request->input('bank_list');
 
-            $assign_bank->fbank_code = $bank_code;
+        //dd($bank_list);
+        foreach($bank_list as $bank_code ){
+
+            $assign_bank->fbank_code = $bank_list;
+            $bank_code = $assign_bank->fbank_code;
+            //dd($bank_code);
+           // dd($assign_bank->fbank_code);
+            //$i++;
+            //dd($assign_bank->fuser_staff_id,$assign_bank->frole_code,$assign_bank->fbank_code);
             
         }
-        dd($assign_bank->fbank_code);
 
-        \Session::flash('assignBank','Successfully assigned bank to user ID'.$assign_bank->fuser_staff_id);
-        $assign_bank->save();
+        $check_user_id = BankAssignmentList::where('fuser_staff_id','=', $assign_bank->fuser_staff_id)
+                                            ->where('fbank_code', '=', $assign_bank->fbank_code)
+                                            ->where('frole_code', '=', $assign_bank->frole_code)
+                                            ->first();
+
+        if(count((array) $check_user_id) > 0){
+
+            \Session::flash('dupMsg','This staff '.$assign_bank->fuser_staff_id.' already assigned with that bank.');
+            return back()->withInput();
+        }
+        else{
+            \Session::flash('assignBank','Successfully assigned bank to user ID '.$assign_bank->fuser_staff_id);
+            $assign_bank->save();
+        }
+       
         
         return redirect('admin_assign_bank');
     }
