@@ -7,6 +7,7 @@ use App\User;
 use App\Policy;
 use App\Role;
 use App\Bank;
+use App\BankAssignmentList;
 
 class AdminController extends Controller
 {
@@ -14,10 +15,12 @@ class AdminController extends Controller
     {   
         $user_list = User::whereIn('frole_code', ['2','3'])->get()->count();
         $policy_list = Policy::all()->count();
+        $bank_assginment = BankAssignmentList::all()->count();
         //($policy_list);
         //dd($user_list);
         return view('admin_dashboard', compact('user_list',$user_list,
-                                               'policy_list', $policy_list));
+                                               'policy_list', $policy_list,
+                                                'bank_assginment', $bank_assginment));
     }
 
     public function getAllUser()

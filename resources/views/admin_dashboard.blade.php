@@ -45,9 +45,11 @@
     <div class="card text-white bg-danger">
         <div class="card-body">
             <div class="card-right pt-1 float-right">
-            <a href="">
+            <a href="{{url('admin_user_bank_list')}}">
                 <h3 class="mb-0 fw-r">
-                    <span class="count">6</span>
+                    <span class="count">
+                        {{ $bank_assginment }}
+                    </span>
                 </h3>
             </a>
                 <p class="text-light mt-1 m-0">{{ trans('dashboard.bank') }}</p>

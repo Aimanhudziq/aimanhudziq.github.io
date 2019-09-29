@@ -29,6 +29,10 @@ Route::get('user_new_task', 'UserController@userNewTask')
                 ->name('user-new-task')
                 ->middleware('normal_user'); //access by normal user only
 
+Route::get('user_list_bank', 'UserController@userListBank')
+                ->name('user-list-bank')
+                ->middleware('normal_user'); //access by normal user only
+
 Route::get('user_track_log', 'UserController@userTrackLog')
                 ->name('user-track-log')
                 ->middleware('user'); //access both users(normal user/reviewer)

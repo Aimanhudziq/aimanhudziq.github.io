@@ -29,10 +29,7 @@
 </head>
 
 <body>
-    <!-- bank modal for bank -->
-    @include('partials.modal_bank_selection')
-  
-        
+    <!-- bank modal for bank -->     
     <!-- side bar -->
     @include('partials.user_sidebar')
     <!-- /side bar -->

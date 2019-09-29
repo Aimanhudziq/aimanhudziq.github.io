@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\policy;
+use App\User;
+use App\BankAssignmentList;
+use Auth;
 
 class UserController extends Controller
 {
@@ -21,6 +24,16 @@ class UserController extends Controller
     public function userDashboard()
     {
     	return view('user_dashboard');
+    }
+
+    public function userListBank()
+    {   
+
+
+        //$user = User::with('bank_assignment_list')->where('user_staff_id', Auth::user()->user_staff_id)->get();
+        
+        $user = BankAssignmentList::where('fuser_staff_id', Auth::user()->user_staff_id)->get();
+        return view('users.user_list_bank')->with('user', $user);
     }
 
     public function userNewTask()

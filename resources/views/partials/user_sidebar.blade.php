@@ -12,6 +12,10 @@
                     <a href="{{ url('user_new_task') }}"><i class="menu-icon ti ti-plus">
                     </i>{{ trans('sidebar.new') }} </a>
                 </li>
+                <li class="{{ Route::currentRouteNamed('user-list-bank') ? 'active' : '' }}">
+                    <a href="{{ url('user_list_bank') }}"><i class="menu-icon ti ti-plus">
+                    </i>New List Bank</a>
+                </li>
                 <li class="{{ Route::currentRouteNamed('user-track-log') ? 'active' : '' }}">
                     <a href="{{ url('user_track_log') }}"><i class="menu-icon ti ti-folder"></i>{{ trans('sidebar.log') }} </a>
                 </li>
