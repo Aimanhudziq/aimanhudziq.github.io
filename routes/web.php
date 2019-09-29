@@ -49,6 +49,10 @@ Route::get('admin_user_list', 'AdminController@getAllUser')
                 ->name('admin-user-list')
                 ->middleware('admin');
 
+Route::get('admin_admin_list', 'AdminController@getAllAdmin')
+                ->name('admin-admin-list')
+                ->middleware('admin');
+
 Route::post('add_new_user', 'AdminActionController@addUser')
                 ->name('add-new-user')
                 ->middleware('admin');
@@ -75,6 +79,10 @@ Route::get('admin_assign_bank', 'AdminController@getAssignStaff')
 
 Route::post('assign_bank_to_staff', 'AdminActionController@assignBankToStaff')
                 ->name('assign-bank-to-staff')
+                ->middleware('admin');
+
+Route::get('admin_user_bank_list', 'AdminController@getUserWithBank')
+                ->name('admin-user-bank-list')
                 ->middleware('admin');
 
 //Route::post('password_email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password-email');

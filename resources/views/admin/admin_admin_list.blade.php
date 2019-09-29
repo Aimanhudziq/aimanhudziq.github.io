@@ -4,10 +4,7 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <strong class="card-title">User List</strong>
-            <button type="button" class="btn btn-secondary mb-1 float-right" data-toggle="modal" data-target="#add_user">
-                <i class="fa fa-user-plus"></i>&nbsp; Add New User
-            </button>
+            <strong class="card-title">Admin List</strong>
         </div>
         @include('partials.session_msg')
         <div class="card-body">
@@ -18,34 +15,36 @@
                         <th>Staff Id</th>
                         <th>Email</th>
                         <th>Category</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($user_list as $user)
+                    @foreach($admin_list as $admin)
                     <tr>
                         <td><span class="badge bg-secondary">
-                            {{ $user->first_name }} {{ $user->last_name}}</span></td>
+                            {{ $admin->first_name }} {{ $admin->last_name}}</span></td>
                         <td><span class="badge bg-dark">
-                            {{ $user->user_staff_id }}
+                            {{ $admin->user_staff_id }}
                         </span></td>
-                        <td><span class="badge bg-info">{{ $user->email }}
+                        <td><span class="badge bg-info">{{ $admin->email }}
                         </span></td>
                         <td>
-                            @if($user->frole_code == 1)
+                            @if($admin->frole_code == 1)
                             <span class="badge bg-info">Admin</span>
-                            @elseif ($user->frole_code == 2)
+                            @elseif ($admin->frole_code == 2)
                             <span class="badge bg-info">Reviewer</span>
                             @else
                             <span class="badge bg-info">Normal User</span>
                             @endif
                         </td>
+                        <!-- 
                         <td>
-                            <a href="{{ url('user/delete',$user->user_staff_id) }}" onclick="return confirm('Are you sure want to delete this user {{ $user->first_name }}?')" 
+                            <a href="{{ url('user/delete',$admin->user_staff_id) }}" 
                                     class="btn btn-danger mb-1" >
                                 <i  class="fa fa-trash-o"></i>
                             </a>
+                            onclick="return confirm('Are you sure want to delete this user {{ $admin->first_name }}?')" 
                         </td>
+                        -->
                     </tr>
                     @endforeach
                 </tbody>
@@ -53,7 +52,5 @@
         </div>
     </div>
 </div> <!--/ col-md-12 -->
-
-@include('admin.admin_new_user_form')
 
 @endsection
