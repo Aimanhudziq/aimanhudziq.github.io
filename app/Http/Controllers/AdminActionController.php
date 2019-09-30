@@ -97,7 +97,7 @@ class AdminActionController extends Controller
                                             ->first();
         //dd($check_user_id);
         if(count($check_user_id) > 0){
-            dd('suda ada');
+            //dd('suda ada');
             \Session::flash('dupMsg','This staff '.$bank->fuser_staff_id.' already assigned with that bank.');
             return back()->withInput();
         }
