@@ -4,14 +4,6 @@
 <div class="animated fadeIn">
     <div class="row">
         <div class="col-md-12">
-            <div class="row">
-                <div class="alert alert-info col-sm-5 col-md-offset-4" role="alert">
-                    <span class="glyphicon glyphicon-exclamation-sign" 
-                    aria-hidden="true"></span>
-                    Find someone with <strong><u>No IC</u></strong> or 
-                    </strong><strong><u>Phone Number</u></strong>
-                </div>
-            </div>
             <div class="card">
                 <div class="card-header">
                     <strong class="card-title">{{trans('content.new_task')}}</strong>

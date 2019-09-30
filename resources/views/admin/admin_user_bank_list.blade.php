@@ -14,6 +14,7 @@
                         <th>Full Name</th>
                         <th>Category</th>
                         <th>Bank List (Assigned)</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,6 +54,12 @@
                                <!-- </li> -->
                             @endforeach 
                            <!-- </ul> -->                       
+                        </td>
+                        <td>
+                            <a  class="btn btn-sm btn-primary mb-1" data-toggle="modal" 
+                                    data-target="#view_policy_details{{$policy->policy_no}}">
+                                <i  class="fa fa-eye"></i>
+                            </a>
                         </td>
                     </tr>
                     @endforeach

@@ -8,19 +8,21 @@
                     <a href="{{ url('user_dashboard') }}"><i class="menu-icon ti ti-layout ">
                     </i>Dashboard </a>
                 </li>
+                <li class="{{ Route::currentRouteNamed('user-list-bank') ? 'active' : '' }}">
+                    <a href="{{ url('user_list_bank') }}"><i class="menu-icon ti ti-credit-card">
+                    </i>Bank Selection</a>
+                </li>
                 <li class="{{ Route::currentRouteNamed('user-new-task') ? 'active' : '' }}">
                     <a href="{{ url('user_new_task') }}"><i class="menu-icon ti ti-plus">
                     </i>{{ trans('sidebar.new') }} </a>
                 </li>
-                <li class="{{ Route::currentRouteNamed('user-list-bank') ? 'active' : '' }}">
-                    <a href="{{ url('user_list_bank') }}"><i class="menu-icon ti ti-plus">
-                    </i>New List Bank</a>
-                </li>
                 <li class="{{ Route::currentRouteNamed('user-track-log') ? 'active' : '' }}">
-                    <a href="{{ url('user_track_log') }}"><i class="menu-icon ti ti-folder"></i>{{ trans('sidebar.log') }} </a>
+                    <a href="{{ url('user_track_log') }}"><i class="menu-icon ti ti-folder">
+                    </i>{{ trans('sidebar.log') }} </a>
                 </li>
                 <li class="{{ Route::currentRouteNamed('user-search') ? 'active' : '' }}">
-                    <a href="{{ url('user_search') }}"><i class="menu-icon ti ti-search"></i>{{ trans('sidebar.search') }} </a>
+                    <a href="{{ url('user_search') }}"><i class="menu-icon ti ti-search">
+                    </i>{{ trans('sidebar.search') }} </a>
                 </li>
                 @endif
 
@@ -30,14 +32,17 @@
                     <a href="{{ url('user_dashboard') }}">
                     <i class="menu-icon ti ti-layout "></i>Dashboard </a>
                 </li>
-                <li class="{{ Route::currentRouteNamed('user-kiv') ? 'active': '' }}">
-                    <a href="User_New.html"><i class="menu-icon ti ti-plus"></i>{{ trans('sidebar.kiv') }} </a>
-                </li>
                 <li class="{{ Route::currentRouteNamed('reviewer-list-bank') ? 'active': '' }}">
-                    <a href="{{ URL::route('reviewer-list-bank') }}"><i class="menu-icon ti ti-plus"></i>Reviewer List Bank</a>
+                    <a href="{{ URL::route('reviewer-list-bank') }}"><i class="menu-icon ti ti-credit-card">
+                    </i>Bank Selection</a>
+                </li>
+                <li class="{{ Route::currentRouteNamed('user-kiv') ? 'active': '' }}">
+                    <a href="User_New.html"><i class="menu-icon ti ti-plus">
+                    </i>{{ trans('sidebar.kiv') }} </a>
                 </li>
                 <li class="{{ Route::currentRouteNamed('user-track-log') ? 'active': '' }}">
-                    <a href="{{ url('user_track_log') }}"><i class="menu-icon ti ti-folder"></i>{{ trans('sidebar.log') }} </a>
+                    <a href="{{ url('user_track_log') }}"><i class="menu-icon ti ti-folder">
+                    </i>{{ trans('sidebar.log') }} </a>
                 </li>
                 <li class="{{ Route::currentRouteNamed('user-search') ? 'active': '' }}">
                     <a href="{{ url('user_search') }}">
