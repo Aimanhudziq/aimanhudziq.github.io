@@ -57,7 +57,7 @@
                         </td>
                         <td>
                             <a  class="btn btn-sm btn-primary mb-1" data-toggle="modal" 
-                                    data-target="#view_policy_details{{$policy->policy_no}}">
+                                    data-target="#myModal2">
                                 <i  class="fa fa-eye"></i>
                             </a>
                         </td>
@@ -68,5 +68,5 @@
         </div>
     </div>
 </div> <!--/ col-md-12 -->
-
+@include('admin.modal_assign_staff')
 @endsection

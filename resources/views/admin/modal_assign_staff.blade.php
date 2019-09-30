@@ -8,7 +8,7 @@
             </div>
   
             <!-- Modal body -->
-            @include('partials.session_msg')
+            
         <div class="modal-body modal-block">
             <form action="{{url('assign_bank_to_staff')}}" method="POST">
                 {{ csrf_field() }}
@@ -18,13 +18,7 @@
                         <select name="staff_name" id="normal_user" value="{{old('staff_name')}}"
                                 class="form-control staff_name {{ $errors->has('staff_name') ? 'has-error' : '' }}">
                             <option value="">select staff name</option>
-                            @foreach($user_list as $ulist)
-                            <option value="{{$ulist->user_staff_id}}" 
-                                        email-value="{{$ulist->email}}"
-                                            category-value="{{$ulist->frole_code}}">
-                                    {{ $ulist->first_name }} {{ $ulist->last_name }}
-                                    ({{ $ulist->frole_code == 2 ? 'Reviewer' : 'Normal User' }})</option>
-                            @endforeach
+
                         </select>
                         <input type="text" name="user_staff_id" id="user_staff_id" >
                     @if($errors->has('staff_name'))
@@ -55,12 +49,6 @@
 
                     <div class="form-group row">
                     <div class="form-check form-check-inline">
-                        @foreach($bank_list as $bank)
-                        <input class="form-check-input" style="margin-left: 12px" type="checkbox" name="bank_list[]" id="bank_list"
-                                onclick="" value="{{$bank->bank_code}}" >
-                        <label class="form-check-label" for="bank_list" style="font-size:12px">
-                                    {{strtoupper($bank->bank_name)}}</label>
-                        @endforeach
                     </div>
                         @if($errors->has('bank_list'))
                             <span class="help-block">
