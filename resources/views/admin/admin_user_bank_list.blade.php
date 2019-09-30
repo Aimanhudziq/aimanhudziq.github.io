@@ -26,10 +26,9 @@
                             {{ $bank->frole_code == 2 ? 'Reviewer' : 'Normal User' }}
                         </span></td>
                         <td>
-                        <a href="">
-                            <ul style="display:inline-table;">
+                            <!-- <ul style="display:inline-table;"> -->
                             @foreach($bank->bank_assignment_list as $b_code)
-                                <li style="list-style-type: none;">
+                                <!-- <li style="list-style-type: none;"> -->
                                     @if(count($b_code->fbank_code) == null)
                                     <span class="badge bg-info">Not Assign</span>
                                     @elseif($b_code->fbank_code == 101)
@@ -51,9 +50,9 @@
                                     @elseif($b_code->fbank_code == 109)
                                     <span class="badge bg-danger">-</span>
                                     @endif
-                                </li>
+                               <!-- </li> -->
                             @endforeach 
-                            </ul>                         
+                           <!-- </ul> -->                       
                         </td>
                     </tr>
                     @endforeach

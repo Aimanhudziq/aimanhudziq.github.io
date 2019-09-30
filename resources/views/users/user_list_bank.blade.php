@@ -25,27 +25,27 @@
                     <tr>
                         <td>{{ $i }}</td> 
                         <td>
-                        @if(count($b_code->fbank_code) == null)
-                            <span class="badge bg-info">Not Assign</span>
-                            @elseif($b_code->fbank_code == 101)
-                            <span class="badge bg-warning">MAYBANK</span>
-                            @elseif($b_code->fbank_code == 102)
-                            <span class="badge bg-danger">CIMB</span>
-                            @elseif($b_code->fbank_code == 103)
-                            <span class="badge bg-light">RHB</span>
-                            @elseif($b_code->fbank_code == 104)
-                            <span class="badge bg-secondary">MBSB</span>
-                            @elseif($b_code->fbank_code == 105)
-                            <span class="badge bg-info">BIMB</span>
-                            @elseif($b_code->fbank_code == 106)
-                            <span class="badge bg-dark">PUBLIC BANK</span>
-                            @elseif($b_code->fbank_code == 107)
-                            <span class="badge bg-light">MUAMALAT</span>
-                            @elseif($b_code->fbank_code == 108)
-                            <span class="badge bg-danger">-</span>
-                            @elseif($b_code->fbank_code == 109)
-                            <span class="badge bg-danger">-</span>
-                        @endif
+                        <a href="{{ url($b_code->fbank_code)}}">
+                            @if($b_code->fbank_code == 101)
+                                <span class="badge bg-warning">MAYBANK</span>
+                                @elseif($b_code->fbank_code == 102)
+                                <span class="badge bg-danger">CIMB</span>
+                                @elseif($b_code->fbank_code == 103)
+                                <span class="badge bg-light">RHB</span>
+                                @elseif($b_code->fbank_code == 104)
+                                <span class="badge bg-secondary">MBSB</span>
+                                @elseif($b_code->fbank_code == 105)
+                                <span class="badge bg-info">BIMB</span>
+                                @elseif($b_code->fbank_code == 106)
+                                <span class="badge bg-dark">PUBLIC BANK</span>
+                                @elseif($b_code->fbank_code == 107)
+                                <span class="badge bg-danger">MUAMALAT</span>
+                                @elseif($b_code->fbank_code == 108)
+                                <span class="badge bg-danger">-</span>
+                                @elseif($b_code->fbank_code == 109)
+                                <span class="badge bg-danger">-</span>
+                            @endif
+                        </a>
                         </td>
                         <td><span class="badge bg-info">null</span></td>
                         <td><span class="badge bg-info">{{$b_code->created_at}}</span></td>

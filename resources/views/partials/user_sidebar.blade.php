@@ -33,6 +33,9 @@
                 <li class="{{ Route::currentRouteNamed('user-kiv') ? 'active': '' }}">
                     <a href="User_New.html"><i class="menu-icon ti ti-plus"></i>{{ trans('sidebar.kiv') }} </a>
                 </li>
+                <li class="{{ Route::currentRouteNamed('reviewer-list-bank') ? 'active': '' }}">
+                    <a href="{{ URL::route('reviewer-list-bank') }}"><i class="menu-icon ti ti-plus"></i>Reviewer List Bank</a>
+                </li>
                 <li class="{{ Route::currentRouteNamed('user-track-log') ? 'active': '' }}">
                     <a href="{{ url('user_track_log') }}"><i class="menu-icon ti ti-folder"></i>{{ trans('sidebar.log') }} </a>
                 </li>

@@ -33,6 +33,10 @@ Route::get('user_list_bank', 'UserController@userListBank')
                 ->name('user-list-bank')
                 ->middleware('normal_user'); //access by normal user only
 
+Route::get('reviewer_list_bank', 'UserController@reviewerListBank')
+                ->name('reviewer-list-bank');
+                //->middleware('reviewer'); //access by reviewer only
+
 Route::get('user_track_log', 'UserController@userTrackLog')
                 ->name('user-track-log')
                 ->middleware('user'); //access both users(normal user/reviewer)

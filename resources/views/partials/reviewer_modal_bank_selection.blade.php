@@ -10,7 +10,7 @@
   
             <!-- Modal body -->
             <div class="modal-body" >
-                @foreach($user as $b_code)
+                @foreach($reviewer as $b_code)
                 <div class="row"  >
                     <a type="button" style="margin: auto; background-color: aqua" 
                         class="btn-lg mb-3" data dismiss="modal" href="{{$b_code->fbank_code}}">

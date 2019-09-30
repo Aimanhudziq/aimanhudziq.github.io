@@ -28,12 +28,19 @@ class UserController extends Controller
 
     public function userListBank()
     {   
-
-
         //$user = User::with('bank_assignment_list')->where('user_staff_id', Auth::user()->user_staff_id)->get();
         
         $user = BankAssignmentList::where('fuser_staff_id', Auth::user()->user_staff_id)->get();
         return view('users.user_list_bank')->with('user', $user);
+    }
+
+    public function reviewerListBank()
+    {   
+        //$user = User::with('bank_assignment_list')->where('user_staff_id', Auth::user()->user_staff_id)->get();
+        
+        $reviewer = BankAssignmentList::where('fuser_staff_id', Auth::user()->user_staff_id)->get();
+        //dd($reviewer);
+        return view('users.reviewer_list_bank')->with('reviewer', $reviewer);
     }
 
     public function userNewTask()
