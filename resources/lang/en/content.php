@@ -50,8 +50,9 @@ return[
 // ADMIN
     //User
     'user_list' => 'User List',
+    'admin_list' => 'Admin List',
     'add_user' => 'Add User',
-    'syaff_id' => 'Staff ID',
+    'staff_id' => 'Staff ID',
     'first_name' => 'first name',
     'second_name' => 'second name',
     'username' => 'username',
@@ -71,6 +72,17 @@ return[
     'policy_source' => 'Policy Source',
     'policy_regulation' => 'Policy Regulation',
     'action' => 'Action',
+    'policy_details'=> 'Policy Details',
+
+    //Bank
+    'bank_assign' => 'Bank Assignment',
+    'bank_details' => 'Bank Details',
+    'staff_name' => 'Staff Name',
+    'select' => 'Select',
+    'choose_bank' => 'Choose Bank',
+    'assign_bank' => 'Assign Bank',
+    'bank_list' => 'Bank List',
+
     
     
 ];

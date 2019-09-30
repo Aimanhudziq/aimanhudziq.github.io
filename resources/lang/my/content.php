@@ -52,7 +52,7 @@ return[
     //User
     'user_list' => 'Senarai Pengguna',
     'add_user' => 'Tambah Pengguna',
-    'syaff_id' => 'ID Staff',
+    'staff_id' => 'ID Staff',
     'first_name' => 'nama pertama',
     'second_name' => 'nama kedua',
     'username' => 'nama pengguna',
@@ -72,6 +72,17 @@ return[
     'policy_source' => 'Sumber Polisi',
     'policy_regulation' => 'Peraturan Polisi',
     'action' => 'Tindakan',
+    'policy_details'=> 'Butiran Polisi',
+
+    //Bank
+    'bank_assign' => 'Tugasan Bank',
+    'bank_details' => 'Butiran Bank',
+    'staff_name' => 'Nama Staff',
+    'select' => 'Pilih',
+    'choose_bank' => 'Pilih Bank',
+    'assign_bank' => 'Tugaskan Bank',
+    'bank_list' => 'Senarai Bank',
+
 
 
 

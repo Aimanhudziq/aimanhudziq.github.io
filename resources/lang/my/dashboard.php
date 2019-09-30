@@ -11,6 +11,6 @@ return[
     'status_month' => 'Status per Bulan',
 
     'user' => 'Pengguna',
-    'policy' => 'Terma & Syarat',
+    'policy' => 'Polisi',
     'bank' => 'Bank',
 ];
