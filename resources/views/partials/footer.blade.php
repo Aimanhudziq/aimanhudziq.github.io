@@ -1,4 +1,4 @@
-<footer class="site-footer">
+<footer class="site-footer" style="position:fixed; width:100%; bottom:0" >
     <div class="footer-inner bg-white">
         <div class="row">
             <div class="col-sm-1">
