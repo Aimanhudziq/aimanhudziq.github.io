@@ -4,7 +4,7 @@
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <strong class="modal-title">Assign Bank (Staff)</strong>
+                <strong class="modal-title">Assign</strong>
             </div>
   
             <!-- Modal body -->
@@ -12,38 +12,18 @@
         <div class="modal-body modal-block">
             <form action="{{url('assign_bank_to_staff')}}" method="POST">
                 {{ csrf_field() }}
-                <div class="form-group row">
-                    <label for="staff_name" class="col-sm-2 col-form-label">Staff Name</label>
-                    <div class="col-sm-7">
-                        <select name="staff_name" id="normal_user" value="{{old('staff_name')}}"
-                                class="form-control staff_name {{ $errors->has('staff_name') ? 'has-error' : '' }}">
-                            <option value="">select staff name</option>
-
-                        </select>
-                        <input type="text" name="user_staff_id" id="user_staff_id" >
-                    @if($errors->has('staff_name'))
-                        <span class="help-block">
-                        <strong style='color: #a94442'>{{ $errors->first('staff_name') }}</strong>
-                    @endif
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="email" class="col-sm-2 col-form-label">Email</label>
-                    <div class="col-sm-3">
-                        <input type="email" class="form-control" id="staff_email" readonly
-                            placeholder="Email">
-                    </div>
-
-                    <div class="col-sm-3">
-                        <input type="text" name="user_category" class="form-control" 
-                        placeholder="user role" id="user_category" readonly>
-                    </div>
-                </div>
-
                 <fieldset>
                     <legend style="font-size:15px">
                         <div class="form-group row">
                             <label for="bank_list" class="col-sm-2">Choose Bank</label>
+                            <select name="" id="">
+                                <option value="">Select bank</option>
+                                @foreach ($bank_list as $bank)
+                                <option class="form-check-input" name="bank_list[]" id="bank_list" value="{{$bank->bank_code}}">
+                                    <label class="form-check-label" for="bank_list" style="font-size:12px">
+                                    {{strtoupper($bank->bank_name)}}</label></option>
+                                 @endforeach
+                            </select>
                         </div>
                     </legend>
 
