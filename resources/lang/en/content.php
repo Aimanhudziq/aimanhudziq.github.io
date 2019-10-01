@@ -31,6 +31,8 @@ return[
     'ic_num' => 'IC number',
     'or' => 'or',
 
+    //kiv
+    'checked_by' => 'Checked by',
 
     //Charts
     'january' => 'January',

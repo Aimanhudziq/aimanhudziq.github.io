@@ -32,6 +32,9 @@ return[
     'ic_num' => 'No. IC',
     'or' => 'atau',
     
+    //kiv
+    'checked_by' => 'Disemak oleh',
+
 
     //Charts
     'january' => 'Januari',
