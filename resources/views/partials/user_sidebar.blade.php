@@ -10,7 +10,7 @@
                 </li>
                 <li class="{{ Route::currentRouteNamed('user-list-bank') ? 'active' : '' }}">
                     <a href="{{ url('user_list_bank') }}"><i class="menu-icon ti ti-credit-card">
-                    </i>Bank Selection</a>
+                    </i>{{trans('sidebar.bank_select')}}</a>
                 </li>
                 <li class="{{ Route::currentRouteNamed('user-new-task') ? 'active' : '' }}">
                     <a href="{{ url('user_new_task') }}"><i class="menu-icon ti ti-plus">
@@ -34,7 +34,7 @@
                 </li>
                 <li class="{{ Route::currentRouteNamed('reviewer-list-bank') ? 'active': '' }}">
                     <a href="{{ URL::route('reviewer-list-bank') }}"><i class="menu-icon ti ti-credit-card">
-                    </i>Bank Selection</a>
+                    </i>{{trans('sidebar.bank_select')}}</a>
                 </li>
                 <li class="{{ Route::currentRouteNamed('user-kiv') ? 'active': '' }}">
                     <a href="User_New.html"><i class="menu-icon ti ti-plus">
