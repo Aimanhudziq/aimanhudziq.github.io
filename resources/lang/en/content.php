@@ -31,16 +31,13 @@ return[
     'ic_num' => 'IC number',
     'or' => 'or',
 
-<<<<<<< HEAD
     //kiv
     'checked_by' => 'Checked by',
-=======
     'bank_select' => 'Bank Selection',
     'bank_name' => 'Bank Name',
     'no_applicant' => 'Number of Applicant',
     'assign_date' => 'Assign Date',
 
->>>>>>> 8186b190c99cdf8901d3f65414ee0e0b63544f07
 
     //Charts
     'january' => 'January',
