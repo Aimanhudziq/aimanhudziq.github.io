@@ -56,9 +56,13 @@
                            <!-- </ul> -->                       
                         </td>
                         <td>
-                            <a  class="btn btn-sm btn-primary mb-1" data-toggle="modal" 
+                            <a  class="btn btn-sm mb-1" style="background-color:forestgreen" data-toggle="modal" 
                                     data-target="#myModal2">
-                                <i  class="fa fa-eye"></i>
+                                <i  class="fa fa-plus"></i>
+                            </a>
+                            <a  class="btn btn-sm mb-1" style="background-color:red" data-toggle="modal" 
+                                    data-target="#myModal2">
+                                <i  class="fa fa-minus"></i>
                             </a>
                         </td>
                     </tr>
