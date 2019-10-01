@@ -42,31 +42,31 @@
 <div class="modal fade"  id="largeModal" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" 
 aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header" >
+        <div class="modal-content" style="padding-bottom:0px" >
+            <div class="modal-header" style="padding-bottom:0px" >
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             <h4 class="modal-title" id="largeModalLabel">{{trans('content.pic_review')}}</h4>
-            <div class="row">
-                <div class="col-lg-6">
-                        <h6 class="card-text" style="font-size: small">{{trans('content.ref_num')}} : 5106332553</h6>
-                        <h6 class="card-text" style="font-size: small">{{trans('content.status')}} : New</h6>
-                </div>
-                <div class="col-lg-6">
-                        <h6 class="card-text" style="font-size: small">{{trans('content.date')}} : 2019-09-01</h6>
-                        <h6 class="card-text" style="font-size: small">{{trans('content.time')}} : 16:04</h6>
-                </div>  
-            </div>   
-        </div>
+            </div>
 
                 <!--Body start-->
-        <div class="modal-body">
+        <div class="modal-body" style="padding-bottom:0px" >
             <div class="row">
-                <div class="col-md-3">
-                    <img src="images/demo.png" alt="Logo" height="180px" width="200px">
+                <div class="col-md-4">
+                    <img src="images/demo.png" alt="Logo" height="150px" width="225px">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-lg-12">
+                        <h6 class="card-text" style="font-size: small">{{trans('content.ref_num')}} : 5106332553</h6>
+                        <h6 class="card-text" style="font-size: small">{{trans('content.status')}} : New</h6>
+                        <h6 class="card-text" style="font-size: small">{{trans('content.date')}} : 2019-09-01</h6>
+                        <h6 class="card-text" style="font-size: small">{{trans('content.time')}} : 16:04</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
                     <div class="row form-group" style="margin-right: 20px">
                             <label for="textarea-input" class=" form-control-label ml-3">{{trans('content.remarks')}}</label>
                             <textarea name="textarea-input" id="textarea-input" rows="5" placeholder="Content..." 
@@ -80,7 +80,7 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                             <div class="card-header">
                                 <strong>{{trans('content.policy')}}</strong>
                             </div> <!--/card header -->
-                            <div class="card-body" style="font-size: small">
+                            <div class="card-body" style="font-size: small; padding-top:0px; padding-bottom:0px">
                                 <form action="" method="GET">
                                     <div class="form-check" >
                                         <div id="app">
@@ -96,7 +96,7 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                                                 </div>
                                             </div>
                                         @endforeach
-                                            <div class="modal-footer">
+                                            <div class="modal-footer" style="padding-bottom:0px" >
                                                 <button class="btn btn-sm btn-success mt-3 mb-3 text-white" id="approve">{{trans('content.approve')}}</button>
                                                 <button class="btn btn-sm btn-danger mt-3 mb-3 text-white">{{trans('content.reject')}}</button>
                                                 <button class="btn btn-sm btn-warning mt-3 mb-3 text-white">KIV</button>

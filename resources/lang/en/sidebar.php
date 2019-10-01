@@ -6,6 +6,7 @@ return [
     'log' => 'Log',
     'kiv' => 'KIV',
     'search' => 'Search',
+    'bank_select' => 'Bank Selection',
 
     //admin
     'user' => 'Users',
