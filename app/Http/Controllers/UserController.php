@@ -43,6 +43,12 @@ class UserController extends Controller
         return view('users.reviewer_list_bank')->with('reviewer', $reviewer);
     }
 
+    public function reviewerKiv()
+    {   
+        $policy = Policy::all();
+        return view('users.reviewer_kiv')->with('policy', $policy);
+    }
+
     public function userNewTask()
     {
         $policy = Policy::all();

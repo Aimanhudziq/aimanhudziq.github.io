@@ -37,6 +37,9 @@ return[
     'no_applicant' => 'Number of Applicant',
     'assign_date' => 'Assign Date',
     
+    //kiv
+    'checked_by' => 'Disemak oleh',
+
 
     //Charts
     'january' => 'Januari',

@@ -37,6 +37,9 @@ Route::get('reviewer_list_bank', 'UserController@reviewerListBank')
                 ->name('reviewer-list-bank');
                 //->middleware('reviewer'); //access by reviewer only
 
+Route::get('reviewer_kiv', 'UserController@reviewerKiv')
+                ->name('reviewer-kiv');
+
 Route::get('user_track_log', 'UserController@userTrackLog')
                 ->name('user-track-log')
                 ->middleware('user'); //access both users(normal user/reviewer)
