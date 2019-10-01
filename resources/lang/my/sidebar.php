@@ -7,6 +7,8 @@ return [
     'log' => 'Log',
     'kiv' => 'KIV',
     'search' => 'Carian',
+    'bank_select' => 'Pilihan Bank',
+
 
     //admin
     'user' => 'Pengguna',
