@@ -44,24 +44,13 @@
 <div class="modal fade"  id="track_log" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel1" 
     aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header" >
+        <div class="modal-content" style="padding-bottom:0px" >
+            <div class="modal-header" style="padding-bottom:0px" >
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <h4 class="modal-title" id="mediumModalLabel1">{{trans('content.transaction_log')}}</h4>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <h6 class="card-text" style="font-size: small">{{trans('content.ref_num')}} : 5106332553</h6>
-                        <h6 class="card-text" style="font-size: small">{{trans('content.status')}} : New</h6>
-                    </div>
-                    <div class="col-lg-6">
-                        <h6 class="card-text" style="font-size: small">{{trans('content.date')}} : 2019-09-01</h6>
-                        <h6 class="card-text" style="font-size: small">{{trans('content.time')}} : 16:04</h6>
-                    </div>
-                
                 </div>
-            </div>
     
             <!--Body start-->
             <div class="modal-body">
@@ -81,7 +70,21 @@
                                     <div class="tab-pane fade show active" id="custom-nav-home" role="tabpanel"
                                         aria-labelledby="custom-nav-home-tab">
                                         <p style="text-align:center; display:block">
-                                            <img src="images/demo.png" alt="Logo" style="width: 50%; height: 50%">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <img src="images/demo.png" alt="Logo" height="150px" width="225px">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <h6 class="card-text" style="font-size: small">{{trans('content.ref_num')}} : 5106332553</h6>
+                                                            <h6 class="card-text" style="font-size: small">{{trans('content.status')}} : New</h6>
+                                                            <h6 class="card-text" style="font-size: small">{{trans('content.date')}} : 2019-09-01</h6>
+                                                            <h6 class="card-text" style="font-size: small">{{trans('content.time')}} : 16:04</h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </p>                                                                                         
                                     </div>
                                     <div class="tab-pane fade" id="custom-nav-profile" role="tabpanel

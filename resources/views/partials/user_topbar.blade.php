@@ -22,7 +22,6 @@
                 </div>
 
                 <div class="user-menu dropdown-menu">
-                    <a class="nav-link" data-toggle="modal" data-target="#myModal">Select Bank</a>
                     <a class="nav-link" href="{{ url('forgot_password') }}">Change Password</a>
                     <a class="nav-link" href="{{ url('/logout') }}">Logout</a>
                 </div>
