@@ -31,6 +31,11 @@ return[
     'ic_num' => 'IC number',
     'or' => 'or',
 
+    'bank_select' => 'Bank Selection',
+    'bank_name' => 'Bank Name',
+    'no_applicant' => 'Number of Applicant',
+    'assign_date' => 'Assign Date',
+
 
     //Charts
     'january' => 'January',

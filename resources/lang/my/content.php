@@ -31,6 +31,11 @@ return[
     'find_with' => 'Carian dengan',
     'ic_num' => 'No. IC',
     'or' => 'atau',
+
+    'bank_select' => 'Bank Selection',
+    'bank_name' => 'Bank Name',
+    'no_applicant' => 'Number of Applicant',
+    'assign_date' => 'Assign Date',
     
 
     //Charts
