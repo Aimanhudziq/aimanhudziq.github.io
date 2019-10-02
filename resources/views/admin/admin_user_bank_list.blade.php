@@ -20,10 +20,10 @@
                 <tbody>
                     @foreach($user_bank as $bank)
                     <tr>
-                        <td><span class="badge bg-secondary">
+                        <td><span>
                             {{$bank->first_name}} {{$bank->last_name}}</span>
                         </td>
-                        <td><span class="badge bg-info">
+                        <td><span>
                             {{ $bank->frole_code == 2 ? 'Reviewer' : 'Normal User' }}
                         </span></td>
                         <td>
@@ -56,14 +56,16 @@
                            <!-- </ul> -->                       
                         </td>
                         <td>
-                            <a  class="btn btn-sm mb-1" style="background-color:forestgreen" data-toggle="modal" 
-                                    data-target="#myModal2">
-                                <i  class="fa fa-plus"></i>
-                            </a>
-                            <a  class="btn btn-sm mb-1" style="background-color:red" data-toggle="modal" 
-                                    data-target="#myModal3">
-                                <i  class="fa fa-minus"></i>
-                            </a>
+                            <span title="Assign" data-toggle="tooltip" data-placement="top">
+                                <button class="btn btn-sm mb-1" style="background-color:forestgreen" data-toggle="modal" data-target="#myModal2">
+                                    <i  class="fa fa-plus"></i>
+                                </button>
+                            </span>
+                            <span title="Unassign" data-toggle="tooltip" data-placement="top">
+                                <button class="btn btn-sm mb-1" style="background-color:red" data-toggle="modal" data-target="#myModal3">
+                                    <i  class="fa fa-minus"></i>
+                                </button>
+                            </span>
                         </td>
                     </tr>
                     @endforeach
