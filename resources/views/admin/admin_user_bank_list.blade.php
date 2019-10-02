@@ -61,7 +61,7 @@
                                 <i  class="fa fa-plus"></i>
                             </a>
                             <a  class="btn btn-sm mb-1" style="background-color:red" data-toggle="modal" 
-                                    data-target="#myModal2">
+                                    data-target="#myModal3">
                                 <i  class="fa fa-minus"></i>
                             </a>
                         </td>
@@ -73,4 +73,5 @@
     </div>
 </div> <!--/ col-md-12 -->
 @include('admin.modal_assign_staff')
+@include('admin.modal_unassign_staff')
 @endsection
