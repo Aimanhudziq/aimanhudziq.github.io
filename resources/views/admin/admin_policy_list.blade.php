@@ -28,10 +28,10 @@
                             {{ $policy->policy_source }}
                         </span></td>
                         <td class="col-sm-3" >
-                        <span class="bg-info">{{ $policy->policy_regulation }}
+                        <span>{{ $policy->policy_regulation }}
                         </span></td>
                         <td>
-                            <a  class="btn btn-sm btn-primary mb-1" data-toggle="modal" 
+                            <a  class="btn btn-sm btn-info mb-1" data-toggle="modal" 
                                     data-target="#view_policy_details{{$policy->policy_no}}">
                                 <i  class="fa fa-eye"></i>
                             </a>
