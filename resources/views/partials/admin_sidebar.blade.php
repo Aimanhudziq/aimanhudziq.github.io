@@ -6,6 +6,7 @@
                     <a href="{{ url('admin_dashboard') }}"><i class="menu-icon ti ti-layout ">
                     </i>Dashboard </a>
                 </li>
+                <!------------------------------------------------------------------------------------>
                 <li class="menu-item-has-children dropdown {{ Route::currentRouteNamed('admin-user-list') || 
                     Route::currentRouteNamed('user-admin-list') ? 'active': '' }}">
                         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"  aria-expanded="false"> <i class="menu-icon ti ti-user"></i>{{ trans('sidebar.user') }}</a>
@@ -20,7 +21,9 @@
                                 </i>{{ trans('sidebar.admin_user') }} </a>
                             </li>
                         </ul>
-                </li>     
+                </li>
+                <!------------------------------------------------------------------------------->
+                
                 <li class="{{ Route::currentRouteNamed('admin-policy-list') ? 'active': '' }}">
                     <a href="{{ url('admin_policy_list') }}"><i class="menu-icon ti ti-shield">
                     </i>{{ trans('sidebar.policy') }}</a>
