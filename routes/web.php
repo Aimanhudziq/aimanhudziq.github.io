@@ -92,6 +92,10 @@ Route::post('assign_bank_to_staff', 'AdminActionController@assignBankToStaff')
                 ->name('assign-bank-to-staff')
                 ->middleware('admin');
 
+Route::post('unassign_bank_to_staff', 'AdminActionController@assignBankToStaff')
+                ->name('assign-bank-to-staff')
+                ->middleware('admin');
+
 Route::get('admin_user_bank_list', 'AdminController@getUserWithBank')
                 ->name('admin-user-bank-list')
                 ->middleware('admin');

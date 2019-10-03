@@ -62,7 +62,7 @@
                                 </button>
                             </span>
                             <span title="{{trans('content.remove_assign')}}" data-toggle="tooltip" data-placement="top">
-                                <button class="btn btn-sm btn-danger mb-1"  data-toggle="modal" data-target="#drop_bank">
+                                <button class="btn btn-sm btn-danger mb-1"  data-toggle="modal" data-target="#drop_bank{{$bank->user_staff_id}}">
                                     <i  class="fa fa-minus"></i>
                                 </button>
                             </span>
