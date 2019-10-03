@@ -8,7 +8,7 @@ use App\Role;
 use App\Policy;
 use App\BankAssignmentList;
 use Carbon\Carbon;
-
+use Alert;
 class AdminActionController extends Controller
 {
     public function addUser(Request $request)
@@ -135,7 +135,7 @@ class AdminActionController extends Controller
     {
         $policy = Policy::where('policy_no', $policy_no)->first();
         $policy->delete();
-        \Session::flash('delMsg','Policy : '.$policy->policy_name. 'Successful removed from the system');
+        Alert::success('Policy '. $policy->policy_name .' Successful removed from the system');
         return redirect('admin_policy_list');
         
     }
