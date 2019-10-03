@@ -24,8 +24,8 @@
                             @endforeach
                         </select>
                         <!-- hidden input text -->
-                        <input type="text" name="user_staff_id" value="{{$bank->user_staff_id }}">
-                        <input type="text" name="role_code" value="{{$bank->frole_code }}">
+                        <input type="hidden" name="user_staff_id" value="{{$bank->user_staff_id }}">
+                        <input type="hidden" name="role_code" value="{{$bank->frole_code }}">
                         <!--/-------------------->
                         @if($errors->has('bank_list'))
                             <span class="help-block">
