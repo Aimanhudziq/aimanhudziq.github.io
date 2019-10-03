@@ -66,8 +66,8 @@ class AdminActionController extends Controller
         $policy->policy_regulation = $request->input('policy_regulation');
 
         $policy->save();
-
-        \Session::flash('createPolicy','Staff name: '.$policy->policy_name. 'Successful added to the policy list');
+        Alert::success($policy->policy_name.' Successful added to the policy list ',' Policy');
+        //\Session::flash('createPolicy','Staff name: '.$policy->policy_name. 'Successful added to the policy list');
         return redirect('admin_policy_list');
 
     }
@@ -98,7 +98,7 @@ class AdminActionController extends Controller
         //dd($check_user_id);
         if(count($check_user_id) > 0){
             //dd('suda ada');
-            \Session::flash('dupMsg','This staff '.$bank->fuser_staff_id.' already assigned with that bank.');
+            Alert::error($bank->fuser_staff_id.' Already assigned with that bank.',' Duplicate Bank!');
             return back()->withInput();
         }
         else{
@@ -113,7 +113,7 @@ class AdminActionController extends Controller
                 //dd($assign_bank->fbank_code);
 
                 $assign_bank->save();
-                \Session::flash('assignBank','Successfully assigned bank to user ID '.$assign_bank->fuser_staff_id);
+                Alert::success($assign_bank->fuser_staff_id. ' Successfully assigned bank to user ID ', 'Assign Bank');
 
             }
             return redirect('admin_assign_bank');
@@ -126,7 +126,8 @@ class AdminActionController extends Controller
         $user = User::where('user_staff_id', $staff_id)->first();
         //dd($user);
         $user->delete();
-        \Session::flash('delMsg','Staff : '.$user->first_name. 'Successful removed from the system');
+        Alert::success($user->first_name.' Successful removed from the system ',' Delete Success');
+        //\Session::flash('delMsg','Staff : '.$user->first_name. 'Successful removed from the system');
     	return redirect('admin_user_list');
 
     }
@@ -135,7 +136,7 @@ class AdminActionController extends Controller
     {
         $policy = Policy::where('policy_no', $policy_no)->first();
         $policy->delete();
-        Alert::success('Policy '. $policy->policy_name .' Successful removed from the system');
+        Alert::success($policy->policy_name.' Successful removed from the system ',' Delete Policy');
         return redirect('admin_policy_list');
         
     }
