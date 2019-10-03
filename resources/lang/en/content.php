@@ -91,6 +91,8 @@ return[
     'choose_bank' => 'Choose Bank',
     'assign_bank' => 'Assign Bank',
     'bank_list' => 'Bank List',
+    'add_assign' => 'Assign Bank',
+    'remove_assign' => 'Unassign Bank',
     'assign' => 'Assign',
     'unassign' => 'Unassign',
 

@@ -93,8 +93,10 @@ return[
     'choose_bank' => 'Pilih Bank',
     'assign_bank' => 'Tugaskan Bank',
     'bank_list' => 'Senarai Bank',
-    'assign' => 'Tambah Tugasan',
-    'unassign' => 'Buang Tugasan'
+    'add_assign' => 'Tambah Tugasan',
+    'remove_assign' => 'Buang Tugasan',
+    'assign' => 'Tambah',
+    'unassign' => 'Buang'
 
 
 
