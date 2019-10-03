@@ -37,7 +37,7 @@
                                     @elseif($b_code->fbank_code == 102)
                                     <span class="badge bg-danger">CIMB</span>
                                     @elseif($b_code->fbank_code == 103)
-                                    <span class="badge bg-light">RHB</span>
+                                    <span class="badge bg-dark">RHB</span>
                                     @elseif($b_code->fbank_code == 104)
                                     <span class="badge bg-secondary">MBSB</span>
                                     @elseif($b_code->fbank_code == 105)
@@ -57,12 +57,12 @@
                         </td>
                         <td>
                             <span title="{{trans('content.add_assign')}}" data-toggle="tooltip" data-placement="top">
-                                <button class="btn btn-sm btn-success mb-1" data-toggle="modal" data-target="#myModal2">
+                                <button class="btn btn-sm btn-success mb-1" data-toggle="modal" data-target="#add_bank">
                                     <i  class="fa fa-plus"></i>
                                 </button>
                             </span>
                             <span title="{{trans('content.remove_assign')}}" data-toggle="tooltip" data-placement="top">
-                                <button class="btn btn-sm btn-danger mb-1"  data-toggle="modal" data-target="#myModal3">
+                                <button class="btn btn-sm btn-danger mb-1"  data-toggle="modal" data-target="#drop_bank">
                                     <i  class="fa fa-minus"></i>
                                 </button>
                             </span>

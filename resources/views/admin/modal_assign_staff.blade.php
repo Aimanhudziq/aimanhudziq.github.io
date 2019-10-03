@@ -1,5 +1,5 @@
 <!--Modal Body Start-->
-<div class="modal fade" id="myModal2">
+<div class="modal fade" id="add_bank">
     <div class="modal-dialog">
         <div class="modal-content">
             <!-- Modal Header -->
@@ -48,3 +48,10 @@
         </div><!--/ modal content -->
     </div>
 </div>
+@if (count($errors) > 0)
+<script>
+    $( document ).ready(function() {
+        $('#add_bank').modal('show');
+    });
+</script>
+@endif
