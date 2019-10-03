@@ -96,7 +96,7 @@ return[
     'add_assign' => 'Tambah Tugasan',
     'remove_assign' => 'Buang Tugasan',
     'assign' => 'Tambah',
-    'unassign' => 'Buang'
+    'unassign' => 'Buang',
 
 
 

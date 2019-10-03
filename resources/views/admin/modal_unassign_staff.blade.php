@@ -17,7 +17,7 @@
                         <div class="form-group row">
                             <label for="bank_list" class="col-sm-2">{{trans('content.choose_bank')}}</label>
                             <select name="" id="">
-                                <option value="">Select bank</option>
+                                <option value="">{{trans('content.bank_name')}}</option>
                                 @foreach ($bank_list as $bank)
                                 <option class="form-check-input" name="bank_list[]" id="bank_list" value="{{$bank->bank_code}}">
                                     <label class="form-check-label" for="bank_list" style="font-size:12px">
