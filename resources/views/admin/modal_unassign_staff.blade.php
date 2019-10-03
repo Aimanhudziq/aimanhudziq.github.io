@@ -4,7 +4,7 @@
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <strong class="modal-title">{{trans('content.unassign')}}</strong>
+                <strong class="modal-title">{{trans('content.remove_assign')}}</strong>
             </div>
   
             <!-- Modal body -->

@@ -56,12 +56,12 @@
                            <!-- </ul> -->                       
                         </td>
                         <td>
-                            <span title="{{trans('content.assign')}}" data-toggle="tooltip" data-placement="top">
+                            <span title="{{trans('content.add_assign')}}" data-toggle="tooltip" data-placement="top">
                                 <button class="btn btn-sm mb-1" style="background-color:forestgreen" data-toggle="modal" data-target="#myModal2">
                                     <i  class="fa fa-plus"></i>
                                 </button>
                             </span>
-                            <span title="{{trans('content.unassign')}}" data-toggle="tooltip" data-placement="top">
+                            <span title="{{trans('content.remove_assign')}}" data-toggle="tooltip" data-placement="top">
                                 <button class="btn btn-sm mb-1" style="background-color:red" data-toggle="modal" data-target="#myModal3">
                                     <i  class="fa fa-minus"></i>
                                 </button>
