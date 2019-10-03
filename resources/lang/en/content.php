@@ -18,7 +18,7 @@ return[
     'policy' => 'Policy',
     'approve' => 'Approve',
     'reject' => 'Reject',
-    'cancel' => 'Cance',
+    'cancel' => 'Cancel',
     'image' => 'Image',
     'history' => 'History',
     'from' => 'From',
@@ -95,6 +95,7 @@ return[
     'remove_assign' => 'Unassign Bank',
     'assign' => 'Assign',
     'unassign' => 'Unassign',
+    
 
 
 
