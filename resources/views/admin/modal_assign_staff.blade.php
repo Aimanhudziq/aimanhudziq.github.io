@@ -15,7 +15,7 @@
                 <fieldset>
                     <legend style="font-size:15px">
                         <div class="form-group row">
-                            <label for="bank_list" class="col-sm-2">Choose Bank</label>
+                            <label for="bank_list" class="col-sm-2">{{trans('content.choose_bank')}}</label>
                             <select name="" id="">
                                 <option value="">Select bank</option>
                                 @foreach ($bank_list as $bank)
