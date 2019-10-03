@@ -100,7 +100,7 @@
             placeholder: "Select Bank List",
         });
     </script>
-
+<!--
     <script>
         //admin-bank-assign(pass multiple value)
         $('#normal_user').change(function () {
@@ -112,5 +112,14 @@
             $('#user_category').val(staff_category);
         });
     </script>
+-->
+<script>
+function test(){
+    var id = document.getElementById('bank_list');
+    var selectedValue = id.options[id.selectedIndex].value;
+
+    //alert(selectedValue);
+}
+</script>
 </body>
 </html>

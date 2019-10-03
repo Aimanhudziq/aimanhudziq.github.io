@@ -80,43 +80,29 @@ class AdminActionController extends Controller
     public function assignBankToStaff(Request $request)
     {   
         $this->validate($request,[
-            'staff_name'=>'required',
-            'user_category'=>'required',
             'bank_list' => 'required'
         ]);
         
-        $bank = new BankAssignmentList;
+        $data = new BankAssignmentList;
       
-        $bank->fuser_staff_id = $request->input('staff_name');
-        $bank->frole_code = $request->input('user_category');
-        $bank->fbank_code = $request->input('bank_list');
-        
-        $check_user_id = BankAssignmentList::whereIn('fuser_staff_id',[$bank->fuser_staff_id])
-                                            ->whereIn('fbank_code', [$bank->fbank_code])
-                                            ->whereIn('frole_code',[$bank->frole_code])
-                                            ->first();
-        //dd($check_user_id);
-        if(count($check_user_id) > 0){
+        $data->fuser_staff_id = $request->input('user_staff_id');
+        $data->frole_code = $request->input('role_code');
+        $data->fbank_code = $request->input('bank_list');
+        //dd($bank->fuser_staff_id,$bank->frole_code,$bank->fbank_code);
+        $check_user = BankAssignmentList::where('fuser_staff_id',$data->fuser_staff_id)
+                                            ->where('frole_code',$data->frole_code)
+                                            ->where('fbank_code',$data->fbank_code)->get();
+                                            //->first();
+        if(count($check_user) > 0){
             //dd('suda ada');
-            Alert::error($bank->fuser_staff_id.' Already assigned with that bank.',' Duplicate Bank!');
+            Alert::error($data->fuser_staff_id.' Already assigned with that bank.',' Duplicate Bank!');
             return back()->withInput();
         }
         else{
-            //dd('kasi masuk dalam db');
-            foreach($request->bank_list as $bank_code ){
 
-                $assign_bank = new BankAssignmentList;
-
-                $assign_bank->fuser_staff_id = $request->input('staff_name');
-                $assign_bank->frole_code = $request->input('user_category');
-                $assign_bank->fbank_code = $bank_code;
-                //dd($assign_bank->fbank_code);
-
-                $assign_bank->save();
-                Alert::success($assign_bank->fuser_staff_id. ' Successfully assigned bank to user ID ', 'Assign Bank');
-
-            }
-            return redirect('admin_assign_bank');
+            $data->save();
+            Alert::success($data->fuser_staff_id. ' Successfully assigned bank to user ID ', 'Assign Bank');
+            return redirect('admin_user_bank_list');
         }
        
     }

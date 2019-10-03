@@ -55,7 +55,7 @@
                             @endforeach 
                            <!-- </ul> -->                       
                         </td>
-                        <td>{{$bank}}
+                        <td>
                             <span title="{{trans('content.add_assign')}}" data-toggle="tooltip" data-placement="top">
                                 <button class="btn btn-sm btn-success mb-1" data-toggle="modal" data-target="#add_bank{{$bank->user_staff_id}}">
                                     <i  class="fa fa-plus"></i>

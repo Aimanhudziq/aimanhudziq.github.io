@@ -1,5 +1,5 @@
 <!--Modal Body Start-->
-<div class="modal fade" id="add_bank{{$bank->user_staff_id}}">
+<div class="modal fade add_policy" id="add_bank{{$bank->user_staff_id}}">
     <div class="modal-dialog">
         <div class="modal-content">
             <!-- Modal Header -->
@@ -16,10 +16,10 @@
                     <label for="bank_list" class="col-sm-3 col-form-label">Select Bank</label>
                     <div class="col-sm-7">
                         <select name="bank_list" id="bank_list" value="{{old('bank_list')}}"
-                                class="form-control{{ $errors->has('bank_list') ? 'has-error' : '' }}">
+                                class="form-control {{ $errors->has('bank_list') ? 'has-error' : '' }}">
                             <option value="">--select bank--</option>
                             @foreach($bank_list as $b_code)
-                            <option value="{{$b_code->bank_code}}">
+                            <option value="{{$b_code->bank_code}}" >
                                 {{ $b_code->bank_name }}</option>
                             @endforeach
                         </select>
@@ -27,9 +27,9 @@
                         <input type="text" name="user_staff_id" value="{{$bank->user_staff_id }}">
                         <input type="text" name="role_code" value="{{$bank->frole_code }}">
                         <!--/-------------------->
-                        @if($errors->has('staff_name'))
+                        @if($errors->has('bank_list'))
                             <span class="help-block">
-                            <strong style='color: #a94442'>{{ $errors->first('staff_name') }}</strong>
+                            <strong style='color: #a94442'>{{ $errors->first('bank_list') }}</strong>
                         @endif
                     </div>
                 </div>
@@ -48,7 +48,7 @@
 @if (count($errors) > 0)
 <script>
     $( document ).ready(function() {
-        $('#add_bank').modal('show');
+        $('.add_bank').modal('show');
     });
 </script>
 @endif
