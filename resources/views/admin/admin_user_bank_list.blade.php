@@ -55,9 +55,9 @@
                             @endforeach 
                            <!-- </ul> -->                       
                         </td>
-                        <td>
+                        <td>{{$bank}}
                             <span title="{{trans('content.add_assign')}}" data-toggle="tooltip" data-placement="top">
-                                <button class="btn btn-sm btn-success mb-1" data-toggle="modal" data-target="#add_bank">
+                                <button class="btn btn-sm btn-success mb-1" data-toggle="modal" data-target="#add_bank{{$bank->user_staff_id}}">
                                     <i  class="fa fa-plus"></i>
                                 </button>
                             </span>
@@ -68,12 +68,13 @@
                             </span>
                         </td>
                     </tr>
+                    @include('admin.modal_assign_staff')
+                    @include('admin.modal_unassign_staff')
                     @endforeach
                 </tbody>
             </table>
         </div>
     </div>
 </div> <!--/ col-md-12 -->
-@include('admin.modal_assign_staff')
-@include('admin.modal_unassign_staff')
+
 @endsection

@@ -9,7 +9,6 @@
                 <i class="fa fa-shield"></i>&nbsp; {{trans('content.add_policy')}}
             </button>
         </div>
-        @include('partials.session_msg')
         <div class="card-body">
             <table id="bootstrap-data-table" class="table table-striped table-bordered">
                 <thead>

@@ -43,7 +43,7 @@ class AdminController extends Controller
         return view('admin.admin_admin_list')
                             ->with(['admin_list'=>$admin_list]);
     }
-
+/*
     public function getAssignStaff(Request $request)
     {   
         $user_list = User::whereIn('frole_code', ['2','3'])->get();
@@ -53,14 +53,17 @@ class AdminController extends Controller
         return view('admin.admin_bank_assign')->with(['user_list'=>$user_list, 
                                                         'bank_list'=>$bank_list]);
     }
+*/
 
     public function getUserWithBank()
     {   
         $user_bank = User::with('bank_assignment_list')
                             ->whereIn('frole_code', ['2','3'])
                             ->get();
-         $bank_list = Bank::all();
-        return view('admin.admin_user_bank_list', compact('user_bank','bank_list'));
+
+        $bank_list = Bank::all();
+        
+        return view('admin.admin_user_bank_list', compact('user_bank', 'bank_list'));
     }
 
     public function getPolicyList()

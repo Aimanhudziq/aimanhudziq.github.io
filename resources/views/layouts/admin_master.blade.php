@@ -96,8 +96,8 @@
       } );
     </script>
     <script>// dropdown with text search in assign bank
-        $('.staff_name').select2({
-            placeholder: 'Select Staff Name'
+        $('.bank_list').select2({
+            placeholder: "Select Bank List",
         });
     </script>
 
