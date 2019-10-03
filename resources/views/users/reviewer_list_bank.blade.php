@@ -5,16 +5,16 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <strong class="card-title">Bank Selection</strong>
+            <strong class="card-title">{{trans('content.bank_select')}}</strong>
         </div>
         <div class="card-body">
             <table id="bootstrap-data-table" class="table table-striped table-bordered">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Bank Name</th>
-                        <th>Number of Applicant</th>
-                        <th>Assign Date</th>
+                        <th>{{trans('content.bank_name')}}</th>
+                        <th>{{trans('content.no_applicant')}}</th>
+                        <th>{{trans('content.assign_date')}}</th>
                     </tr>
                 </thead>
                 <tbody>

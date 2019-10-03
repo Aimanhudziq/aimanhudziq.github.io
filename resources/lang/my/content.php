@@ -32,10 +32,10 @@ return[
     'ic_num' => 'No. IC',
     'or' => 'atau',
 
-    'bank_select' => 'Bank Selection',
-    'bank_name' => 'Bank Name',
-    'no_applicant' => 'Number of Applicant',
-    'assign_date' => 'Assign Date',
+    'bank_select' => 'Pilihan Bank',
+    'bank_name' => 'Nama Bank',
+    'no_applicant' => 'Jumlah Pemohon',
+    'assign_date' => 'Tarikh Tugasan',
     
     //kiv
     'checked_by' => 'Disemak oleh',
