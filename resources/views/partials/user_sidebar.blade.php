@@ -37,7 +37,7 @@
                     </i>{{trans('sidebar.bank_select')}}</a>
                 </li>
                 <li class="{{ Route::currentRouteNamed('reviewer-kiv') ? 'active': '' }}">
-                    <a href="{{url('reviewer_kiv')}}"><i class="menu-icon ti ti-plus">
+                    <a href="{{url('reviewer_kiv')}}"><i class="menu-icon fa fa-eye">
                     </i>{{ trans('sidebar.kiv') }} </a>
                 </li>
                 <li class="{{ Route::currentRouteNamed('user-track-log') ? 'active': '' }}">
