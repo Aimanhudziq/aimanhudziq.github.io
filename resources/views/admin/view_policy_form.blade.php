@@ -7,14 +7,14 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-            <h3 class="modal-title" id="largeModalLabel">Policy Details</h3>  
+            <h3 class="modal-title" id="largeModalLabel">{{trans('content.policy_details')}}</h3>  
         </div>
 
         <!--Body start-->
         <div class="modal-body">
             <div class="row">
                 <div class="col-lg-6">
-                    <h5><span class="badge bg-success">Allowed</span></h5>
+                    <h5><span class="badge bg-success">{{trans('content.allowed')}}</span></h5>
                     <ul class="card-text" style="font-size: small">
                     @foreach($policy->alloweds as $data)
                         <li>{{$data->desc}}</li>
@@ -22,7 +22,7 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                     </ul>
                 </div>
                 <div class="col-lg-6">
-                    <h5><span class="badge bg-danger">Not Allowed</span></h5>
+                    <h5><span class="badge bg-danger">{{trans('content.not_allowed')}}</span></h5>
                     <ul class="card-text" style="font-size: small">
                     @foreach($policy->not_alloweds as $data)
                         <li>{{$data->desc}}</li>

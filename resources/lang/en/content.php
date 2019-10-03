@@ -80,6 +80,8 @@ return[
     'policy_regulation' => 'Policy Regulation',
     'action' => 'Action',
     'policy_details'=> 'Policy Details',
+    'allowed' => 'Allowed',
+    'not_allowed' => 'Not Allowed',
 
     //Bank
     'bank_assign' => 'Bank Assignment',
@@ -89,6 +91,10 @@ return[
     'choose_bank' => 'Choose Bank',
     'assign_bank' => 'Assign Bank',
     'bank_list' => 'Bank List',
+    'assign' => 'Assign',
+    'unassign' => 'Unassign',
+
+
 
     
     

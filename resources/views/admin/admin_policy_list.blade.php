@@ -4,9 +4,9 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <strong class="card-title">Policy List</strong>
+            <strong class="card-title">{{trans('content.policy_list')}}</strong>
             <button type="button" class="btn btn-secondary mb-1 float-right" data-toggle="modal" data-target="#add_policy">
-                <i class="fa fa-shield"></i>&nbsp; Add New Policy
+                <i class="fa fa-shield"></i>&nbsp; {{trans('content.add_policy')}}
             </button>
         </div>
         @include('partials.session_msg')
@@ -14,10 +14,10 @@
             <table id="bootstrap-data-table" class="table table-striped table-bordered">
                 <thead>
                     <tr>
-                        <th>Policy Name</th>
-                        <th>Policy Source</th>
-                        <th>Policy Regulation</th>
-                        <th>Action</th>
+                        <th>{{trans('content.policy_name')}}</th>
+                        <th>{{trans('content.policy_source')}}</th>
+                        <th>{{trans('content.policy_regulation')}}</th>
+                        <th>{{trans('content.action')}}</th>
                     </tr>
                 </thead>
                 <tbody>

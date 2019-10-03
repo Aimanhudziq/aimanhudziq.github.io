@@ -59,6 +59,7 @@ return[
 // ADMIN
     //User
     'user_list' => 'Senarai Pengguna',
+    'admin_list' => 'Senarai Admin',
     'add_user' => 'Tambah Pengguna',
     'staff_id' => 'ID Staff',
     'first_name' => 'nama pertama',
@@ -81,6 +82,8 @@ return[
     'policy_regulation' => 'Peraturan Polisi',
     'action' => 'Tindakan',
     'policy_details'=> 'Butiran Polisi',
+    'allowed' => 'Dibenarkan',
+    'not_allowed' => 'Tidak Dibenarkan',
 
     //Bank
     'bank_assign' => 'Tugasan Bank',
@@ -90,6 +93,8 @@ return[
     'choose_bank' => 'Pilih Bank',
     'assign_bank' => 'Tugaskan Bank',
     'bank_list' => 'Senarai Bank',
+    'assign' => 'Tambah Tugasan',
+    'unassign' => 'Buang Tugasan'
 
 
 

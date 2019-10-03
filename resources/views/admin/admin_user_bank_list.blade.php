@@ -4,17 +4,17 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <strong class="card-title">User List With Bank Assign</strong>
+            <strong class="card-title">{{trans('content.bank_details')}}</strong>
         </div>
         @include('partials.session_msg')
         <div class="card-body">
             <table id="bootstrap-data-table" class="table table-striped table-bordered">
                 <thead>
                     <tr>
-                        <th>Full Name</th>
-                        <th>Category</th>
-                        <th>Bank List (Assigned)</th>
-                        <th>Action</th>
+                        <th>{{trans('content.full_name')}}</th>
+                        <th>{{trans('content.category')}}</th>
+                        <th>{{trans('content.bank_list')}}</th>
+                        <th>{{trans('content.action')}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -56,12 +56,12 @@
                            <!-- </ul> -->                       
                         </td>
                         <td>
-                            <span title="Assign" data-toggle="tooltip" data-placement="top">
+                            <span title="{{trans('content.assign')}}" data-toggle="tooltip" data-placement="top">
                                 <button class="btn btn-sm mb-1" style="background-color:forestgreen" data-toggle="modal" data-target="#myModal2">
                                     <i  class="fa fa-plus"></i>
                                 </button>
                             </span>
-                            <span title="Unassign" data-toggle="tooltip" data-placement="top">
+                            <span title="{{trans('content.unassign')}}" data-toggle="tooltip" data-placement="top">
                                 <button class="btn btn-sm mb-1" style="background-color:red" data-toggle="modal" data-target="#myModal3">
                                     <i  class="fa fa-minus"></i>
                                 </button>

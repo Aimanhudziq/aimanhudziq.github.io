@@ -4,9 +4,9 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <strong class="card-title">User List</strong>
+            <strong class="card-title">{{trans('content.user_list')}}</strong>
             <button type="button" class="btn btn-secondary mb-1 float-right" data-toggle="modal" data-target="#add_user">
-                <i class="fa fa-user-plus"></i>&nbsp; Add New User
+                <i class="fa fa-user-plus"></i>&nbsp; {{trans('content.add_user')}}
             </button>
         </div>
         @include('partials.session_msg')
@@ -14,11 +14,11 @@
             <table id="bootstrap-data-table" class="table table-striped table-bordered">
                 <thead>
                     <tr>
-                        <th>Full Name</th>
-                        <th>Staff Id</th>
-                        <th>Email</th>
-                        <th>Category</th>
-                        <th>Action</th>
+                        <th>{{trans('content.full_name')}}</th>
+                        <th>{{trans('content.staff_id')}}</th>
+                        <th>{{trans('content.email')}}</th>
+                        <th>{{trans('content.category')}}</th>
+                        <th>{{trans('content.action')}}</th>
                     </tr>
                 </thead>
                 <tbody>

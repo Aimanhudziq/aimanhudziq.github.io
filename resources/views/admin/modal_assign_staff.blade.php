@@ -4,7 +4,7 @@
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <strong class="modal-title">Assign</strong>
+                <strong class="modal-title">{{trans('content.assign')}}</strong>
             </div>
   
             <!-- Modal body -->
@@ -39,7 +39,7 @@
                 <hr>
                 <div class="form-group row text-center">
                     <div class="col-sm-10">
-                    <button type="submit" class="btn btn-info">Assign Bank</button>
+                    <button type="submit" class="btn btn-info">{{trans('content.assign')}}</button>
                     </div>
                 </div>
             </form>

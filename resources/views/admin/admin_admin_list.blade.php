@@ -4,17 +4,17 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <strong class="card-title">Admin List</strong>
+            <strong class="card-title">{{trans('content.admin_list')}}</strong>
         </div>
         @include('partials.session_msg')
         <div class="card-body">
             <table id="bootstrap-data-table" class="table table-striped table-bordered">
                 <thead>
                     <tr>
-                        <th>Full Name</th>
-                        <th>Staff Id</th>
-                        <th>Email</th>
-                        <th>Category</th>
+                        <th>{{trans('content.full_name')}}</th>
+                        <th>{{trans('content.staff_id')}}</th>
+                        <th>{{trans('content.email')}}</th>
+                        <th>{{trans('content.category')}}</th>
                     </tr>
                 </thead>
                 <tbody>
