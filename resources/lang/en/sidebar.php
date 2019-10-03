@@ -13,6 +13,6 @@ return [
     'policy' => 'Policy',
     'bank_assign' => 'Bank Assignment',
     'bank_details' => 'Bank Details',
-    'normal_user' => 'Normal User',
+    'normal_user' => 'Normal User & Reviewer',
     'admin_user' => 'System Admin',
 ];

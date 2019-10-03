@@ -68,7 +68,7 @@ return[
     'choose_role' => 'Choose Role',
     'submit' => 'Submit',
     'full_name' => 'Full Name',
-    'role' => 'Role',
+    'category' => 'Category',
     'bank_assign' => 'Bank Assign',
     'delete' => 'Delete',
 
