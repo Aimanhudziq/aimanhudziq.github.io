@@ -38,8 +38,9 @@ class AdminActionController extends Controller
         $user->created_at = Carbon::now();
 
         $user->save();
-
-        \Session::flash('createMsg','Staff : '.$user->first_name. 'Successful added in the system');
+        
+        Alert::success($user->first_name.' Successful added to the system ',' Add User');
+        
         return redirect('admin_user_list');
 
     }
