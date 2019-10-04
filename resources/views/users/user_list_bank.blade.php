@@ -31,7 +31,7 @@
                                 @elseif($b_code->fbank_code == 102)
                                 <span class="badge bg-danger">CIMB</span>
                                 @elseif($b_code->fbank_code == 103)
-                                <span class="badge bg-light">RHB</span>
+                                <span class="badge bg-dark">RHB</span>
                                 @elseif($b_code->fbank_code == 104)
                                 <span class="badge bg-secondary">MBSB</span>
                                 @elseif($b_code->fbank_code == 105)
