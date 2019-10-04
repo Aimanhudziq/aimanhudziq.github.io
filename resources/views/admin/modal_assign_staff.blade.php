@@ -1,5 +1,5 @@
 <!--Modal Body Start-->
-<div class="modal fade add_policy" id="add_bank{{$bank->user_staff_id}}">
+<div class="modal fade" id="add_bank{{$bank->user_staff_id}}">
     <div class="modal-dialog">
         <div class="modal-content">
             <!-- Modal Header -->
@@ -49,7 +49,7 @@
 @if (count($errors) > 0)
 <script>
     $( document ).ready(function() {
-        $('.add_bank').modal('show');
+        $('#add_bank{{$user->user_staff_id}}').modal('show');
     });
 </script>
 @endif

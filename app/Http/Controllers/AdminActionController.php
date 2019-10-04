@@ -40,7 +40,7 @@ class AdminActionController extends Controller
         $user->save();
         
         Alert::success($user->first_name.' Successful added to the system ',' Add User');
-        
+
         return redirect('admin_user_list');
 
     }
@@ -111,6 +111,10 @@ class AdminActionController extends Controller
     public function unassignBankToStaff(Request $req, $fuser_staff_id)
     {   
         //get bank code from spesific user
+        $this->validate($req,[
+            'bank_list' => 'required'
+        ]);
+
         $bank_code = $req->get('bank_list');
 
         $unassigned_bank = BankAssignmentList::where('fuser_staff_id',$fuser_staff_id)
