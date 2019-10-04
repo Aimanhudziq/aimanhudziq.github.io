@@ -33,11 +33,6 @@
                     Route::currentRouteNamed('admin-user-bank-list') ? 'active': '' }}">
                         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"  aria-expanded="false"> <i class="menu-icon ti ti-credit-card"></i>Bank</a>
                         <ul class="sub-menu children dropdown-menu nav nav-bar">
-                            <li class="active treeview">
-                                <a href="{{url('admin_assign_bank')}}"><i class="menu-icon">
-                                </i>{{ trans('sidebar.bank_assign') }} </a>
-                            </li>
-
                             <li class="{{ Route::currentRouteNamed('admin-user-bank-list') ? 'active': '' }}">
                                 <a href="{{url('admin_user_bank_list')}}"><i class="menu-icon">
                                 </i>{{ trans('sidebar.bank_details') }} </a>
