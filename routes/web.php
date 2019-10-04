@@ -25,7 +25,7 @@ Route::get('user_dashboard', 'UserController@userDashboard')
                 ->name('user-dashboard')
                 ->middleware('user'); //access both users(normal user/reviewer)
 
-Route::get('user_new_task', 'UserController@userNewTask')
+Route::get('user_new_task/{bank_code}', 'UserController@userNewTask')
                 ->name('user-new-task')
                 ->middleware('normal_user'); //access by normal user only
 

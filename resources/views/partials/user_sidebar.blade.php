@@ -12,10 +12,6 @@
                     <a href="{{ url('user_list_bank') }}"><i class="menu-icon ti ti-credit-card">
                     </i>{{trans('sidebar.bank_select')}}</a>
                 </li>
-                <li class="{{ Route::currentRouteNamed('user-new-task') ? 'active' : '' }}">
-                    <a href="{{ url('user_new_task') }}"><i class="menu-icon ti ti-plus">
-                    </i>{{ trans('sidebar.new') }} </a>
-                </li>
                 <li class="{{ Route::currentRouteNamed('user-track-log') ? 'active' : '' }}">
                     <a href="{{ url('user_track_log') }}"><i class="menu-icon ti ti-folder">
                     </i>{{ trans('sidebar.log') }} </a>

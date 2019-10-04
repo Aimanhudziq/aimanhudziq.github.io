@@ -31,6 +31,7 @@ class UserController extends Controller
         //$user = User::with('bank_assignment_list')->where('user_staff_id', Auth::user()->user_staff_id)->get();
         
         $user = BankAssignmentList::where('fuser_staff_id', Auth::user()->user_staff_id)->get();
+
         return view('users.user_list_bank')->with('user', $user);
     }
 
@@ -50,7 +51,7 @@ class UserController extends Controller
     }
 
     public function userNewTask()
-    {
+    {   
         $policy = Policy::all();
         return view('users.user_new_task')->with('policy', $policy);
     }

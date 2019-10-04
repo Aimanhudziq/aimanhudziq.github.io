@@ -25,7 +25,7 @@
                     <tr>
                         <td>{{ $i }}</td> 
                         <td>
-                        <a href="{{ url($b_code->fbank_code)}}">
+                        <a href="{{ url('user_new_task',$b_code->fbank_code)}}">
                             @if($b_code->fbank_code == 101)
                                 <span class="badge bg-warning">MAYBANK</span>
                                 @elseif($b_code->fbank_code == 102)
@@ -40,10 +40,6 @@
                                 <span class="badge bg-dark">PUBLIC BANK</span>
                                 @elseif($b_code->fbank_code == 107)
                                 <span class="badge bg-danger">MUAMALAT</span>
-                                @elseif($b_code->fbank_code == 108)
-                                <span class="badge bg-danger">-</span>
-                                @elseif($b_code->fbank_code == 109)
-                                <span class="badge bg-danger">-</span>
                             @endif
                         </a>
                         </td>
