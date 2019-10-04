@@ -36,7 +36,8 @@
                 <hr>
                 <div class="form-group row text-center">
                     <div class="col-sm-10">
-                    <button type="submit" class="btn btn-info">{{trans('content.assign')}}</button>
+                    <button type="submit" onclick="return confirm('Are you sure want to assign this bank to {{ $bank->user_staff_id }}?')"
+                        class="btn btn-info">{{trans('content.assign')}}</button>
                     </div>
                 </div>
             </form>

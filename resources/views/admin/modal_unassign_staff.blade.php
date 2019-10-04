@@ -10,7 +10,7 @@
             <!-- Modal body -->
             
         <div class="modal-body modal-block">
-        <form action="{{url('unassign_bank_to_staff')}}" method="POST">
+        <form action="{{url('unassign_bank_to_staff', $bank->user_staff_id)}}" method="POST">
                 {{ csrf_field() }}
                 <div class="form-group row">
                     <label for="bank_list" class="col-sm-3 col-form-label">Select Bank</label>
@@ -55,7 +55,8 @@
                 <hr>
                 <div class="form-group row text-center">
                     <div class="col-sm-10">
-                    <button type="submit" class="btn btn-info">{{trans('content.unassign')}}</button>
+                    <button type="submit" onclick="return confirm('Are you sure want to drop this bank from {{ $bank->user_staff_id }}?')"
+                        class="btn btn-info">{{trans('content.unassign')}}</button>
                     </div>
                 </div>
             </form>

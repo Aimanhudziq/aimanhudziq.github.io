@@ -107,19 +107,20 @@ class AdminActionController extends Controller
        
     }
 
-    public function unassignBankToStaff($fuser_staff_id,$frole_code,$fbank_code)
-    {
+    public function unassignBankToStaff(Request $req, $fuser_staff_id)
+    {   
+        //get bank code from spesific user
+        $bank_code = $req->get('bank_list');
+
         $unassigned_bank = BankAssignmentList::where('fuser_staff_id',$fuser_staff_id)
-                                                ->where('frole_code',$frole_code)
-                                                ->where('fbank_code',$fbank_code)->get();
-        if($unassigned_bank)
-        {   dd($unassigned_bank);
-            $unassigned_bank->delete();
-            Alert::success(' Successfully unassigned bank to user ID ', 'Drop Bank');
+                                                ->where('fbank_code', $bank_code)
+                                                ->first();
 
-            return redirect('admin_user_bank_list');
-        }
+        $unassigned_bank->delete();
+        Alert::success(' Successfully drop bank from user ID '.$fuser_staff_id, 'Drop Bank');
 
+        return redirect('admin_user_bank_list');
+   
     }
 
     public function deleteUser($staff_id)

@@ -92,7 +92,7 @@ Route::post('assign_bank_to_staff', 'AdminActionController@assignBankToStaff')
                 ->name('assign-bank-to-staff')
                 ->middleware('admin');
 
-Route::post('unassign_bank_to_staff', 'AdminActionController@unassignBankToStaff')
+Route::post('unassign_bank_to_staff/{fuser_staff_id}', 'AdminActionController@unassignBankToStaff')
                 ->name('unassign-bank-to-staff')
                 ->middleware('admin');
 
