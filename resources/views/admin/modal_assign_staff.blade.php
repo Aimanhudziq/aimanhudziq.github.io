@@ -25,6 +25,7 @@
                         </select>
                         <!-- hidden input text -->
                         <input type="hidden" name="user_staff_id" value="{{$bank->user_staff_id }}">
+                        <input type="text" name="first_name" value="{{$bank->first_name }}">
                         <input type="text" name="email" value="{{$bank->email }}">
                         <input type="hidden" name="role_code" value="{{$bank->frole_code }}">
                         <!--/-------------------->

@@ -103,8 +103,11 @@ class AdminActionController extends Controller
         }
         else{
 
-            $info = $data->fbank_code;
-            //dd($aaa);
+            $info = [
+               'bank_code'=> $data->fbank_code,
+               'first_name'=> $request->get('first_name'),
+            ];
+            //dd($info);
             $data->save();
             Alert::success($data->fuser_staff_id. ' Successfully assigned bank to user ID ', 'Assign Bank');
 

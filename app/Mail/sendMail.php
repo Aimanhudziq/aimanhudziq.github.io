@@ -13,7 +13,7 @@ class sendMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $data;
+    public $info;
 
     /**
      * Create a new message instance.
@@ -32,8 +32,10 @@ class sendMail extends Mailable
      */
     public function build(\Request $req)
     {
+        $bank_code = $this->info['bank_code'];
+        $first_name = $this->info['first_name'];
 
         return $this->view('users.email_notification')
-          ->with('bank_code',$this->info);
+          ->with(['bank_code'=>$bank_code,'first_name'=>$first_name]);
     }
 }
