@@ -9,6 +9,8 @@ use App\Policy;
 use App\BankAssignmentList;
 use Carbon\Carbon;
 use Alert;
+use App\Mail\sendMail;
+
 class AdminActionController extends Controller
 {
     public function addUser(Request $request)
@@ -68,7 +70,7 @@ class AdminActionController extends Controller
 
         $policy->save();
         Alert::success($policy->policy_name.' Successful added to the policy list ',' Policy');
-        //\Session::flash('createPolicy','Staff name: '.$policy->policy_name. 'Successful added to the policy list');
+
         return redirect('admin_policy_list');
 
     }
@@ -93,7 +95,7 @@ class AdminActionController extends Controller
         $check_user = BankAssignmentList::where('fuser_staff_id',$data->fuser_staff_id)
                                             ->where('frole_code',$data->frole_code)
                                             ->where('fbank_code',$data->fbank_code)->get();
-                                            //->first();
+                               //->first();
         if(count($check_user) > 0){
             //dd('suda ada');
             Alert::error($data->fuser_staff_id.' Already assigned with that bank.',' Duplicate Bank!');
@@ -101,8 +103,13 @@ class AdminActionController extends Controller
         }
         else{
 
+            $info = $data->fbank_code;
+            //dd($aaa);
             $data->save();
             Alert::success($data->fuser_staff_id. ' Successfully assigned bank to user ID ', 'Assign Bank');
+
+            \Mail::to($request->get('email'))->send(new sendMail($info));
+
             return redirect('admin_user_bank_list');
         }
        
@@ -134,7 +141,6 @@ class AdminActionController extends Controller
         //dd($user);
         $user->delete();
         Alert::success($user->first_name.' Successful removed from the system ',' Delete Success');
-        //\Session::flash('delMsg','Staff : '.$user->first_name. 'Successful removed from the system');
     	return redirect('admin_user_list');
 
     }

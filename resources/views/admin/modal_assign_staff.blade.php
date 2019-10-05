@@ -25,6 +25,7 @@
                         </select>
                         <!-- hidden input text -->
                         <input type="hidden" name="user_staff_id" value="{{$bank->user_staff_id }}">
+                        <input type="text" name="email" value="{{$bank->email }}">
                         <input type="hidden" name="role_code" value="{{$bank->frole_code }}">
                         <!--/-------------------->
                         @if($errors->has('bank_list'))
@@ -49,7 +50,7 @@
 @if (count($errors) > 0)
 <script>
     $( document ).ready(function() {
-        $('#add_bank{{$user->user_staff_id}}').modal('show');
+        $('#add_bank').modal('show');
     });
 </script>
 @endif
