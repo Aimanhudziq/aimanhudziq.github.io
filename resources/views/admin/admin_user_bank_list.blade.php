@@ -29,7 +29,7 @@
                         <td>
                             <!-- <ul style="display:inline-table;"> -->
                             @if($bank->bank_assignment_list->count()== 0)
-                                <b>No Bank Assigned</b>
+                                <b>{{trans('content.no_bank')}}</b>
                             @else
                                 @foreach($bank->bank_assignment_list as $b_code)
                                     <!-- <li style="list-style-type: none;"> -->
