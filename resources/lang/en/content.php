@@ -95,6 +95,7 @@ return[
     'remove_assign' => 'Unassign Bank',
     'assign' => 'Assign',
     'unassign' => 'Unassign',
+    'no_bank' => 'No Bank Assign',
     
 
 

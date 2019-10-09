@@ -97,6 +97,7 @@ return[
     'remove_assign' => 'Buang Tugasan',
     'assign' => 'Tambah',
     'unassign' => 'Buang',
+    'no_bank' => 'Tiada Tugasan Bank',
 
 
 
