@@ -38,7 +38,13 @@
                                 </i>{{ trans('sidebar.bank_details') }} </a>
                             </li>
                         </ul>
-                </li>               
+                </li>
+
+                <li class="{{ Route::currentRouteNamed('register-client-details') ? 'active': '' }}">
+                    <a href="{{ url('register/client_details') }}"><i class="menu-icon fa fa-users">
+                    </i>Add Client Details</a>
+                </li>
+
             </ul>
         </div><!-- /.navbar-collapse -->
     </nav>

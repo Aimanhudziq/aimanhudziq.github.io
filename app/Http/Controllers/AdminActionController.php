@@ -137,6 +137,25 @@ class AdminActionController extends Controller
         return redirect('admin_user_bank_list');
    
     }
+/***
+ * generate ref number for client by date + random number
+ */
+    private function genRefNum()
+    {
+        $today = date("Ymd");
+        $rand = strtoupper(substr(uniqid(sha1(time())),0,4));
+        $unique = $today . $rand;
+
+         return $unique;
+    }
+
+    public function clientDetails()
+    {
+        $test = self::genRefNum();
+        //dd($test);
+        
+        return view('admin.client.client_details');
+    }
 
     public function deleteUser($staff_id)
     {
