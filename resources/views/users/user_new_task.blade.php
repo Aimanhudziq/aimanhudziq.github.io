@@ -17,23 +17,23 @@
                     <span class="badge bg-danger">CIMB BANK</span>
                     @elseif(request()->route('bank_code') == 103)
                     <img src="{{URL::to('images/rhb.png')}}" 
-                                height="50px" width="100px">
+                                height="100px" width="100px">
                     <span class="badge bg-dark">RHB BANK</span>
                     @elseif(request()->route('bank_code') == 104)
                     <img src="{{URL::to('images/mbsb.png')}}" 
-                                height="50px" width="100px">
+                                height="100px" width="100px">
                     <span class="badge bg-secondary">MBSB BANK</span>
                     @elseif(request()->route('bank_code') == 105)
                     <img src="{{URL::to('images/bimb.png')}}" 
-                                height="50px" width="100px">
+                                height="50px" width="150px">
                     <span class="badge bg-info">BIMB BANK</span>
                     @elseif(request()->route('bank_code') == 106)
                     <img src="{{URL::to('images/public.png')}}" 
-                                height="50px" width="100px">
+                                height="50px" width="125px">
                     <span class="badge bg-dark">PUBLIC BANK</span>
                     @elseif(request()->route('bank_code') == 107)
                     <img src="{{URL::to('images/muamalat.png')}}" 
-                                height="50px" width="100px">
+                                height="200px" width="200px">
                     <span class="badge bg-danger">MUAMALAT BANK</span>
                     @endif
                     </strong>
