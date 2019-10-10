@@ -29,6 +29,12 @@
                     </i>{{ trans('sidebar.policy') }}</a>
                 </li>
 
+                <li class="{{ Route::currentRouteNamed('admin-user-bank-list') ? 'active': '' }}">
+                    <a href="{{url('admin_user_bank_list')}}"><i class="menu-icon ti ti-credit-card">
+                    </i>Bank</a>
+                </li>
+
+                <!--
                 <li class="menu-item-has-children dropdown {{ Route::currentRouteNamed('admin-assign-bank') || 
                     Route::currentRouteNamed('admin-user-bank-list') ? 'active': '' }}">
                         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"  aria-expanded="false"> <i class="menu-icon ti ti-credit-card"></i>Bank</a>
@@ -38,7 +44,9 @@
                                 </i>{{ trans('sidebar.bank_details') }} </a>
                             </li>
                         </ul>
-                </li>
+                </li>    
+                -->    
+                
 
                 <li class="{{ Route::currentRouteNamed('register-client-details') ? 'active': '' }}">
                     <a href="{{ url('register/client_details') }}"><i class="menu-icon fa fa-users">
