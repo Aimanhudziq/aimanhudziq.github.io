@@ -13,6 +13,10 @@ use App\Mail\sendMail;
 
 class AdminActionController extends Controller
 {
+    /**
+     * Add new user with no dulipcate
+     * 
+     */
     public function addUser(Request $request)
     {
         $this->validate($request,[
@@ -47,6 +51,18 @@ class AdminActionController extends Controller
 
     }
 
+    /**
+     * Generate password to new user/staff
+     */
+    public function autoGeneratePwd()
+    {
+        return "pwd_generated";
+    }
+
+    /**
+     * Add new policy to the system
+     */
+
     public function addPolicy(Request $request)
     {
     
@@ -75,10 +91,11 @@ class AdminActionController extends Controller
 
     }
 
-    public function autoGeneratePwd()
-    {
-        return "pwd_generated";
-    }
+    /**
+     * Assigned bank to staff
+     * validate staff with duplicate bank assgined
+     * notified email to staff when assigned to bank
+     */
 
     public function assignBankToStaff(Request $request)
     {   
@@ -118,6 +135,10 @@ class AdminActionController extends Controller
        
     }
 
+    /**
+     * Unassigned bank to staff
+     */
+
     public function unassignBankToStaff(Request $req, $fuser_staff_id)
     {   
         //get bank code from spesific user
@@ -137,9 +158,11 @@ class AdminActionController extends Controller
         return redirect('admin_user_bank_list');
    
     }
-/***
- * generate ref number for client by date + random number
- */
+
+    /***
+     * generate ref number for client by date + random number
+     */
+    
     private function genRefNum()
     {
         $today = date("Ymd");
@@ -157,6 +180,12 @@ class AdminActionController extends Controller
         return view('admin.client.client_details');
     }
 
+
+
+    /**
+     * Remove user from the system
+     */
+
     public function deleteUser($staff_id)
     {
         $user = User::where('user_staff_id', $staff_id)->first();
@@ -166,6 +195,10 @@ class AdminActionController extends Controller
     	return redirect('admin_user_list');
 
     }
+
+    /**
+     * Delete policy
+     */
 
     public function deletePolicy($policy_no)
     {
