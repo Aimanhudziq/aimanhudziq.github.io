@@ -212,8 +212,8 @@ class AdminActionController extends Controller
         $this->validate($req, [
             'full_name'=>'required',
             'email'=>'required|email',
-            'phone_no'=>'required',
-            'ic_no'=>'required',
+            'phone_no'=>'required|digits_between:10,11',
+            'ic_no'=>'required|numeric|max:12',
             'image_file'=>'required|mimes:jpeg,jpg,png|max:1024',
             'bank_name'=>'required',
             'address'=>'required',
@@ -230,7 +230,7 @@ class AdminActionController extends Controller
         $data_client->image_url = $req->file('image_file')->getClientOriginalName();
         $data_client->fbank_code = $req->get('bank_name');
 
-        dd($_FILES);
+        dd($data_client->image_url);
      }
 
     /**

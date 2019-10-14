@@ -48,6 +48,8 @@
                     <span class="help-block">
                     <strong style='color: #a94442'>{{ $errors->first('phone_no') }}</strong>
                     @endif
+                    <p class="help-block" style="font-size:12px;">
+                        Eg: 0138976113 without '-'</p>
                 </div>
 
                 <div class="form-group col-xs-6">
@@ -61,6 +63,8 @@
                     <span class="help-block">
                     <strong style='color: #a94442'>{{ $errors->first('ic_no') }}</strong>
                     @endif
+                    <p class="help-block" style="font-size:12px;">
+                        Eg: 800132061254 without '-'</p>
                 </div>
 
                 <div class="form-group col-xs-6">
