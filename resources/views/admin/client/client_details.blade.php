@@ -4,7 +4,7 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <strong class="card-title">Add Client Details</strong>
+            <strong class="card-title">{{trans('content.add_client')}}</strong>
         </div>
     </div>
     <div class="card-body">
@@ -12,7 +12,7 @@
             <form action="{{ url('register_client_details') }}" method="POST">
                 {{ csrf_field() }}
                 <div class="form-group col-xs-6">
-                    <label for="full_name">Full Name</label>
+                    <label for="full_name">{{trans('content.full_name')}}</label>
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-id-badge"></i></div>
                         <input type="text" id="full_name" name="full_name" value="{{ old('full_name') }}"
@@ -25,7 +25,7 @@
                 </div>
                 
                 <div class="form-group col-xs-6">
-                    <label for="email">Email</label>
+                    <label for="email">{{trans('content.email')}}</label>
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-envelope-o"></i></div>
                         <input type="text" id="email" name="email" value="{{ old('email') }}"
@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="form-group col-xs-6">
-                    <label for="Phone_no">Phone No</label>
+                    <label for="Phone_no">{{trans('content.phone_num')}}</label>
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-id-badge"></i></div>
                         <input type="text" id="phone_no" name="phone_no" value="{{ old('phone_no') }}"
@@ -51,7 +51,7 @@
                 </div>
 
                 <div class="form-group col-xs-6">
-                    <label for="ICNO">IC NO</label>
+                    <label for="ICNO">{{trans('content.ic_num')}}</label>
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-id-badge"></i></div>
                         <input type="text" id="ic_no" name="ic_no" value="{{ old('ic_no') }}"
@@ -65,7 +65,7 @@
 
                 <div class="form-group col-xs-6">
                         <div class="form-group">
-                            <label for="address">Address</label>
+                            <label for="address">{{trans('content.address')}}</label>
                             <textarea class="form-control" 
                                 placeholder="Client address" name="address" 
                                     id="address"></textarea>
@@ -77,7 +77,7 @@
                 </div>
 
                 <div class="form-group col-xs-6">
-                    <label for="bank_name">Choose Bank</label>
+                    <label for="bank_name">{{trans('content.choose_bank')}}</label>
                     <select name="bank_name" id="bank_name" class="form-control">
                         <option value="">--Choose Bank--</option>
                         <option value=""></option>
@@ -90,7 +90,7 @@
                 </div>
 
                 <div class="form-group col-xs-4">
-                    <label for="upload_image">Upload Image</label>
+                    <label for="upload_image">{{trans('content.upload')}}</label>
                     <input type="file" id="image_file" name="image_file" value="{{ old('image_file') }}"
                                     placeholder="file image">
                                     @if($errors->has('image_file'))
@@ -103,8 +103,8 @@
                 </div>                                              
 
                 <div class="form-group col-xs-6">
-                    <button type="button" class="btn btn-secondary btn-sm">Cancel</button>
-                    <button type="submit" class="btn btn-success btn-sm">Submit</button>
+                    <button type="button" class="btn btn-secondary btn-sm">{{trans('content.cancel')}}</button>
+                    <button type="submit" class="btn btn-success btn-sm">{{trans('content.submit')}}</button>
                 </div>
 
             </form>

@@ -65,7 +65,7 @@ return[
     'first_name' => 'nama pertama',
     'second_name' => 'nama kedua',
     'username' => 'nama pengguna',
-    'email' => 'emel',
+    'email' => 'Emel',
     'password' => 'kata laluan',
     'choose_role' => 'Pilih Peranan',
     'submit' => 'Hantar',
