@@ -50,7 +50,7 @@
 
                 <li class="{{ Route::currentRouteNamed('register-client-details') ? 'active': '' }}">
                     <a href="{{ url('register/client_details') }}"><i class="menu-icon fa fa-users">
-                    </i>Add Client Details</a>
+                    </i>{{trans('content.add_client')}}</a>
                 </li>
 
             </ul>

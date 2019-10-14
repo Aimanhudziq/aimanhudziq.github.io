@@ -83,7 +83,7 @@
                 <div class="form-group col-xs-6">
                     <label for="bank_name">{{trans('content.choose_bank')}}</label>
                     <select name="bank_name" id="bank_name" class="form-control">
-                        <option value="">--Choose Bank--</option>
+                        <option value="">--{{trans('content.choose_bank')}}--</option>
                         <option value="test">test</option>
                     </select>
 
