@@ -95,7 +95,12 @@ Route::post('unassign_bank_to_staff/{fuser_staff_id}', 'AdminActionController@un
 Route::get('admin_user_bank_list', 'AdminController@getUserWithBank')
                 ->name('admin-user-bank-list')
                 ->middleware('admin');
+
 Route::get('register/client_details', 'AdminActionController@clientDetails')
+                ->name('register-client-details')
+                ->middleware('admin');\
+
+Route::post('register_client_details', 'AdminActionController@registerClientDetails')
                 ->name('register-client-details')
                 ->middleware('admin');
 

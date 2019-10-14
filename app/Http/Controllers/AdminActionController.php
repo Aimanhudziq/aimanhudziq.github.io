@@ -180,7 +180,42 @@ class AdminActionController extends Controller
         return view('admin.client.client_details');
     }
 
+    /**
+     * Upload images file
+     * 
+     */
 
+     public function imageUpload(Request $req)
+     {
+        if(hasFile($req->get('image_file')))
+        {
+            $image_file = $req->get('image_file');
+            $image_name = time(). '.' .$image_file->getClientOriginalExtension();
+            $destination_path = public_path('/images/client');
+            $image = $image_file->move($destination_path, $image_name);
+
+            return $image;
+        }
+     }
+
+    /**
+     * Add client details
+     * upload images
+     */
+
+     public function registerClientDetails(Request $req)
+     {
+        $this->validate($req, [
+            'full_name'=>'required',
+            'email'=>'required',
+            'phone_no'=>'required',
+            'ic_no'=>'required',
+            'image_file'=>'required|mimes:jpeg,jpg,png|max:1024',
+            'bank_name'=>'required',
+            'address'=>'required',
+        ]);
+
+     }
 
     /**
      * Remove user from the system
