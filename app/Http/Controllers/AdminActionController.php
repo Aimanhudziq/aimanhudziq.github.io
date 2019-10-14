@@ -7,6 +7,7 @@ use App\User;
 use App\Role;
 use App\Policy;
 use App\BankAssignmentList;
+use App\ClientDetail;
 use Carbon\Carbon;
 use Alert;
 use App\Mail\sendMail;
@@ -167,34 +168,37 @@ class AdminActionController extends Controller
     {
         $today = date("Ymd");
         $rand = strtoupper(substr(uniqid(sha1(time())),0,4));
-        $unique = $today . $rand;
+        $ref_number = $today . $rand;
 
-         return $unique;
+        return $ref_number;
     }
 
     public function clientDetails()
     {
-        $test = self::genRefNum();
+        //$test = self::genRefNum();
         //dd($test);
         
         return view('admin.client.client_details');
     }
 
     /**
-     * Upload images file
+     * Upload images file function
      * 
      */
 
-     public function imageUpload(Request $req)
+     public function getImage()
      {
-        if(hasFile($req->get('image_file')))
+        if(request()->hasFile(request()->file('image_file')))
         {
-            $image_file = $req->get('image_file');
+            $image_file = request()->file('image_file');
+            
             $image_name = time(). '.' .$image_file->getClientOriginalExtension();
             $destination_path = public_path('/images/client');
             $image = $image_file->move($destination_path, $image_name);
 
-            return $image;
+            return $image; 
+            
+            
         }
      }
 
@@ -207,7 +211,7 @@ class AdminActionController extends Controller
      {
         $this->validate($req, [
             'full_name'=>'required',
-            'email'=>'required',
+            'email'=>'required|email',
             'phone_no'=>'required',
             'ic_no'=>'required',
             'image_file'=>'required|mimes:jpeg,jpg,png|max:1024',
@@ -215,6 +219,18 @@ class AdminActionController extends Controller
             'address'=>'required',
         ]);
 
+        $data_client = new ClientDetail;
+
+        $data_client->reference = $this->genRefNum();
+        $data_client->full_name = $req->get('full_name');
+        $data_client->email = $req->get('email');
+        $data_client->phone_number = $req->get('phone_no');
+        $data_client->ic_no = $req->get('ic_no');
+        $data_client->address = $req->get('address');
+        $data_client->image_url = $req->file('image_file')->getClientOriginalName();
+        $data_client->fbank_code = $req->get('bank_name');
+
+        dd($_FILES);
      }
 
     /**

@@ -9,7 +9,7 @@
     </div>
     <div class="card-body">
         <div class="row">
-            <form action="{{ url('register_client_details') }}" method="POST">
+            <form action="{{ url('register_client_details') }}" method="POST"  enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-group col-xs-6">
                     <label for="full_name">Full Name</label>
@@ -68,7 +68,7 @@
                             <label for="address">Address</label>
                             <textarea class="form-control" 
                                 placeholder="Client address" name="address" 
-                                    id="address"></textarea>
+                                    id="address">{{old('address')}}</textarea>
                         </div>
                     @if($errors->has('address'))
                     <span class="help-block">
@@ -80,7 +80,7 @@
                     <label for="bank_name">Choose Bank</label>
                     <select name="bank_name" id="bank_name" class="form-control">
                         <option value="">--Choose Bank--</option>
-                        <option value=""></option>
+                        <option value="test">test</option>
                     </select>
 
                     @if($errors->has('bank_name'))
@@ -91,15 +91,13 @@
 
                 <div class="form-group col-xs-4">
                     <label for="upload_image">Upload Image</label>
-                    <input type="file" id="image_file" name="image_file" value="{{ old('image_file') }}"
+                    <input type="file" id="image_file" name="image_file"
                                     placeholder="file image">
-                                    @if($errors->has('image_file'))
+                    @if($errors->has('image_file'))
                     <strong style='color: #a94442'>{{ $errors->first('image_file') }}</strong>
                     @endif
                     <p class="help-block" style="font-size:12px;">
                         Maximum 1MB. Only .png, .jpeg image format</p>
-
-                    
                 </div>                                              
 
                 <div class="form-group col-xs-6">
