@@ -41,7 +41,7 @@
                     <label for="Phone_no">{{trans('content.phone_num')}}</label>
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-id-badge"></i></div>
-                        <input type="text" id="phone_no" name="phone_no" value="{{ old('phone_no') }}"
+                        <input type="text" id="phone_no" name="phone_no" value="{{ old('phone_no') }}" maxlength="11"
                             placeholder="eg: 0138976113" class="form-control {{ $errors->has('phone_no') ? 'has-error' : '' }}">
                     </div>
                     @if($errors->has('phone_no'))
@@ -56,7 +56,7 @@
                     <label for="ICNO">{{trans('content.ic_num')}}</label>
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-id-badge"></i></div>
-                        <input type="text" id="ic_no" name="ic_no" value="{{ old('ic_no') }}"
+                        <input type="text" id="ic_no" name="ic_no" value="{{ old('ic_no') }}" maxlength="12"
                             placeholder="eg: 800132061254" class="form-control {{ $errors->has('ic_no') ? 'has-error' : '' }}">
                     </div>
                     @if($errors->has('ic_no'))
@@ -104,7 +104,7 @@
                         Maximum 1MB. Only .png, .jpeg image format</p>
                 </div>                                              
 
-                <div class="form-group col-xs-6">
+                <div class="form-group text-center col-xs-6">
                     <button type="button" class="btn btn-secondary btn-sm">{{trans('content.cancel')}}</button>
                     <button type="submit" class="btn btn-success btn-sm">{{trans('content.submit')}}</button>
                 </div>

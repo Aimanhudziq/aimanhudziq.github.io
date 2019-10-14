@@ -188,14 +188,15 @@ class AdminActionController extends Controller
 
      public function getImage()
      {
-        if(request()->hasFile(request()->file('image_file')))
+        if(request()->file('image_file'))
         {
             $image_file = request()->file('image_file');
             
-            $image_name = time(). '.' .$image_file->getClientOriginalExtension();
-            $destination_path = public_path('/images/client');
+            $image_name = date('d-m'). '_' .$image_file->getClientOriginalName();
+            $destination_path = public_path('\images\client');
             $image = $image_file->move($destination_path, $image_name);
 
+            //dd($image);
             return $image; 
             
             
@@ -209,15 +210,16 @@ class AdminActionController extends Controller
 
      public function registerClientDetails(Request $req)
      {
+         /*
         $this->validate($req, [
             'full_name'=>'required',
             'email'=>'required|email',
             'phone_no'=>'required|digits_between:10,11',
-            'ic_no'=>'required|numeric|max:12',
+            'ic_no'=>'required|numeric',
             'image_file'=>'required|mimes:jpeg,jpg,png|max:1024',
             'bank_name'=>'required',
             'address'=>'required',
-        ]);
+        ]); */
 
         $data_client = new ClientDetail;
 
@@ -227,7 +229,7 @@ class AdminActionController extends Controller
         $data_client->phone_number = $req->get('phone_no');
         $data_client->ic_no = $req->get('ic_no');
         $data_client->address = $req->get('address');
-        $data_client->image_url = $req->file('image_file')->getClientOriginalName();
+        $data_client->image_url = $this->getImage();
         $data_client->fbank_code = $req->get('bank_name');
 
         dd($data_client->image_url);
