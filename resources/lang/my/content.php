@@ -65,7 +65,7 @@ return[
     'first_name' => 'nama pertama',
     'second_name' => 'nama kedua',
     'username' => 'nama pengguna',
-    'email' => 'emel',
+    'email' => 'Emel',
     'password' => 'kata laluan',
     'choose_role' => 'Pilih Peranan',
     'submit' => 'Hantar',
@@ -98,6 +98,11 @@ return[
     'assign' => 'Tambah',
     'unassign' => 'Buang',
     'no_bank' => 'Tiada Tugasan Bank',
+
+    //Client
+    'add_client' => 'Tambah Butiran Pelanggan',
+    'address' => 'Alamat',
+    'upload' => 'Muatnaik Gambar',
 
 
 
