@@ -1,5 +1,5 @@
 <footer class="site-footer" style="position:fixed; width:100%; bottom:0" >
-    <div class="footer-inner bg-white" style="padding-bottom:5px; padding-top:5px" >
+    <div class="footer-inner bg-white" style="padding-bottom:8px; padding-top:8px" >
         <div class="row">
             <div class="col-sm-8 float-left">
                 <div>
