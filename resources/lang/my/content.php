@@ -99,6 +99,11 @@ return[
     'unassign' => 'Buang',
     'no_bank' => 'Tiada Tugasan Bank',
 
+    //Client
+    'add_client' => 'Tambah Butiran Pelanggan',
+    'address' => 'Alamat',
+    'upload' => 'Muatnaik Gambar',
+
 
 
 

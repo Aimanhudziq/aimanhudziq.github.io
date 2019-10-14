@@ -96,6 +96,12 @@ return[
     'assign' => 'Assign',
     'unassign' => 'Unassign',
     'no_bank' => 'No Bank Assign',
+
+    //Client
+    'add_client' => 'Add Client Details',
+    'address' => 'Address',
+    'upload' => 'Upload Image',
+    
     
 
 
