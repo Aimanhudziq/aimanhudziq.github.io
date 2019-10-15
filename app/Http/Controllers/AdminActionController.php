@@ -176,9 +176,7 @@ class AdminActionController extends Controller
 
     public function clientDetails()
     {
-        $bank_name = Bank::all();
-        //dd($test);
-        
+        $bank_name = Bank::all();    
         return view('admin.client.client_details', compact('bank_name'));
     }
 
