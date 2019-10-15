@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- Meta, title, CSS, favicons, etc. -->
@@ -22,10 +22,20 @@
         <link href="{{asset('css/custom.min.css')}}" rel="stylesheet">
     </head>
 
-    <body class="login">
-        <div>
+    <body class="bg-white">
+        <div class="sufee-login d-flex align-content-center flex-wrap">
+        <div class="container">
             <a class="hiddenanchor" id="signup"></a>
             <a class="hiddenanchor" id="lostpassword"></a>
+
+            <div class="form-group text-center">
+                    <?php $mark = (preg_match('/\?/', url()->current())) ? '&' : '?'; ?>
+                        {{ trans('passwords.select_language') }}: 
+                        <a href="{{ url(url()->current() . $mark . 'lang=my') }}">my</a> |
+                        <a href="{{ url(url()->current() . $mark . 'lang=en') }}">
+                        eng</a> 
+                        <hr>
+            </div>
 
             <div class="login_wrapper">
                 <div class="animate form login_form">
@@ -35,41 +45,40 @@
                             {{ session('status') }}
                         </div>
                         @endif
-                        <a href="{{ url('password_reset') }}">
+                        
                            <p style="display: flex; justify-content: center;"> 
                            <img class="align-content" src="images/logo_piCa.png" alt="Pica Logo" ></p>
                         </a>
-                        <form role="form" method="POST" action="{{ route('password.reset') }}">
+                        <form role="form" method="POST" action="{{ route('password-request') }}">
                             <h3>Reset Password</h3>
 
                             {{ csrf_field() }}
 
-                            <input type="hidden" name="_method" value="">
+                            <input type="hidden" name="token" value="{{ $token }}">
 
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                 @if ($errors->has('email'))
                                 <span class="help-block"><strong>{{ $errors->first('email') }}</strong></span>
                                 @endif
-                                <input type="text" class="form-control" id="email" name="email" placeholder="Email" />
+                                <input type="text" class="form-control" id="email" name="email" placeholder="{{ trans('passwords.placeholder_email')}}" />
                             </div>
 
                             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                                 @if ($errors->has('password'))
                                 <span class="help-block"><strong>{{ $errors->first('password') }}</strong></span>
                                 @endif
-                                <input type="password" class="form-control" id="password" name="password" placeholder="Password"/>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="{{ trans('passwords.placeholder_password')}}"/>
                             </div>
 
                             <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
                                 @if ($errors->has('password_confirmation'))
                                 <span class="help-block"><strong>{{ $errors->first('password_confirmation') }}</strong></span>
                                 @endif
-                                <input type="password_confirmation" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Confirm Password"/>
+                                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="{{ trans('passwords.placeholder_passwordConfirmation')}}"/>
                             </div>
 
                             <div>
-                                <a href="{{ route('login-check') }}">
-                                <button type="button" class="btn btn-default">Back</button></a>
+
                                 <button type="submit" class="btn btn-default submit">Reset Password</button>
                             </div>
 
@@ -81,7 +90,7 @@
                                 <br />
 
                                 <div>
-                                    <h1><i class="fa fa-paw"></i>Modular Sdn Bhd</h1>
+                                    <h1><i class=""></i>Modularsoft Sdn Bhd</h1>
                                     <p>©2019 All Rights Reserved.</p>
                                 </div>
                             </div>
@@ -89,6 +98,7 @@
                     </section>
                 </div>
             </div>
+        </div>
         </div>
     </body>
 </html>

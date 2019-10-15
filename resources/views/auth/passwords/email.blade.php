@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- Meta, title, CSS, favicons, etc. -->
@@ -7,7 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Larashop Admin Login</title>
+        <title>ASCC | Forgot Password</title>
 
         <!-- Bootstrap -->
         <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
@@ -36,7 +36,7 @@
                         </div>
                         @endif
 
-                        <form class="form-horizontal" role="form" method="POST" action="{{ route('password.email') }}">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ route('password-email') }}">
                             <h1>Password Reset</h1>
                             {{ csrf_field() }}
 
@@ -49,7 +49,7 @@
 
                             <div>
                                 <button type="submit" class="btn btn-default submit">Send Password Reset Link</button>
-                                <a class="reset_pass" href="{{route('login')}}">Login</a>
+                                <a class="reset_pass" href="{{route('login-check')}}">Back</a>
                             </div>
 
                             <div class="clearfix"></div>
@@ -60,8 +60,8 @@
                                 <br />
 
                                 <div>
-                                    <h1><i class="fa fa-paw"></i> Larashop Admin Panel</h1>
-                                    <p>©2017 All Rights Reserved.</p>
+                                    <h1><i class="fa fa-paw"></i> Modularsoft Sdn Bhd</h1>
+                                    <p>©2019 All Rights Reserved.</p>
                                 </div>
                             </div>
                         </form>

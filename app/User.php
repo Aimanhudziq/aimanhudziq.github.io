@@ -2,6 +2,7 @@
 
 namespace App;
 
+//use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -52,6 +53,11 @@ class User extends Authenticatable
     // 1 users hv many banks but 1 bank own by 1 user
     public function bank_assignment_list(){
         return $this->hasMany('App\BankAssignmentList','fuser_staff_id', 'user_staff_id');
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new Notifications\UserResetPassword($token));
     }
 
 }

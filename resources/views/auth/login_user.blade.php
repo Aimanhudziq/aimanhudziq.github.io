@@ -86,7 +86,7 @@
                         </div>
                          <button type="submit" class="btn btn-info btn-flat m-b-30 m-t-30 btn-md" >Login</button>
                         <div class="register-link m-t-15 text-center">
-                             <a href="{{ url('password_reset') }}">{{ trans('login.forgot_password') }}</a>
+                             <a class="reset_pass" href="{{ route('password-request') }}">{{ trans('login.forgot_password') }}</a>
                         </div>
                     </form>
                 </div>

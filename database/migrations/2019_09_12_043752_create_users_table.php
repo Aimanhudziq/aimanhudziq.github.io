@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->integer('frole_code')->unsigned()->index();
             //$table->integer('fbank_code')->unsigned()->index();
             $table->timestamps();
+            $table->rememberToken();
 
             $table->foreign('frole_code')->references('role_code')->on('roles')->onDelete('cascade');
             //$table->foreign('fbank_code')->references('bank_code')->on('banks')->onDelete('cascade');

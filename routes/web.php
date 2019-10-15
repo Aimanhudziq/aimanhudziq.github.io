@@ -19,7 +19,16 @@ Route::get('/', ['as'=>'/', 'uses'=>'UserController@loginUser']);
 //authenticate user login
 Route::get('login', 'Auth\LoginController@loginCheck')->name('login-check');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
-Route::get('password_reset', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+
+//Forgot Password
+Route::get('password_reset', 'Auth\ForgotPasswordController@showLinkRequestForm')
+                ->name('password-request'); 
+Route::post('password_email', 'Auth\ForgotPasswordController@sendResetLinkEmail')
+                ->name('password-email');
+Route::get('password_reset/{token}', 'Auth\ResetPasswordController@showResetForm')
+                ->name('password-reset'); 
+Route::post('password_reset', 'Auth\ResetPasswordController@reset')
+                ->name('password-update'); 
 
 Route::get('user_dashboard', 'UserController@userDashboard')
                 ->name('user-dashboard')
@@ -103,6 +112,8 @@ Route::get('register/client_details', 'AdminActionController@clientDetails')
 Route::post('register_client_details', 'AdminActionController@registerClientDetails')
                 ->name('register-client-details')
                 ->middleware('admin');
+
+
 
 //Route::post('password_email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password-email');
 //Route::get('password/reset', 'Auth\ResetPasswordController@reset');
