@@ -192,10 +192,11 @@ class AdminActionController extends Controller
             $image_file = request()->file('image_file');
             
             $image_name = date('d-m'). '_' .$image_file->getClientOriginalName();
-            $destination_path = public_path('/images/client');
-            $image = $image_file->move($destination_path, $image_name);
-
-            return $image; 
+            //$destination_path =  request()->file('image_file')->store('images/client');
+            $destination_path =  'images/client';
+            $image_url = $image_file->move($destination_path, $image_name);
+            //dd($image_url);
+            return $image_url; 
             
         }
      }
@@ -207,7 +208,7 @@ class AdminActionController extends Controller
 
      public function registerClientDetails(Request $req)
      {
-         
+        /*
         $this->validate($req, [
             'full_name'=>'required',
             'email'=>'required|email',
@@ -216,7 +217,7 @@ class AdminActionController extends Controller
             'image_file'=>'required|mimes:jpeg,jpg,png|max:1024',
             'bank_name'=>'required',
             'address'=>'required',
-        ]); 
+        ]); */
 
         $data_client = new ClientDetail;
 
@@ -228,7 +229,7 @@ class AdminActionController extends Controller
         $data_client->address = $req->get('address');
         $data_client->image_url = $this->getImage();
         $data_client->fbank_code = $req->get('bank_name');
-
+        /*
         $check_client = ClientDetail::where('ic_no', $data_client->ic_no)
                                     ->where('fbank_code', $data_client->fbank_code)
                                     ->get();
@@ -239,7 +240,7 @@ class AdminActionController extends Controller
 
             return back()->withInput();
         }
-        
+        */
         $data_client->save();
         Alert::success('Applicant '.$data_client->full_name.' successful save in the system!',' Save Successful');
     
