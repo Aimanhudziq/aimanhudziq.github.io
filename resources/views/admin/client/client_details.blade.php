@@ -84,7 +84,9 @@
                     <label for="bank_name">{{trans('content.choose_bank')}}</label>
                     <select name="bank_name" id="bank_name" class="form-control">
                         <option value="">--{{trans('content.choose_bank')}}--</option>
-                        <option value="test">test</option>
+                        @foreach($bank_name as $bank)
+                        <option value="{{$bank->bank_code}}">{{ $bank->bank_name }}</option>
+                        @endforeach
                     </select>
 
                     @if($errors->has('bank_name'))

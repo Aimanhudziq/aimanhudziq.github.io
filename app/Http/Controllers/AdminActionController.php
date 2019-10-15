@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Bank;
 use App\User;
 use App\Role;
 use App\Policy;
@@ -175,10 +176,10 @@ class AdminActionController extends Controller
 
     public function clientDetails()
     {
-        //$test = self::genRefNum();
+        $bank_name = Bank::all();
         //dd($test);
         
-        return view('admin.client.client_details');
+        return view('admin.client.client_details', compact('bank_name'));
     }
 
     /**
@@ -188,12 +189,12 @@ class AdminActionController extends Controller
 
      public function getImage()
      {
-        if(request()->file('image_file'))
+        if(request()->hasFile('image_file'))
         {
             $image_file = request()->file('image_file');
             
             $image_name = date('d-m'). '_' .$image_file->getClientOriginalName();
-            $destination_path = public_path('\images\client');
+            $destination_path = public_path('/images/client');
             $image = $image_file->move($destination_path, $image_name);
 
             //dd($image);
@@ -223,7 +224,7 @@ class AdminActionController extends Controller
 
         $data_client = new ClientDetail;
 
-        $data_client->reference = $this->genRefNum();
+        $data_client->reference_no = $this->genRefNum();
         $data_client->full_name = $req->get('full_name');
         $data_client->email = $req->get('email');
         $data_client->phone_number = $req->get('phone_no');
@@ -232,7 +233,8 @@ class AdminActionController extends Controller
         $data_client->image_url = $this->getImage();
         $data_client->fbank_code = $req->get('bank_name');
 
-        dd($data_client->image_url);
+        //dd($data_client->image_url);
+        $data_client->save();
      }
 
     /**
