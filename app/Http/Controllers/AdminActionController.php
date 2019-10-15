@@ -233,8 +233,21 @@ class AdminActionController extends Controller
         $data_client->image_url = $this->getImage();
         $data_client->fbank_code = $req->get('bank_name');
 
-        //dd($data_client->image_url);
+        $check_client = ClientDetail::where('fuser_staff_id',$data->fuser_staff_id)
+                                    ->where('frole_code',$data->frole_code)
+                                    ->where('fbank_code',$data->fbank_code)
+                                    ->get();
+
+        if(count($check_user) > 0){
+            //dd('suda ada');
+            Alert::error($data->fuser_staff_id.' Already assigned with that bank.',' Duplicate Bank!');
+        }
+
         $data_client->save();
+        Alert::success('Applicant '.$data_client->full_name.' successful save in the system!',' Save Successful');
+
+        return redirect('register/client_details');
+
      }
 
     /**
