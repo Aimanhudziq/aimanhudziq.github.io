@@ -57,7 +57,7 @@
                                 <td><span class="badge bg-info">New</span></td>
                                 <td>
                                     <a type="button" class="btn btn-white mb-1" data-toggle="modal" 
-                                        data-target="#largeModal"><i  class="fa fa-cog"></i>
+                                        data-target="#client_detail{{$applicant->ic_no}}"><i  class="fa fa-cog"></i>
                                     </a>
                                 </td>
                             </tr>
@@ -69,9 +69,9 @@
         </div>
     </div><!--/div.row -->
 </div><!-- .animated -->
-
+@foreach($client as $applicant)
 <!--Modal Body Start-->
-<div class="modal fade"  id="largeModal" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" 
+<div class="modal fade"  id="client_detail{{$applicant->ic_no}}" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" 
 aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content" style="padding-bottom:0px" >
@@ -86,14 +86,14 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-body" style="padding-bottom:0px" >
             <div class="row">
                 <div class="col-md-4">
-                    <img src="images/demo.png" alt="Logo" height="150px" width="225px">
+                    <img src="{{url($applicant->image_url)}}" alt="Smiley face" height="150px" width="180px">
                 </div>
                 <div class="col-md-3">
                     <div class="row">
                         <div class="col-lg-12">
-                        <h6 class="card-text" style="font-size: small">{{trans('content.ref_num')}} : 5106332553</h6>
+                        <h6 class="card-text" style="font-size: small">{{trans('content.ref_num')}} : <span class="badge bg-info">{{$applicant->reference_no}}</span></h6>
                         <!--<h6 class="card-text" style="font-size: small">{{trans('content.status')}} : New</h6> -->
-                        <h6 class="card-text" style="font-size: small">{{trans('content.date')}} : 2019-09-01</h6>
+                        <h6 class="card-text" style="font-size: small">{{trans('content.date')}} : <span class="badge bg-info">{{$applicant->created_at}}</span> </h6>
                         </div>
                     </div>
                 </div>
@@ -145,4 +145,6 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
     </div>
 </div>
 <!--Modal Body End-->
+@endforeach
+
 @endsection
