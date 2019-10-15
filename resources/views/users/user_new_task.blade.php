@@ -86,14 +86,13 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-body" style="padding-bottom:0px" >
             <div class="row">
                 <div class="col-md-4">
-                    <img src="{{url($applicant->image_url)}}" alt="Smiley face" height="150px" width="180px">
+                    <img src="{{url($applicant->image_url)}}" alt="client images" height="150px" width="180px">
                 </div>
                 <div class="col-md-3">
                     <div class="row">
                         <div class="col-lg-12">
-                        <h6 class="card-text" style="font-size: small">{{trans('content.ref_num')}} : <span class="badge bg-info">{{$applicant->reference_no}}</span></h6>
-                        <!--<h6 class="card-text" style="font-size: small">{{trans('content.status')}} : New</h6> -->
-                        <h6 class="card-text" style="font-size: small">{{trans('content.date')}} : <span class="badge bg-info">{{$applicant->created_at}}</span> </h6>
+                        <h6 class="card-text" style="font-size:12px">{{trans('content.ref_num')}} : <span class="badge bg-info" style="font-size:10px">{{$applicant->reference_no}}</span></h6>
+                        <h6 class="card-text" style="font-size:12px">{{trans('content.date')}} : <span class="badge bg-info" style="font-size:10px">{{$applicant->created_at}}</span> </h6>
                         </div>
                     </div>
                 </div>
@@ -119,7 +118,7 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                                             <div class="checkbox">
                                                 <div class="col-xs-6">
                                                     <label for="policy" class="form-check-label" style="font-size:10px;">
-                                                        <input type="checkbox" id="policy" name="policy" value="{{ $p->id }}" 
+                                                        <input type="checkbox" id="policy" name="policy" value="{{ $p->id }}" onclick="alert(data)"
                                                             class="form-check-input">
                                                         {{ $p->policy_name }}
                                                     </label>
