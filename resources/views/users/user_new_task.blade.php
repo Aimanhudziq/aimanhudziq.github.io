@@ -90,16 +90,15 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                     <div class="row">
                         <div class="col-lg-12">
                         <h6 class="card-text" style="font-size: small">{{trans('content.ref_num')}} : 5106332553</h6>
-                        <h6 class="card-text" style="font-size: small">{{trans('content.status')}} : New</h6>
+                        <!--<h6 class="card-text" style="font-size: small">{{trans('content.status')}} : New</h6> -->
                         <h6 class="card-text" style="font-size: small">{{trans('content.date')}} : 2019-09-01</h6>
-                        <h6 class="card-text" style="font-size: small">{{trans('content.time')}} : 16:04</h6>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-5">
                     <div class="row form-group" style="margin-right: 20px">
                             <label for="textarea-input" class=" form-control-label ml-3">{{trans('content.remarks')}}</label>
-                            <textarea name="textarea-input" id="textarea-input" rows="5" placeholder="Content..." 
+                            <textarea style="resize:none;font-size:11px;" name="textarea-input" id="textarea-input"  rows="3" placeholder="Content..." 
                             class="form-control ml-3"></textarea>
                     </div>
                 </div>
@@ -117,11 +116,10 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                                         @foreach($policy as $p)
                                             <div class="checkbox">
                                                 <div class="col-xs-6">
-                                                    <label for="policy" class="form-check-label " >
+                                                    <label for="policy" class="form-check-label" style="font-size:10px;">
                                                         <input type="checkbox" id="policy" name="policy" value="{{ $p->id }}" 
-                                                            class="form-check-input" @click="disabledBtnApp">
+                                                            class="form-check-input">
                                                         {{ $p->policy_name }}
-                                                        
                                                     </label>
                                                 </div>
                                             </div>
