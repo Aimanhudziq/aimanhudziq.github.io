@@ -1,6 +1,5 @@
 @extends('layouts.user_master')
 
-@include('partials.modal_bank_selection')
 @section('content')
 <div class="col-md-12">
     <div class="card">
@@ -27,6 +26,7 @@
                         <td>
                         <a href="{{ url('user_new_task',$b_code->fbank_code)}}">
                             @if($b_code->fbank_code == 101)
+                            <?php $tot_app = count($b_code->fbank_code) ?>
                                 <span class="badge bg-warning">MAYBANK</span>
                                 @elseif($b_code->fbank_code == 102)
                                 <span class="badge bg-danger">CIMB</span>
@@ -43,7 +43,7 @@
                             @endif
                         </a>
                         </td>
-                        <td><span class="badge bg-info">null</span></td>
+                        <td><span class="badge bg-default">{{$tot_app}}</span></td>
                         <td><span class="badge bg-info">{{$b_code->created_at}}</span></td>
                     </tr>
                     @endforeach

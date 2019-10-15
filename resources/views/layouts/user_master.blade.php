@@ -106,9 +106,10 @@
             }
         })
         */
-        $(document).ready(function () {
+    $(document).ready(function () {
         $(":checkbox").click(function () {
             var checkbox = $("input:checked").length;
+            data=checkbox;
             if (checkbox >= 1) {
                 $("#approve").attr("disabled","disabled");
             }

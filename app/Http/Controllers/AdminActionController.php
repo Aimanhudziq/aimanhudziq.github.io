@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Bank;
 use App\User;
 use App\Role;
 use App\Policy;
@@ -175,10 +176,8 @@ class AdminActionController extends Controller
 
     public function clientDetails()
     {
-        //$test = self::genRefNum();
-        //dd($test);
-        
-        return view('admin.client.client_details');
+        $bank_name = Bank::all();    
+        return view('admin.client.client_details', compact('bank_name'));
     }
 
     /**
@@ -188,17 +187,16 @@ class AdminActionController extends Controller
 
      public function getImage()
      {
-        if(request()->file('image_file'))
+        if(request()->hasFile('image_file'))
         {
             $image_file = request()->file('image_file');
             
             $image_name = date('d-m'). '_' .$image_file->getClientOriginalName();
-            $destination_path = public_path('\images\client');
-            $image = $image_file->move($destination_path, $image_name);
-
-            //dd($image);
-            return $image; 
-            
+            //$destination_path =  request()->file('image_file')->store('images/client');
+            $destination_path =  'images/client/';
+            $image_url = $image_file->move($destination_path, $image_name);
+            //dd($image_url);
+            return $image_url; 
             
         }
      }
@@ -210,7 +208,7 @@ class AdminActionController extends Controller
 
      public function registerClientDetails(Request $req)
      {
-         /*
+        /*
         $this->validate($req, [
             'full_name'=>'required',
             'email'=>'required|email',
@@ -223,7 +221,7 @@ class AdminActionController extends Controller
 
         $data_client = new ClientDetail;
 
-        $data_client->reference = $this->genRefNum();
+        $data_client->reference_no = $this->genRefNum();
         $data_client->full_name = $req->get('full_name');
         $data_client->email = $req->get('email');
         $data_client->phone_number = $req->get('phone_no');
@@ -231,8 +229,23 @@ class AdminActionController extends Controller
         $data_client->address = $req->get('address');
         $data_client->image_url = $this->getImage();
         $data_client->fbank_code = $req->get('bank_name');
+        /*
+        $check_client = ClientDetail::where('ic_no', $data_client->ic_no)
+                                    ->where('fbank_code', $data_client->fbank_code)
+                                    ->get();
 
-        dd($data_client->image_url);
+        if(count($check_client) > 0)
+        {
+            Alert::error($data_client->full_name.' Already registered with that bank.',' Duplicate Client!');
+
+            return back()->withInput();
+        }
+        */
+        $data_client->save();
+        Alert::success('Applicant '.$data_client->full_name.' successful save in the system!',' Save Successful');
+    
+        return redirect('register/client_details');
+
      }
 
     /**

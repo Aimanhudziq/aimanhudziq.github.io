@@ -50,16 +50,18 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($client as $applicant)
                             <tr>
-                                <td><span class="badge bg-secondary">013-8976113</span></td>
-                                <td><span class="badge bg-dark">18-09-2019</span></td>
+                                <td><span class="badge bg-secondary">{{$applicant->reference_no}}</span></td>
+                                <td><span class="badge bg-dark">{{$applicant->created_at}}</span></td>
                                 <td><span class="badge bg-info">New</span></td>
                                 <td>
                                     <a type="button" class="btn btn-white mb-1" data-toggle="modal" 
-                                        data-target="#largeModal"><i  class="fa fa-cog"></i>
+                                        data-target="#client_detail{{$applicant->ic_no}}"><i  class="fa fa-cog"></i>
                                     </a>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -67,9 +69,9 @@
         </div>
     </div><!--/div.row -->
 </div><!-- .animated -->
-
+@foreach($client as $applicant)
 <!--Modal Body Start-->
-<div class="modal fade"  id="largeModal" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" 
+<div class="modal fade"  id="client_detail{{$applicant->ic_no}}" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" 
 aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content" style="padding-bottom:0px" >
@@ -84,22 +86,20 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-body" style="padding-bottom:0px" >
             <div class="row">
                 <div class="col-md-4">
-                    <img src="images/demo.png" alt="Logo" height="150px" width="225px">
+                    <img src="{{url($applicant->image_url)}}" alt="client images" height="150px" width="180px">
                 </div>
                 <div class="col-md-3">
                     <div class="row">
                         <div class="col-lg-12">
-                        <h6 class="card-text" style="font-size: small">{{trans('content.ref_num')}} : 5106332553</h6>
-                        <h6 class="card-text" style="font-size: small">{{trans('content.status')}} : New</h6>
-                        <h6 class="card-text" style="font-size: small">{{trans('content.date')}} : 2019-09-01</h6>
-                        <h6 class="card-text" style="font-size: small">{{trans('content.time')}} : 16:04</h6>
+                        <h6 class="card-text" style="font-size:12px">{{trans('content.ref_num')}} : <span class="badge bg-info" style="font-size:10px">{{$applicant->reference_no}}</span></h6>
+                        <h6 class="card-text" style="font-size:12px">{{trans('content.date')}} : <span class="badge bg-info" style="font-size:10px">{{$applicant->created_at}}</span> </h6>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-5">
                     <div class="row form-group" style="margin-right: 20px">
                             <label for="textarea-input" class=" form-control-label ml-3">{{trans('content.remarks')}}</label>
-                            <textarea name="textarea-input" id="textarea-input" rows="5" placeholder="Content..." 
+                            <textarea style="resize:none;font-size:11px;" name="textarea-input" id="textarea-input"  rows="3" placeholder="Content..." 
                             class="form-control ml-3"></textarea>
                     </div>
                 </div>
@@ -117,11 +117,10 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                                         @foreach($policy as $p)
                                             <div class="checkbox">
                                                 <div class="col-xs-6">
-                                                    <label for="policy" class="form-check-label " >
-                                                        <input type="checkbox" id="policy" name="policy" value="{{ $p->id }}" 
-                                                            class="form-check-input" @click="disabledBtnApp">
+                                                    <label for="policy" class="form-check-label" style="font-size:10px;">
+                                                        <input type="checkbox" id="policy" name="policy" value="{{ $p->id }}" onclick="alert(data)"
+                                                            class="form-check-input">
                                                         {{ $p->policy_name }}
-                                                        
                                                     </label>
                                                 </div>
                                             </div>
@@ -145,4 +144,6 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
     </div>
 </div>
 <!--Modal Body End-->
+@endforeach
+
 @endsection
