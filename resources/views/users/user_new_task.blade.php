@@ -50,9 +50,10 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($client as $applicant)
                             <tr>
-                                <td><span class="badge bg-secondary">013-8976113</span></td>
-                                <td><span class="badge bg-dark">18-09-2019</span></td>
+                                <td><span class="badge bg-secondary">{{$applicant->reference_no}}</span></td>
+                                <td><span class="badge bg-dark">{{$applicant->created_at}}</span></td>
                                 <td><span class="badge bg-info">New</span></td>
                                 <td>
                                     <a type="button" class="btn btn-white mb-1" data-toggle="modal" 
@@ -60,6 +61,7 @@
                                     </a>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
