@@ -54,7 +54,17 @@
                             <tr>
                                 <td><span class="badge bg-secondary">{{$applicant->reference_no}}</span></td>
                                 <td><span class="badge bg-dark">{{$applicant->created_at}}</span></td>
-                                <td><span class="badge bg-info">{{$status_desc}}</span></td>
+                                <td>
+                                    @if($applicant->fstatus_code == 0)
+                                    <span class="badge bg-danger">reject</span>
+                                    @elseif($applicant->fstatus_code == 1)
+                                    <span class="badge bg-success">approve</span>
+                                    @elseif($applicant->fstatus_code == 2)
+                                    <span class="badge bg-warning">kiv</span>
+                                    @elseif($applicant->fstatus_code == 3)
+                                    <span class="badge bg-info">new</span>
+                                    @endif
+                                </td>
                                 <td>
                                     <a type="button" class="btn btn-white mb-1" data-toggle="modal" 
                                         data-target="#client_detail{{$applicant->ic_no}}"><i  class="fa fa-cog"></i>
@@ -126,7 +136,7 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                                             </div>
                                         @endforeach
                                             <div class="modal-footer" style="padding-bottom:0px" >
-                                                <a class="btn btn-sm btn-success mt-3 mb-3 text-white" id="approve">{{trans('content.approve')}}</a>
+                                                <a href="{{url('approve', $applicant->reference_no)}}" class="btn btn-sm btn-success mt-3 mb-3 text-white" id="approve">{{trans('content.approve')}}</a>
                                                 <a class="btn btn-sm btn-danger mt-3 mb-3 text-white">{{trans('content.reject')}}</a>
                                                 <a class="btn btn-sm btn-warning mt-3 mb-3 text-white">KIV</a>
                                                 <a class="btn btn-secondary" data-dismiss="modal">{{trans('content.cancel')}}</a>

@@ -113,6 +113,10 @@ Route::post('register_client_details', 'AdminActionController@registerClientDeta
                 ->name('register-client-details')
                 ->middleware('admin');
 
+Route::get('approve/{ref_no}', 'StatusController@approve')
+                ->name('approve')
+                ->middleware('normal_user');
+
 
 
 //Route::post('password_email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password-email');

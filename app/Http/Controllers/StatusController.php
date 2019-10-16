@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\ClientDetail;
 
 class StatusController extends Controller
 {
@@ -19,15 +20,20 @@ class StatusController extends Controller
             }
     }
 
-    public function approve($id)
+    public function approve($ref_no)
     {
-        $application=Application::where('id','=',$id)->first();
-
+        $application = ClientDetail::select('fstatus_code')
+                                    ->where('reference_no', $ref_no)
+                                    ->get();
+        //dd($application);
+        
         if($application)
         {
-            $application->approved=false;
+            //dd($application);
+           ClientDetail::where('reference_no', $ref_no)
+                        ->update(['fstatus_code'=> 1]);
 
-            return redirect()->back()->with('error','The application was disapproved successfully');
+            return redirect()->back()->with('success','The application was approved successfully');
         }
 
     }

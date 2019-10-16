@@ -96,8 +96,7 @@ class UserController extends Controller
         $policy = Policy::all();
         
         return view('users.user_new_task')->with(['policy'=>$policy, 
-                                                'client'=>$client, 
-                                                'status_desc'=>$this->getApplicantStatus()]);
+                                                'client'=>$client]);
     }
 
     public function userSearch()
@@ -110,6 +109,11 @@ class UserController extends Controller
         return view('users.user_track_log');
     }
 
+    /**
+     * get status of the applicant card
+     * 
+     */
+    /*
     public function getApplicantStatus()
     {
         $status_id = ClientDetail::select('fstatus_code')->get();
@@ -135,7 +139,6 @@ class UserController extends Controller
 
             return $status_desc;
         }
-        
     }
-
+    */
 }
