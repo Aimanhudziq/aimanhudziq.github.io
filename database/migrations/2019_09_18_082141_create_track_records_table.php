@@ -16,10 +16,13 @@ class CreateTrackRecordsTable extends Migration
         Schema::create('track_records', function (Blueprint $table) {
             $table->increments('id');
             $table->string('freference_no')->unique(); //freference_no refer to the table card (reference)
-            $table->string('policy_name')->null();
-            $table->string('status_code')->null();
+            $table->integer('ori_status_code')->unsigned()->index();
+            $table->integer('new_status_code')->unsigned()->index();
+            $table->string('violated_policy')->null();
             $table->timestamps();
 
+            $table->foreign('ori_status_code')->references('status_code')->on('statuses')->onDelete('cascade');
+            $table->foreign('new_status_code')->references('status_code')->on('statuses')->onDelete('cascade');
             $table->foreign('freference_no')->references('reference_no')->on('client_details')->onDelete('cascade');
         });
     }

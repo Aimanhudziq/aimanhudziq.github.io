@@ -15,10 +15,10 @@ class CreateReviewersTable extends Migration
     {
         Schema::create('reviewers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('status_code');
+            $table->integer('fstatus_code')->unsigned()->index();
             $table->integer('fbank_code')->unsigned()->index();
             $table->string('checked_by');
-            $table->string('fuser_staff_id')->unique();
+            $table->string('fuser_staff_id');
             $table->timestamp('status_change_datetime');
             $table->timestamp('deleted_at');
             $table->timestamps();

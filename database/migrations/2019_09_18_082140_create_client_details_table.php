@@ -22,9 +22,11 @@ class CreateClientDetailsTable extends Migration
             $table->string('ic_no');
             $table->string('address');
             $table->string('image_url');
+            $table->integer('fstatus_code')->unsigned()->index();
             $table->integer('fbank_code')->unsigned()->index();
             $table->timestamps();
 
+            $table->foreign('fstatus_code')->references('status_code')->on('statuses')->onDelete('cascade');
             $table->foreign('fbank_code')->references('bank_code')->on('banks')->onDelete('cascade');
         });
     }
