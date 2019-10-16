@@ -218,6 +218,8 @@ class AdminActionController extends Controller
             'bank_name'=>'required',
             'address'=>'required',
         ]); */
+        
+        $status_code = 3;
 
         $data_client = new ClientDetail;
 
@@ -228,6 +230,7 @@ class AdminActionController extends Controller
         $data_client->ic_no = $req->get('ic_no');
         $data_client->address = $req->get('address');
         $data_client->image_url = $this->getImage();
+        $data_client->fstatus_code = $status_code;
         $data_client->fbank_code = $req->get('bank_name');
         /*
         $check_client = ClientDetail::where('ic_no', $data_client->ic_no)

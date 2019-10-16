@@ -85,16 +85,19 @@ class UserController extends Controller
     }
 
     public function userNewTask()
-
     {   $client = DB::table('banks as b')
                     ->join('client_details as cd', 'cd.fbank_code', '=', 'b.bank_code')
                     ->join('bank_assignment_lists as ba', 'ba.fbank_code', '=', 'b.bank_code')
                     ->where('ba.fuser_staff_id', Auth::user()->user_staff_id)
                     ->get();
 
+
+        
         $policy = Policy::all();
         
-        return view('users.user_new_task')->with(['policy'=>$policy, 'client'=>$client]);
+        return view('users.user_new_task')->with(['policy'=>$policy, 
+                                                'client'=>$client, 
+                                                'status_desc'=>$this->getApplicantStatus()]);
     }
 
     public function userSearch()
@@ -106,4 +109,33 @@ class UserController extends Controller
     {
         return view('users.user_track_log');
     }
+
+    public function getApplicantStatus()
+    {
+        $status_id = ClientDetail::select('fstatus_code')->get();
+      
+        foreach($status_id as $status_code)
+        {   
+            if($status_code->fstatus_code == 3)
+            {
+                $status_desc = "new";
+            }
+            else if($status_code->fstatus_code == 2)
+            {
+                $status_desc = 'kiv';
+            }
+            else if($status_code->fstatus_code == 1)
+            {
+                $status_desc = 'approve';
+            }
+            else
+            {
+                $status_desc = 'reject';
+            }
+
+            return $status_desc;
+        }
+        
+    }
+
 }

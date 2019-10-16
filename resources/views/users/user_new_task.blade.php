@@ -54,7 +54,7 @@
                             <tr>
                                 <td><span class="badge bg-secondary">{{$applicant->reference_no}}</span></td>
                                 <td><span class="badge bg-dark">{{$applicant->created_at}}</span></td>
-                                <td><span class="badge bg-info">New</span></td>
+                                <td><span class="badge bg-info">{{$status_desc}}</span></td>
                                 <td>
                                     <a type="button" class="btn btn-white mb-1" data-toggle="modal" 
                                         data-target="#client_detail{{$applicant->ic_no}}"><i  class="fa fa-cog"></i>
@@ -126,10 +126,10 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                                             </div>
                                         @endforeach
                                             <div class="modal-footer" style="padding-bottom:0px" >
-                                                <button class="btn btn-sm btn-success mt-3 mb-3 text-white" id="approve">{{trans('content.approve')}}</button>
-                                                <button class="btn btn-sm btn-danger mt-3 mb-3 text-white">{{trans('content.reject')}}</button>
-                                                <button class="btn btn-sm btn-warning mt-3 mb-3 text-white">KIV</button>
-                                                <button class="btn btn-secondary" data-dismiss="modal">{{trans('content.cancel')}}</button>
+                                                <a class="btn btn-sm btn-success mt-3 mb-3 text-white" id="approve">{{trans('content.approve')}}</a>
+                                                <a class="btn btn-sm btn-danger mt-3 mb-3 text-white">{{trans('content.reject')}}</a>
+                                                <a class="btn btn-sm btn-warning mt-3 mb-3 text-white">KIV</a>
+                                                <a class="btn btn-secondary" data-dismiss="modal">{{trans('content.cancel')}}</a>
                                             </div>
                                         </div>
                                     </div><!-- form check class-->

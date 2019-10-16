@@ -111,10 +111,10 @@
             var checkbox = $("input:checked").length;
             data=checkbox;
             if (checkbox >= 1) {
-                $("#approve").attr("disabled","disabled");
+                $("#approve").addClass('disabled');
             }
             else {
-                $("#approve").removeAttr("disabled");
+                $("#approve").removeClass("disabled");
             }
         });
     });
