@@ -10,6 +10,8 @@ return[
     'select_language' => 'Pilih Bahasa',
     'placeholder_email' => 'Emel',
     'placeholder_password' => 'Kata Laluan Baru',
-    'placeholder_passwordConfirmation' => 'Ulang Kata Laluan'
+    'placeholder_passwordConfirmation' => 'Ulang Kata Laluan',
+    'placeholder_currentPassword' => 'Isikan Kata Laluan sedia ada',
+    'placeholder_newPassword' => 'Isikan Kata Laluan yang baru',
  
 ];
