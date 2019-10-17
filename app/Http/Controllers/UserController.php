@@ -105,14 +105,26 @@ class UserController extends Controller
     }
 
 
-    public function reviewerKiv()
+    public function reviewerNewTask()
     {   
+        
+        $client = DB::table('banks as b')
+                    ->join('client_details as cd', 'cd.fbank_code', '=', 'b.bank_code')
+                    ->join('bank_assignment_lists as ba', 'ba.fbank_code', '=', 'b.bank_code')
+                    ->where('ba.fuser_staff_id', Auth::user()->user_staff_id)
+                    ->where('cd.fstatus_code', 2)
+                    ->get();
+
+        //dd($client);
         $policy = Policy::all();
-        return view('users.reviewer_kiv')->with('policy', $policy);
+
+        return view('users.reviewer_kiv')->with(['policy'=>$policy, 
+                                                'client'=>$client]);
     }
 
     public function userNewTask()
-    {   $client = DB::table('banks as b')
+    {   
+        $client = DB::table('banks as b')
                     ->join('client_details as cd', 'cd.fbank_code', '=', 'b.bank_code')
                     ->join('bank_assignment_lists as ba', 'ba.fbank_code', '=', 'b.bank_code')
                     ->where('ba.fuser_staff_id', Auth::user()->user_staff_id)

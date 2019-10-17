@@ -1,6 +1,5 @@
 @extends('layouts.user_master')
 
-<!--@include('partials.reviewer_modal_bank_selection')-->
 @section('content')
 <div class="col-md-12">
     <div class="card">
@@ -25,13 +24,14 @@
                     <tr>
                         <td>{{ $i }}</td> 
                         <td>
-                        <a href="{{$b_code->fbank_code}}">
+                        <a href="{{ url('reviewer_new_task',$b_code->fbank_code)}}">
                             @if($b_code->fbank_code == 101)
+                            <?php $tot_app = count($b_code->fbank_code) ?>
                                 <span class="badge bg-warning">MAYBANK</span>
                                 @elseif($b_code->fbank_code == 102)
                                 <span class="badge bg-danger">CIMB</span>
                                 @elseif($b_code->fbank_code == 103)
-                                <span class="badge bg-light">RHB</span>
+                                <span class="badge bg-dark">RHB</span>
                                 @elseif($b_code->fbank_code == 104)
                                 <span class="badge bg-secondary">MBSB</span>
                                 @elseif($b_code->fbank_code == 105)
@@ -40,14 +40,10 @@
                                 <span class="badge bg-dark">PUBLIC BANK</span>
                                 @elseif($b_code->fbank_code == 107)
                                 <span class="badge bg-danger">MUAMALAT</span>
-                                @elseif($b_code->fbank_code == 108)
-                                <span class="badge bg-danger">-</span>
-                                @elseif($b_code->fbank_code == 109)
-                                <span class="badge bg-danger">-</span>
                             @endif
                         </a>
                         </td>
-                        <td><span class="badge bg-info">null</span></td>
+                        <td><span class="badge bg-default">{{$tot_app}}</span></td>
                         <td><span class="badge bg-info">{{$b_code->created_at}}</span></td>
                     </tr>
                     @endforeach

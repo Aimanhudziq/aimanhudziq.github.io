@@ -38,6 +38,10 @@ Route::get('user_new_task/{bank_code}', 'UserController@userNewTask')
                 ->name('user-new-task')
                 ->middleware('normal_user'); //access by normal user only
 
+Route::get('reviewer_new_task/{bank_code}', 'UserController@reviewerNewTask')
+                ->name('reviewer-new-task');
+                //->middleware('reviewer'); //access by normal user only
+
 Route::get('user_list_bank', 'UserController@userListBank')
                 ->name('user-list-bank')
                 ->middleware('normal_user'); //access by normal user only

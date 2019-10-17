@@ -6,12 +6,43 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <strong class="card-title">{{trans('content.new_task')}}</strong>
+                    <strong class="card-title">
+                        @if(request()->route('bank_code') == 101)
+                        <img src="{{URL::to('images/maybank.png')}}" 
+                                    height="50px" width="100px">
+                        <span class="badge bg-warning">MAYBANK</span>
+                        @elseif(request()->route('bank_code') == 102)
+                        <img src="{{URL::to('images/cimb.png')}}" 
+                                    height="30px" width="100px">
+                        <span class="badge bg-danger">CIMB BANK</span>
+                        @elseif(request()->route('bank_code') == 103)
+                        <img src="{{URL::to('images/rhb.png')}}" 
+                                    height="20px" width="100px">
+                        <span class="badge bg-dark">RHB BANK</span>
+                        @elseif(request()->route('bank_code') == 104)
+                        <img src="{{URL::to('images/mbsb.png')}}" 
+                                    height="40px" width="100px">
+                        <span class="badge bg-secondary">MBSB BANK</span>
+                        @elseif(request()->route('bank_code') == 105)
+                        <img src="{{URL::to('images/bimb.png')}}" 
+                                    height="30px" width="100px">
+                        <span class="badge bg-info">BIMB BANK</span>
+                        @elseif(request()->route('bank_code') == 106)
+                        <img src="{{URL::to('images/public.png')}}" 
+                                    height="50px" width="125px">
+                        <span class="badge bg-dark">PUBLIC BANK</span>
+                        @elseif(request()->route('bank_code') == 107)
+                        <img src="{{URL::to('images/muamalat.png')}}" 
+                                    height="50px" width="150px">
+                        <span class="badge bg-danger">MUAMALAT BANK</span>
+                        @endif
+                    </strong>
                 </div>
 
                 <div class="card-body">
                     <table id="bootstrap-data-table" class="table table-striped table-bordered">
                         <thead>
+                        @foreach($client as $applicant_reviewer)
                             <tr>
                                 <th>{{trans('content.ref_num')}}</th>
                                 <th>{{trans('content.date')}}</th>
@@ -22,9 +53,19 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><span class="badge bg-secondary">013-8976113</span></td>
-                                <td><span class="badge bg-dark">18-09-2019</span></td>
-                                <td><span class="badge bg-info">KIV</span></td>
+                                <td><span class="badge bg-secondary">{{$applicant_reviewer->reference_no}}</span></td>
+                                <td><span class="badge bg-dark">{{$applicant_reviewer->created_at}}</span></td>
+                                <td>
+                                @if($applicant_reviewer->fstatus_code == 0)
+                                    <span class="badge bg-danger">reject</span>
+                                    @elseif($applicant_reviewer->fstatus_code == 1)
+                                    <span class="badge bg-success">approve</span>
+                                    @elseif($applicant_reviewer->fstatus_code == 2)
+                                    <span class="badge bg-warning">kiv</span>
+                                    @elseif($applicant_reviewer->fstatus_code == 3)
+                                    <span class="badge bg-info">new</span>
+                                @endif
+                                </td>
                                 <th><span class="badge bg-secondary">User 1</span></th>
                                 <td>
                                     <a type="button" class="btn btn-white mb-1" data-toggle="modal" 
@@ -37,6 +78,7 @@
                                     </a>
                                 </td>
                             </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
