@@ -20,6 +20,7 @@
     <link href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('assets/css/lib/datatable/dataTables.bootstrap.min.css') }}">
+    <link rel=”stylesheet” href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" />
     <!-- Popup Start-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
@@ -76,6 +77,8 @@
     <script src="{{ asset('assets/js/lib/data-table/buttons.print.min.js') }}"></script>
     <script src="{{ asset('assets/js/lib/data-table/buttons.colVis.min.js') }}"></script>
     <script src="{{ asset('assets/js/init/datatables-init.js') }}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    @include('sweet::alert')
     <script>
     /*
         new Vue({
