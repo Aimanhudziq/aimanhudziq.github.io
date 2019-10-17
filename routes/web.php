@@ -65,6 +65,10 @@ Route::get('forgot_password', 'UserController@forgotPassword')
                 ->name('forgot-password')
                 ->middleware('user');
 
+Route::post('forgot_password', 'UserController@changePassword')
+                ->name('forgot-passwordReset')
+                ->middleware('user');   
+
 Route::get('admin_user_list', 'AdminController@getAllUser')
                 ->name('admin-user-list')
                 ->middleware('admin');

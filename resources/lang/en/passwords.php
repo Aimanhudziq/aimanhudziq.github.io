@@ -10,5 +10,7 @@ return[
     'select_language' => 'Select Language',
     'placeholder_email' => 'Email',
     'placeholder_password' => ' New Password',
-    'placeholder_passwordConfirmation' => 'Re-enter Password'
+    'placeholder_passwordConfirmation' => 'Re-enter Password',
+    'placeholder_currentPassword' => 'Enter your current password',
+    'placeholder_newPassword' => 'Enter your new password',
 ];
