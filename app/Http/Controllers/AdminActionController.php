@@ -208,7 +208,7 @@ class AdminActionController extends Controller
 
      public function registerClientDetails(Request $req)
      {
-        /*
+        
         $this->validate($req, [
             'full_name'=>'required',
             'email'=>'required|email',
@@ -217,7 +217,7 @@ class AdminActionController extends Controller
             'image_file'=>'required|mimes:jpeg,jpg,png|max:1024',
             'bank_name'=>'required',
             'address'=>'required',
-        ]); */
+        ]); 
         
         $status_code = 3;
 
@@ -232,7 +232,7 @@ class AdminActionController extends Controller
         $data_client->image_url = $this->getImage();
         $data_client->fstatus_code = $status_code;
         $data_client->fbank_code = $req->get('bank_name');
-        /*
+        
         $check_client = ClientDetail::where('ic_no', $data_client->ic_no)
                                     ->where('fbank_code', $data_client->fbank_code)
                                     ->get();
@@ -243,7 +243,7 @@ class AdminActionController extends Controller
 
             return back()->withInput();
         }
-        */
+        
         $data_client->save();
         Alert::success('Applicant '.$data_client->full_name.' successful save in the system!',' Save Successful');
     
