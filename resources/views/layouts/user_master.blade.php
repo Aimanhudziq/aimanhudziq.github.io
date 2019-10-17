@@ -113,7 +113,7 @@
         $(":checkbox").click(function () {
             var checkbox = $("input:checked").length;
             data=checkbox;
-            if (checkbox >= 1) {
+            if (checkbox > 0) {
                 $("#approve").addClass('disabled');
             }
             else {

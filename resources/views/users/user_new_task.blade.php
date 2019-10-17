@@ -137,8 +137,8 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                                         @endforeach
                                             <div class="modal-footer" style="padding-bottom:0px" >
                                                 <a href="{{url('approve', $applicant->reference_no)}}" class="btn btn-sm btn-success mt-3 mb-3 text-white" id="approve">{{trans('content.approve')}}</a>
-                                                <a class="btn btn-sm btn-danger mt-3 mb-3 text-white">{{trans('content.reject')}}</a>
-                                                <a class="btn btn-sm btn-warning mt-3 mb-3 text-white">KIV</a>
+                                                <a href="{{url('reject', $applicant->reference_no)}}" class="btn btn-sm btn-danger mt-3 mb-3 text-white">{{trans('content.reject')}}</a>
+                                                <a href="{{url('kiv', $applicant->reference_no)}}" class="btn btn-sm btn-warning mt-3 mb-3 text-white">KIV</a>
                                                 <a class="btn btn-secondary" data-dismiss="modal">{{trans('content.cancel')}}</a>
                                             </div>
                                         </div>

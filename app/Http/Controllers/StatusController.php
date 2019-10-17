@@ -9,16 +9,27 @@ use Alert;
 class StatusController extends Controller
 {
 
-    public function reject($id)
+    public function reject($ref_no)
     {
-        $application=Application::where('id','=',$id)->first();
-        
-            if($application)
+        $status_code = ClientDetail::select('fstatus_code')
+                                    ->where('reference_no', $ref_no)
+                                    ->get();
+        foreach($status_code as $sc)
+        {
+            if($sc->fstatus_code == 0)
             {
-                $application->approved=false;
-
-                return redirect()->back()->with('error','The application was disapproved successfully');
+                Alert::error('Application already rejected!', 'Error!');
+                return back()->withInput();
             }
+            else
+            {
+                ClientDetail::where('reference_no', $ref_no)
+                            ->update(['fstatus_code'=> 0]);
+
+                Alert::success('Application succesfully reject!', 'Rejected Succeed!');
+                return redirect()->back();
+            }
+        }
     }
 
     public function approve($ref_no)
@@ -30,29 +41,40 @@ class StatusController extends Controller
         {
             if($sc->fstatus_code == 1)
             {
-                Alert::error('Already approved the application', 'Error!');
+                Alert::error('Application already approved!', 'Error Approved!');
                 return back()->withInput();
             }
             else
             {
                 ClientDetail::where('reference_no', $ref_no)
                             ->update(['fstatus_code'=> 1]);
-                            
-                Alert::success('successfully approved the application', 'Approved Succeed!');
+
+                Alert::success('Application successfully approve', 'Approved Succeed!');
                 return redirect()->back();
             }
         }
     }
 
-    public function kiv($id)
+    public function kiv($ref_no)
     {
-        $application=Application::where('id','=',$id)->first();
-
-        if($application)
+        $status_code = ClientDetail::select('fstatus_code')
+                                    ->where('reference_no', $ref_no)
+                                    ->get();
+        foreach($status_code as $sc)
         {
-            $application->approved=false;
-
-            return redirect()->back()->with('error','The application was disapproved successfully');
+            if($sc->fstatus_code == 2)
+            {
+                Alert::error('Already kiv the application', 'Error!');
+                return back()->withInput();
+            }
+            else
+            {
+                ClientDetail::where('reference_no', $ref_no)
+                            ->update(['fstatus_code'=> 2]);
+                            
+                Alert::success('Application successfully kiv', 'Kiv Succeed!');
+                return redirect()->back();
+            }
         }
 
     }
