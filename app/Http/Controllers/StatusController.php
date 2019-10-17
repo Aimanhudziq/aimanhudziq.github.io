@@ -21,14 +21,24 @@ class StatusController extends Controller
                 Alert::error('Application already rejected!', 'Error!');
                 return back()->withInput();
             }
-            else
+            else if($sc->fstatus_code == 1)
             {
+                Alert::error('Application already approved!', 'Error!');
+                return back()->withInput();
+            }
+            else if($sc->fstatus_code == 2)
+            {
+                Alert::error('Application already kiv!', 'Error!');
+                return back()->withInput();
+            }
+            else{
                 ClientDetail::where('reference_no', $ref_no)
                             ->update(['fstatus_code'=> 0]);
 
                 Alert::success('Application succesfully reject!', 'Rejected Succeed!');
                 return redirect()->back();
             }
+            
         }
     }
 
@@ -39,13 +49,22 @@ class StatusController extends Controller
                                     ->get();
         foreach($status_code as $sc)
         {
-            if($sc->fstatus_code == 1)
+            if($sc->fstatus_code == 0)
             {
-                Alert::error('Application already approved!', 'Error Approved!');
+                Alert::error('Application already rejected!', 'Error!');
                 return back()->withInput();
             }
-            else
+            else if($sc->fstatus_code == 1)
             {
+                Alert::error('Application already approved!', 'Error!');
+                return back()->withInput();
+            }
+            else if($sc->fstatus_code == 2)
+            {
+                Alert::error('Application already kiv!', 'Error!');
+                return back()->withInput();
+            }
+            else{
                 ClientDetail::where('reference_no', $ref_no)
                             ->update(['fstatus_code'=> 1]);
 
@@ -62,20 +81,30 @@ class StatusController extends Controller
                                     ->get();
         foreach($status_code as $sc)
         {
-            if($sc->fstatus_code == 2)
+            if($sc->fstatus_code == 0)
             {
-                Alert::error('Already kiv the application', 'Error!');
+                Alert::error('Application already rejected!', 'Error!');
                 return back()->withInput();
             }
-            else
+            else if($sc->fstatus_code == 1)
             {
-                ClientDetail::where('reference_no', $ref_no)
+                Alert::error('Application already approved!', 'Error!');
+                return back()->withInput();
+            }
+            else if($sc->fstatus_code == 2)
+            {
+                Alert::error('Application already kiv!', 'Error!');
+                return back()->withInput();
+            }
+            else{
+                    ClientDetail::where('reference_no', $ref_no)
                             ->update(['fstatus_code'=> 2]);
                             
-                Alert::success('Application successfully kiv', 'Kiv Succeed!');
-                return redirect()->back();
+                    Alert::success('Application successfully kiv', 'Kiv Succeed!');
+                    return redirect()->back();
             }
         }
-
     }
+
+
 }
