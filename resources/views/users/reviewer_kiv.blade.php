@@ -69,7 +69,7 @@
                                 <th><span class="badge bg-secondary">User 1</span></th>
                                 <td>
                                     <a type="button" class="btn btn-white mb-1" data-toggle="modal" 
-                                        data-target="#smallmodal1"><i  class="fa fa-comment"></i>
+                                        data-target="#comment"><i  class="fa fa-comment"></i>
                                     </a>
                                 </td>
                                 <td>
@@ -88,7 +88,7 @@
 </div><!-- .animated -->
 
 <!--Modal Body Start-->
-<div class="modal fade" id="smallmodal1" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel1" aria-hidden="true">
+<div class="modal fade" id="comment" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel1" aria-hidden="true">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-body alert-success">
