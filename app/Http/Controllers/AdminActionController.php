@@ -121,11 +121,12 @@ class AdminActionController extends Controller
             Alert::error($data->fuser_staff_id.' Already assigned with that bank.',' Duplicate Bank!');
             return back()->withInput();
         }
+        /*
         else if($this->isBankAssignedToUser())
         {
             Alert::error('Only one bank per user can be assigned', 'Error!');
             return back();
-        }
+        }*/
         else{
 
             $info = [
@@ -149,6 +150,8 @@ class AdminActionController extends Controller
      * only one bank per user (normal user or reviewer)
      * one bank--> one normal user/ one reviewer
      */
+
+     /*
     public function isBankAssignedToUser()
     {
         $data = new BankAssignmentList;
@@ -174,7 +177,7 @@ class AdminActionController extends Controller
             }
         }
         
-    }
+    }*/
     
     /**
      * Unassigned bank to staff
