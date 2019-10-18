@@ -114,11 +114,17 @@ class AdminActionController extends Controller
         $check_user = BankAssignmentList::where('fuser_staff_id',$data->fuser_staff_id)
                                             ->where('frole_code',$data->frole_code)
                                             ->where('fbank_code',$data->fbank_code)->get();
-                               //->first();
+
+        
         if(count($check_user) > 0){
             //dd('suda ada');
             Alert::error($data->fuser_staff_id.' Already assigned with that bank.',' Duplicate Bank!');
             return back()->withInput();
+        }
+        else if($this->isBankAssignedToUser())
+        {
+            Alert::error('Only one bank per user can be assigned', 'Error!');
+            return back();
         }
         else{
 
@@ -137,10 +143,42 @@ class AdminActionController extends Controller
        
     }
 
+    
+    /**
+     * function to check whether bank already assigned to user or not
+     * only one bank per user (normal user or reviewer)
+     * one bank--> one normal user/ one reviewer
+     */
+    public function isBankAssignedToUser()
+    {
+        $data = new BankAssignmentList;
+      
+        $data->frole_code = request()->input('role_code');
+        $data->fbank_code = request()->input('bank_list');
+
+        $check_user = BankAssignmentList::where('frole_code',$data->frole_code)
+                                            ->where('fbank_code',$data->fbank_code)->get();
+
+        foreach($check_user as $cu)
+        {
+            if($cu->frole_code == 3 && $cu->fbank_code > 0)
+            {
+                
+                $msg = "Only one bank per user (normal user)";
+                return $msg;
+            }
+            if($cu->frole_code == 2 && $cu->fbank_code > 0)
+            {
+                $msg = "Only one bank per user (reviewer)";
+                return $msg;
+            }
+        }
+        
+    }
+    
     /**
      * Unassigned bank to staff
      */
-
     public function unassignBankToStaff(Request $req, $fuser_staff_id)
     {   
         //get bank code from spesific user
