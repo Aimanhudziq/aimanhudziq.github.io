@@ -15,6 +15,7 @@
                     <table id="bootstrap-data-table" class="table table-striped table-bordered">
                         <thead>
                             <tr>
+                                <th>No .</th>
                                 <th>{{trans('content.ref_num')}}</th>
                                 <th>{{trans('content.date')}}</th>
                                 <th>{{trans('content.status')}}</th>
@@ -22,8 +23,11 @@
                             </tr>
                         </thead>
                         <tbody>
+                        <?php $i = 0;?>
                         @foreach($logs as $log)
                             <tr>
+                            <?php $i++; ?>
+                                <td>{{$i}}</td>
                                 <td><span class="badge bg-secondary">{{$log->reference_no}}</span></td>
                                 <td><span class="badge bg-dark">{{$log->created_at}}</span></td>
                                 <td>

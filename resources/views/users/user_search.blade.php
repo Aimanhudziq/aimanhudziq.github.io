@@ -23,6 +23,7 @@
                     <table id="bootstrap-data-table" class="table table-striped table-bordered">
                         <thead>
                             <tr>
+                                <th>No. </th>
                                 <th>{{trans('content.ref_num')}}</th>
                                 <th>{{trans('content.phone_num')}}</th>
                                 <th>{{trans('content.date')}}</th>
@@ -30,24 +31,27 @@
                             </tr>
                         </thead>
                         <tbody>
+                        <?php $i = 0; ?>
+                        @foreach($search as $sr)
                             <tr>
-                                <td><span class="badge bg-secondary">123456789</span></td>
-                                <td><span class="badge bg-dark">013-8976113</span></td>
-                                <td><span class="badge bg-info">10-08-2019</span></td>
-                                <td><span class="badge bg-success">Aprrove</span></td>
+                            <?php $i++; ?>
+                                <td>{{$i}}</td>
+                                <td><span class="badge bg-secondary">{{$sr->reference_no}}</span></td>
+                                <td><span class="badge bg-dark">{{$sr->phone_number}}</span></td>
+                                <td><span class="badge bg-info">{{$sr->created_at}}</span></td>
+                                <td>
+                                @if($sr->fstatus_code == 0)
+                                    <span class="badge bg-danger">reject</span>
+                                    @elseif($sr->fstatus_code == 1)
+                                    <span class="badge bg-success">approve</span>
+                                    @elseif($sr->fstatus_code == 2)
+                                    <span class="badge bg-warning">kiv</span>
+                                    @elseif($sr->fstatus_code == 3)
+                                    <span class="badge bg-info">new</span>
+                                @endif
+                                </td>
                             </tr>
-                            <tr>
-                                <td><span class="badge bg-secondary">987654321</span></td>
-                                <td><span class="badge bg-dark">019-8104967</span></td>
-                                <td><span class="badge bg-info">09-09-2019</span></td>
-                                <td><span class="badge bg-warning">KIV</span></td>
-                            </tr>
-                            <tr>
-                                <td><span class="badge bg-secondary">54321789</span></td>
-                                <td><span class="badge bg-dark">019-9099507</span></td>
-                                <td><span class="badge bg-info">14-09-2019</span></td>
-                                <td><span class="badge bg-danger">Reject</span></td>
-                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

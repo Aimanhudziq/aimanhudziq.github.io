@@ -32,10 +32,6 @@
                     <a href="{{ URL::route('reviewer-list-bank') }}"><i class="menu-icon ti ti-credit-card">
                     </i>{{trans('sidebar.bank_select')}}</a>
                 </li>
-                <li class="{{ Route::currentRouteNamed('reviewer-kiv') ? 'active': '' }}">
-                    <a href="{{url('reviewer_kiv')}}"><i class="menu-icon fa fa-eye">
-                    </i>{{ trans('sidebar.kiv') }} </a>
-                </li>
                 <li class="{{ Route::currentRouteNamed('user-track-log') ? 'active': '' }}">
                     <a href="{{ url('user_track_log') }}"><i class="menu-icon ti ti-folder">
                     </i>{{ trans('sidebar.log') }} </a>
