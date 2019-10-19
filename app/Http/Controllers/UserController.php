@@ -169,7 +169,8 @@ class UserController extends Controller
 
     public function userTrackLog()
     {
-        return view('users.user_track_log');
+        $logs = Clientdetail::all();
+        return view('users.user_track_log', compact('logs'));
     }
 
     /**

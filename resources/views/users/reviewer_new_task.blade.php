@@ -50,6 +50,7 @@
                                 <th>{{trans('content.review')}}</th>
                             </tr>
                         </thead>
+                        
                         <tbody>
                         @foreach($client as $applicant_reviewer)
                             <tr>
@@ -66,7 +67,7 @@
                                     <span class="badge bg-info">new</span>
                                 @endif
                                 </td>
-                                <th><span class="badge bg-secondary">{{$staff_name}}</span></th>
+                                <td><span class="badge bg-secondary">{{$staff_name}}</span></td>
                                 <td>
                                     <a type="button" class="btn btn-white mb-1" data-toggle="modal" 
                                         data-target="#comment"><i  class="fa fa-comment"></i>
@@ -78,7 +79,7 @@
                                     </a>
                                 </td>
                             </tr>
-                        @endforeach
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -163,8 +164,8 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                                             </div>
                                         @endforeach
                                             <div class="modal-footer" style="padding-bottom:0px" >
-                                                <a href="{{url('approve', $applicant_reviewer->reference_no)}}" class="btn btn-sm btn-success mt-3 mb-3 text-white" id="approve">{{trans('content.approve')}}</a>
-                                                <a href="{{url('reject', $applicant_reviewer->reference_no)}}" class="btn btn-sm btn-danger mt-3 mb-3 text-white">{{trans('content.reject')}}</a>
+                                                <a href="{{url('approve_checker', $applicant_reviewer->reference_no)}}" class="btn btn-sm btn-success mt-3 mb-3 text-white" id="approve">{{trans('content.approve')}}</a>
+                                                <a href="{{url('reject_checker', $applicant_reviewer->reference_no)}}" class="btn btn-sm btn-danger mt-3 mb-3 text-white">{{trans('content.reject')}}</a>
                                                 <a class="btn btn-secondary" data-dismiss="modal">{{trans('content.cancel')}}</a>
                                             </div>
                                         </div>

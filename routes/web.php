@@ -133,6 +133,14 @@ Route::get('kiv/{ref_no}', 'StatusController@kiv')
                 ->name('kiv')
                 ->middleware('normal_user');
 
+Route::get('reject_checker/{ref_no}', 'StatusController@rejectChecker')
+                ->name('reject_checker');
+                //->middleware('reviewer');
+
+Route::get('approve_checker/{ref_no}', 'StatusController@approveChecker')
+                ->name('approve_checker');
+                //->middleware('reviewer');
+
 
 
 //Route::post('password_email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password-email');

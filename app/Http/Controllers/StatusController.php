@@ -50,6 +50,7 @@ class StatusController extends Controller
                                     ->get();
         foreach($status_code as $sc)
         {
+               
             if($sc->fstatus_code == 0)
             {
                 Alert::error('Application already rejected!', 'Error!');
@@ -80,8 +81,10 @@ class StatusController extends Controller
         $status_code = ClientDetail::select('fstatus_code')
                                     ->where('reference_no', $ref_no)
                                     ->get();
+        //dd($status_code);
         foreach($status_code as $sc)
         {
+        
             if($sc->fstatus_code == 0)
             {
                 Alert::error('Application already rejected!', 'Error!');
@@ -107,5 +110,65 @@ class StatusController extends Controller
         }
     }
 
+    /**
+     * Status controller for reviewer
+     * only allowed Approve and Reject
+     */
+
+    public function rejectChecker($ref_no)
+    {
+        $status_code = ClientDetail::select('fstatus_code')
+                                    ->where('reference_no', $ref_no)
+                                    ->get();
+        foreach($status_code as $sc)
+        {
+            if($sc->fstatus_code == 0)
+            {
+                Alert::error('Application already rejected!', 'Error!');
+                return back()->withInput();
+            }
+            else if($sc->fstatus_code == 1)
+            {
+                Alert::error('Application already approved!', 'Error!');
+                return back()->withInput();
+            }
+            else{
+                ClientDetail::where('reference_no', $ref_no)
+                            ->update(['fstatus_code'=> 0]);
+
+                Alert::success('Application succesfully reject!', 'Rejected Succeed!');
+                return redirect()->back();
+            }
+            
+        }
+    }
+
+    public function approveChecker($ref_no)
+    {
+        $status_code = ClientDetail::select('fstatus_code')
+                                    ->where('reference_no', $ref_no)
+                                    ->get();
+        foreach($status_code as $sc)
+        {
+               
+            if($sc->fstatus_code == 0)
+            {
+                Alert::error('Application already rejected!', 'Error!');
+                return back()->withInput();
+            }
+            else if($sc->fstatus_code == 1)
+            {
+                Alert::error('Application already approved!', 'Error!');
+                return back()->withInput();
+            }
+            else{
+                ClientDetail::where('reference_no', $ref_no)
+                            ->update(['fstatus_code'=> 1]);
+
+                Alert::success('Application successfully approve', 'Approved Succeed!');
+                return redirect()->back();
+            }
+        }
+    }
 
 }

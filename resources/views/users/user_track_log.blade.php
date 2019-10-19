@@ -22,17 +22,29 @@
                             </tr>
                         </thead>
                         <tbody>
+                        @foreach($logs as $log)
                             <tr>
-                                <td><span class="badge bg-secondary">123456789</span></td>
-                                <td><span class="badge bg-dark">18-09-2019</span></td>
-                                <td><span class="badge bg-info">New</span></td>
+                                <td><span class="badge bg-secondary">{{$log->reference_no}}</span></td>
+                                <td><span class="badge bg-dark">{{$log->created_at}}</span></td>
+                                <td>
+                                @if($log->fstatus_code == 0)
+                                    <span class="badge bg-danger">reject</span>
+                                    @elseif($log->fstatus_code == 1)
+                                    <span class="badge bg-success">approve</span>
+                                    @elseif($log->fstatus_code == 2)
+                                    <span class="badge bg-warning">kiv</span>
+                                    @elseif($log->fstatus_code == 3)
+                                    <span class="badge bg-info">new</span>
+                                @endif
+                                </td>
                                 <td>
                                     <a type="button" class="btn btn-white mb-1" data-toggle="modal" 
-                                        data-target="#track_log"><i  class="fa fa-cog"></i>
+                                        data-target="#track_log{{$log->ic_no}}"><i  class="fa fa-cog"></i>
                                     </a>
                                 </td>
                             </tr>
                         </tbody>
+                        @endforeach
                     </table>
                 </div>
             </div>
@@ -40,8 +52,9 @@
     </div><!--/div.row -->
 </div><!-- .animated -->
 
+@foreach($logs as $log)
 <!--Modal Body Start-->
-<div class="modal fade"  id="track_log" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel1" 
+<div class="modal fade"  id="track_log{{$log->ic_no}}" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel1" 
     aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content" style="padding-bottom:0px" >
@@ -72,22 +85,23 @@
                                         <p style="text-align:center; display:block">
                                             <div class="row">
                                                 <div class="col-md-4">
-                                                    <img src="images/demo.png" alt="Logo" height="150px" width="225px">
+                                                    <img src="{{url($log->image_url)}}" alt="Logo" height="150px" width="225px">
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="row">
                                                         <div class="col-lg-12">
-                                                            <h6 class="card-text" style="font-size: small">{{trans('content.ref_num')}} : 5106332553</h6>
-                                                            <h6 class="card-text" style="font-size: small">{{trans('content.status')}} : New</h6>
-                                                            <h6 class="card-text" style="font-size: small">{{trans('content.date')}} : 2019-09-01</h6>
-                                                            <h6 class="card-text" style="font-size: small">{{trans('content.time')}} : 16:04</h6>
+                                                            <h6 class="card-text" style="font-size: small">{{trans('content.ref_num')}} : 
+                                                                                        <span class="badge bg-info">{{$log->reference_no}}</span></h6>
+                                                            <h6 class="card-text" style="font-size: small">{{trans('content.status')}} : 
+                                                                                        <span class="badge bg-secondary">{{$log->fstatus_code}}</span></h6>
+                                                            <h6 class="card-text" style="font-size: small">{{trans('content.date')}} : {{$log->created_at}}</h6>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </p>                                                                                         
                                     </div>
-                                    <div class="tab-pane fade" id="custom-nav-profile" role="tabpanel
+                                    <div class="tab-pane fade" id="custom-nav-profile" role="tabpanel"
                                         aria-labelledby="custom-nav-profile-tab">
                                         <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                             <thead>
@@ -125,4 +139,6 @@
     </div>
 </div>
 <!--Modal Body End-->
+@endforeach
+
 @endsection
