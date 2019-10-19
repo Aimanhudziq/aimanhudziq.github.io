@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\ClientDetail;
+use App\CardApplication;
 use Alert;
 
 class StatusController extends Controller
@@ -98,7 +99,7 @@ class StatusController extends Controller
             }
             else{
                     ClientDetail::where('reference_no', $ref_no)
-                            ->update(['fstatus_code'=> 2]);
+                                ->update(['fstatus_code'=> 2]);
                             
                     Alert::success('Application successfully kiv', 'Kiv Succeed!');
                     return redirect()->back();

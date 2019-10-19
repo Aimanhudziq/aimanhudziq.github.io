@@ -115,7 +115,7 @@ Route::get('admin_user_bank_list', 'AdminController@getUserWithBank')
 
 Route::get('register/client_details', 'AdminActionController@clientDetails')
                 ->name('register-client-details')
-                ->middleware('admin');\
+                ->middleware('admin');
 
 Route::post('register_client_details', 'AdminActionController@registerClientDetails')
                 ->name('register-client-details')
