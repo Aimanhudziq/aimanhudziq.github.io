@@ -79,6 +79,7 @@
         </div>
     </div><!--/div.row -->
 </div><!-- .animated -->
+
 @foreach($client as $applicant)
 <!--Modal Body Start-->
 <div class="modal fade"  id="client_detail{{$applicant->ic_no}}" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" 
