@@ -115,7 +115,7 @@ Route::get('admin_user_bank_list', 'AdminController@getUserWithBank')
 
 Route::get('register/client_details', 'AdminActionController@clientDetails')
                 ->name('register-client-details')
-                ->middleware('admin');\
+                ->middleware('admin');
 
 Route::post('register_client_details', 'AdminActionController@registerClientDetails')
                 ->name('register-client-details')
@@ -132,6 +132,14 @@ Route::get('reject/{ref_no}', 'StatusController@reject')
 Route::get('kiv/{ref_no}', 'StatusController@kiv')
                 ->name('kiv')
                 ->middleware('normal_user');
+
+Route::get('reject_checker/{ref_no}', 'StatusController@rejectChecker')
+                ->name('reject_checker');
+                //->middleware('reviewer');
+
+Route::get('approve_checker/{ref_no}', 'StatusController@approveChecker')
+                ->name('approve_checker');
+                //->middleware('reviewer');
 
 
 

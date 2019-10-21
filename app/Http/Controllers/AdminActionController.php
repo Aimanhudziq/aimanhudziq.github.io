@@ -143,41 +143,6 @@ class AdminActionController extends Controller
         }
        
     }
-
-    
-    /**
-     * function to check whether bank already assigned to user or not
-     * only one bank per user (normal user or reviewer)
-     * one bank--> one normal user/ one reviewer
-     */
-
-     /*
-    public function isBankAssignedToUser()
-    {
-        $data = new BankAssignmentList;
-      
-        $data->frole_code = request()->input('role_code');
-        $data->fbank_code = request()->input('bank_list');
-
-        $check_user = BankAssignmentList::where('frole_code',$data->frole_code)
-                                            ->where('fbank_code',$data->fbank_code)->get();
-
-        foreach($check_user as $cu)
-        {
-            if($cu->frole_code == 3 && $cu->fbank_code > 0)
-            {
-                
-                $msg = "Only one bank per user (normal user)";
-                return $msg;
-            }
-            if($cu->frole_code == 2 && $cu->fbank_code > 0)
-            {
-                $msg = "Only one bank per user (reviewer)";
-                return $msg;
-            }
-        }
-        
-    }*/
     
     /**
      * Unassigned bank to staff
