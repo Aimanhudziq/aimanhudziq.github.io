@@ -152,10 +152,10 @@ class UserController extends Controller
                     ->join('client_details as cd', 'cd.fbank_code', '=', 'b.bank_code')
                     ->join('bank_assignment_lists as ba', 'ba.fbank_code', '=', 'b.bank_code')
                     ->where('ba.fuser_staff_id', Auth::user()->user_staff_id)
+                    //->where('cd.fbank_code', 101)
                     ->get();
 
 
-        
         $policy = Policy::all();
         
         return view('users.user_new_task')->with(['policy'=>$policy, 

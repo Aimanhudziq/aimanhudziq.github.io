@@ -43,7 +43,7 @@
                             @endif
                         </a>
                         </td>
-                        <td><span class="badge bg-default">{{$tot_app}}</span></td>
+                        <td><span class="badge bg-default">55</span></td>
                         <td><span class="badge bg-info">{{$b_code->created_at}}</span></td>
                     </tr>
                     @endforeach

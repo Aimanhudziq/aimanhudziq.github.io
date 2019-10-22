@@ -13,4 +13,10 @@ class Bank extends Model
         'updated_at',
     ];
 
+    function client_details()
+    {
+        return $this->hasMany('App\ClientDetail','fbank_code', 'bank_code');
+    }
+
 }
+
