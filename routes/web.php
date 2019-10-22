@@ -30,6 +30,16 @@ Route::get('password_reset/{token}', 'Auth\ResetPasswordController@showResetForm
 Route::post('password_reset', 'Auth\ResetPasswordController@reset')
                 ->name('password-update'); 
 
+//Reset password after  user/reviewer has been added into system 
+Route::get('password_reset', 'AdminActionController@showLinkRequestForm')
+                ->name('password-request'); 
+Route::post('password_email', 'AdminActionController@sendResetLinkEmail')
+                ->name('password-email');
+Route::get('password_reset/{token}', 'AdminActionController@showResetForm')
+                ->name('password-reset'); 
+Route::post('password_reset', 'AdminActionController@reset')
+                ->name('password-update'); 
+
 Route::get('user_dashboard', 'UserController@userDashboard')
                 ->name('user-dashboard')
                 ->middleware('user'); //access both users(normal user/reviewer)

@@ -71,12 +71,7 @@
                                 <strong style='color: #a94442'>{{ $errors->first('email') }}</strong>
                                 @endif
                             </div>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-addon"><i class="fa fa-asterisk"></i></div>
-                                    <input type="password" id="password" name="password" placeholder="Password" class="form-control">
-                                </div>
-                            </div>
+                
                             <div class="form-group">                                                                            
                                 <select name="role_category" id="role_category" class="form-control">
                                     <option value="">--Choose Role--</option>
