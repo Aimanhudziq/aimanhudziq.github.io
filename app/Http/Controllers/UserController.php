@@ -127,19 +127,6 @@ class UserController extends Controller
                if($si->frole_code == 3)
                {
                     $staff_name = $si->first_name .' '. $si->last_name;
-                    //dd($role_code);
-                    //$staff_id = $si->fuser_staff_id;
-                    //$bank_code = $si->fbank_code;
-                    //$status_code = $si->fstatus_code;
-                    /*
-                    $staff_name = DB::table('users as u')
-                                ->join('bank_assignment_lists as ba', 'ba.fuser_staff_id', '=', 'u.user_staff_id')
-                                ->where('ba.frole_code', $role_code)
-                                ->where('ba.fuser_staff_id', $staff_id)
-                                ->where('ba.fbank_code', $bank_code)
-                                ->get();*/
-                    //dd($staff_name);
-
                }
         }
 
