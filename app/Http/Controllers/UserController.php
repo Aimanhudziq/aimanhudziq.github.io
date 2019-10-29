@@ -106,18 +106,20 @@ class UserController extends Controller
     }
 
 
-    public function reviewerNewTask()
+    public function reviewerNewTask($bank_code)
     {   
         
         $client = DB::table('banks as b')
                         ->join('client_details as cd', 'cd.fbank_code', '=', 'b.bank_code')
                         ->join('bank_assignment_lists as ba', 'ba.fbank_code', '=', 'b.bank_code')
                         ->where('ba.fuser_staff_id', Auth::user()->user_staff_id)
-                        ->where('cd.fstatus_code', 2)
+                        ->where('cd.fbank_code', $bank_code)
+                        ->where('cd.fstatus_code',2)
                         ->get();
 
         $staff_info = DB::table('users as u')
                                 ->join('bank_assignment_lists as ba', 'ba.fuser_staff_id', '=', 'u.user_staff_id')
+                                ->where('ba.fbank_code', $bank_code)
                                 ->get();
     //dd($staff_info);
         foreach($staff_info as $si)
