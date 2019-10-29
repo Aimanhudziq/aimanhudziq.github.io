@@ -488,7 +488,7 @@ class AdminActionController extends Controller
         $user = User::where('user_staff_id', $staff_id)->first();
         //dd($user);
         $user->delete();
-        Alert::success($user->first_name.' Successful removed from the system ',' Delete Success');
+        Alert::success($user->first_name. trans('message.msg_delete_success'), trans('message.title_delete_success'));
     	return redirect('admin_user_list');
 
     }
