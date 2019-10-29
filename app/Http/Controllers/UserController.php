@@ -88,6 +88,7 @@ class UserController extends Controller
                     ->get();
         */
         $user = BankAssignmentList::where('fuser_staff_id', Auth::user()->user_staff_id)->get();
+        //dd($user);
         return view('users.user_list_bank')->with(['user'=>$user]);
     }
 
@@ -146,16 +147,17 @@ class UserController extends Controller
                                                 'client'=>$client, 'staff_name'=>$staff_name]);
     }
 
-    public function userNewTask()
+    public function userNewTask($bank_code)
     {   
-        $client = DB::table('banks as b')
+        //$client = Bank::with('client_details')->where('fuser_staff_id', Auth::user()->user_staff_id)->get();
+        
+        $client  = DB::table('banks as b')
                     ->join('client_details as cd', 'cd.fbank_code', '=', 'b.bank_code')
                     ->join('bank_assignment_lists as ba', 'ba.fbank_code', '=', 'b.bank_code')
                     ->where('ba.fuser_staff_id', Auth::user()->user_staff_id)
-                    //->where('cd.fbank_code', 101)
-                    ->get();
-
-
+                    ->where('cd.fbank_code', $bank_code)
+                    ->get(); 
+                    
         $policy = Policy::all();
         
         return view('users.user_new_task')->with(['policy'=>$policy, 
