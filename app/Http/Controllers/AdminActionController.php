@@ -423,12 +423,6 @@ class AdminActionController extends Controller
         return $ref_number;
     }
 
-    /***
-     * generate ref number for client by date + random number
-     */
-    
-    
-
     public function clientDetails()
     {
         $bank_name = Bank::all();    
