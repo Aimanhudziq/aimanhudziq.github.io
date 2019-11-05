@@ -88,8 +88,10 @@ class UserController extends Controller
                     ->get();
         */
         $user = BankAssignmentList::where('fuser_staff_id', Auth::user()->user_staff_id)->get();
+
+        $bank = Bank::join('client_details','bank_code','=','fbank_code')->get(); 
         //dd($user);
-        return view('users.user_list_bank')->with(['user'=>$user]);
+        return view('users.user_list_bank')->with(['user'=>$user, 'bank'=>$bank]);
     }
 
     /**
@@ -152,7 +154,7 @@ class UserController extends Controller
         return view('users.user_new_task')->with(['policy'=>$policy, 
                                                 'client'=>$client]);
     }
-
+   
     public function userSearch()
     {
         $search = Clientdetail::all();

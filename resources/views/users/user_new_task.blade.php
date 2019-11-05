@@ -43,6 +43,7 @@
                     <table id="bootstrap-data-table" class="table table-striped table-bordered">
                         <thead>
                             <tr>
+                                <th>No</th>
                                 <th>{{trans('content.ref_num')}}</th>
                                 <th>{{trans('content.date')}}</th>
                                 <th>{{trans('content.status')}}</th>
@@ -50,8 +51,11 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php $i = 0; ?>
                             @foreach($client as $applicant)
+                            <?php $i++; ?>
                             <tr>
+                                <td>{{ $i }}</td>
                                 <td><span class="badge bg-secondary">{{$applicant->reference_no}}</span></td>
                                 <td><span class="badge bg-dark">{{$applicant->created_at}}</span></td>
                                 <td>
