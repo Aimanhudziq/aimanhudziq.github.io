@@ -169,7 +169,7 @@
 <script>
 function test(ref){
 var trackrec=<?php echo  json_encode($trackRec);?>;
-var cliendetail=<?php echo  json_encode($logs);?>;
+var clientdetail=<?php echo  json_encode($logs);?>;
 document.getElementById("tablebody").innerHTML=""
 trackrec.forEach(function(item){
     if(ref==item.freference_no){
@@ -191,8 +191,15 @@ trackrec.forEach(function(item){
     container.appendChild(tr);
     }
     });
+// document.getElementById("image").innerHTML=""
+// clientdetail.forEach(function(no){
+//     if(ref==item.freference_no){
+//     var img = document.createElement("img");
+//     img.width="225px";
+//     img.height="150px";
+    
+//     document.body.appendChild(no.image_url);
 }
-
 
 
 function getstrcode(stcd){

@@ -8,11 +8,11 @@ use App\User;
 use App\BankAssignmentList;
 use App\Bank;
 use App\ClientDetail;
-<<<<<<< HEAD
+
 use App\CardApplication;
-=======
+
 use App\TrackRecord;
->>>>>>> 48789c769a8f5562addf691000775c70fd5abf47
+
 use Auth;
 use DB;
 use \Hash;
@@ -77,10 +77,7 @@ class UserController extends Controller
                                                'kiv', $kiv, 
                                                 'approve', $approve,
                                                  'reject', $reject)); 
-        return asset('dashboard_chart.js', compact('new',$new,
-        'kiv', $kiv, 
-         'approve', $approve,
-          'reject', $reject))
+        
     }
 
     /**
@@ -189,11 +186,6 @@ class UserController extends Controller
     public function userTrackLog()
     {
         $logs = Clientdetail::all();
-<<<<<<< HEAD
-        return view('users.user_track_log', compact('logs'));
-    } 
-=======
-
         $trackRec = TrackRecord::all();
         $listarray=array();
        // dd($data);
@@ -209,7 +201,7 @@ class UserController extends Controller
         return view('users.user_track_log')->with(['logs'=>$logs,'trackRec'=>$trackRec]);
        
     }
->>>>>>> 48789c769a8f5562addf691000775c70fd5abf47
+
 
     /**
      * get status of the applicant card
