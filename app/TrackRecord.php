@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class TrackRecord extends Model
 {
-    protected $timestamps = true;
+    public $timestamps = true;
     
 }

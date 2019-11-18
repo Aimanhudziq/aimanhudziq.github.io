@@ -17,6 +17,7 @@
                             <tr>
                                 <th>No .</th>
                                 <th>{{trans('content.ref_num')}}</th>
+                                <th>{{trans('content.bank_name')}}</th>
                                 <th>{{trans('content.date')}}</th>
                                 <th>{{trans('content.status')}}</th>
                                 <th>{{trans('content.review')}}</th>
@@ -29,6 +30,24 @@
                             <?php $i++; ?>
                                 <td>{{$i}}</td>
                                 <td><span class="badge bg-secondary">{{$log->reference_no}}</span></td>
+                                <td>
+                                @if($log->fbank_code == 101)
+                           
+                                <span class="badge bg-warning">MAYBANK</span>
+                                @elseif($log->fbank_code == 102)
+                                <span class="badge bg-danger">CIMB</span>
+                                @elseif($log->fbank_code == 103)
+                                <span class="badge bg-dark">RHB</span>
+                                @elseif($log->fbank_code == 104)
+                                <span class="badge bg-secondary">MBSB</span>
+                                @elseif($log->fbank_code == 105)
+                                <span class="badge bg-info">BIMB</span>
+                                @elseif($log->fbank_code == 106)
+                                <span class="badge bg-dark">PUBLIC BANK</span>
+                                @elseif($log->fbank_code == 107)
+                                <span class="badge bg-danger">MUAMALAT</span>
+                            @endif
+                                </td>
                                 <td><span class="badge bg-dark">{{$log->created_at}}</span></td>
                                 <td>
                                 @if($log->fstatus_code == 0)
@@ -42,8 +61,8 @@
                                 @endif
                                 </td>
                                 <td>
-                                    <a type="button" class="btn btn-white mb-1" data-toggle="modal" 
-                                        data-target="#track_log{{$log->ic_no}}"><i  class="fa fa-cog"></i>
+                                    <a type="button" class="btn btn-white mb-1" data-toggle="modal"  onclick="test('<?php echo $log->reference_no;?>')"
+                                        data-target="#track_log"><i  class="fa fa-cog"></i>
                                     </a>
                                 </td>
                             </tr>
@@ -56,9 +75,7 @@
     </div><!--/div.row -->
 </div><!-- .animated -->
 
-@foreach($logs as $log)
-<!--Modal Body Start-->
-<div class="modal fade"  id="track_log{{$log->ic_no}}" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel1" 
+<div class="modal fade"  id="track_log" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel1" 
     aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content" style="padding-bottom:0px" >
@@ -71,6 +88,7 @@
     
             <!--Body start-->
             <div class="modal-body">
+            
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
@@ -108,6 +126,7 @@
                                     <div class="tab-pane fade" id="custom-nav-profile" role="tabpanel"
                                         aria-labelledby="custom-nav-profile-tab">
                                         <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                                       
                                             <thead>
                                                 <tr>
                                                     <th>{{trans('content.date')}}</th>
@@ -116,24 +135,23 @@
                                                     <th>{{trans('content.policy_violated')}}</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>2019-08-29</td>
-                                                    <td>New</td>
-                                                    <th>Approve</th>
-                                                    <td>-</td>
-                                                </tr>
+                                            <tbody id="tablebody">
+                                            
                                             </tbody>
-                                        </table>                                                                                                            
+                                        </table>   
+                                                                                                                                                
                                     </div>
                                 </div>
                             </div>    
+                           
                         </div><!-- /# card -->
+                         
                     </div><!--  /.col-lg-6 -->
                 </div>
-            </div>           
+            </div>   
+                   
             <!--Body end-->
-
+            
             <!-- footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
@@ -142,7 +160,59 @@
         </div>
     </div>
 </div>
-<!--Modal Body End-->
-@endforeach
 
+
+
+
+
+
+<script>
+function test(ref){
+var trackrec=<?php echo  json_encode($trackRec);?>;
+var cliendetail=<?php echo  json_encode($logs);?>;
+document.getElementById("tablebody").innerHTML=""
+trackrec.forEach(function(item){
+    if(ref==item.freference_no){
+    var tr = document.createElement('tr');
+    var date = document.createElement('td');
+    var orist = document.createElement('td');
+    var newst = document.createElement('td');
+    var policy = document.createElement('td');
+
+    date.appendChild(document.createTextNode(item.created_at));
+    orist.appendChild(document.createTextNode(getstrcode(item.ori_status_code)));
+    newst.appendChild(document.createTextNode(getstrcode(item.new_status_code)));
+    policy.appendChild(document.createTextNode(item.violated_policy));
+    tr.appendChild(date);
+    tr.appendChild(orist);
+    tr.appendChild(newst);
+    tr.appendChild(policy);
+    var container=document.getElementById("tablebody");
+    container.appendChild(tr);
+    }
+    });
+}
+
+
+
+function getstrcode(stcd){
+    var strcode="";
+switch(stcd){
+    case 3:
+        strcode="new";
+        break;
+    case 2:
+        strcode="kiv";
+        break;
+    case 1:
+        strcode="approve";
+        break;
+    case 0:
+        strcode="reject";
+        break ;
+}
+return strcode;
+}
+
+</script>
 @endsection

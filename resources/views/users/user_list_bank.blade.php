@@ -26,7 +26,7 @@
                         <td>
                         <a href="{{ url('user_new_task',$b_code->fbank_code)}}">
                             @if($b_code->fbank_code == 101)
-                            <?php $tot_app = count($b_code->fbank_code) ?>
+                           
                                 <span class="badge bg-warning">MAYBANK</span>
                                 @elseif($b_code->fbank_code == 102)
                                 <span class="badge bg-danger">CIMB</span>
@@ -43,8 +43,20 @@
                             @endif
                         </a>
                         </td>
-                        <td><span class="badge bg-default">55</span></td>
+                        <td>
+                        <?php $total = 0; ?>
+                        @foreach($bank as $b)
+                       
+                        @if($b->bank_code==$b_code->fbank_code)
+                           <?php $total += count($b); ?>
+                           
+                        @endif
+                        @endforeach
+                        <span class="badge bg-default"> {{ $total }}</span>
+                        </td>
+                        
                         <td><span class="badge bg-info">{{$b_code->created_at}}</span></td>
+                        
                     </tr>
                     @endforeach
                 </tbody>

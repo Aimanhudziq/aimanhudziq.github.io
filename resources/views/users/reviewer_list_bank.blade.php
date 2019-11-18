@@ -43,7 +43,17 @@
                             @endif
                         </a>
                         </td>
-                        <td><span class="badge bg-default">55</span></td>
+                        <td>
+                        <?php $total = 0; ?>
+                        @foreach($bank as $b)
+                       
+                        @if($b->bank_code==$b_code->fbank_code)
+                           <?php $total += count($b); ?>
+                           
+                        @endif
+                        @endforeach
+                        <span class="badge bg-default"> {{ $total }}</span>
+                        </td>
                         <td><span class="badge bg-info">{{$b_code->created_at}}</span></td>
                     </tr>
                     @endforeach
