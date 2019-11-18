@@ -8,7 +8,7 @@ class CardApplication extends Model
 {
     protected $fillable =[
         'checked_by',
-        'status_code',
+        'fstatus_code',
         'fuser_staff_id',
         'status_change_datetime',
         'created_at',

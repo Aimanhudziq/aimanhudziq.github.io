@@ -8,6 +8,7 @@ use App\User;
 use App\BankAssignmentList;
 use App\Bank;
 use App\ClientDetail;
+use App\CardApplication;
 use Auth;
 use DB;
 use \Hash;
@@ -44,7 +45,7 @@ class UserController extends Controller
             //Current password and new password are same
             return redirect()->back()->with("error","New Password cannot be same as your current password. Please choose a different password.");
         }
-        $validatedData = $request->validate([
+        $validatedData = $request->validate([ 
             'current-password' => 'required',
             'new-password' => 'required|string|min:8|confirmed',
         ]);
@@ -53,7 +54,7 @@ class UserController extends Controller
         $user->password = bcrypt($request->get('new-password'));
         $user->save();
         return redirect()->back()->with("success","Password changed successfully !"); 
-    }
+    } 
 
     
 
@@ -62,16 +63,27 @@ class UserController extends Controller
      * normal user and reviewer landing page
      * 
      */
-    public function userDashboard()
+    public function userDashboard() 
     {
-    	return view('user_dashboard');
+        $new = ClientDetail::whereIn('fstatus_code', ['3'])->get()->count();
+        $kiv = ClientDetail::whereIn('fstatus_code', ['2'])->get()->count();
+        $approve = ClientDetail::whereIn('fstatus_code', ['1'])->get()->count();
+        $reject = ClientDetail::whereIn('fstatus_code', ['0'])->get()->count();
+        return view('user_dashboard', compact('new',$new,
+                                               'kiv', $kiv, 
+                                                'approve', $approve,
+                                                 'reject', $reject)); 
+        return asset('dashboard_chart.js', compact('new',$new,
+        'kiv', $kiv, 
+         'approve', $approve,
+          'reject', $reject))
     }
 
     /**
      * normal user whos assigned to the spesific bank
      * 
      */
-    public function userListBank()
+    public function userListBank() 
     {   
         /**
          * $user = User::with('bank_assignment_list')->where('user_staff_id', Auth::user()->user_staff_id)->get();
@@ -113,8 +125,8 @@ class UserController extends Controller
                         ->join('client_details as cd', 'cd.fbank_code', '=', 'b.bank_code')
                         ->join('bank_assignment_lists as ba', 'ba.fbank_code', '=', 'b.bank_code')
                         ->where('ba.fuser_staff_id', Auth::user()->user_staff_id)
-                        ->where('cd.fbank_code', $bank_code)
-                        ->where('cd.fstatus_code',2)
+                        ->where('cd.fbank_code', $bank_code) 
+                        ->where('cd.fstatus_code',2) 
                         ->get();
 
         $staff_info = DB::table('users as u')
@@ -130,7 +142,7 @@ class UserController extends Controller
                }
         }
 
-        $policy = Policy::all();
+        $policy = Policy::all(); 
 
         return view('users.reviewer_new_task')->with(['policy'=>$policy, 
                                                 'client'=>$client, 'staff_name'=>$staff_name]);
@@ -147,7 +159,7 @@ class UserController extends Controller
                     ->where('cd.fbank_code', $bank_code)
                     ->get(); 
                     
-        $policy = Policy::all();
+        $policy = Policy::all(); 
         
         return view('users.user_new_task')->with(['policy'=>$policy, 
                                                 'client'=>$client]);
@@ -163,7 +175,7 @@ class UserController extends Controller
     {
         $logs = Clientdetail::all();
         return view('users.user_track_log', compact('logs'));
-    }
+    } 
 
     /**
      * get status of the applicant card
