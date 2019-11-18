@@ -11,19 +11,19 @@
                     <div class="card-left float-left text-left">
                         <i class="icon fade-5 icon-lg fa fa-plus-circle"></i>
                     </div><!-- /.card-left -->
-                    @if(Auth::user()->frole_code == 3)
+                    @if(Auth::user()->frole_code == 3) 
                     <a href="{{ url('user_new_task') }}" class="">
                         <div class="card-right  float-right">
                             <h3 class="mb-0 fw-r">
-                                <span class="count">23</span>
+                                <span class="count">{{ $new }}</span>
                             </h3>
-                            <p class="text-light mt-1 m-0">{{ trans('dashboard.new') }}</p>
+                            <p class="text-light mt-1 m-0">{{ trans('dashboard.new') }}</p> 
                         </div><!-- /.card-right -->
                     </a>
                     @else
                         <div class="card-right  float-right">
                             <h3 class="mb-0 fw-r">
-                                <span class="count">23</span>
+                                <span class="count">{{ $new }}</span>
                             </h3>
                             <p class="text-light mt-1 m-0">{{ trans('dashboard.new') }}</p>
                         </div><!-- /.card-right -->
@@ -43,7 +43,7 @@
                     <a href="{{ url('user_kiv_list') }}" class="">
                         <div class="card-right  float-right">
                             <h3 class="mb-0 fw-r">
-                                <span class="count">23</span>
+                                <span class="count">{{ $kiv }}</span>
                             </h3>
                             <p class="text-light mt-1 m-0">{{ trans('dashboard.kiv') }}</p>
                         </div><!-- /.card-right -->
@@ -51,7 +51,7 @@
                     @else
                         <div class="card-right  float-right">
                             <h3 class="mb-0 fw-r">
-                                <span class="count">23</span>
+                                <span class="count">{{ $kiv }}</span>
                             </h3>
                             <p class="text-light mt-1 m-0">{{ trans('dashboard.kiv') }}</p>
                         </div><!-- /.card-right -->
@@ -66,10 +66,10 @@
                 <div class="card-body">
                     <div class="card-right pt-1 float-right">
                         <h3 class="mb-0 fw-r">
-                            <span class="count">6</span>
+                            <span class="count">{{ $reject }}</span>
                         </h3>
                         <p class="text-light mt-1 m-0">{{ trans('dashboard.rejected') }}</p>
-                    </div><!-- /.card-left -->
+                    </div><!-- /.card-left --> 
 
                     <div class="card-left float-left text-left">
                         <i class="icon fade-5 icon-lg fa fa-times-circle"></i>
@@ -85,7 +85,7 @@
                 <div class="card-body">
                     <div class="card-right pt-1 float-right">
                         <h3 class="mb-0 fw-r">
-                            <span class="count">3</span>
+                            <span class="count">{{ $approve }}</span>
                         </h3>
                         <p class="text-light mt-1 m-0">{{ trans('dashboard.approved') }}</p>
                     </div><!-- /.card-left -->

@@ -15,7 +15,7 @@ class CreateTrackRecordsTable extends Migration
     {
         Schema::create('track_records', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('freference_no')->unique(); //freference_no refer to the table card (reference)
+            $table->string('freference_no')->index(); //freference_no refer to the table card (reference)
             $table->integer('ori_status_code')->unsigned()->index();
             $table->integer('new_status_code')->unsigned()->index();
             $table->string('violated_policy')->null();

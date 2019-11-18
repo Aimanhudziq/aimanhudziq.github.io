@@ -392,13 +392,34 @@ class AdminActionController extends Controller
     /***
      * generate ref number for client by date + random number
      */
-    
+
+    private function shuffleString($stringValue, $startWith = "") {
+        $range = \range(0, \mb_strlen($stringValue));
+        shuffle($range);
+        foreach($range as $index) {
+            $startWith .= \mb_substr($stringValue, $index, 1);
+        }
+        //dd($startWith);
+        return $startWith;
+    }
+
+    /**
+     * 1. generate ref number by using method shuffle string
+     * eg output => g2^x%a)z+=jq$v1oubf#rk_ned3twihc(!lyp@ms&*
+     * shuffle string method will be generate unique id 
+     * 2. includes date ie: year + month + day (20191025)
+     * 3. using sha1 (secure Hash Algorithm);
+     */
     private function genRefNum()
     {
+        $strvalue = $this->shuffleString("abcdefghijklmnopqrstuvwxyz123!@#$%^&*()_+=");
+
+        $str_alph = substr(uniqid($strvalue),0,6);
+
         $today = date("Ymd");
         $rand = strtoupper(substr(uniqid(sha1(time())),0,4));
-        $ref_number = $today . $rand;
-
+        $ref_number =  strtoupper($today . $rand . $str_alph);
+        //dd($ref_number);
         return $ref_number;
     }
 
