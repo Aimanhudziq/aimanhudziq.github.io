@@ -8,6 +8,7 @@ use App\User;
 use App\BankAssignmentList;
 use App\Bank;
 use App\ClientDetail;
+use App\TrackRecord;
 use Auth;
 use DB;
 use \Hash;
@@ -103,8 +104,12 @@ class UserController extends Controller
         //$user = User::with('bank_assignment_list')->where('user_staff_id', Auth::user()->user_staff_id)->get();
         
         $reviewer = BankAssignmentList::where('fuser_staff_id', Auth::user()->user_staff_id)->get();
-        //dd($reviewer);
-        return view('users.reviewer_list_bank')->with('reviewer', $reviewer);
+
+        $bank = Bank::join('client_details','bank_code','=','fbank_code')
+                    ->where('fstatus_code', 2)
+                    ->get(); 
+        //dd($bank);
+        return view('users.reviewer_list_bank')->with(['reviewer'=>$reviewer, 'bank'=>$bank]);
     }
 
 
@@ -123,6 +128,8 @@ class UserController extends Controller
                                 ->join('bank_assignment_lists as ba', 'ba.fuser_staff_id', '=', 'u.user_staff_id')
                                 ->where('ba.fbank_code', $bank_code)
                                 ->get();
+
+        
     //dd($staff_info);
         foreach($staff_info as $si)
         {
@@ -133,6 +140,8 @@ class UserController extends Controller
         }
 
         $policy = Policy::all();
+
+        
 
         return view('users.reviewer_new_task')->with(['policy'=>$policy, 
                                                 'client'=>$client, 'staff_name'=>$staff_name]);
@@ -151,6 +160,7 @@ class UserController extends Controller
                     
         $policy = Policy::all();
         
+        
         return view('users.user_new_task')->with(['policy'=>$policy, 
                                                 'client'=>$client]);
     }
@@ -164,7 +174,21 @@ class UserController extends Controller
     public function userTrackLog()
     {
         $logs = Clientdetail::all();
-        return view('users.user_track_log', compact('logs'));
+
+        $trackRec = TrackRecord::all();
+        $listarray=array();
+       // dd($data);
+        //dd($merge);
+       // $last = new $listarray();
+       //dd($listarray);
+       //dd($trackRec);
+      
+      //  return view('users.user_track_log', compact('logs'));
+        // return view('users.user_track_log', compact('logs','listarray'));//;->with(['logs'=>$logs,
+        //                                             //'trackRec'=>$trackRec]);
+
+        return view('users.user_track_log')->with(['logs'=>$logs,'trackRec'=>$trackRec]);
+       
     }
 
     /**

@@ -1,6 +1,7 @@
 @extends('layouts.user_master')
 
 @section('content')
+
 <div class="animated fadeIn">
     <div class="row">
         <div class="col-md-12">
@@ -96,14 +97,15 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                 </button>
             <h4 class="modal-title" id="largeModalLabel">{{trans('content.pic_review')}}</h4>
             </div>
+            
 
                 <!--Body start-->
         <div class="modal-body" style="padding-bottom:0px" >
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <img src="{{url($applicant->image_url)}}" alt="client images" height="150px" width="180px">
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-6">
                     <div class="row">
                         <div class="col-lg-12">
                         <h6 class="card-text" style="font-size:12px">{{trans('content.ref_num')}} : <span class="badge bg-info" style="font-size:10px">{{$applicant->reference_no}}</span></h6>
@@ -111,13 +113,8 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                         </div>
                     </div>
                 </div>
-                <div class="col-md-5">
-                    <div class="row form-group" style="margin-right: 20px">
-                            <label for="textarea-input" class=" form-control-label ml-3">{{trans('content.remarks')}}</label>
-                            <textarea style="resize:none;font-size:11px;" name="textarea-input" id="textarea-input"  rows="3" placeholder="Content..." 
-                            class="form-control ml-3"></textarea>
-                    </div>
-                </div>
+
+                
             </div>
             <div class="row">
                 <div class="col-lg-12">
@@ -129,22 +126,42 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                                 <form action="" method="GET">
                                     <div class="form-check" >
                                         <div id="app">
+                                        
                                         @foreach($policy as $p)
+                                       
                                             <div class="checkbox">
                                                 <div class="col-xs-6">
                                                     <label for="policy" class="form-check-label" style="font-size:10px;">
-                                                        <input type="checkbox" id="policy" name="policy" value="{{ $p->id }}" onclick="alert(data)"
+                                                        <input type="checkbox"  id="policy" name="policy[]" value="{{ $p->policy_name }}" 
                                                             class="form-check-input">
                                                         {{ $p->policy_name }}
                                                     </label>
                                                 </div>
                                             </div>
                                         @endforeach
+                                        
+
+
+
+                                        <input type="hidden" name="currentuser" value='{{Auth::user()->first_name}}'>
+                                        <input type="hidden" name="currentuserID" value='{{Auth::user()->user_staff_id}}'>
+                                        <input type="hidden" name="bank" value="{{request()->route('bank_code')}}">
+                                        <input type="hidden" name="refNo" value='{{$applicant->reference_no}}'>
+
+                                        <br>
+                                        <div class="card-body" style="margin-right: 20px">
+                    
+                                           <label for="textarea-input" class=" form-control-label ml-3">{{trans('content.remarks')}}</label>
+                                           <input type="text" textarea style="resize:none;font-size:11px;" name="comment"  placeholder="Content..." 
+                                            class="form-control ml-3"></textarea>
+            
+                                        </div>
                                             <div class="modal-footer" style="padding-bottom:0px" >
-                                                <a href="{{url('approve', $applicant->reference_no)}}" class="btn btn-sm btn-success mt-3 mb-3 text-white" id="approve">{{trans('content.approve')}}</a>
-                                                <a href="{{url('reject', $applicant->reference_no)}}" class="btn btn-sm btn-danger mt-3 mb-3 text-white">{{trans('content.reject')}}</a>
-                                                <a href="{{url('kiv', $applicant->reference_no)}}" class="btn btn-sm btn-warning mt-3 mb-3 text-white">KIV</a>
+                                                <button type="submit" formaction="{{url('approve', $applicant->reference_no)}}"class="btn btn-sm btn-success mt-3 mb-3 text-white" id="approve" >{{trans('content.approve')}}</button>
+                                                <button type="submit" formaction="{{url('reject', $applicant->reference_no)}}" class="btn btn-sm btn-danger mt-3 mb-3 text-white">{{trans('content.reject')}}</button>
+                                                <button type="submit" formaction="{{url('kiv', $applicant->reference_no)}}" class="btn btn-sm btn-warning mt-3 mb-3 text-white">KIV</button>
                                                 <a class="btn btn-secondary" data-dismiss="modal">{{trans('content.cancel')}}</a>
+                                                
                                             </div>
                                         </div>
                                     </div><!-- form check class-->
