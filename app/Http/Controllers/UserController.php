@@ -102,7 +102,9 @@ class UserController extends Controller
         */
         $user = BankAssignmentList::where('fuser_staff_id', Auth::user()->user_staff_id)->get();
 
-        $bank = Bank::join('client_details','bank_code','=','fbank_code')->get(); 
+        $bank = Bank::join('client_details','bank_code','=','fbank_code')
+                     ->where('fstatus_code', 3)
+                     ->get(); 
         //dd($user);
         return view('users.user_list_bank')->with(['user'=>$user, 'bank'=>$bank]);
     }
@@ -141,8 +143,20 @@ class UserController extends Controller
                                 ->where('ba.fbank_code', $bank_code)
                                 ->get();
 
-        
-    //dd($staff_info);
+        $allInfo = DB::table('client_details as cd')
+                     ->join('card_applications as ca', 'ca.freference_no', '=', 'cd.reference_no')
+                     ->where('ca.fstatus_code', 2)
+                     ->groupBy('freference_no')
+                     //->where('ca.freference_no', '=', 'cd.reference_no')
+                     ->get();
+
+        // $allInfo = ClientDetail::join('card_applications', 'reference_no', '=', 'freference_no')
+        //                        ->where('fstatus_code',2)
+        //                        ->get();
+
+        // dd($allInfo);
+        //dd($client);
+        //dd($staff_info);
         foreach($staff_info as $si)
         {
                if($si->frole_code == 3)
@@ -155,7 +169,7 @@ class UserController extends Controller
 
         
 
-        return view('users.reviewer_new_task')->with(['policy'=>$policy, 
+        return view('users.reviewer_new_task')->with(['policy'=>$policy, 'allInfo'=>$allInfo,
                                                 'client'=>$client, 'staff_name'=>$staff_name]);
     }
 
@@ -168,6 +182,7 @@ class UserController extends Controller
                     ->join('bank_assignment_lists as ba', 'ba.fbank_code', '=', 'b.bank_code')
                     ->where('ba.fuser_staff_id', Auth::user()->user_staff_id)
                     ->where('cd.fbank_code', $bank_code)
+                    ->whereIn('cd.fstatus_code',['3'])
                     ->get(); 
                     
         $policy = Policy::all(); 
@@ -184,10 +199,21 @@ class UserController extends Controller
     }
 
     public function userTrackLog()
-    {
-        $logs = Clientdetail::all();
-        $trackRec = TrackRecord::all();
-        $listarray=array();
+    {   $sumLog = DB::table('client_details as cd')
+                    ->join('track_records as tr', 'tr.freference_no', '=', 'cd.reference_no')
+                    ->join('card_applications as ca', 'ca.freference_no', '=', 'cd.reference_no')
+                    ->orderBy('tr.created_at', 'desc')
+                    ->get();
+
+       // dd($sumLog);
+        $logs = DB::table('client_details')->orderBy('created_at', 'desc')->get();
+        // $trackRec = DB::table('track_records')->orderBy('created_at', 'desc')->get();
+   //  $cardApp = DB::table('card_applications')->orderBy('created_at', 'desc')->get();
+
+       // $logs = Clientdetail::all();
+        // $trackRec = TrackRecord::all();
+        // $cardApp = CardApplication::all();
+        // $listarray=array();
        // dd($data);
         //dd($merge);
        // $last = new $listarray();
@@ -198,8 +224,8 @@ class UserController extends Controller
         // return view('users.user_track_log', compact('logs','listarray'));//;->with(['logs'=>$logs,
         //                                             //'trackRec'=>$trackRec]);
 
-        return view('users.user_track_log')->with(['logs'=>$logs,'trackRec'=>$trackRec]);
-       
+       // return view('users.user_track_log')->with(['logs'=>$logs,'trackRec'=>$trackRec, 'sumLog'=>$sumLog]);
+        return view('users.user_track_log', compact('sumLog', 'logs'));
     }
 
 

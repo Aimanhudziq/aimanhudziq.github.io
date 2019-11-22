@@ -62,6 +62,7 @@ class StatusController extends Controller
                     $card->comment = request()->get('comment');
                     $card->violated_policy = $policy;
                     $card->status_change_datetime = Carbon::now();
+                    $card->freference_no = request()->get('refNo');
                    // dd($card->comment);
                     $card->save();
                 }
@@ -127,6 +128,7 @@ class StatusController extends Controller
                 //$card->comment = 'Apa apa';
                // $card->violated_policy = null;
                 $card->status_change_datetime = Carbon::now();
+                $card->freference_no = request()->get('refNo');
                 // dd($card->violated_policy);
                 // dd($card->checked_by,$card->fstatus_code,$card->fuser_staff_id,
                 // $card->fbank_code,$card->comment,$card->violated_policy,$card->status_change_datetime);
@@ -173,32 +175,43 @@ class StatusController extends Controller
                 return back()->withInput();
             }
             else{
-                    ClientDetail::where('reference_no', $ref_no)
-                                ->update(['fstatus_code'=> 2]);
+                ClientDetail::where('reference_no', $ref_no)
+                            ->update(['fstatus_code'=> 2]);
 
-                    $card = new CardApplication;
+                $card = new CardApplication;
 
+                $policy = implode(",",(array)request()->get('policy'));
+                //$count = count($policy);
+                //dd($policy);
+                
+                for($i = 0; $i < count(request()->get('policy')); $i++)
+                {
                     $card->checked_by = request()->get('currentuser');
                     $card->fstatus_code = 2;
                     $card->fuser_staff_id = request()->get('currentuserID');
                     $card->fbank_code = request()->get('bank');
                     $card->comment = request()->get('comment');
-                 // $card->violated_policy = null;
+                    $card->violated_policy = $policy;
                     $card->status_change_datetime = Carbon::now();
-                 // dd($card->violated_policy);
-                 // dd($card->checked_by,$card->fstatus_code,$card->fuser_staff_id,
-                 // $card->fbank_code,$card->comment,$card->status_change_datetime);
-                   // dd($card->comment);
+                    $card->freference_no = request()->get('refNo');
+                    // dd($card->comment);
                     $card->save();
-
-                    $log = new TrackRecord;
-
+                }
+                
+                $log = new TrackRecord;
+                
+                $policy = implode(",",(array)request()->get('policy'));
+                
+                for($i = 0; $i < count(request()->get('policy')); $i++)
+                {
                     $log->freference_no = request()->get('refNo');
                     $log->ori_status_code = 3;
                     $log->new_status_code = 2;
-                    // $log->violated_policy = $policy;
-                   // dd($log->freference_no,$log->ori_status_code,$log->new_status_code,$log->violated_policy);
+                    $log->violated_policy = $policy;
+                    // dd($log->freference_no,$log->ori_status_code,$log->new_status_code,$log->violated_policy);
                     $log->save();
+                }
+                
                             
                     Alert::success('Application successfully kiv', 'Kiv Succeed!');
                     return redirect()->back();
@@ -247,6 +260,7 @@ class StatusController extends Controller
                 $card->comment = request()->get('comment');
                 $card->violated_policy = $policy;
                 $card->status_change_datetime = Carbon::now();
+                $card->freference_no = request()->get('refNo');
                 // dd($card->violated_policy);
                 $card->save();
             }
@@ -303,6 +317,7 @@ class StatusController extends Controller
                 // $card->comment = 'Apa apa';
                 // $card->violated_policy = $policy;
                 $card->status_change_datetime = Carbon::now();
+                $card->freference_no = request()->get('refNo');
                 // dd($card->violated_policy);
                 $card->save();
 
