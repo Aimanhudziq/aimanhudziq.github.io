@@ -69,7 +69,7 @@
                                 </td>
                                 <td><span class="badge bg-secondary">{{$staff_name}}</span></td>
                                 <td>
-                                    <a type="button" class="btn btn-white mb-1" data-toggle="modal" 
+                                    <a type="button" class="btn btn-white mb-1" data-toggle="modal" onclick="testDisplay('<?php echo $applicant_reviewer->reference_no;?>')"
                                         data-target="#comment"><i  class="fa fa-comment"></i>
                                     </a>
                                 </td>
@@ -87,26 +87,41 @@
         </div>
     </div><!--/div.row -->
 </div><!-- .animated -->
+@foreach($client as $applicant_reviewer)
 
 <!--Modal Body Start-->
 <div class="modal fade" id="comment" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel1" aria-hidden="true">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
+        
             <div class="modal-body alert-success">
                 <div class="alert alert-success" role="alert">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="alert-heading">Comments</h4>
-                    <p>Policy 1 violated</p>
+                    
+                    <h4 class="alert-heading">Comment:</h4>
+                    
+                    <p id="commentPolicy"></p>
+                    
                     <hr>
-                    <p class="mb-0">Uncertainty of Policy 5 violation</p>
+
+                    <h4 class="alert-heading">Violated Policy:</h4>
+
+                    <p id="policyComment"> </p>
+                
+                   
                 </div>
+                
             </div>
+            
         </div>
+        
     </div>
+    
 </div>
 
+@endforeach
 
 @foreach($client as $applicant_reviewer)
 <!--Modal Body Start-->
@@ -190,5 +205,18 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
 </div>
 <!--Modal Body End-->
 @endforeach
-
+<script>
+function testDisplay(ref){
+var commentInfo=<?php echo json_encode($allInfo);?>;
+commentInfo.forEach(function(item){
+    if(ref==item.freference_no){
+   
+    document.getElementById("commentPolicy").innerHTML=item.comment;
+    // tr.appendChild(comment);
+   
+    document.getElementById("policyComment").innerHTML=item.violated_policy;
+    }
+});
+}
+</script>
 @endsection

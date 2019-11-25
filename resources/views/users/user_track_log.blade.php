@@ -9,6 +9,7 @@
             <div class="card">
                 <div class="card-header">
                     <strong class="card-title">{{trans('content.transaction_log')}}</strong>
+            
                 </div>
 
                 <div class="card-body">
@@ -26,8 +27,8 @@
                         <tbody>
                         <?php $i = 0;?>
                         @foreach($logs as $log)
+                        <?php $i++; ?>
                             <tr>
-                            <?php $i++; ?>
                                 <td>{{$i}}</td>
                                 <td><span class="badge bg-secondary">{{$log->reference_no}}</span></td>
                                 <td>
@@ -66,8 +67,9 @@
                                     </a>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
-                        @endforeach
+                        
                     </table>
                 </div>
             </div>
@@ -107,16 +109,17 @@
                                         <p style="text-align:center; display:block">
                                             <div class="row">
                                                 <div class="col-md-4">
-                                                    <img src="{{url($log->image_url)}}" alt="Logo" height="150px" width="225px">
+                                                    <img id="clientimage" alt="Logo" height="150px" width="225px">
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="row">
                                                         <div class="col-lg-12">
                                                             <h6 class="card-text" style="font-size: small">{{trans('content.ref_num')}} : 
-                                                                                        <span class="badge bg-info">{{$log->reference_no}}</span></h6>
+                                                                                        <span class="badge bg-info" id="refno"></span></h6>
                                                             <h6 class="card-text" style="font-size: small">{{trans('content.status')}} : 
-                                                                                        <span class="badge bg-secondary">{{$log->fstatus_code}}</span></h6>
-                                                            <h6 class="card-text" style="font-size: small">{{trans('content.date')}} : {{$log->created_at}}</h6>
+                                                                                        <span class="badge bg-secondary" id="newstatus"></span></h6>
+                                                            <h6 class="card-text" style="font-size: small">{{trans('content.date')}} : 
+                                                                                        <span class="badge bg-dark" id="date"></span></h6>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -133,6 +136,7 @@
                                                     <th>{{trans('content.from')}}</th>
                                                     <th>{{trans('content.to')}}</th>
                                                     <th>{{trans('content.policy_violated')}}</th>
+                                                    <th>Comment</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="tablebody">
@@ -168,37 +172,53 @@
 
 <script>
 function test(ref){
-var trackrec=<?php echo  json_encode($trackRec);?>;
-var clientdetail=<?php echo  json_encode($logs);?>;
+//var trackrec=<?php //echo  json_encode($trackRec);?>;
+// var clientdetail=<?php //echo  json_encode($logs);?>;
+// var cardapplication=<?php //echo  json_encode($cardApp);?>;
+var sumLog=<?php echo json_encode($sumLog);?>;
 document.getElementById("tablebody").innerHTML=""
-trackrec.forEach(function(item){
+sumLog.forEach(function(item){
     if(ref==item.freference_no){
+    document.getElementById("newstatus").innerHTML=item.new_status_code;
+    document.getElementById("date").innerHTML=item.created_at;
     var tr = document.createElement('tr');
     var date = document.createElement('td');
     var orist = document.createElement('td');
     var newst = document.createElement('td');
     var policy = document.createElement('td');
+    var comment = document.createElement('td');
 
     date.appendChild(document.createTextNode(item.created_at));
     orist.appendChild(document.createTextNode(getstrcode(item.ori_status_code)));
     newst.appendChild(document.createTextNode(getstrcode(item.new_status_code)));
     policy.appendChild(document.createTextNode(item.violated_policy));
+    comment.appendChild(document.createTextNode(item.comment));
     tr.appendChild(date);
     tr.appendChild(orist);
     tr.appendChild(newst);
     tr.appendChild(policy);
+    tr.appendChild(comment);
     var container=document.getElementById("tablebody");
     container.appendChild(tr);
+
+    document.getElementById("clientimage").src=item.image_url;
+    document.getElementById("refno").innerHTML=item.reference_no;
     }
     });
-// document.getElementById("image").innerHTML=""
-// clientdetail.forEach(function(no){
-//     if(ref==item.freference_no){
-//     var img = document.createElement("img");
-//     img.width="225px";
-//     img.height="150px";
-    
-//     document.body.appendChild(no.image_url);
+    // clientdetail.forEach(function(item){
+    //     if(ref==item.reference_no){
+    //         document.getElementById("clientimage").src=item.image_url;
+    //         document.getElementById("refno").innerHTML=item.reference_no;
+
+    //     }
+    // });
+    // cardapplication.forEach(function(item){
+    //     if(ref==item.freference_no){
+    //         var comment = document.createElement('td');
+    //         comment.appendChild(document.createTextNode(item.comment));
+    // });
+
+
 }
 
 
