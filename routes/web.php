@@ -151,9 +151,15 @@ Route::get('approve_checker/{ref_no}', 'StatusController@approveChecker')
                 ->name('approve_checker');
                 //->middleware('reviewer');
 
+
 Route::get('user_excel_report', 'ReportController@export')
                 ->name('user-excel-report')
                 ->middleware('normal_user');
+
+Route::get('customer/print-pdf', 'CustomerController@printPDF')
+               ->name('customer_printpdf');
+
+
 
 //Route::post('password_email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password-email');
 //Route::get('password/reset', 'Auth\ResetPasswordController@reset');
