@@ -18,4 +18,18 @@ class ReportExport implements FromCollection
                                     'ic_no','address')->get();
         return $client;
     }
+
+    public function headings(): array
+    {
+        return [
+            '#',
+            'Reference No',
+            'Full Name',
+            'Email',
+            'Phone Number',
+            'NRIC',
+            'Address',
+        ];
+    }
+    
 }
