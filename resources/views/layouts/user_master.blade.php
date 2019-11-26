@@ -122,9 +122,14 @@
         });
     });
     </script>  
-      <script>
+    <script>
         var locale = '{{ config('app.locale') }}';
         console.log(locale);
+
+        var tmp = {!! json_encode($reject) !!};
+        console.log(tmp);
+
+
     </script>
     <script type="text/javascript">
         $(document).ready(function() {
