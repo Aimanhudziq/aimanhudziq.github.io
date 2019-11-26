@@ -125,6 +125,14 @@
       <script>
         var locale = '{{ config('app.locale') }}';
         console.log(locale);
+        var new = '{{$new}}';
+        console.log(new);
+        var kiv = '{{$kiv}}';
+        console.log(kiv);
+        var approve = '{{$approve}}';
+        console.log(approve);
+        var reject = '{{$reject}}';
+        console.log(reject);
     </script>
     <script type="text/javascript">
         $(document).ready(function() {
