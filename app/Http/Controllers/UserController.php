@@ -76,8 +76,7 @@ class UserController extends Controller
         return view('user_dashboard', compact('new',$new,
                                                'kiv', $kiv, 
                                                 'approve', $approve,
-                                                 'reject', $reject)); 
-        
+                                                 'reject', $reject));
     }
 
     /**

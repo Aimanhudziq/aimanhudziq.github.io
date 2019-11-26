@@ -122,9 +122,10 @@
         });
     });
     </script>  
-      <script>
+    <script>
         var locale = '{{ config('app.locale') }}';
         console.log(locale);
+<<<<<<< HEAD
         var new = '{{$new}}';
         console.log(new);
         var kiv = '{{$kiv}}';
@@ -133,6 +134,13 @@
         console.log(approve);
         var reject = '{{$reject}}';
         console.log(reject);
+=======
+
+        var tmp = {!! json_encode($reject) !!};
+        console.log(tmp);
+
+
+>>>>>>> 8e8956de7a09894cdb1ec61169b6bbd1aa27a77c
     </script>
     <script type="text/javascript">
         $(document).ready(function() {
