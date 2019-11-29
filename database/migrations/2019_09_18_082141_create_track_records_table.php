@@ -18,9 +18,11 @@ class CreateTrackRecordsTable extends Migration
             $table->string('freference_no')->index(); //freference_no refer to the table card (reference)
             $table->integer('ori_status_code')->unsigned()->index();
             $table->integer('new_status_code')->unsigned()->index();
-            $table->string('violated_policy')->null();
+            $table->string('violated_policy')->nullable();
+            $table->string('comment')->nullable();
             $table->timestamps();
 
+            
             $table->foreign('ori_status_code')->references('status_code')->on('statuses')->onDelete('cascade');
             $table->foreign('new_status_code')->references('status_code')->on('statuses')->onDelete('cascade');
             $table->foreign('freference_no')->references('reference_no')->on('client_details')->onDelete('cascade');

@@ -49,7 +49,7 @@
                                 <span class="badge bg-danger">MUAMALAT</span>
                             @endif
                                 </td>
-                                <td><span class="badge bg-dark">{{$log->created_at}}</span></td>
+                                <td><span class="badge bg-dark">{{$log->updated_at}}</span></td>
                                 <td>
                                 @if($log->fstatus_code == 0)
                                     <span class="badge bg-danger">reject</span>
@@ -104,7 +104,7 @@
                                     </div>
                                 </nav>
                                 <div class="tab-content pl-3 pt-2" id="nav-tabContent">
-                                    <div class="tab-pane fade show active" id="custom-nav-home" role="tabpanel"
+                                    <div class="tab-pane show active" id="custom-nav-home" role="tabpanel"
                                         aria-labelledby="custom-nav-home-tab">
                                         <p style="text-align:center; display:block">
                                             <div class="row">
@@ -172,12 +172,12 @@
 
 <script>
 function test(ref){
-//var trackrec=<?php //echo  json_encode($trackRec);?>;
-// var clientdetail=<?php //echo  json_encode($logs);?>;
-// var cardapplication=<?php //echo  json_encode($cardApp);?>;
-var sumLog=<?php echo json_encode($sumLog);?>;
+var trackrec=<?php echo  json_encode($trackRec);?>;
+var clientdetail=<?php echo  json_encode($logs);?>;
+var cardapplication=<?php echo  json_encode($cardApp);?>;
+var data=<?php  echo json_encode($data);?>;
 document.getElementById("tablebody").innerHTML=""
-sumLog.forEach(function(item){
+trackrec.forEach(function(item){
     if(ref==item.freference_no){
     document.getElementById("newstatus").innerHTML=item.new_status_code;
     document.getElementById("date").innerHTML=item.created_at;
@@ -201,21 +201,26 @@ sumLog.forEach(function(item){
     var container=document.getElementById("tablebody");
     container.appendChild(tr);
 
-    document.getElementById("clientimage").src=item.image_url;
-    document.getElementById("refno").innerHTML=item.reference_no;
+    // document.getElementById("clientimage").src=item.image_url;
+    // document.getElementById("refno").innerHTML=item.reference_no;
     }
     });
-    // clientdetail.forEach(function(item){
-    //     if(ref==item.reference_no){
-    //         document.getElementById("clientimage").src=item.image_url;
-    //         document.getElementById("refno").innerHTML=item.reference_no;
+    clientdetail.forEach(function(item){
+        if(ref==item.reference_no){
+            document.getElementById("clientimage").src=item.image_url;
+            document.getElementById("refno").innerHTML=item.reference_no;
 
-    //     }
-    // });
+        }
+    });
     // cardapplication.forEach(function(item){
     //     if(ref==item.freference_no){
+    //         var tr = document.createElement('tr');
     //         var comment = document.createElement('td');
     //         comment.appendChild(document.createTextNode(item.comment));
+    //         tr.appendChild(comment);
+
+    //         var container=document.getElementById("tablebody");
+    //         container.appendChild(tr);
     // });
 
 
@@ -240,6 +245,7 @@ switch(stcd){
 }
 return strcode;
 }
+
 
 </script>
 @endsection

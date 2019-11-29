@@ -20,10 +20,19 @@
                     <a href="{{ url('user_search') }}"><i class="menu-icon ti ti-search">
                     </i>{{ trans('sidebar.search') }} </a>
                 </li>
-                <li class="{{ Route::currentRouteNamed('user-excel-report') ? 'active' : '' }}">
+                <li class="{{ Route::currentRouteNamed('user-report') ? 'active' : '' }}">
+                    <a href="{{ url('user_report') }}"><i class="menu-icon ti ti-pencil">
+                    </i>Report</a>
+                </li>
+            
+                <!-- <li class="{{ Route::currentRouteNamed('user-excel-report') ? 'active' : '' }}">
                     <a href="{{ url('user_excel_report') }}"><i class="menu-icon ti ti-search">
                     </i>Download Client Report(Excel)</a>
                 </li>
+                <li class="{{ Route::currentRouteNamed('html-pdf') ? 'active' : '' }}">
+                    <a href="{{ url('/htmlPDF/pdf') }}"><i class="menu-icon ti ti-search">
+                    </i>Download Client Report(Pdf)</a>
+                </li> -->
                 @endif
 
                 <!-- Reviewer dashboard-->

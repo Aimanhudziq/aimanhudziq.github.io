@@ -73,6 +73,7 @@ return[
     'category' => 'Kategori',
     'bank_assign' => 'Tugasan Bank',
     'delete' => 'Padam',
+    'report' => 'Laporan',
 
     //Policy
     'policy_list' => 'Senarai Polisi',
