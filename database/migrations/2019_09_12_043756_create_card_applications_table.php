@@ -19,8 +19,8 @@ class CreateCardApplicationsTable extends Migration
             $table->integer('fstatus_code')->unsigned()->index();
             $table->string('fuser_staff_id')->index();
             $table->integer('fbank_code')->unsigned()->index();
-            $table->string('comment')->null();
-            $table->string('violated_policy')->null();
+            $table->string('comment')->nullable();
+            $table->string('violated_policy')->nullable();
             $table->timestamp('status_change_datetime');
             $table->timestamps();
 
