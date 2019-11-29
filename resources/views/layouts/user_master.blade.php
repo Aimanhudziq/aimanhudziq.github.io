@@ -133,9 +133,7 @@
         console.log(reject);
 =======
 
-        var tmp = {!! json_encode($reject) !!};
-        console.log(tmp);
-
+     
 
 >>>>>>> 8e8956de7a09894cdb1ec61169b6bbd1aa27a77c
     </script>
