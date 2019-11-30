@@ -1936,12 +1936,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['testname'],
+  mounted: function mounted() {
+    console.log(this.testname);
+  },
   data: function data() {
     return {
       cropper: {},
       destination: {},
       src: String,
-      name: "john",
+      name: this.testname,
       mobile: "",
       email: "",
       ic: "",

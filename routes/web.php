@@ -169,7 +169,7 @@ Route::get('user_report', 'ReportController@userReport')
 
 Route::group(['prefix' => 'maybank'], function()
 {
-    Route::get('/','CardApplicationController@index');
+    Route::get('/','CardApplicationController@index')->name('maybankui');
 });
 
 

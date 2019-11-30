@@ -9,8 +9,9 @@ use App\Bank;
 
 class CardApplicationController extends Controller{
 
-    function index(){
-        return view('maybank.index');
+    function index(Request $request){
+        
+        return view('maybank.index')->with($request->all());
     }
 
     function viewAllBankBranch(Request $request)
@@ -31,5 +32,10 @@ class CardApplicationController extends Controller{
 
         return json_encode($url);
     }*/
+
+    function addCardApplication($name,$ic){
+        return redirect()->action('CardApplicationController@index',compact('name','ic'));
+    }
+
 
 }

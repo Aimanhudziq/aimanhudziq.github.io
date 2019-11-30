@@ -88,12 +88,16 @@
     import {mapState} from 'vuex';
     import Cropper from 'cropperjs';
     export default {
+        props:['testname'],
+        mounted(){
+            console.log(this.testname);
+        },
         data:function(){
             return{
                 cropper:{},
                 destination:{},
                 src:String,
-                name:"john",
+                name:this.testname,
                 mobile:"",
                 email:"",
                 ic:"",

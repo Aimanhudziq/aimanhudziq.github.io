@@ -1,7 +1,6 @@
 @extends('layouts.maybank_master')
 @section('content')
-<cardapplication></cardapplication>
-
+<cardapplication :pname="'{{$name}}'"></cardapplication>
 <!-- <div class="row" style="margin-bottom:10px;">
 <div class="col-sm-12">
 <input
