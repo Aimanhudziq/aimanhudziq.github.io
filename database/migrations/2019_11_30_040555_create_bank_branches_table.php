@@ -15,7 +15,13 @@ class CreateBankBranchesTable extends Migration
     {
         Schema::create('bank_branches', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('branch_code')->unsigned()->index();
+            $table->string('description');
+            $table->integer('fbank_code')->unsigned()->index();
+            $table->string('address');
             $table->timestamps();
+
+            $table->foreign('fbank_code')->references('bank_code')->on('banks')->onDelete('cascade');
         });
     }
 
