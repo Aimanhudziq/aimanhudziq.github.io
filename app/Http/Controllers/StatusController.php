@@ -23,9 +23,7 @@ class StatusController extends Controller
         $status_code = ClientDetail::select('fstatus_code')
                                     ->where('reference_no', $ref_no)
                                     ->get();
-         //dd($status_code);
-
-      
+       
        foreach($status_code as $sc)
         {
             if($sc->fstatus_code == 0)
@@ -55,17 +53,18 @@ class StatusController extends Controller
 
                 for($i = 0; $i < count(request()->get('policy')); $i++)
                 {
+                    $card->comment = request()->get('comment');
+                    $card->violated_policy = $policy;
+                   
+                }
+
                     $card->checked_by = request()->get('currentuser');
                     $card->fstatus_code = 0;
                     $card->fuser_staff_id = request()->get('currentuserID');
                     $card->fbank_code = request()->get('bank');
-                    $card->comment = request()->get('comment');
-                    $card->violated_policy = $policy;
                     $card->status_change_datetime = Carbon::now();
                     $card->freference_no = request()->get('refNo');
-                   // dd($card->comment);
                     $card->save();
-                }
 
                 $log = new TrackRecord;
 
@@ -73,14 +72,16 @@ class StatusController extends Controller
 
                 for($i = 0; $i < count(request()->get('policy')); $i++)
                 {
-                    $log->freference_no = request()->get('refNo');
-                    $log->ori_status_code = 3;
-                    $log->new_status_code = 0;
+                
                     $log->violated_policy = $policy;
-                   // dd($log->freference_no,$log->ori_status_code,$log->new_status_code,$log->violated_policy);
-                    $log->save();
+                   
                 }
-
+ 
+                $log->comment = request()->get('comment');
+                $log->freference_no = request()->get('refNo');
+                $log->ori_status_code = 3;
+                $log->new_status_code = 0;
+                $log->save();
 
                 Alert::success('Application succesfully reject!', 'Rejected Succeed!');
                 return redirect()->back();
@@ -139,8 +140,6 @@ class StatusController extends Controller
                 $log->freference_no = request()->get('refNo');
                 $log->ori_status_code = 3;
                 $log->new_status_code = 1;
-               // $log->violated_policy = $policy;
-               //dd($log->freference_no,$log->ori_status_code,$log->new_status_code);
                 $log->save();
 
                 
@@ -155,7 +154,7 @@ class StatusController extends Controller
         $status_code = ClientDetail::select('fstatus_code')
                                     ->where('reference_no', $ref_no)
                                     ->get();
-        //dd($status_code);
+
         foreach($status_code as $sc)
         {
         
@@ -181,22 +180,23 @@ class StatusController extends Controller
                 $card = new CardApplication;
 
                 $policy = implode(",",(array)request()->get('policy'));
-                //$count = count($policy);
-                //dd($policy);
                 
                 for($i = 0; $i < count(request()->get('policy')); $i++)
                 {
+                    
+                    $card->comment = request()->get('comment');
+                    $card->violated_policy = $policy;
+                    
+                    
+                }
+
                     $card->checked_by = request()->get('currentuser');
                     $card->fstatus_code = 2;
                     $card->fuser_staff_id = request()->get('currentuserID');
                     $card->fbank_code = request()->get('bank');
-                    $card->comment = request()->get('comment');
-                    $card->violated_policy = $policy;
                     $card->status_change_datetime = Carbon::now();
                     $card->freference_no = request()->get('refNo');
-                    // dd($card->comment);
                     $card->save();
-                }
                 
                 $log = new TrackRecord;
                 
@@ -204,13 +204,16 @@ class StatusController extends Controller
                 
                 for($i = 0; $i < count(request()->get('policy')); $i++)
                 {
-                    $log->freference_no = request()->get('refNo');
-                    $log->ori_status_code = 3;
-                    $log->new_status_code = 2;
+                   
                     $log->violated_policy = $policy;
-                    // dd($log->freference_no,$log->ori_status_code,$log->new_status_code,$log->violated_policy);
-                    $log->save();
+                    
                 }
+                
+                $log->comment = request()->get('comment');
+                $log->freference_no = request()->get('refNo');
+                $log->ori_status_code = 3;
+                $log->new_status_code = 2;
+                $log->save();
                 
                             
                     Alert::success('Application successfully kiv', 'Kiv Succeed!');
@@ -248,22 +251,23 @@ class StatusController extends Controller
             $card = new CardApplication;
 
             $policy = implode(",",(array)request()->get('policy'));
-            //$count = count($policy);
-            //dd($policy);
             
             for($i = 0; $i < count(request()->get('policy')); $i++)
             {
+                
+                $card->comment = request()->get('comment');
+                $card->violated_policy = $policy;
+               
+            }
                 $card->checked_by = request()->get('currentuser');
                 $card->fstatus_code = 0;
                 $card->fuser_staff_id = request()->get('currentuserID');
                 $card->fbank_code = request()->get('bank');
-                $card->comment = request()->get('comment');
-                $card->violated_policy = $policy;
                 $card->status_change_datetime = Carbon::now();
                 $card->freference_no = request()->get('refNo');
-                // dd($card->violated_policy);
+
                 $card->save();
-            }
+
 
             $log = new TrackRecord;
 
@@ -271,13 +275,16 @@ class StatusController extends Controller
 
             for($i = 0; $i < count(request()->get('policy')); $i++)
             {
+                
+                $log->violated_policy = $policy;
+               
+            }
+
+                $log->comment = request()->get('comment');
                 $log->freference_no = request()->get('refNo');
                 $log->ori_status_code = 2;
                 $log->new_status_code = 0;
-                $log->violated_policy = $policy;
-                // dd($log->freference_no,$log->ori_status_code,$log->new_status_code,$log->violated_policy);
                 $log->save();
-            }
 
                 Alert::success('Application succesfully reject!', 'Rejected Succeed!');
                 return redirect()->back();

@@ -71,8 +71,8 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a type="button" class="btn btn-white mb-1" data-toggle="modal" 
-                                        data-target="#client_detail{{$applicant->ic_no}}"><i  class="fa fa-cog"></i>
+                                    <a type="button" class="btn btn-white mb-1" data-toggle="modal" id="check" 
+                                    data-target="#client_detail{{$applicant->ic_no}}"><i  class="fa fa-cog"></i>
                                     </a>
                                 </td>
                             </tr>
@@ -126,7 +126,7 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                                 <form action="" method="GET">
                                     <div class="form-check" >
                                         <div id="app">
-                                        
+
                                         @foreach($policy as $p)
                                        
                                             <div class="checkbox">
@@ -138,11 +138,8 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                                                     </label>
                                                 </div>
                                             </div>
-                                        @endforeach
+                                            @endforeach
                                         
-
-
-
                                         <input type="hidden" name="currentuser" value='{{Auth::user()->first_name}}'>
                                         <input type="hidden" name="currentuserID" value='{{Auth::user()->user_staff_id}}'>
                                         <input type="hidden" name="bank" value="{{request()->route('bank_code')}}">
@@ -157,13 +154,14 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
             
                                         </div>
                                             <div class="modal-footer" style="padding-bottom:0px" >
-                                                <button type="submit" formaction="{{url('approve', $applicant->reference_no)}}"class="btn btn-sm btn-success mt-3 mb-3 text-white" id="approve" >{{trans('content.approve')}}</button>
+                                                <button type="submit" formaction="{{url('approve', $applicant->reference_no)}}"class="btn btn-sm btn-success mt-3 mb-3 text-white" id="approve">{{trans('content.approve')}}</button>
                                                 <button type="submit" formaction="{{url('reject', $applicant->reference_no)}}" class="btn btn-sm btn-danger mt-3 mb-3 text-white">{{trans('content.reject')}}</button>
                                                 <button type="submit" formaction="{{url('kiv', $applicant->reference_no)}}" class="btn btn-sm btn-warning mt-3 mb-3 text-white">KIV</button>
                                                 <a class="btn btn-secondary" data-dismiss="modal">{{trans('content.cancel')}}</a>
                                                 
                                             </div>
                                         </div>
+                                        
                                     </div><!-- form check class-->
                                 </form>
                             </div>

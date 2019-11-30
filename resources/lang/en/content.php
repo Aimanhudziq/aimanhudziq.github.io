@@ -71,6 +71,7 @@ return[
     'category' => 'Category',
     'bank_assign' => 'Bank Assign',
     'delete' => 'Delete',
+    'report' => 'Report',
 
     //Policy
     'policy_list' => 'Policy List',

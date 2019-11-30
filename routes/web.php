@@ -156,8 +156,15 @@ Route::get('user_excel_report', 'ReportController@export')
                 ->name('user-excel-report')
                 ->middleware('normal_user');
 
-Route::get('customer/print-pdf', 'CustomerController@printPDF')
-               ->name('customer_printpdf');
+// Route::get('/htmlPDF', 'PDFController@index');
+
+Route::get('/htmlPDF/pdf', 'PDFController@pdf')
+                ->name('html-pdf')
+                ->middleware('normal_user');
+
+Route::get('user_report', 'ReportController@userReport')
+                ->name('user-report')
+                ->middleware('normal_user'); //access by normal user only
 
 
 

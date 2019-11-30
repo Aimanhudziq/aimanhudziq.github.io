@@ -73,10 +73,22 @@ class UserController extends Controller
         $kiv = ClientDetail::whereIn('fstatus_code', ['2'])->get()->count();
         $approve = ClientDetail::whereIn('fstatus_code', ['1'])->get()->count();
         $reject = ClientDetail::whereIn('fstatus_code', ['0'])->get()->count();
+
+         $tot  = $new + $kiv + $approve + $reject;
+            //dd($tot);
         return view('user_dashboard', compact('new',$new,
                                                'kiv', $kiv, 
                                                 'approve', $approve,
-                                                 'reject', $reject));
+                                                 'reject', $reject,
+                                                    'tot', $tot)); 
+        
+    }
+
+
+    private function countTotalApplicant()
+    {
+        $total_app = ClientDetail::whereIn('fstatus_code', ['3','2','1','0'])->get()->count();
+        return $total_app;
     }
 
     /**
@@ -143,11 +155,12 @@ class UserController extends Controller
                                 ->get();
 
         $allInfo = DB::table('client_details as cd')
-                     ->join('card_applications as ca', 'ca.freference_no', '=', 'cd.reference_no')
-                     ->where('ca.fstatus_code', 2)
+                     ->join('track_records as tr', 'tr.freference_no', '=', 'cd.reference_no')
+                     ->where('tr.new_status_code', 2)
                      ->groupBy('freference_no')
                      //->where('ca.freference_no', '=', 'cd.reference_no')
                      ->get();
+        //dd($allInfo);
 
         // $allInfo = ClientDetail::join('card_applications', 'reference_no', '=', 'freference_no')
         //                        ->where('fstatus_code',2)
@@ -198,20 +211,45 @@ class UserController extends Controller
     }
 
     public function userTrackLog()
-    {   $sumLog = DB::table('client_details as cd')
-                    ->join('track_records as tr', 'tr.freference_no', '=', 'cd.reference_no')
-                    ->join('card_applications as ca', 'ca.freference_no', '=', 'cd.reference_no')
-                    ->orderBy('tr.created_at', 'desc')
-                    ->get();
+     {    //$sumLog = DB::table('client_details as cd')
+    //                 ->join('track_records as tr', 'tr.freference_no', '=', 'cd.reference_no')
+    //                 ->join('card_applications as ca', 'ca.freference_no', '=', 'cd.reference_no')
+    //                 // ->orderBy('tr.created_at', 'desc')
+    //                 ->distinct('freference_no')
+    //                 ->get();
+        // dd($sumLog);
 
        // dd($sumLog);
-        $logs = DB::table('client_details')->orderBy('created_at', 'desc')->get();
+        // $logs = DB::table('client_details')
+        //            // ->where('fstatus_code', '!=', ['3']) //add for testing
+        //             ->orderBy('created_at', 'desc')
+        //             ->get();
+
+        // $logForStatus = DB::table('client_details')
+        //                      ->where('fstatus_code', '!=', ['3'])
+        //                      ->orderBy('created_at', 'desc')
+        //                      ->get();
+        // dd($logForStatus);
         // $trackRec = DB::table('track_records')->orderBy('created_at', 'desc')->get();
    //  $cardApp = DB::table('card_applications')->orderBy('created_at', 'desc')->get();
 
-       // $logs = Clientdetail::all();
-        // $trackRec = TrackRecord::all();
-        // $cardApp = CardApplication::all();
+        $data = DB::table('track_records as tr')
+                  ->join('card_applications as ca', 'ca.freference_no', '=', 'tr.freference_no')
+                //   ->groupBy('reference_no')
+                  ->get();
+        //dd($data);
+
+        // $logs = ClientDetail::all();
+
+        $logs = DB::table('client_details')
+                  ->where('fstatus_code', '!=', ['3'])
+                  ->orderBy('updated_at', 'desc')
+                  ->get();
+        // dd($logs);
+
+        $trackRec = TrackRecord::all();
+       
+        $cardApp = CardApplication::all();
         // $listarray=array();
        // dd($data);
         //dd($merge);
@@ -223,9 +261,11 @@ class UserController extends Controller
         // return view('users.user_track_log', compact('logs','listarray'));//;->with(['logs'=>$logs,
         //                                             //'trackRec'=>$trackRec]);
 
-       // return view('users.user_track_log')->with(['logs'=>$logs,'trackRec'=>$trackRec, 'sumLog'=>$sumLog]);
-        return view('users.user_track_log', compact('sumLog', 'logs'));
+        return view('users.user_track_log')->with(['logs'=>$logs,'trackRec'=>$trackRec, 'cardApp'=>$cardApp, 'data'=>$data]);
+       // return view('users.user_track_log', compact('sumLog', 'logs', 'logForStatus'));
     }
+
+    
 
 
     /**

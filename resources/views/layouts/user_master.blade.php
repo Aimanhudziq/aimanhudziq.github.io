@@ -80,55 +80,50 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     @include('sweet::alert')
     <script>
-    /*
-        new Vue({
-            el: '#app',
-                ready(){
-                    console.log("hello world");
-                },
-                data: {
-                    policy: false
-                },
-                methods:{
-                    disabledBtnApp:function(){
-                        var policy=document.getElementsByName("policy");
-                        for(var i=0; i< policy.length; i++) {
-                            if(policy[i].checked){
-                                console.log("ID checkbox=>", policy[i].id)
-                                btn = document.querySelector('.btn');
-                                btn.disabled = true;
-                            }
-                        }
-                    }
-                },
-                computed: {
-                    isDisabled: function(){
-                        console.log(this.policy);
-                        return this.policy;
-                }
-            }
-        })
-        */
+
     $(document).ready(function () {
         $(":checkbox").click(function () {
             var checkbox = $("input:checked").length;
-            data=checkbox;
-            if (checkbox > 0) {
-                $("#approve").addClass('disabled');
+
+            //var table = $("#bootstrap-data-table").DataTable();
+
+            //var client = 
+            /*
+            client.forEach(function(item){
+                var id = item.freference_id;
+                console.log("OKKKKKKKKKK"+id);
+            });*/
+            //for (i=0; i<table.length; i++){
+            //if (table.buttons({selected:true})){
+                if (checkbox > 0) {
+                $("#approve").prop("disabled", this.checked);
+                }
+                else {
+                $("#approve").prop("disabled", !this.checked);
+                }
+//}
+            //}
+            
+        });
+    });
+/*
+    $(document).ready(function () {
+        $('#tbName').on('input change', function () {
+            if ($(this).val() != '') {
+                $('#submit').prop('disabled', false);
             }
             else {
-                $("#approve").removeClass("disabled");
+                $('#submit').prop('disabled', true);
             }
         });
     });
+    */
     </script>  
     <script>
         var locale = '{{ config('app.locale') }}';
         console.log(locale);
 
-        var tmp = {!! json_encode($reject) !!};
-        console.log(tmp);
-
+     
 
     </script>
     <script type="text/javascript">

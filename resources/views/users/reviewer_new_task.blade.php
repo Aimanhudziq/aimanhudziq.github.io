@@ -1,5 +1,18 @@
 @extends('layouts.user_master')
+<style>
+<style>
+    p#commentPolicy {
+        font-style: normal;
+        font-family: "Times New Roman", Times, serif;
+    }
 
+    p#violated_policy{
+        font-style: normal;
+        font-family: "Times New Roman", Times, serif;
+        color:red;
+    }
+</style>
+</style>
 @section('content')
 <div class="animated fadeIn">
     <div class="row">
@@ -91,24 +104,24 @@
 
 <!--Modal Body Start-->
 <div class="modal fade" id="comment" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel1" aria-hidden="true">
-    <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
         
-            <div class="modal-body alert-success">
-                <div class="alert alert-success" role="alert">
+            <div class="modal-body">
+                <div class="alerts" role="alert">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                     </button>
                     
                     <h4 class="alert-heading">Comment:</h4>
                     
-                    <p id="commentPolicy"></p>
+                    <p style="background-color:#0f4a7d; color:white" id="commentPolicy"></p>
                     
                     <hr>
 
                     <h4 class="alert-heading">Violated Policy:</h4>
 
-                    <p id="policyComment"> </p>
+                    <p id="violated_policy"> </p>
                 
                    
                 </div>
@@ -214,9 +227,10 @@ commentInfo.forEach(function(item){
     document.getElementById("commentPolicy").innerHTML=item.comment;
     // tr.appendChild(comment);
    
-    document.getElementById("policyComment").innerHTML=item.violated_policy;
+    document.getElementById("violated_policy").innerHTML=item.violated_policy;
     }
 });
 }
 </script>
+
 @endsection
