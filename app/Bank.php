@@ -18,5 +18,8 @@ class Bank extends Model
         return $this->hasMany('App\ClientDetail','fbank_code', 'bank_code');
     }
 
+    function bank_branch(){
+        return $this->hasMany('App\BankBranch', 'fbank_code', 'bank_code');
+    }
 }
 
