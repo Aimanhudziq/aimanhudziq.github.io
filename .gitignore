@@ -15,6 +15,7 @@ yarn-error.log
 maybankpica.sqlite
 composer.lock
 package-lock.json
+package.json
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json

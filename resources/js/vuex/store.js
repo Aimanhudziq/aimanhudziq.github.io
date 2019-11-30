@@ -4,6 +4,6 @@ Vue.use(Vuex);
 import CardApplicationFormStore from '../components/CardApplication/CardApplicationFormStore';
 export default new Vuex.Store({
     modules:{
-        CardApplicationFormStore
+        cardapplication:CardApplicationFormStore
     }
 });
