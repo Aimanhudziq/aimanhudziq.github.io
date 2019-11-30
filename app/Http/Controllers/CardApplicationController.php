@@ -2,6 +2,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\ClientDetail;
+use App\BankBranch;
+use App\Bank;
 
 class CardApplicationController extends Controller{
 
@@ -10,7 +13,12 @@ class CardApplicationController extends Controller{
     }
 
     function addApplication(Request $request){
-        return "1";
+        
+        $bank = Bank::select('bank_code', 'bank_name')
+                    ->with('bank_branch')
+                    ->get();
+
+        return json_encode($bank);
     }
 
 }
