@@ -102,28 +102,22 @@ class UserController extends Controller
          * 
          */
         
-        /*join table banks, bank_asiggnment_lists, client_details
-        
+        //join table banks, bank_asiggnment_lists, client_details
+        /*
         $user = DB::table('banks as b')
                     ->join('client_details as cd', 'cd.fbank_code', '=', 'b.bank_code')
                     ->join('bank_assignment_lists as ba', 'ba.fbank_code', '=', 'b.bank_code')
                     ->where('ba.fuser_staff_id', Auth::user()->user_staff_id)
                     ->groupBy('ba.fbank_code')
-                    ->get();*/
-        //$app_count = $user->count();
+                    ->get();
+        */
         $user = BankAssignmentList::where('fuser_staff_id', Auth::user()->user_staff_id)->get();
 
         $bank = Bank::join('client_details','bank_code','=','fbank_code')
                      ->where('fstatus_code', 3)
                      ->get(); 
         //dd($user);
-        $applicant = ClientDetail::select('fbank_code', 'reference_no')
-                    ->where('fbank_code', 101)
-                    ->get();
-        $tot = $applicant->count();
-        
-        //$total_applicant = $tot_app->count();
-        return view('users.user_list_bank')->with(['user'=>$user, 'tot'=>$tot]);
+        return view('users.user_list_bank')->with(['user'=>$user, 'bank'=>$bank]);
     }
 
     /**
@@ -203,9 +197,9 @@ class UserController extends Controller
                     ->whereIn('cd.fstatus_code',['3'])
                     ->get(); 
                     
-        $policy = Policy::all();
-
-        //dd($total_applicant);
+        $policy = Policy::all(); 
+        
+        
         return view('users.user_new_task')->with(['policy'=>$policy, 
                                                 'client'=>$client]);
     }
