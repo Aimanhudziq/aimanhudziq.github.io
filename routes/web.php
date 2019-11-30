@@ -161,6 +161,15 @@ Route::get('customer/print-pdf', 'CustomerController@printPDF')
 
 
 
+
+
+
+Route::group(['prefix' => 'maybank'], function()
+{
+    Route::get('/','CardApplicationController@index');
+    Route::post('/addCardApplication','CardApplicationController@addApplication');
+});
+
 //Route::post('password_email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password-email');
 //Route::get('password/reset', 'Auth\ResetPasswordController@reset');
 //Route::get('policy', 'PolicyController@policyList');
