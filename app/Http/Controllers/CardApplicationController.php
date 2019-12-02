@@ -80,13 +80,20 @@ class CardApplicationController extends Controller{
     public function getImageUrl()
     {
         $bank_code = 101;
+        $image_url ="";
+
         $image = request()->input('image_file');  // your base64 encoded
-        $image = str_replace('data:image/png;base64,', '', $image);
-        $image = str_replace(' ', '+', $image);
-       
-        \File::put(storage_path(). '/images/client/' . "feadrick.png", base64_decode($image));
-        
-        return storage_path(). '/images/client/' . "feadrick.png"; 
+        if(!empty($image))
+        {
+            $image = str_replace('data:image/png;base64,', '', $image);
+            $image = str_replace(' ', '+', $image);
+            $file_name = $bank_code. '_' .request()->input('ic_no').'.png';
+            \File::put(public_path(). '/images/client/' . $file_name, base64_decode($image));
+
+            $image_url = '/images/client/' . $file_name; 
+        }
+            
+        return $image_url;
             
     }
 

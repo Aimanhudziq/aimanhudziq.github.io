@@ -43,7 +43,6 @@
                             @endif
                         </a>
                         </td>
-<<<<<<< Updated upstream
                         <td>
                         <?php $total = 0; ?>
                         @foreach($bank as $b)
@@ -56,9 +55,6 @@
                         <span class="badge bg-default"> {{ $total }}</span>
                         </td>
                         
-=======
-                        <td><span class="badge bg-default">{{$tot}}</span></td>
->>>>>>> Stashed changes
                         <td><span class="badge bg-info">{{$b_code->created_at}}</span></td>
                         
                     </tr>

@@ -442,7 +442,7 @@ class AdminActionController extends Controller
             
             $image_name = date('d-m'). '_' .$image_file->getClientOriginalName();
             //$destination_path =  request()->file('image_file')->store('images/client');
-            $destination_path =  'images/client/';
+            $destination_path =  'images/client';
             $image_url = $image_file->move($destination_path, $image_name);
             //dd($image_url);
             return $image_url; 
