@@ -21,21 +21,47 @@ class CardApplicationController extends Controller{
                     ->with('bank_branch')
                     ->get();
 
-        return json_encode($bank);
+        return response()->json($bank);
     }
 
-    /*
-    function getUrl()
+    function addCardApplication($name,$ic,$phone_no, $branch_code, $image_url){
+
+        // $client_info = array([
+        //     'name'=>$name,
+        //     'ic'=>$ic,
+        //     'phone_no'=>$phone_no,
+        //     'branch_code'=>$branch_code,
+        //     'image_url'=>$image_url,
+        // ]);
+        $client_info = "test";
+        //dd($client_info);
+        return redirect()->action('CardApplicationController@index',compact('client_info'));
+    }
+
+    function submitCardApplication(Request $req)
     {
-        //$url = action('CardApplicationController@viewAllBankBranch');
-        $url = url()->current();
+        $bank_code = 101;
 
-        return json_encode($url);
-    }*/
+        $client = new ClientDetail;
+        $branch = BankBranch::select('branch_address')
+                            ->where('fbank_code',$bank_code)
+                            ->where('branch_code', $req->input('branch_code'))    
+                            ->first();
+        
+        $client->freference_no = $req->get('reference_no');
+        $client->full_name = $req->get('full_name');
+        $client->ic_no = $req->get('ic_no');
+        $client->phone_no = $req->get('phone_no');
+        $client->email = $req->get('email');
+        $client->address = $branch->branch_address;
+        $client->image_url = $req->get('image_url');
+        $client->fbank_code = $bank_code;
 
-    function addCardApplication($name,$ic){
-        return redirect()->action('CardApplicationController@index',compact('name','ic'));
+        $client->save();
+        
+
+
+
     }
-
 
 }

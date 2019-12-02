@@ -7,6 +7,6 @@ Route::group(['prefix' => 'maybank'], function()
 {
     Route::get('/','CardApplicationController@index');
     Route::get('/view_all_branches','CardApplicationController@viewAllBankBranch');
-    Route::get('/url','CardApplicationController@getUrl');
-    Route::get('/newcardapplication/{name}/{ic}/','CardApplicationController@addCardApplication');
+    Route::get('/newcardapplication/{name}/{ic}/{phone_no}/{branch_code}/{image_url}','CardApplicationController@addCardApplication');
+    Route::get('/submit_card_application','CardApplicationController@submitCardApplication');
 });

@@ -84,25 +84,12 @@
     $(document).ready(function () {
         $(":checkbox").click(function () {
             var checkbox = $("input:checked").length;
-
-            //var table = $("#bootstrap-data-table").DataTable();
-
-            //var client = 
-            /*
-            client.forEach(function(item){
-                var id = item.freference_id;
-                console.log("OKKKKKKKKKK"+id);
-            });*/
-            //for (i=0; i<table.length; i++){
-            //if (table.buttons({selected:true})){
                 if (checkbox > 0) {
                 $("#approve").prop("disabled", this.checked);
                 }
                 else {
                 $("#approve").prop("disabled", !this.checked);
                 }
-//}
-            //}
             
         });
     });
@@ -122,8 +109,6 @@
     <script>
         var locale = '{{ config('app.locale') }}';
         console.log(locale);
-
-     
 
     </script>
     <script type="text/javascript">

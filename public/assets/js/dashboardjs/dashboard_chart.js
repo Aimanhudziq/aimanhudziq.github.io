@@ -42,8 +42,8 @@ options: {
     var ctx = document.getElementById( "lineChart" );
     ctx.height = 125;
         var myChart = new Chart( ctx, {
-type: 'line',
-data: {
+    type: 'line',
+    data: {
     labels: [ "January", "February", "March", "April", "May", "June", "July", "August" ],
     datasets: [
         {
@@ -63,8 +63,8 @@ data: {
             data: [ 20, 47, 35, 43, 65, 45, 35, 60 ]
                     }
                 ]
-},
-options: {
+    },
+    options: {
     responsive: true,
     tooltips: {
         mode: 'index',
