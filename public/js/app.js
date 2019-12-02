@@ -1926,12 +1926,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    var ap = this;
+    axios.get('/api/maybank/view_all_branches/101').then(function (response) {
+      ap.branch_list = response.data;
+    });
+  },
   data: function data() {
     return {
+      branch_list: [],
       cropper: {},
       destination: {},
       src: String,
@@ -1939,7 +1945,7 @@ __webpack_require__.r(__webpack_exports__);
       mobile: "",
       email: "",
       ic: "",
-      branch_code: ""
+      selected_branch_code: ""
     };
   },
   methods: {
@@ -1990,7 +1996,8 @@ __webpack_require__.r(__webpack_exports__);
         mobile: this.mobile,
         ic: this.ic,
         email: this.email,
-        branch_code: this.branch_code
+        selected_branch_code: this.selected_branch_code,
+        image_file: this.destination
       };
       this.$store.dispatch('cardapplication/submitCardApplication', data);
     },
@@ -44236,8 +44243,8 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.branch_code,
-                    expression: "branch_code"
+                    value: _vm.selected_branch_code,
+                    expression: "selected_branch_code"
                   }
                 ],
                 staticClass: "form-control",
@@ -44251,17 +44258,18 @@ var render = function() {
                         var val = "_value" in o ? o._value : o.value
                         return val
                       })
-                    _vm.branch_code = $event.target.multiple
+                    _vm.selected_branch_code = $event.target.multiple
                       ? $$selectedVal
                       : $$selectedVal[0]
                   }
                 }
               },
-              [
-                _c("option", [_vm._v("001")]),
-                _vm._v(" "),
-                _c("option", [_vm._v("002")])
-              ]
+              _vm._l(_vm.branch_list, function(item, index) {
+                return _c("option", { key: index }, [
+                  _vm._v(_vm._s(item.branch_code))
+                ])
+              }),
+              0
             )
           ])
         ]),
@@ -57674,30 +57682,28 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   namespaced: true,
-  state: {
-    test: " this is test"
-  },
+  state: {},
   actions: {
     submitCardApplication: function submitCardApplication(context, data) {
-      var FormData = new FormData(); // console.log(FormData);
-
-      /*var ap=this;
+      var form = new FormData();
+      console.log(data);
+      var ap = this;
       axios.post('/maybank/addCardApplication', {
-         name: ap.name,
-         mobile:ap.mobile,
-         email:ap.email,
-         ic:ap.ic,
-         branch_code:ap.branch_code
-       })
-       .then(function (response) {
-         ap.pageRedirect(response.data);
-       })
-       .catch(function (error) {
-         console.log(error);
-       });*/
+        full_name: ap.name,
+        phone_no: ap.mobile,
+        email: ap.email,
+        ic_no: ap.ic,
+        image_file: ap.image_file,
+        branch_code: ap.branch_code
+      }).then(function (response) {
+        ap.pageRedirect(response.data);
+      })["catch"](function (error) {
+        console.log(error);
+      });
     }
   },
-  mutations: {}
+  mutations: {},
+  getters: {}
 });
 
 /***/ }),

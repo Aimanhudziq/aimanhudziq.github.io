@@ -15,13 +15,10 @@ class CardApplicationController extends Controller{
         return view('maybank.index')->with($request->all());
     }
 
-    function viewAllBankBranch(Request $request)
+    function viewAllBankBranch($bank_code)
     {
         
-        $bank = Bank::select('bank_code', 'bank_name')
-                    ->with('bank_branch')
-                    ->where('bank_code', 101)
-                    ->get();
+        $bank = BankBranch::where('fbank_code', $bank_code)->get();
 
         return response()->json($bank);
     }

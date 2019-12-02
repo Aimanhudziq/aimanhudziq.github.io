@@ -66,9 +66,8 @@
         <div class="form-group row">
         <label for="icnumber" class="col-sm-2 col-form-label">Branch Code</label>
         <div class="col-sm-6">
-        <select class="form-control" v-model="branch_code">
-            <option>001</option>
-            <option>002</option>
+        <select class="form-control" v-model="selected_branch_code">
+            <option v-for="(item,index) in branch_list" v-bind:key="index">{{item.branch_code}}</option>
         </select>
         </div>
         </div>
@@ -88,8 +87,16 @@
     import {mapState} from 'vuex';
     import Cropper from 'cropperjs';
     export default {
+        mounted(){
+            var ap=this;
+             axios.get('/api/maybank/view_all_branches/101')
+                .then(function (response) {
+                    ap.branch_list=response.data;
+                });    
+        },
         data:function(){
             return{
+                branch_list:[],
                 cropper:{},
                 destination:{},
                 src:String,
@@ -97,7 +104,7 @@
                 mobile:"",
                 email:"",
                 ic:"",
-                branch_code:"",
+                selected_branch_code:"",
             }
         },
        methods:{
@@ -137,6 +144,7 @@
             
         },
         save:function(){
+
             this.cropper.destroy();
         },
         submitApplication:function(){
@@ -145,7 +153,8 @@
                 mobile:this.mobile,
                 ic:this.ic,
                 email:this.email,
-                branch_code:this.branch_code,
+                selected_branch_code:this.selected_branch_code,
+                image_file:this.destination
                 
             }
             this.$store.dispatch('cardapplication/submitCardApplication',data);
