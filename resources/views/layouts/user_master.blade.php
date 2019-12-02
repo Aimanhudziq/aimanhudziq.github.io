@@ -122,20 +122,7 @@
     <script>
         var locale = '{{ config('app.locale') }}';
         console.log(locale);
-<<<<<<< HEAD
-        var new = '{{$new}}';
-        console.log(new);
-        var kiv = '{{$kiv}}';
-        console.log(kiv);
-        var approve = '{{$approve}}';
-        console.log(approve);
-        var reject = '{{$reject}}';
-        console.log(reject);
-=======
 
-     
-
->>>>>>> 8e8956de7a09894cdb1ec61169b6bbd1aa27a77c
     </script>
     <script type="text/javascript">
         $(document).ready(function() {
