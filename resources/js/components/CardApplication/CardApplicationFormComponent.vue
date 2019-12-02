@@ -88,8 +88,8 @@
     import {mapState} from 'vuex';
     import Cropper from 'cropperjs';
     export default {
-        props:['testname'],
-        mounted(){
+        props:['prop_cardapp'],
+        mounted(){ 
             console.log(this.testname);
         },
         data:function(){
@@ -97,7 +97,7 @@
                 cropper:{},
                 destination:{},
                 src:String,
-                name:this.testname,
+                name:"",
                 mobile:"",
                 email:"",
                 ic:"",
