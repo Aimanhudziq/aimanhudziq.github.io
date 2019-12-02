@@ -83,6 +83,7 @@ class CardApplicationController extends Controller{
         if(request()->hasFile('image_file'))
         {
             $image_file = base64_encode(file_get_contents(request()->file('image_file')));
+            
             //format: bank_code + ic_no client
             $image_name = $bank_code. '_' .str_slug(request()->get('ic_no')).'_' .$image_file->getClientOriginalName();
             $destination_path =  'images/client/';
@@ -104,33 +105,24 @@ class CardApplicationController extends Controller{
                             ->where('fbank_code',$bank_code)
                             ->where('branch_code', $req->get('branch_code'))    
                             ->first();
-<<<<<<< Updated upstream
-       $client->reference_no = $this->genRefNum();
-=======
 
         $client->reference_no = $this->genRefNum();
->>>>>>> Stashed changes
         $client->full_name = $req->get('full_name');
         $client->ic_no = $req->get('ic_no');
         $client->phone_number = $req->get('phone_no');
         $client->email = $req->get('email');
         $client->address = $banks->branch_address;
-<<<<<<< Updated upstream
-        $client->image_url ="test" ;//$this->getImageUrl();
-        $client->fbank_code = $bank_code;
-        
-=======
+        $client->fstatus_code = 3;
         $client->image_url = $this->getImageUrl();
         $client->fbank_code = $bank_code;
->>>>>>> Stashed changes
     
         $check_client = ClientDetail::where('ic_no', $client->ic_no)->get();
 
         if(count($check_client) > 0)
         {
             //return redirect()->back()->with('error','Client already registered to the system!');
-           return response()->json(['status' => 'error', 'message' => 'Client already registered to the system!']);
-       }
+            return response()->json(['status' => 'error', 'message' => 'Client already registered to the system!']);
+        }
 
         $client->save();
 

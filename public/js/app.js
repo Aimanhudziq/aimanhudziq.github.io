@@ -2001,7 +2001,7 @@ __webpack_require__.r(__webpack_exports__);
         image_file: this.destination
       };
       this.$store.dispatch('cardapplication/submitCardApplication', data).then(function (response) {
-        if (response.data.status == "succes") {
+        if (response.data.status == "success") {
           ap.pageRedirect(1);
         }
       });
@@ -57755,9 +57755,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\modular\Documents\dev\maybankpica\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Users\modular\Documents\dev\maybankpica\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\Users\modular\Documents\dev\maybankpica\node_modules\cropperjs\src\index.scss */"./node_modules/cropperjs/src/index.scss");
+__webpack_require__(/*! C:\Users\Jasvin Liyun\Documents\workspace\maybankpica\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\Jasvin Liyun\Documents\workspace\maybankpica\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\Users\Jasvin Liyun\Documents\workspace\maybankpica\node_modules\cropperjs\src\index.scss */"./node_modules/cropperjs/src/index.scss");
 
 
 /***/ })
