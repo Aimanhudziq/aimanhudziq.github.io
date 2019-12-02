@@ -1,7 +1,8 @@
 @extends('layouts.maybank_master')
 @section('content')
-<cardapplication :testname="'{{$name}}'"></cardapplication>
+<!--<cardapplication :testname="'{{}}'"></cardapplication> -->
 <!-- <div class="row" style="margin-bottom:10px;">
+<?php dd($client_info); ?>
 <div class="col-sm-12">
 <input
       class="file-input"
