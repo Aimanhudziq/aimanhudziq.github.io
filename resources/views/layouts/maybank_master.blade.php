@@ -26,29 +26,65 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
     <script  src="https://code.jquery.com/jquery-3.2.1.min.js" ></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
     <!-- Popup End -->
 </head>
 
 <body>
-    <!-- bank modal for bank -->     
-    <!-- side bar -->
-    @include('partials.user_sidebar')
-    <!-- /side bar -->
+  
+<aside id="left-panel" class="left-panel">
+    <nav class="navbar navbar-expand-sm navbar-default">
+        <div id="main-menu" class="main-menu collapse navbar-collapse">
+            <ul class="nav navbar-nav">
 
-    <!-- Right Panel -->
+                <li >
+                    <a href="#"><i class="menu-icon ti ti-layout ">
+                    </i>Dashboard </a>
+                </li>
+                
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+</aside>
+
+
     <div id="right-panel" class="right-panel">
-        <!-- Top bar-->
-        @include('partials.user_topbar')
+    <header id="header" class="header">
+    <div class="top-left">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="./"><img src="images/modular_logo.png" alt="Logo"></a>
+            <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>
+            <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
+        </div>
+    </div>
+    <div class="top-right">
+        <div class="header-menu">
+            <div class="user-area dropdown float-right">
+                {{ trans('login.welcome') }},
+                <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        
+               <i class="fa fa-user"></i><span class="caret"></span></a>
+               
+                <!-- language selection -->       
+                <div class="user-area">
+                    <?php $mark = (preg_match('/\?/', url()->current())) ? '&' : '?'; ?>
+                    <a href="{{ url(url()->current() . $mark . 'lang=my') }}">my</a> |
+                    <a href="{{ url(url()->current() . $mark . 'lang=en') }}">eng</a>
+                </div>
 
-        <!-- Content -->
-        <div class="content">
+                <div class="user-menu dropdown-menu">
+                    <a class="nav-link" href="#">Change Password</a>
+                    <a class="nav-link" href="#">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+        <div class="content" id="app">
             @yield('content')
         </div>
-
-        <!-- Footer -->
-        @include('partials.footer')
-
-    </div><!-- right panel -->
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
@@ -78,45 +114,7 @@
     <script src="{{ asset('assets/js/lib/data-table/buttons.colVis.min.js') }}"></script>
     <script src="{{ asset('assets/js/init/datatables-init.js') }}"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    @include('sweet::alert')
-    <script>
-
-    $(document).ready(function () {
-        $(":checkbox").click(function () {
-            var checkbox = $("input:checked").length;
-                if (checkbox > 0) {
-                $("#approve").prop("disabled", this.checked);
-                }
-                else {
-                $("#approve").prop("disabled", !this.checked);
-                }
-            
-        });
-    });
-/*
-    $(document).ready(function () {
-        $('#tbName').on('input change', function () {
-            if ($(this).val() != '') {
-                $('#submit').prop('disabled', false);
-            }
-            else {
-                $('#submit').prop('disabled', true);
-            }
-        });
-    });
-    */
-    </script>  
-    <script>
-        var locale = '{{ config('app.locale') }}';
-        console.log(locale);
-
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-          $('#bootstrap-data-table-export').DataTable();
-      } );
-    </script>
-    
+    <script src="{{asset('js/app.js')}}"></script>
 
 </body>
 </html>

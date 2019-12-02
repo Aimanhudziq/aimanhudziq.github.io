@@ -167,6 +167,12 @@ Route::get('user_report', 'ReportController@userReport')
                 ->middleware('normal_user'); //access by normal user only
 
 
+Route::group(['prefix' => 'maybank'], function()
+{
+    Route::get('/','CardApplicationController@index')->name('maybankui');
+});
+
+
 
 //Route::post('password_email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password-email');
 //Route::get('password/reset', 'Auth\ResetPasswordController@reset');

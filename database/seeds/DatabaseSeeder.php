@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AllowedTableSeeder::class);
         $this->call(BankTableSeeder::class);
         $this->call(StatusTableSeeder::class);
+        $this->call(BankBranchTableSeeder::class);
         //$this->call(TrackRecordSeeder::class);
 
         //1.run 'composer dump-autoload'
