@@ -159,7 +159,7 @@
                 
             }
             this.$store.dispatch('cardapplication/submitCardApplication',data).then((response)=>{
-                if(response.data.status=="succes"){
+                if(response.data.status=="success"){
                     ap.pageRedirect(1);
                 }
             })
