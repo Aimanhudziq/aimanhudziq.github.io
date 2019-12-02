@@ -84,8 +84,8 @@ class CardApplicationController extends Controller{
         {
             $image_file = request()->file('image_file');
             
+            //format: bank_code + ic_no client
             $image_name = $bank_code. '_' .str_slug(request()->get('ic_no')).'_' .$image_file->getClientOriginalName();
-            //$destination_path =  request()->file('image_file')->store('images/client');
             $destination_path =  'images/client/';
             $image_url = $image_file->move($destination_path, $image_name);
             //dd($image_url);
@@ -101,33 +101,37 @@ class CardApplicationController extends Controller{
         $client = new ClientDetail;
 
         //get the branch address from bank branch db 
-        $branch = BankBranch::select('branch_address')
+        $banks = BankBranch::select('branch_address')
                             ->where('fbank_code',$bank_code)
-                            ->where('branch_code', $req->input('branch_code'))    
+                            ->where('branch_code', $req->get('branch_code'))    
                             ->first();
-        
+        if($banks){
+            $bank_address = $banks->branch_address;
+        }
+
         $client->freference_no = $this->genRefNum();
         $client->full_name = $req->get('full_name');
         $client->ic_no = $req->get('ic_no');
         $client->phone_no = $req->get('phone_no');
         $client->email = $req->get('email');
-        $client->address = $branch->branch_address;
+        $client->address = $bank_address;
         $client->image_url = $this->getImageUrl();
         $client->fbank_code = $bank_code;
-
-        //$client->save();
-        
+        dd($client);
+    
         $check_client = ClientDetail::where('ic_no', $client->ic_no)->get();
 
         if(count($check_client) > 0)
         {
-            return $message="Client already registers";
+            //return redirect()->back()->with('error','Client already registered to the system!');
+            return response()->json(['status' => 'error', 'message' => 'Client already registered to the system!']);
         }
+
         $client->save();
 
-        return response()->json($client);
-
-
+        //return redirect()->back()->with('success','Client successfully registered!');
+        return response()->json(['status' => 'succes', 'message' => 'Client successfully registered!']);
+        
     }
 
 }
