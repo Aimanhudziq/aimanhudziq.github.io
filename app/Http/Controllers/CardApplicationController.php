@@ -80,18 +80,14 @@ class CardApplicationController extends Controller{
     public function getImageUrl()
     {
         $bank_code = 101;
-        if(request()->hasFile('image_file'))
-        {
-            $image_file = base64_encode(file_get_contents(request()->file('image_file')));
+        $image = request()->input('image_file');  // your base64 encoded
+        $image = str_replace('data:image/png;base64,', '', $image);
+        $image = str_replace(' ', '+', $image);
+       
+        \File::put(storage_path(). '/images/client/' . "feadrick.png", base64_decode($image));
+        
+        return storage_path(). '/images/client/' . "feadrick.png"; 
             
-            //format: bank_code + ic_no client
-            $image_name = $bank_code. '_' .str_slug(request()->get('ic_no')).'_' .$image_file->getClientOriginalName();
-            $destination_path =  'images/client/';
-            $image_url = $image_file->move($destination_path, $image_name);
-            //dd($image_url);
-            return $image_url; 
-            
-        }
     }
 
     function submitCardApplication(Request $req)
@@ -105,7 +101,7 @@ class CardApplicationController extends Controller{
                             ->where('fbank_code',$bank_code)
                             ->where('branch_code', $req->get('branch_code'))    
                             ->first();
-
+        
         $client->reference_no = $this->genRefNum();
         $client->full_name = $req->get('full_name');
         $client->ic_no = $req->get('ic_no');
