@@ -110,8 +110,6 @@
         var locale = '{{ config('app.locale') }}';
         console.log(locale);
 
-     
-
     </script>
     <script type="text/javascript">
         $(document).ready(function() {
