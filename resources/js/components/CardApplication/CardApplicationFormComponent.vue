@@ -148,6 +148,7 @@
             this.cropper.destroy();
         },
         submitApplication:function(){
+            var ap=this;
             var data={
                 name:this.name,
                 mobile:this.mobile,
@@ -157,8 +158,11 @@
                 image_file:this.destination
                 
             }
-            this.$store.dispatch('cardapplication/submitCardApplication',data);
-           
+            this.$store.dispatch('cardapplication/submitCardApplication',data).then((response)=>{
+                if(response.data.status=="succes"){
+                    ap.pageRedirect(1);
+                }
+            })
         },
         pageRedirect:function(result){
             if(result==1){

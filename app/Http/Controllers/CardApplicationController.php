@@ -105,27 +105,23 @@ class CardApplicationController extends Controller{
                             ->where('fbank_code',$bank_code)
                             ->where('branch_code', $req->get('branch_code'))    
                             ->first();
-        if($banks){
-            $bank_address = $banks->branch_address;
-        }
-
-        $client->freference_no = $this->genRefNum();
+       $client->reference_no = $this->genRefNum();
         $client->full_name = $req->get('full_name');
         $client->ic_no = $req->get('ic_no');
-        $client->phone_no = $req->get('phone_no');
+        $client->phone_number = $req->get('phone_no');
         $client->email = $req->get('email');
-        $client->address = $bank_address;
-        $client->image_url = $this->getImageUrl();
+        $client->address = $banks->branch_address;
+        $client->image_url ="test" ;//$this->getImageUrl();
         $client->fbank_code = $bank_code;
-        dd($client);
+        
     
         $check_client = ClientDetail::where('ic_no', $client->ic_no)->get();
 
         if(count($check_client) > 0)
         {
             //return redirect()->back()->with('error','Client already registered to the system!');
-            return response()->json(['status' => 'error', 'message' => 'Client already registered to the system!']);
-        }
+           return response()->json(['status' => 'error', 'message' => 'Client already registered to the system!']);
+       }
 
         $client->save();
 

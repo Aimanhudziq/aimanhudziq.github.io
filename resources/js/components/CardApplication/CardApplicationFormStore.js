@@ -4,24 +4,23 @@ export default{
     },
     actions:{
         submitCardApplication(context,data){
+            return new Promise((resolve,reject)=>{
+                axios.post('api/maybank/submit_card_application',{
+                    full_name:data.name,
+                    phone_no:data.mobile,
+                    email:data.email,
+                    ic_no:data.ic,
+                    image_file:data.image_file,
+                    branch_code:data.selected_branch_code
+                  })
+                  .then(function (response) {
+                    resolve(response);
+                  })
+                  .catch(function (error) {
+                    reject(error);
+                  });
+            });
             
-           let form=new FormData();
-           console.log(data);
-             var ap=this;
-            axios.post('/maybank/addCardApplication', {
-                full_name: ap.name,
-                phone_no:ap.mobile,
-                email:ap.email,
-                ic_no:ap.ic,
-                image_file:ap.image_file,
-                branch_code:ap.branch_code
-              })
-              .then(function (response) {
-                ap.pageRedirect(response.data);
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
         },
     },
     mutations:{
