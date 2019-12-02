@@ -23,7 +23,7 @@
                     @else
                         <div class="card-right  float-right">
                             <h3 class="mb-0 fw-r">
-                                <span class="count">{{ $new }} / {!!$tot!!}</span>
+                                <span>{{ $new }} / {!!$tot!!}</span>
                             </h3>
                             <p class="text-light mt-1 m-0">{{ trans('dashboard.new') }}</p>
                         </div><!-- /.card-right -->
@@ -40,7 +40,7 @@
                         <i class="icon fade-5 icon-lg fa fa-eye"></i>
                     </div><!-- /.card-left -->
                     @if(Auth::user()->frole_code == 2)
-                    <a href="{{ url('user_kiv_list') }}" class="">
+                    <a href="{{ url('reviewer_list_bank') }}" class="">
                         <div class="card-right  float-right">
                             <h3 class="mb-0 fw-r">
                                 <span>{{ $kiv }} / {{$tot}}</span>
