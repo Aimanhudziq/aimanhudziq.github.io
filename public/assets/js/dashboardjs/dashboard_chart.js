@@ -5,10 +5,10 @@ jQuery(document).ready(function($) {
     var ctx = document.getElementById( "doughutChart" );
     ctx.height = 250;
     var myChart = new Chart( ctx, {
-    type: 'doughnut',
+    type: 'pie',
     data: {
         datasets: [ {
-            data: [ 23, 14, 6, 3 ],
+            data: [ baru, kiv, reject, approve ],
             backgroundColor: [
                             "rgba(3, 169, 243, 1)",
                             "rgba(171, 140, 228, 1)",

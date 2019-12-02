@@ -110,6 +110,13 @@
         var locale = '{{ config('app.locale') }}';
         console.log(locale);
 
+        //var approve = $('#approve').val().trim();
+        var baru = "{{$new}}";
+        var kiv = "{{$kiv}}";
+        var reject = "{{$reject}}";
+        var approve = "{{$approve}}";
+        console.log(approve);
+
     </script>
     <script type="text/javascript">
         $(document).ready(function() {

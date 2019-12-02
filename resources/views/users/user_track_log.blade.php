@@ -229,6 +229,7 @@ trackrec.forEach(function(item){
 
 function getstrcode(stcd){
     var strcode="";
+    var className ="";
 switch(stcd){
     case 3:
         strcode="new";
