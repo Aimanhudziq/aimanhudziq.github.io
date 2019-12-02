@@ -18,16 +18,20 @@
     <img :src="src" id="originalimage"/>
     </div>
     <div class="col-sm-6">
-    <img :src="destination" id="destimage" class="img-preview"/>
+    <img :src="destination" id="destimage" class="img-preview" style="height:200;width:200px;">
     </div>
    
 </div>
 <div class="row" style="margin-top:10px;">
     <div class="col-sm-12">
-    <button class="btn btn-primary" @click="editImage">edit image</button>
-     &nbsp;<button class="btn btn-success" @click="save">save</button>
+    <button class="btn btn-primary" @click="editImage" :disabled="isfileuploaded==false">edit image</button>
+     &nbsp;<button class="btn btn-warning" @click="saveori" :disabled="isfileuploaded==false">use Original</button>
+     &nbsp;<button class="btn btn-success" @click="save" :disabled="editstate==false">use modified</button>
     </div>
-    
+    <div class="col-sm-12">
+        <br>
+        <h6><b>selected image :{{image_file_selection_status}}</b></h6>
+    </div>
 </div>
 <hr>
 <div class="row">
@@ -105,6 +109,10 @@
                 email:"",
                 ic:"",
                 selected_branch_code:"",
+                selected_image:"",
+                image_file_selection_status:"not selected",
+                editstate:false,
+                isfileuploaded:false
             }
         },
        methods:{
@@ -117,6 +125,7 @@
                     reader.onload = function(e){
                         
                          ap.src=e.target.result;
+                         ap.isfileuploaded=true;
                         
                     }
                     reader.readAsDataURL(files[0]);
@@ -124,18 +133,16 @@
            
         },
         editImage:function(){
+            this.editstate=true;
             this.cropper = new Cropper(document.getElementById("originalimage"), {
-                aspectRatio: 1,
-                autoCropArea: 0.6, // Center 60%
                 multiple: false,
-                dragCrop: false,
+                dragCrop: true,
                 dashed: true,
                 movable: false,
                 zoomable:true,
                 resizable: false,
                 checkCrossOrigin:false,
-                maxBoxWidth: 50,
-                maxBoxHeight: 50,
+                cropBoxResizable: true,
                 crop:()=>{
                     const canvas=this.cropper.getCroppedCanvas();
                     this.destination=canvas.toDataURL("images/png");     
@@ -144,8 +151,21 @@
             
         },
         save:function(){
-
             this.cropper.destroy();
+            this.image_file_selection_status="modified image";
+            this.isfileuploaded=false;
+            this.editstate=false;
+            this.selected_image=this.destination;
+        },
+        saveori:function(){
+            if(this.cropper instanceof Cropper){
+                this.cropper.destroy();
+            }
+            this.image_file_selection_status="original image";
+            this.selected_image=this.src;
+             this.isfileuploaded=false;
+            this.editstate=false;
+            console.log(this.src);
         },
         submitApplication:function(){
             var ap=this;
@@ -155,14 +175,18 @@
                 ic:this.ic,
                 email:this.email,
                 selected_branch_code:this.selected_branch_code,
-                image_file:this.destination
+                image_file:this.selected_image
                 
             }
             this.$store.dispatch('cardapplication/submitCardApplication',data).then((response)=>{
                 if(response.data.status=="success"){
                     ap.pageRedirect(1);
+                }else{
+                    ap.pageRedirect(2);
                 }
-            })
+            }).catch((error)=>{
+                ap.pageRedirect(3);
+            });
         },
         pageRedirect:function(result){
             if(result==1){
@@ -170,6 +194,12 @@
                     'Application has Been Submitted',
                     '',
                     'success'
+                  )
+            }else{
+                Swal.fire(
+                    'fail to submit application',
+                    '',
+                    'error'
                   )
             }
         }

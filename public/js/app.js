@@ -1926,6 +1926,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1945,7 +1949,11 @@ __webpack_require__.r(__webpack_exports__);
       mobile: "",
       email: "",
       ic: "",
-      selected_branch_code: ""
+      selected_branch_code: "",
+      selected_image: "",
+      image_file_selection_status: "not selected",
+      editstate: false,
+      isfileuploaded: false
     };
   },
   methods: {
@@ -1959,6 +1967,7 @@ __webpack_require__.r(__webpack_exports__);
 
         reader.onload = function (e) {
           ap.src = e.target.result;
+          ap.isfileuploaded = true;
         };
 
         reader.readAsDataURL(files[0]);
@@ -1967,19 +1976,16 @@ __webpack_require__.r(__webpack_exports__);
     editImage: function editImage() {
       var _this = this;
 
+      this.editstate = true;
       this.cropper = new cropperjs__WEBPACK_IMPORTED_MODULE_1___default.a(document.getElementById("originalimage"), {
-        aspectRatio: 1,
-        autoCropArea: 0.6,
-        // Center 60%
         multiple: false,
-        dragCrop: false,
+        dragCrop: true,
         dashed: true,
         movable: false,
         zoomable: true,
         resizable: false,
         checkCrossOrigin: false,
-        maxBoxWidth: 50,
-        maxBoxHeight: 50,
+        cropBoxResizable: true,
         crop: function crop() {
           var canvas = _this.cropper.getCroppedCanvas();
 
@@ -1989,6 +1995,21 @@ __webpack_require__.r(__webpack_exports__);
     },
     save: function save() {
       this.cropper.destroy();
+      this.image_file_selection_status = "modified image";
+      this.isfileuploaded = false;
+      this.editstate = false;
+      this.selected_image = this.destination;
+    },
+    saveori: function saveori() {
+      if (this.cropper instanceof cropperjs__WEBPACK_IMPORTED_MODULE_1___default.a) {
+        this.cropper.destroy();
+      }
+
+      this.image_file_selection_status = "original image";
+      this.selected_image = this.src;
+      this.isfileuploaded = false;
+      this.editstate = false;
+      console.log(this.src);
     },
     submitApplication: function submitApplication() {
       var ap = this;
@@ -1998,17 +2019,23 @@ __webpack_require__.r(__webpack_exports__);
         ic: this.ic,
         email: this.email,
         selected_branch_code: this.selected_branch_code,
-        image_file: this.destination
+        image_file: this.selected_image
       };
       this.$store.dispatch('cardapplication/submitCardApplication', data).then(function (response) {
         if (response.data.status == "success") {
           ap.pageRedirect(1);
+        } else {
+          ap.pageRedirect(2);
         }
+      })["catch"](function (error) {
+        ap.pageRedirect(3);
       });
     },
     pageRedirect: function pageRedirect(result) {
       if (result == 1) {
         Swal.fire('Application has Been Submitted', '', 'success');
+      } else {
+        Swal.fire('fail to submit application', '', 'error');
       }
     }
   }
@@ -44069,6 +44096,7 @@ var render = function() {
       _c("div", { staticClass: "col-sm-6" }, [
         _c("img", {
           staticClass: "img-preview",
+          staticStyle: { height: "200", width: "200px" },
           attrs: { src: _vm.destination, id: "destimage" }
         })
       ])
@@ -44078,15 +44106,43 @@ var render = function() {
       _c("div", { staticClass: "col-sm-12" }, [
         _c(
           "button",
-          { staticClass: "btn btn-primary", on: { click: _vm.editImage } },
+          {
+            staticClass: "btn btn-primary",
+            attrs: { disabled: _vm.isfileuploaded == false },
+            on: { click: _vm.editImage }
+          },
           [_vm._v("edit image")]
         ),
         _vm._v("\r\n      "),
         _c(
           "button",
-          { staticClass: "btn btn-success", on: { click: _vm.save } },
-          [_vm._v("save")]
+          {
+            staticClass: "btn btn-warning",
+            attrs: { disabled: _vm.isfileuploaded == false },
+            on: { click: _vm.saveori }
+          },
+          [_vm._v("use Original")]
+        ),
+        _vm._v("\r\n      "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-success",
+            attrs: { disabled: _vm.editstate == false },
+            on: { click: _vm.save }
+          },
+          [_vm._v("use modified")]
         )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-12" }, [
+        _c("br"),
+        _vm._v(" "),
+        _c("h6", [
+          _c("b", [
+            _vm._v("selected image :" + _vm._s(_vm.image_file_selection_status))
+          ])
+        ])
       ])
     ]),
     _vm._v(" "),
