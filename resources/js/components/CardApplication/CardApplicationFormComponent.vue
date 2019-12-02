@@ -25,7 +25,7 @@
 <div class="row" style="margin-top:10px;">
     <div class="col-sm-12">
     <button class="btn btn-primary" @click="editImage">edit image</button>
-     &nbsp;<button class="btn btn-danger" @click="cancelEdit">cancel</button>
+     &nbsp;<button class="btn btn-success" @click="save">save</button>
     </div>
     
 </div>
@@ -88,10 +88,6 @@
     import {mapState} from 'vuex';
     import Cropper from 'cropperjs';
     export default {
-        props:['prop_cardapp'],
-        mounted(){ 
-            console.log(this.testname);
-        },
         data:function(){
             return{
                 cropper:{},
@@ -104,15 +100,7 @@
                 branch_code:"",
             }
         },
-       computed:{
-           ...mapState({
-                test:state=>state.cardapplication.test,
-            })
-       },
        methods:{
-           setTest:function(testdata){
-               this.$store.commit('cardapplication/SET_TEST',"main-main");
-           },
            onSelectFile:function(){
             const input = this.$refs.fileInput;
             const files = input.files;
@@ -148,7 +136,7 @@
             });
             
         },
-        cancelEdit:function(){
+        save:function(){
             this.cropper.destroy();
         },
         submitApplication:function(){
@@ -161,20 +149,7 @@
                 
             }
             this.$store.dispatch('cardapplication/submitCardApplication',data);
-            /*var ap=this;
-            axios.post('/maybank/addCardApplication', {
-                name: ap.name,
-                mobile:ap.mobile,
-                email:ap.email,
-                ic:ap.ic,
-                branch_code:ap.branch_code
-              })
-              .then(function (response) {
-                ap.pageRedirect(response.data);
-              })
-              .catch(function (error) {
-                console.log(error);
-              });*/
+           
         },
         pageRedirect:function(result){
             if(result==1){

@@ -1841,12 +1841,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var cropperjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! cropperjs */ "./node_modules/cropperjs/dist/cropper.js");
 /* harmony import */ var cropperjs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(cropperjs__WEBPACK_IMPORTED_MODULE_1__);
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 //
 //
 //
@@ -1936,31 +1930,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['testname'],
-  mounted: function mounted() {
-    console.log(this.testname);
-  },
   data: function data() {
     return {
       cropper: {},
       destination: {},
       src: String,
-      name: this.testname,
+      name: "",
       mobile: "",
       email: "",
       ic: "",
       branch_code: ""
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
-    test: function test(state) {
-      return state.cardapplication.test;
-    }
-  })),
   methods: {
-    setTest: function setTest(testdata) {
-      this.$store.commit('cardapplication/SET_TEST', "main-main");
-    },
     onSelectFile: function onSelectFile() {
       var input = this.$refs.fileInput;
       var files = input.files;
@@ -1999,7 +1981,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
       });
     },
-    cancelEdit: function cancelEdit() {
+    save: function save() {
       this.cropper.destroy();
     },
     submitApplication: function submitApplication() {
@@ -2011,20 +1993,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         branch_code: this.branch_code
       };
       this.$store.dispatch('cardapplication/submitCardApplication', data);
-      /*var ap=this;
-      axios.post('/maybank/addCardApplication', {
-          name: ap.name,
-          mobile:ap.mobile,
-          email:ap.email,
-          ic:ap.ic,
-          branch_code:ap.branch_code
-        })
-        .then(function (response) {
-          ap.pageRedirect(response.data);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });*/
     },
     pageRedirect: function pageRedirect(result) {
       if (result == 1) {
@@ -44104,8 +44072,8 @@ var render = function() {
         _vm._v("\r\n      "),
         _c(
           "button",
-          { staticClass: "btn btn-danger", on: { click: _vm.cancelEdit } },
-          [_vm._v("cancel")]
+          { staticClass: "btn btn-success", on: { click: _vm.save } },
+          [_vm._v("save")]
         )
       ])
     ]),
@@ -57711,14 +57679,25 @@ __webpack_require__.r(__webpack_exports__);
   },
   actions: {
     submitCardApplication: function submitCardApplication(context, data) {
-      console.log(data);
+      var FormData = new FormData(); // console.log(FormData);
+
+      /*var ap=this;
+      axios.post('/maybank/addCardApplication', {
+         name: ap.name,
+         mobile:ap.mobile,
+         email:ap.email,
+         ic:ap.ic,
+         branch_code:ap.branch_code
+       })
+       .then(function (response) {
+         ap.pageRedirect(response.data);
+       })
+       .catch(function (error) {
+         console.log(error);
+       });*/
     }
   },
-  mutations: {
-    SET_TEST: function SET_TEST(state, test) {
-      state.test = test;
-    }
-  }
+  mutations: {}
 });
 
 /***/ }),
@@ -57766,9 +57745,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Jasvin Liyun\Documents\workspace\maybankpica\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Users\Jasvin Liyun\Documents\workspace\maybankpica\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\Users\Jasvin Liyun\Documents\workspace\maybankpica\node_modules\cropperjs\src\index.scss */"./node_modules/cropperjs/src/index.scss");
+__webpack_require__(/*! C:\Users\modular\Documents\dev\maybankpica\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\modular\Documents\dev\maybankpica\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\Users\modular\Documents\dev\maybankpica\node_modules\cropperjs\src\index.scss */"./node_modules/cropperjs/src/index.scss");
 
 
 /***/ })
