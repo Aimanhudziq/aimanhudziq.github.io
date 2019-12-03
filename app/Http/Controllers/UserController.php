@@ -40,6 +40,7 @@ class UserController extends Controller
         return view('users.forgot_password');
     }
 
+    //change/reset password
     public function changePassword(Request $request){
         if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
             // The passwords matches
@@ -98,6 +99,7 @@ class UserController extends Controller
 
         return $month_info_count_apprv;
 
+<<<<<<< HEAD
     }
 
     public function countRejectByMonth()
@@ -134,6 +136,8 @@ class UserController extends Controller
 
     }
 
+=======
+>>>>>>> 29b610c3b41711b14455b5e8ca27dea45008e56c
     /**
      * normal user and reviewer landing page
      * 

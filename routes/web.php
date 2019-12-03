@@ -31,14 +31,14 @@ Route::post('password_reset', 'Auth\ResetPasswordController@reset')
                 ->name('password-update'); 
 
 //Reset password after  user/reviewer has been added into system 
-Route::get('password_reset', 'AdminActionController@showLinkRequestForm')
-                ->name('password-request'); 
-Route::post('password_email', 'AdminActionController@sendResetLinkEmail')
-                ->name('password-email');
-Route::get('password_reset/{token}', 'AdminActionController@showResetForm')
-                ->name('password-reset'); 
-Route::post('password_reset', 'AdminActionController@reset')
-                ->name('password-update'); 
+// Route::get('password_reset', 'AdminActionController@showLinkRequestForm')
+//                 ->name('password-request'); 
+// Route::post('password_email', 'AdminActionController@sendResetLinkEmail')
+//                 ->name('password-email');
+// Route::get('password_reset/{token}', 'AdminActionController@showResetForm')
+//                 ->name('password-reset'); 
+// Route::post('password_reset', 'AdminActionController@reset')
+//                 ->name('password-update'); 
 
 Route::get('user_dashboard', 'UserController@userDashboard')
                 ->name('user-dashboard')
@@ -81,7 +81,15 @@ Route::get('forgot_password', 'UserController@forgotPassword')
 
 Route::post('forgot_password', 'UserController@changePassword')
                 ->name('forgot-passwordReset')
-                ->middleware('user');   
+                ->middleware('user');
+                
+Route::get('forgot_passwordAdmin', 'AdminController@forgotPassword')
+                ->name('forgot_passwordAdmin')
+                ->middleware('admin');
+                
+Route::post('forgot_passwordAdmin', 'AdminController@changePasswordAdmin')
+                ->name('forgot-passwordResetAdmin')
+                ->middleware('admin'); 
 
 Route::get('admin_user_list', 'AdminController@getAllUser')
                 ->name('admin-user-list')

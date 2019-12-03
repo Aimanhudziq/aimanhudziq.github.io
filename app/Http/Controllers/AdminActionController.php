@@ -35,26 +35,7 @@ class AdminActionController extends Controller
     //redirect user after reset password
     protected $redirectTo = '/user_dashboard';
 
-     /**
-     * show form for user to enter their email
-     * 
-     */
-    public function showLinkRequestForm()
-    {
-        return view('auth.passwords.email');
-    }
-
-    /**
-     * show form for user to reset their password
-     * 
-     */
-    public function showResetForm(Request $request, $token = null)
-    {
-        return view('auth.passwords.reset')
-        ->with(
-            ['token' => $token, 'email' => $request -> email]
-        );
-    }
+   
 
     /**
      * Add new user with no dulipcate
@@ -87,10 +68,27 @@ class AdminActionController extends Controller
         $user->username = $request->input('username');
         $user->email = $request->input('email');
         $user->password = bcrypt($password);        //\Hash::make('Mrtesting009@');
-        $user->user_type = "Normal User";
+       // $user->user_type = "Normal User";
         $user->frole_code = $request->input('role_category');
         $user->created_at = Carbon::now();
 
+
+        
+        if($user->frole_code == 1)
+        {
+            $user->user_type = "Admin";
+        }
+        else if($user->frole_code == 2)
+        {
+            $user->user_type = "Reviewer";
+        }
+        else
+        {
+            $user->user_type = "Normal User";
+        }   
+        
+        // dd($user->user_staff_id,$user->first_name,$user->last_name,$user->username,$user->email,
+        // $user->password,$user->frole_code,$user->created_at,$user->user_type);
         $user->save();
 
 
@@ -109,180 +107,7 @@ class AdminActionController extends Controller
         ];
     }
 
-    /**
-     * reset user password
-     */
-    public function reset(Request $request)
-    {
-        $request->validate($this->rules(), $this->validationErrorMessages());
-        // Here we will attempt to reset the user's password. If it is successful we
-        // will update the password on an actual user model and persist it to the
-        // database. Otherwise we will parse the error and return the response.
-        $response = $this->broker()->reset(
-            $this->credentials($request), function ($user, $password) {
-                $this->resetPassword($user, $password);
-            }
-        );
-        // If the password was successfully reset, we will redirect the user back to
-        // the application's home authenticated view. If there is an error we can
-        // redirect them back to where they came from with their error message.
-        
-        return $response == Password::PASSWORD_RESET
-                    ? $this->sendResetResponse($request, $response)
-                    : $this->sendResetFailedResponse($request, $response);
-
-    }
-     /**
-     * use in reset function 
-     * 
-     */
-    protected function sendResetResponse(Request $request, $response)
-    {
-        return redirect($this->redirectPath())
-                            ->with('status', trans($response));
-    }
-
-    /**
-     * use in reset function 
-     * 
-     */
-    protected function sendResetFailedResponse(Request $request, $response)
-    {
-        return redirect()->back()
-                    ->withInput($request->only('email'))
-                    ->withErrors(['email' => trans($response)]);
-    }
-
-    /**
-     * use in reset function 
-     * 
-     */
-    protected function validationErrorMessages()
-    {
-        return [];
-    }
-
-    /**
-     * use in reset function 
-     * 
-     */
-    protected function rules()
-    {
-        return [
-            'token' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|confirmed|min:8',
-        ];
-    }
-
-    /**
-     * use in reset function 
-     * 
-     */
-    protected function credentials(Request $request)
-    {
-        return $request->only(
-            'email', 'password', 'password_confirmation', 'token'
-        );
-    }
-
-    /**
-     * use in reset function 
-     * 
-     */
-    protected function resetPassword($user, $password)
-    {
-        $user->password = Hash::make($password);
-
-        $user->setRememberToken(Str::random(60));
-
-        $user->save();
-
-        event(new PasswordReset($user));
-
-        $this->guard()->login($user);
-
-       // protected function resetPassword($user, $password)
-
-       /* $user->forceFill([
-            'password' => bcrypt($password),
-            'remember_token' => Str::random(60),
-        ])->save();*/
-
-    }
-
-    /**
-     * use in reset function 
-     * 
-     */
-    public function broker()
-    {
-        return Password::broker();
-    }
-
-    /**
-     * send password reset link to user
-     * 
-     */
-    public function sendResetLinkEmail(Request $request)
-    {
-        //dd($request->all());
-        $this->validateEmail($request);
-        // We will send the password reset link to this user. Once we have attempted
-        // to send the link, we will examine the response then see the message we
-        // need to show to the user. Finally, we'll send out a proper response.
-        $response = $this->broker()->sendResetLink(
-            $this->credentials($request)
-        );
-        return $response == Password::RESET_LINK_SENT
-                    ? $this->sendResetLinkResponse($request, $response)
-                    : $this->sendResetLinkFailedResponse($request, $response); 
-    
-    }
-    
-    /**
-     * Validate the email for the given request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return void
-     */
-    protected function validateEmail(Request $request)
-    {
-        $request->validate(['email' => 'required|email']);
-    }
-    /**
-     * Get the needed authentication credentials from the request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-
-    /**
-     * Get the response for a successful password reset link.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  string  $response
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
-     */
-    protected function sendResetLinkResponse(Request $request, $response)
-    {
-        return back()->with('status', trans($response));
-    }
-    /**
-     * Get the response for a failed password reset link.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  string  $response
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
-     */
-    protected function sendResetLinkFailedResponse(Request $request, $response)
-    {
-        return back()
-                ->withInput($request->only('email'))
-                ->withErrors(['email' => trans($response)]);
-    }
-
-
+  
     /**
      * Add new policy to the system
      */
