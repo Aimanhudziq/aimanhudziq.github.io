@@ -79,7 +79,6 @@
             </div>
         </div> <!--/Reject -->
 
-        <!-- Approve -->
         <div class="col-sm-6 col-lg-3">
             <div class="card text-white bg-flat-color-1">
                 <div class="card-body">
@@ -121,4 +120,39 @@
     </div>
 </div>
 <!-- /.orders -->   
+
+
+<!-- Approve -->
+        @foreach($count_aprv as $key => $value)
+        <?php 
+            $jan = $value['jan'];
+            $feb = $value['feb'];
+            $mac = $value['mac'];
+            $apr = $value['apr'];
+            $mei = $value['mei'];
+            $jun = $value['jun'];
+            $july = $value['july'];
+            $aug = $value['aug'];
+            $sept = $value['sept'];
+            $oct = $value['oct'];
+            $nov = $value['nov'];
+            $dec = $value['dec'];
+        ?>
+        @endforeach
+        @foreach($count_rej as $key => $value)
+        <?php 
+            $jan_r = $value['jan'];
+            $feb_r = $value['feb'];
+            $mac_r = $value['mac'];
+            $apr_r = $value['apr'];
+            $mei_r = $value['mei'];
+            $jun_r = $value['jun'];
+            $july_r = $value['july'];
+            $aug_r = $value['aug'];
+            $sept_r = $value['sept'];
+            $oct_r = $value['oct'];
+            $nov_r = $value['nov'];
+            $dec_r = $value['dec'];
+        ?>
+        @endforeach
 @endsection

@@ -8,7 +8,7 @@ use App\User;
 use App\BankAssignmentList;
 use App\Bank;
 use App\ClientDetail;
-
+use Carbon\Carbon;
 use App\CardApplication;
 
 use App\TrackRecord;
@@ -61,7 +61,78 @@ class UserController extends Controller
     } 
 
     
+    /**
+     * count by year
+     * count how many reject,approve in a month
+     */
 
+    public function countApproveByMonth()
+    {
+        $jan = ClientDetail::select('updated_at')->whereMonth('updated_at','01')->where('fstatus_code',1)->get()->count();
+        $feb = ClientDetail::select('updated_at')->whereMonth('updated_at','02')->where('fstatus_code',1)->get()->count();
+        $mac = ClientDetail::select('updated_at')->whereMonth('updated_at','03')->where('fstatus_code',1)->get()->count();
+        $apr = ClientDetail::select('updated_at')->whereMonth('updated_at','04')->where('fstatus_code',1)->get()->count();
+        $mei = ClientDetail::select('updated_at')->whereMonth('updated_at','05')->where('fstatus_code',1)->get()->count();
+        $jun = ClientDetail::select('updated_at')->whereMonth('updated_at','06')->where('fstatus_code',1)->get()->count();
+        $july = ClientDetail::select('updated_at')->whereMonth('updated_at','07')->where('fstatus_code',1)->get()->count();
+        $aug = ClientDetail::select('updated_at')->whereMonth('updated_at','08')->where('fstatus_code',1)->get()->count();
+        $sept = ClientDetail::select('updated_at')->whereMonth('updated_at','09')->where('fstatus_code',1)->get()->count();
+        $oct = ClientDetail::select('updated_at')->whereMonth('updated_at','10')->where('fstatus_code',1)->get()->count();
+        $nov = ClientDetail::select('updated_at')->whereMonth('updated_at','11')->where('fstatus_code',1)->get()->count();
+        $dec = ClientDetail::select('updated_at')->whereMonth('updated_at','12')->where('fstatus_code',1)->get()->count();
+       
+        $month_info_count_apprv[] =[
+            'jan'=>$jan,
+            'feb'=>$feb,
+            'mac'=>$mac,
+            'apr'=>$apr,
+            'mei'=>$mei,
+            'jun'=>$jun,
+            'july'=>$july,
+            'aug'=>$aug,
+            'sept'=>$sept,
+            'oct'=>$oct,
+            'nov'=>$nov,
+            'dec'=>$dec,
+        ];
+
+        return $month_info_count_apprv;
+
+    }
+
+    public function countRejectByMonth()
+    {
+        $jan = ClientDetail::select('updated_at')->whereMonth('updated_at','01')->where('fstatus_code',1)->get()->count();
+        $feb = ClientDetail::select('updated_at')->whereMonth('updated_at','02')->where('fstatus_code',0)->get()->count();
+        $mac = ClientDetail::select('updated_at')->whereMonth('updated_at','03')->where('fstatus_code',0)->get()->count();
+        $apr = ClientDetail::select('updated_at')->whereMonth('updated_at','04')->where('fstatus_code',0)->get()->count();
+        $mei = ClientDetail::select('updated_at')->whereMonth('updated_at','05')->where('fstatus_code',0)->get()->count();
+        $jun = ClientDetail::select('updated_at')->whereMonth('updated_at','06')->where('fstatus_code',0)->get()->count();
+        $july = ClientDetail::select('updated_at')->whereMonth('updated_at','07')->where('fstatus_code',0)->get()->count();
+        $aug = ClientDetail::select('updated_at')->whereMonth('updated_at','08')->where('fstatus_code',0)->get()->count();
+        $sept = ClientDetail::select('updated_at')->whereMonth('updated_at','09')->where('fstatus_code',0)->get()->count();
+        $oct = ClientDetail::select('updated_at')->whereMonth('updated_at','10')->where('fstatus_code',0)->get()->count();
+        $nov = ClientDetail::select('updated_at')->whereMonth('updated_at','11')->where('fstatus_code',0)->get()->count();
+        $dec = ClientDetail::select('updated_at')->whereMonth('updated_at','12')->where('fstatus_code',0)->get()->count();
+       
+        $month_info_count_reject[] =[
+            'jan'=>$jan,
+            'feb'=>$feb,
+            'mac'=>$mac,
+            'apr'=>$apr,
+            'mei'=>$mei,
+            'jun'=>$jun,
+            'july'=>$july,
+            'aug'=>$aug,
+            'sept'=>$sept,
+            'oct'=>$oct,
+            'nov'=>$nov,
+            'dec'=>$dec,
+        ];
+
+        return $month_info_count_reject;
+
+    }
 
     /**
      * normal user and reviewer landing page
@@ -74,13 +145,20 @@ class UserController extends Controller
         $approve = ClientDetail::whereIn('fstatus_code', ['1'])->get()->count();
         $reject = ClientDetail::whereIn('fstatus_code', ['0'])->get()->count();
 
-         $tot  = $new + $kiv + $approve + $reject;
-            //dd($tot);
+        $tot  = $new + $kiv + $approve + $reject;
+        
+
+        $count_aprv = $this->countApproveByMonth();
+        $count_rej = $this->countRejectByMonth();
+        //dd($count_aprv);
+
         return view('user_dashboard', compact('new',$new,
                                                'kiv', $kiv, 
                                                 'approve', $approve,
                                                  'reject', $reject,
-                                                    'tot', $tot)); 
+                                                    'tot', $tot,
+                                                    'count_aprv',$count_aprv,
+                                                        'count_rej',$count_rej)); 
         
     }
 

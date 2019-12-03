@@ -35,7 +35,6 @@
     <!-- side bar -->
     @include('partials.user_sidebar')
     <!-- /side bar -->
-
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
         <!-- Top bar-->
@@ -86,10 +85,10 @@
         $(":checkbox").click(function () {
             var checkbox = $("input:checked").length;
                 if (checkbox > 0) {
-                $("#approve").prop("disabled", this.checked);
+                $("#approve").prop("disabled", true);
                 }
                 else {
-                $("#approve").prop("disabled", !this.checked);
+                $("#approve").prop("disabled", false);
                 }
             
         });
@@ -110,15 +109,40 @@
 
     <script type="text/javascript">
         var locale = '{{ config('app.locale') }}';
-        console.log(locale);
+        //console.log({{trans('dashboard.reject')}});
 
-        //var approve = $('#approve').val().trim();
+        //*************** for display info to dashboard ******************* */
         var baru = "{{ $new }}";
         var kiv = "{{ $kiv }}";
         var reject = "{{ $reject }}";
         var approve = "{{ $approve }}";
-        console.log(approve);
-
+        //**************** end dashboard ********************************* */
+        //**************** approve by month ****************************** */
+        var jan = "{{ $jan }}";
+        var feb = "{{ $feb }}";
+        var mac = "{{ $mac }}";
+        var apr = "{{ $apr }}";
+        var mei = "{{ $mei }}";
+        var jun = "{{ $jun }}";
+        var july = "{{ $july }}";
+        var aug = "{{ $aug }}";
+        var sept = "{{ $sept }}";
+        var oct = "{{ $oct }}";
+        var nov = "{{ $nov }}";
+        var dec = "{{ $dec }}";
+        //***************** reject by month **************************** */
+        var jan_r = "{{ $jan_r }}";
+        var feb_r = "{{ $feb_r }}";
+        var mac_r = "{{ $mac_r }}";
+        var apr_r = "{{ $apr_r }}";
+        var mei_r = "{{ $mei_r }}";
+        var jun_r = "{{ $jun_r }}";
+        var july_r = "{{ $july_r }}";
+        var aug_r = "{{ $aug_r }}";
+        var sept_r = "{{ $sept_r }}";
+        var oct_r = "{{ $oct_r }}";
+        var nov_r = "{{ $nov_r }}";
+        var dec_r = "{{ $dec_r }}";
     </script>
 
     <script type="text/javascript">

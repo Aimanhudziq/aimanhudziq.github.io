@@ -3,7 +3,7 @@ jQuery(document).ready(function($) {
 
     // Pie chart flotPie1
     var ctx = document.getElementById( "doughutChart" );
-    ctx.height = 250;
+    ctx.height = 200;
     var myChart = new Chart( ctx, {
     type: 'pie',
     data: {
@@ -42,27 +42,28 @@ options: {
     var ctx = document.getElementById( "lineChart" );
     ctx.height = 125;
         var myChart = new Chart( ctx, {
-    type: 'line',
+    type: 'bar',
     data: {
-    labels: [ "January", "February", "March", "April", "May", "June", "July", "August" ],
-    datasets: [
+    labels: [ "Jan", "Feb", "March", "Apr", "May", "June", "July", "Aug","Sept", "Okt", "Nov","Dec"],
+    datasets: 
+    [
         {
             label: "Approve",
             borderColor: "rgba(0, 194, 146, 0.9)",
             borderWidth: "1",
             backgroundColor: "rgba(0, 194, 146, 0.5)",
             pointHighlightStroke: "rgba(26,179,148,1)",
-            data: [ 16, 32, 18, 27, 42, 33, 44, 6 ]
+            data: [jan, feb, mac, apr, mei, jun, july, aug, sept, oct, nov, dec]
             
-                    },
+        },
         {
             label: "Reject",
             borderColor: "rgba(0,0,0,.09)",
             borderWidth: "1",
             backgroundColor: "rgba(220, 53, 69, 0.5)",
-            data: [ 20, 47, 35, 43, 65, 45, 35, 60 ]
-                    }
-                ]
+            data: [ jan_r, feb_r, mac_r, apr_r, mei_r, jun_r, july_r, aug_r, sept_r, oct_r, nov_r, dec_r ]
+        }
+     ]
     },
     options: {
     responsive: true,
