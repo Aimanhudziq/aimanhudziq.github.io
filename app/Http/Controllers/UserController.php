@@ -99,7 +99,6 @@ class UserController extends Controller
 
         return $month_info_count_apprv;
 
-<<<<<<< HEAD
     }
 
     public function countRejectByMonth()
@@ -136,8 +135,6 @@ class UserController extends Controller
 
     }
 
-=======
->>>>>>> 29b610c3b41711b14455b5e8ca27dea45008e56c
     /**
      * normal user and reviewer landing page
      * 
