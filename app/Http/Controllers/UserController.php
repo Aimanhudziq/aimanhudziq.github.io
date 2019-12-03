@@ -40,6 +40,7 @@ class UserController extends Controller
         return view('users.forgot_password');
     }
 
+    //change/reset password
     public function changePassword(Request $request){
         if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
             // The passwords matches
@@ -61,7 +62,6 @@ class UserController extends Controller
     } 
 
     
-
 
     /**
      * normal user and reviewer landing page
