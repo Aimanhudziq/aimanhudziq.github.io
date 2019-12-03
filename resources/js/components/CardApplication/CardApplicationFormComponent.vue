@@ -18,16 +18,20 @@
     <img :src="src" id="originalimage"/>
     </div>
     <div class="col-sm-6">
-    <img :src="destination" id="destimage" class="img-preview"/>
+    <img :src="destination" id="destimage" class="img-preview" style="height:200;width:200px;">
     </div>
    
 </div>
 <div class="row" style="margin-top:10px;">
     <div class="col-sm-12">
-    <button class="btn btn-primary" @click="editImage">edit image</button>
-     &nbsp;<button class="btn btn-danger" @click="cancelEdit">cancel</button>
+    <button class="btn btn-primary" @click="editImage" :disabled="isfileuploaded==false">edit image</button>
+     &nbsp;<button class="btn btn-warning" @click="saveori" :disabled="isfileuploaded==false">use Original</button>
+     &nbsp;<button class="btn btn-success" @click="save" :disabled="editstate==false">use modified</button>
     </div>
-    
+    <div class="col-sm-12">
+        <br>
+        <h6><b>selected image :{{image_file_selection_status}}</b></h6>
+    </div>
 </div>
 <hr>
 <div class="row">
@@ -66,9 +70,8 @@
         <div class="form-group row">
         <label for="icnumber" class="col-sm-2 col-form-label">Branch Code</label>
         <div class="col-sm-6">
-        <select class="form-control" v-model="branch_code">
-            <option>001</option>
-            <option>002</option>
+        <select class="form-control" v-model="selected_branch_code">
+            <option v-for="(item,index) in branch_list" v-bind:key="index">{{item.branch_code}}</option>
         </select>
         </div>
         </div>
@@ -88,31 +91,31 @@
     import {mapState} from 'vuex';
     import Cropper from 'cropperjs';
     export default {
-        props:['testname'],
         mounted(){
-            console.log(this.testname);
+            var ap=this;
+             axios.get('/api/maybank/view_all_branches/101')
+                .then(function (response) {
+                    ap.branch_list=response.data;
+                });    
         },
         data:function(){
             return{
+                branch_list:[],
                 cropper:{},
                 destination:{},
                 src:String,
-                name:this.testname,
+                name:"",
                 mobile:"",
                 email:"",
                 ic:"",
-                branch_code:"",
+                selected_branch_code:"",
+                selected_image:"",
+                image_file_selection_status:"not selected",
+                editstate:false,
+                isfileuploaded:false
             }
         },
-       computed:{
-           ...mapState({
-                test:state=>state.cardapplication.test,
-            })
-       },
        methods:{
-           setTest:function(testdata){
-               this.$store.commit('cardapplication/SET_TEST',"main-main");
-           },
            onSelectFile:function(){
             const input = this.$refs.fileInput;
             const files = input.files;
@@ -122,6 +125,7 @@
                     reader.onload = function(e){
                         
                          ap.src=e.target.result;
+                         ap.isfileuploaded=true;
                         
                     }
                     reader.readAsDataURL(files[0]);
@@ -129,18 +133,16 @@
            
         },
         editImage:function(){
+            this.editstate=true;
             this.cropper = new Cropper(document.getElementById("originalimage"), {
-                aspectRatio: 1,
-                autoCropArea: 0.6, // Center 60%
                 multiple: false,
-                dragCrop: false,
+                dragCrop: true,
                 dashed: true,
                 movable: false,
                 zoomable:true,
                 resizable: false,
                 checkCrossOrigin:false,
-                maxBoxWidth: 50,
-                maxBoxHeight: 50,
+                cropBoxResizable: true,
                 crop:()=>{
                     const canvas=this.cropper.getCroppedCanvas();
                     this.destination=canvas.toDataURL("images/png");     
@@ -148,33 +150,43 @@
             });
             
         },
-        cancelEdit:function(){
+        save:function(){
             this.cropper.destroy();
+            this.image_file_selection_status="modified image";
+            this.isfileuploaded=false;
+            this.editstate=false;
+            this.selected_image=this.destination;
+        },
+        saveori:function(){
+            if(this.cropper instanceof Cropper){
+                this.cropper.destroy();
+            }
+            this.image_file_selection_status="original image";
+            this.selected_image=this.src;
+             this.isfileuploaded=false;
+            this.editstate=false;
+            console.log(this.src);
         },
         submitApplication:function(){
+            var ap=this;
             var data={
                 name:this.name,
                 mobile:this.mobile,
                 ic:this.ic,
                 email:this.email,
-                branch_code:this.branch_code,
+                selected_branch_code:this.selected_branch_code,
+                image_file:this.selected_image
                 
             }
-            this.$store.dispatch('cardapplication/submitCardApplication',data);
-            /*var ap=this;
-            axios.post('/maybank/addCardApplication', {
-                name: ap.name,
-                mobile:ap.mobile,
-                email:ap.email,
-                ic:ap.ic,
-                branch_code:ap.branch_code
-              })
-              .then(function (response) {
-                ap.pageRedirect(response.data);
-              })
-              .catch(function (error) {
-                console.log(error);
-              });*/
+            this.$store.dispatch('cardapplication/submitCardApplication',data).then((response)=>{
+                if(response.data.status=="success"){
+                    ap.pageRedirect(1);
+                }else{
+                    ap.pageRedirect(2);
+                }
+            }).catch((error)=>{
+                ap.pageRedirect(3);
+            });
         },
         pageRedirect:function(result){
             if(result==1){
@@ -182,6 +194,12 @@
                     'Application has Been Submitted',
                     '',
                     'success'
+                  )
+            }else{
+                Swal.fire(
+                    'fail to submit application',
+                    '',
+                    'error'
                   )
             }
         }

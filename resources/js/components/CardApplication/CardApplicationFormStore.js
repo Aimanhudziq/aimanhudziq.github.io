@@ -1,16 +1,30 @@
 export default{
     namespaced:true,
     state:{
-        test:" this is test"
     },
     actions:{
         submitCardApplication(context,data){
-            console.log(data);
-        }
+            return new Promise((resolve,reject)=>{
+                axios.post('api/maybank/submit_card_application',{
+                    full_name:data.name,
+                    phone_no:data.mobile,
+                    email:data.email,
+                    ic_no:data.ic,
+                    image_file:data.image_file,
+                    branch_code:data.selected_branch_code
+                  })
+                  .then(function (response) {
+                    resolve(response);
+                  })
+                  .catch(function (error) {
+                    reject(error);
+                  });
+            });
+            
+        },
     },
     mutations:{
-        SET_TEST(state,test){
-            state.test=test;
-        }
+    },
+    getters:{
     }
 }

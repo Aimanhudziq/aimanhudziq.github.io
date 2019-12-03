@@ -84,33 +84,12 @@ class UserController extends Controller
         
     }
 
-
-    private function countTotalApplicant()
-    {
-        $total_app = ClientDetail::whereIn('fstatus_code', ['3','2','1','0'])->get()->count();
-        return $total_app;
-    }
-
     /**
      * normal user whos assigned to the spesific bank
      * 
      */
     public function userListBank() 
     {   
-        /**
-         * $user = User::with('bank_assignment_list')->where('user_staff_id', Auth::user()->user_staff_id)->get();
-         * 
-         */
-        
-        //join table banks, bank_asiggnment_lists, client_details
-        /*
-        $user = DB::table('banks as b')
-                    ->join('client_details as cd', 'cd.fbank_code', '=', 'b.bank_code')
-                    ->join('bank_assignment_lists as ba', 'ba.fbank_code', '=', 'b.bank_code')
-                    ->where('ba.fuser_staff_id', Auth::user()->user_staff_id)
-                    ->groupBy('ba.fbank_code')
-                    ->get();
-        */
         $user = BankAssignmentList::where('fuser_staff_id', Auth::user()->user_staff_id)->get();
 
         $bank = Bank::join('client_details','bank_code','=','fbank_code')
@@ -160,15 +139,7 @@ class UserController extends Controller
                      ->groupBy('freference_no')
                      //->where('ca.freference_no', '=', 'cd.reference_no')
                      ->get();
-        //dd($allInfo);
-
-        // $allInfo = ClientDetail::join('card_applications', 'reference_no', '=', 'freference_no')
-        //                        ->where('fstatus_code',2)
-        //                        ->get();
-
-        // dd($allInfo);
-        //dd($client);
-        //dd($staff_info);
+   
         foreach($staff_info as $si)
         {
                if($si->frole_code == 3)
@@ -187,8 +158,7 @@ class UserController extends Controller
 
     public function userNewTask($bank_code)
     {   
-        //$client = Bank::with('client_details')->where('fuser_staff_id', Auth::user()->user_staff_id)->get();
-        
+
         $client  = DB::table('banks as b')
                     ->join('client_details as cd', 'cd.fbank_code', '=', 'b.bank_code')
                     ->join('bank_assignment_lists as ba', 'ba.fbank_code', '=', 'b.bank_code')
@@ -211,35 +181,11 @@ class UserController extends Controller
     }
 
     public function userTrackLog()
-     {    //$sumLog = DB::table('client_details as cd')
-    //                 ->join('track_records as tr', 'tr.freference_no', '=', 'cd.reference_no')
-    //                 ->join('card_applications as ca', 'ca.freference_no', '=', 'cd.reference_no')
-    //                 // ->orderBy('tr.created_at', 'desc')
-    //                 ->distinct('freference_no')
-    //                 ->get();
-        // dd($sumLog);
-
-       // dd($sumLog);
-        // $logs = DB::table('client_details')
-        //            // ->where('fstatus_code', '!=', ['3']) //add for testing
-        //             ->orderBy('created_at', 'desc')
-        //             ->get();
-
-        // $logForStatus = DB::table('client_details')
-        //                      ->where('fstatus_code', '!=', ['3'])
-        //                      ->orderBy('created_at', 'desc')
-        //                      ->get();
-        // dd($logForStatus);
-        // $trackRec = DB::table('track_records')->orderBy('created_at', 'desc')->get();
-   //  $cardApp = DB::table('card_applications')->orderBy('created_at', 'desc')->get();
+    { 
 
         $data = DB::table('track_records as tr')
                   ->join('card_applications as ca', 'ca.freference_no', '=', 'tr.freference_no')
-                //   ->groupBy('reference_no')
                   ->get();
-        //dd($data);
-
-        // $logs = ClientDetail::all();
 
         $logs = DB::table('client_details')
                   ->where('fstatus_code', '!=', ['3'])
@@ -250,54 +196,9 @@ class UserController extends Controller
         $trackRec = TrackRecord::all();
        
         $cardApp = CardApplication::all();
-        // $listarray=array();
-       // dd($data);
-        //dd($merge);
-       // $last = new $listarray();
-       //dd($listarray);
-       //dd($trackRec);
-      
-      //  return view('users.user_track_log', compact('logs'));
-        // return view('users.user_track_log', compact('logs','listarray'));//;->with(['logs'=>$logs,
-        //                                             //'trackRec'=>$trackRec]);
 
         return view('users.user_track_log')->with(['logs'=>$logs,'trackRec'=>$trackRec, 'cardApp'=>$cardApp, 'data'=>$data]);
-       // return view('users.user_track_log', compact('sumLog', 'logs', 'logForStatus'));
     }
 
-    
 
-
-    /**
-     * get status of the applicant card
-     * 
-     */
-    /*
-    public function getApplicantStatus()
-    {
-        $status_id = ClientDetail::select('fstatus_code')->get();
-      
-        foreach($status_id as $status_code)
-        {   
-            if($status_code->fstatus_code == 3)
-            {
-                $status_desc = "new";
-            }
-            else if($status_code->fstatus_code == 2)
-            {
-                $status_desc = 'kiv';
-            }
-            else if($status_code->fstatus_code == 1)
-            {
-                $status_desc = 'approve';
-            }
-            else
-            {
-                $status_desc = 'reject';
-            }
-
-            return $status_desc;
-        }
-    }
-    */
 }

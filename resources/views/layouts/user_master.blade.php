@@ -30,6 +30,7 @@
 </head>
 
 <body>
+<?php error_reporting(E_ALL ^ E_NOTICE); ?>
     <!-- bank modal for bank -->     
     <!-- side bar -->
     @include('partials.user_sidebar')
@@ -106,11 +107,20 @@
     });
     */
     </script>  
-    <script>
+
+    <script type="text/javascript">
         var locale = '{{ config('app.locale') }}';
         console.log(locale);
 
+        //var approve = $('#approve').val().trim();
+        var baru = "{{ $new }}";
+        var kiv = "{{ $kiv }}";
+        var reject = "{{ $reject }}";
+        var approve = "{{ $approve }}";
+        console.log(approve);
+
     </script>
+
     <script type="text/javascript">
         $(document).ready(function() {
           $('#bootstrap-data-table-export').DataTable();
