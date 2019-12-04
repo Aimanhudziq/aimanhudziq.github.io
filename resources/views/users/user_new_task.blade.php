@@ -103,7 +103,7 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-body" style="padding-bottom:0px" >
             <div class="row">
                 <div class="col-md-6">
-                    <img src="{{url($applicant->image_url)}}" alt="client images" height="150px" width="180px">
+                    <img src="{{url($applicant->image_url)}}" alt="client images" height="150px" width="250px">
                 </div>
                 <div class="col-md-6">
                     <div class="row">
@@ -126,9 +126,7 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                                 <form action="" method="GET">
                                     <div class="form-check" >
                                         <div id="app">
-
                                         @foreach($policy as $p)
-                                       
                                             <div class="checkbox">
                                                 <div class="col-xs-6">
                                                     <label for="policy" class="form-check-label" style="font-size:10px;">
@@ -138,7 +136,7 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                                                     </label>
                                                 </div>
                                             </div>
-                                            @endforeach
+                                        @endforeach
                                         
                                         <input type="hidden" name="currentuser" value='{{Auth::user()->first_name}}'>
                                         <input type="hidden" name="currentuserID" value='{{Auth::user()->user_staff_id}}'>

@@ -66,7 +66,6 @@ class UserController extends Controller
      * count by year
      * count how many reject,approve in a month
      */
-
     public function countApproveByMonth()
     {
         $jan = ClientDetail::select('updated_at')->whereMonth('updated_at','01')->where('fstatus_code',1)->get()->count();
