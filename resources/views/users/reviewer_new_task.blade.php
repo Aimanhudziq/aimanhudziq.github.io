@@ -152,14 +152,23 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                 <!--Body start-->
         <div class="modal-body" style="padding-bottom:0px" >
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <img src="{{url($applicant_reviewer->image_url)}}" alt="client images" height="150px" width="180px">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-9">
                     <div class="row">
                         <div class="col-lg-12">
                         <h6 class="card-text" style="font-size:12px">{{trans('content.ref_num')}} : <span class="badge bg-info" style="font-size:10px">{{$applicant_reviewer->reference_no}}</span></h6>
                         <h6 class="card-text" style="font-size:12px">{{trans('content.date')}} : <span class="badge bg-info" style="font-size:10px">{{$applicant_reviewer->created_at}}</span> </h6>
+                        @foreach($allInfo as $info)
+                        @if($applicant_reviewer->reference_no == $info->reference_no)
+                        <h6 class="card-text" style="font-size:12px">{{trans('content.violated_policy')}} : <span class="badge bg-info" style="font-size:10px">{{$info->violated_policy}}</span> </h6>
+                        <h6 class="card-text" style="font-size:12px">{{trans('content.comment')}} : <span class="badge bg-info" style="font-size:10px">{{$info->comment}}</span> </h6>
+                        
+
+                        </div>
+                        @endif
+                        @endforeach
                         </div>
                     </div>
                 </div>
@@ -203,9 +212,9 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                                             @endif
                                         </div>
                                             <div class="modal-footer" style="padding-bottom:0px" >
-                                                <button type="submit" formaction="{{url('approve_checker', $applicant_reviewer->reference_no)}}" class="btn btn-sm btn-success mt-3 mb-3 text-white" id="approve">{{trans('content.approve')}}</a>
-                                                <button type="submit" formaction="{{url('reject_checker', $applicant_reviewer->reference_no)}}" class="btn btn-sm btn-danger mt-3 mb-3 text-white">{{trans('content.reject')}}</a>
-                                                <button type="submit" formaction="btn btn-secondary" data-dismiss="modal">{{trans('content.cancel')}}</a>
+                                                <button type="submit" formaction="{{url('approve_checker', $applicant_reviewer->reference_no)}}" class="btn btn-sm btn-success mt-3 mb-3 text-white" id="approve">{{trans('content.approve')}}</button>
+                                                <button type="submit" formaction="{{url('reject_checker', $applicant_reviewer->reference_no)}}" class="btn btn-sm btn-danger mt-3 mb-3 text-white">{{trans('content.reject')}}</button>
+                                                <a class="btn btn-secondary" data-dismiss="modal">{{trans('content.cancel')}}</a>
                                             </div>
                                         </div>
                                     </div><!-- form check class-->
@@ -221,19 +230,15 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
 </div>
 <!--Modal Body End-->
 @endforeach
+@if (count($errors) > 0)
 <script>
-function testDisplay(ref){
-var commentInfo=<?php echo json_encode($allInfo);?>;
-commentInfo.forEach(function(item){
-    if(ref==item.freference_no){
-   
-    document.getElementById("commentPolicy").innerHTML=item.comment;
-    // tr.appendChild(comment);
-   
-    document.getElementById("violated_policy").innerHTML=item.violated_policy;
-    }
-});
-}
+
+    $( document ).ready(function()
+    {
+        $('#client_details{{$applicant_reviewer->ic_no}}').modal('show');
+    });
+    
 </script>
+@endif
 
 @endsection

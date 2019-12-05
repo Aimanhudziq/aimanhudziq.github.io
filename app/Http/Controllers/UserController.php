@@ -217,6 +217,8 @@ class UserController extends Controller
                      ->groupBy('freference_no')
                      //->where('ca.freference_no', '=', 'cd.reference_no')
                      ->get();
+
+    //dd($allInfo);
    
         foreach($staff_info as $si)
         {

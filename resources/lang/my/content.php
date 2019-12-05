@@ -85,6 +85,7 @@ return[
     'policy_details'=> 'Butiran Polisi',
     'allowed' => 'Dibenarkan',
     'not_allowed' => 'Tidak Dibenarkan',
+    'violated_policy' => 'Kesalahan Polisi',
 
     //Bank
     'bank_assign' => 'Tugasan Bank',

@@ -83,6 +83,7 @@ return[
     'policy_details'=> 'Policy Details',
     'allowed' => 'Allowed',
     'not_allowed' => 'Not Allowed',
+    'violated_policy' => 'Violated Policy',
 
     //Bank
     'bank_assign' => 'Bank Assignment',

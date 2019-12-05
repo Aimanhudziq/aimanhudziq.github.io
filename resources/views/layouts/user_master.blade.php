@@ -151,6 +151,22 @@
       } );
     </script>
     
+    <script>
+
+    function testDisplay(ref){
+    var commentInfo=<?php echo json_encode($allInfo);?>;
+    commentInfo.forEach(function(item){
+        if(ref==item.freference_no){
+   
+        document.getElementById("commentPolicy").innerHTML=item.comment;
+        // tr.appendChild(comment);
+   
+        document.getElementById("violated_policy").innerHTML=item.violated_policy;
+        }
+    });
+    }
+    </script>
+    
 
 </body>
 </html>
