@@ -179,6 +179,10 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                         <div class="card">
                             <div class="card-header">
                                 <strong>{{trans('content.policy')}}</strong>
+                                @if($errors->has('policy'))
+                                <span class="help-block">
+                                <strong style='color: #a94442'>{{ $errors->first('policy') }}</strong>
+                                @endif
                             </div> <!--/card header -->
                             <div class="card-body" style="font-size: small; padding-top:0px; padding-bottom:0px">
                                 <form action="" method="GET">
@@ -238,6 +242,14 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
         $('#client_details{{$applicant_reviewer->ic_no}}').modal('show');
     });
     
+</script>
+@endif
+
+@if (count($errors) > 0)
+<script>
+    $( document ).ready(function() {
+        $('#client_details{{$applicant_reviewer->ic_no}}').modal('show');
+    });
 </script>
 @endif
 
