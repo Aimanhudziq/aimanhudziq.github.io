@@ -18,7 +18,10 @@ class StatusController extends Controller
        // $policy = request()->get('policy');
        // $user = request()->get('currentuser');
         
-       // dd($policy,$user);
+       $this->validate($request,[
+            'policy'=>'required',
+            'comment'=>'required',
+       ]);
 
         $status_code = ClientDetail::select('fstatus_code')
                                     ->where('reference_no', $ref_no)
@@ -50,10 +53,10 @@ class StatusController extends Controller
                 $policy = implode(",",(array)request()->get('policy'));
                 //$count = count($policy);
                 //dd($policy);
-
-                for($i = 0; $i < count(request()->get('policy')); $i++)
+                
+                for($i = 0; $i < count($request->get('policy')); $i++)
                 {
-                    $card->comment = request()->get('comment');
+                    $card->comment = $request->get('comment');
                     $card->violated_policy = $policy;
                    
                 }
@@ -149,8 +152,13 @@ class StatusController extends Controller
         }
     }
 
-    public function kiv($ref_no)
+    public function kiv(Request $request,$ref_no)
     {
+        $this->validate($request,[
+            'policy'=>'required',
+            'comment'=>'required',
+       ]);
+
         $status_code = ClientDetail::select('fstatus_code')
                                     ->where('reference_no', $ref_no)
                                     ->get();
@@ -181,10 +189,10 @@ class StatusController extends Controller
 
                 $policy = implode(",",(array)request()->get('policy'));
                 
-                for($i = 0; $i < count(request()->get('policy')); $i++)
+                for($i = 0; $i < count($request->get('policy')); $i++)
                 {
                     
-                    $card->comment = request()->get('comment');
+                    $card->comment = $request->get('comment');
                     $card->violated_policy = $policy;
                     
                     
@@ -227,8 +235,13 @@ class StatusController extends Controller
      * only allowed Approve and Reject
      */
 
-    public function rejectChecker($ref_no)
+    public function rejectChecker(Request $request, $ref_no)
     {
+        $this->validate($request,[
+            'policy'=>'required',
+            'comment'=>'required',
+        ]);
+
         $status_code = ClientDetail::select('fstatus_code')
                                     ->where('reference_no', $ref_no)
                                     ->get();
@@ -252,10 +265,10 @@ class StatusController extends Controller
 
             $policy = implode(",",(array)request()->get('policy'));
             
-            for($i = 0; $i < count(request()->get('policy')); $i++)
+            for($i = 0; $i < count($request->get('policy')); $i++)
             {
                 
-                $card->comment = request()->get('comment');
+                $card->comment = $request->get('comment');
                 $card->violated_policy = $policy;
                
             }

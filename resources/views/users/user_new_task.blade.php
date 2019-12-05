@@ -121,6 +121,10 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                         <div class="card">
                             <div class="card-header">
                                 <strong>{{trans('content.policy')}}</strong>
+                                @if($errors->has('policy'))
+                                <span class="help-block">
+                                <strong style='color: #a94442'>{{ $errors->first('policy') }}</strong>
+                                @endif
                             </div> <!--/card header -->
                             <div class="card-body" style="font-size: small; padding-top:0px; padding-bottom:0px">
                                 <form action="" method="GET">
@@ -149,7 +153,12 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                                            <label for="textarea-input" class=" form-control-label ml-3">{{trans('content.remarks')}}</label>
                                            <input type="text" textarea style="resize:none;font-size:11px;" name="comment"  placeholder="Content..." 
                                             class="form-control ml-3"></textarea>
-            
+
+                                            @if($errors->has('comment'))
+                                            <span class="help-block">
+                                            <strong style='color: #a94442'>{{ $errors->first('comment') }}</strong>
+                                            @endif
+
                                         </div>
                                             <div class="modal-footer" style="padding-bottom:0px" >
                                                 <button type="submit" formaction="{{url('approve', $applicant->reference_no)}}"class="btn btn-sm btn-success mt-3 mb-3 text-white" id="approve">{{trans('content.approve')}}</button>
@@ -172,8 +181,15 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
     </div>
 </div>
 <!--Modal Body End-->
+
 @endforeach
 
 
-
+@if (count($errors) > 0)
+<script>
+    $( document ).ready(function() {
+        $('#client_detail{{$applicant->ic_no}}').modal('show');
+    });
+</script>
+@endif
 @endsection
