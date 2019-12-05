@@ -170,6 +170,10 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                         <div class="card">
                             <div class="card-header">
                                 <strong>{{trans('content.policy')}}</strong>
+                                @if($errors->has('policy'))
+                                <span class="help-block">
+                                <strong style='color: #a94442'>{{ $errors->first('policy') }}</strong>
+                                @endif
                             </div> <!--/card header -->
                             <div class="card-body" style="font-size: small; padding-top:0px; padding-bottom:0px">
                                 <form action="" method="GET">
@@ -205,7 +209,7 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                                             <div class="modal-footer" style="padding-bottom:0px" >
                                                 <button type="submit" formaction="{{url('approve_checker', $applicant_reviewer->reference_no)}}" class="btn btn-sm btn-success mt-3 mb-3 text-white" id="approve">{{trans('content.approve')}}</a>
                                                 <button type="submit" formaction="{{url('reject_checker', $applicant_reviewer->reference_no)}}" class="btn btn-sm btn-danger mt-3 mb-3 text-white">{{trans('content.reject')}}</a>
-                                                <button type="submit" formaction="btn btn-secondary" data-dismiss="modal">{{trans('content.cancel')}}</a>
+                                                <button type="submit" formaction="btn btn-secondary" data-dismiss="modal" class="btn btn-sm btn-info mt-3 mb-3 text-white">{{trans('content.cancel')}}</button>
                                             </div>
                                         </div>
                                     </div><!-- form check class-->
@@ -235,5 +239,13 @@ commentInfo.forEach(function(item){
 });
 }
 </script>
+
+@if (count($errors) > 0)
+<script>
+    $( document ).ready(function() {
+        $('#client_details{{$applicant_reviewer->ic_no}}').modal('show');
+    });
+</script>
+@endif
 
 @endsection
