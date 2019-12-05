@@ -105,9 +105,8 @@ return[
     'add_client' => 'Tambah Butiran Pelanggan',
     'address' => 'Alamat',
     'upload' => 'Muatnaik Gambar',
-
-
-
+    
+    'additional_info' => 'Maklumat Tambahan',
 
  
       

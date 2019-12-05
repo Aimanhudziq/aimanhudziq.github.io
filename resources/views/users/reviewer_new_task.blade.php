@@ -159,16 +159,18 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                     <div class="row">
                         <div class="col-lg-12">
                         <h6 class="card-text" style="font-size:12px">{{trans('content.ref_num')}} : <span class="badge bg-info" style="font-size:10px">{{$applicant_reviewer->reference_no}}</span></h6>
-                        <h6 class="card-text" style="font-size:12px">{{trans('content.date')}} : <span class="badge bg-info" style="font-size:10px">{{$applicant_reviewer->created_at}}</span> </h6>
-                        @foreach($allInfo as $info)
-                        @if($applicant_reviewer->reference_no == $info->reference_no)
-                        <h6 class="card-text" style="font-size:12px">{{trans('content.violated_policy')}} : <span class="badge bg-info" style="font-size:10px">{{$info->violated_policy}}</span> </h6>
-                        <h6 class="card-text" style="font-size:12px">{{trans('content.comment')}} : <span class="badge bg-info" style="font-size:10px">{{$info->comment}}</span> </h6>
-                        
-
-                        </div>
-                        @endif
-                        @endforeach
+                        <h6 class="card-text" style="font-size:12px">{{trans('content.date')}} : <span class="badge bg-info" style="font-size:10px">{{$applicant_reviewer->created_at}}</span> </h6><br>
+                        <fieldset>
+                            <legend style="font-size:12px"><b>{{trans('content.additional_info')}}</b></legend>
+                            @foreach($allInfo as $info)
+                                @if($applicant_reviewer->reference_no == $info->reference_no)
+                                <h6 class="card-text" 
+                                    style="font-size:8px" ><span class="badge bg-danger">{{trans('content.violated_policy')}}</span> : <u><span style="font-size:11px">{{$info->violated_policy}}</span></u></h6>
+                                <h6 class="card-text" 
+                                    style="font-size:8px"><span class="badge bg-warning">{{trans('content.comment')}}</span> : <span style="font-size:11px">{{$info->comment}}</span> </h6>
+                                @endif
+                            @endforeach
+                        </fieldset>
                         </div>
                     </div>
                 </div>
@@ -236,18 +238,8 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
 @endforeach
 @if (count($errors) > 0)
 <script>
-
     $( document ).ready(function()
     {
-        $('#client_details{{$applicant_reviewer->ic_no}}').modal('show');
-    });
-    
-</script>
-@endif
-
-@if (count($errors) > 0)
-<script>
-    $( document ).ready(function() {
         $('#client_details{{$applicant_reviewer->ic_no}}').modal('show');
     });
 </script>

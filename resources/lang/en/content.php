@@ -104,7 +104,7 @@ return[
     'address' => 'Address',
     'upload' => 'Upload Image',
     
-    
+    'additional_info' => 'Additional Infomation',
 
 
 
