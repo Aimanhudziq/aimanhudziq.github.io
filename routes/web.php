@@ -60,8 +60,8 @@ Route::get('reviewer_list_bank', 'UserController@reviewerListBank')
                 ->name('reviewer-list-bank');
                 //->middleware('reviewer'); //access by reviewer only
 
-Route::get('reviewer_kiv', 'UserController@reviewerKiv')
-                ->name('reviewer-kiv');
+/*Route::get('reviewer_kiv', 'UserController@reviewerKiv')
+                ->name('reviewer-kiv')->middleware('reviewer');*/
 
 Route::get('user_track_log', 'UserController@userTrackLog')
                 ->name('user-track-log')
@@ -181,7 +181,7 @@ Route::group(['prefix' => 'maybank'], function()
 });
 
 
-
+Route::get('xml','XMLController@arrayToXML')->name('xml-report');
 //Route::post('password_email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password-email');
 //Route::get('password/reset', 'Auth\ResetPasswordController@reset');
 //Route::get('policy', 'PolicyController@policyList');

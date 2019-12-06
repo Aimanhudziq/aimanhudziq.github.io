@@ -14,6 +14,7 @@
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
         "maatwebsite/excel": "^3.1",
+        "spatie/array-to-xml": "^2.10",
         "uxweb/sweet-alert": "^2.0"
     },
     "require-dev": {
