@@ -160,19 +160,28 @@ Route::get('approve_checker/{ref_no}', 'StatusController@approveChecker')
                 //->middleware('reviewer');
 
 
-Route::get('user_excel_report', 'ReportController@export')
-                ->name('user-excel-report')
-                ->middleware('normal_user');
+
 
 // Route::get('/htmlPDF', 'PDFController@index');
+Route::group(['prefix'=>'report'], function(){
 
-Route::get('/htmlPDF/pdf', 'PDFController@pdf')
-                ->name('html-pdf')
-                ->middleware('normal_user');
-
-Route::get('user_report', 'ReportController@userReport')
+    Route::get('/user_report', 'ReportController@userReport')
                 ->name('user-report')
-                ->middleware('normal_user'); //access by normal user only
+                ->middleware('user');
+
+    Route::get('/pdf_report', 'PDFController@pdf')
+                ->name('html-pdf')
+                ->middleware('user');
+
+    Route::get('user_excel_report', 'ReportController@export')
+                ->name('user-excel-report')
+                ->middleware('user');
+
+    Route::get('/download_xml','XMLController@downloadXML')
+                ->name('xml-report')
+                ->middleware('user');
+});
+
 
 
 Route::group(['prefix' => 'maybank'], function()
@@ -181,7 +190,7 @@ Route::group(['prefix' => 'maybank'], function()
 });
 
 
-Route::get('xml','XMLController@arrayToXML')->name('xml-report');
+
 //Route::post('password_email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password-email');
 //Route::get('password/reset', 'Auth\ResetPasswordController@reset');
 //Route::get('policy', 'PolicyController@policyList');

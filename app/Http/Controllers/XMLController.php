@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use Spatie\ArrayToXml\ArrayToXml;
 use Carbon\Carbon;
 use App\ClientDetail;
-use Hash, Str;
+use App\BankBranch;
+use Hash, Str, File, Storage;
 
 class XMLController extends Controller
 {
@@ -20,7 +21,7 @@ class XMLController extends Controller
 
         $approved = ClientDetail::where('fstatus_code',['1'])->count();
         $rejected = ClientDetail::where('fstatus_code',['0'])->count();
-
+                 
         $clients = ClientDetail::with('track_record')->get();
 
         $xml_data_structure = [
@@ -47,21 +48,39 @@ class XMLController extends Controller
         ];
 
         foreach($clients as $data){
-
+            /*
+           foreach($data->track_record as $dc)
+           {
+               dd($dc->comment);
+           }*/
             $status="";
-
+            $reason="";
             if($data->fstatus_code == 0){
                 $status = "REJECTED";
             }else if($data->fstatus_code == 1){
                 $status = "ACCEPTED";
             }
-            $clientobj =[
+            foreach($data->track_record as $dc){
+               if($data->reference_no == $dc->freference_no && $data->fstatus_code == $dc->new_status_code)
+               {
+                   $reason = $dc->comment;
+               }
+
+            }
+                    /****** get branch code************************* */
+                    $banks = BankBranch::select('branch_code')
+                    ->where('branch_address',trim($data->address))
+                    ->where('fbank_code', $data->fbank_code)    
+                    ->first();
+                    /************************************************ */  
+
+            $clientobj = [
                     'pictureId'=>$data->ic_no,
                     'name'=>$data->full_name,
                     'state'=>$status,
                     'cardtype'=>'maybank',
                     'pictureReasons'=>[
-                        'reason'=>$data->violated_policy
+                        'reason'=>$reason
                     ],
                     'additionalData'=>[
                         'property'=>[
@@ -82,7 +101,7 @@ class XMLController extends Controller
                             [
                                 ['_attributes'=>[
                                     'key'=>'branch',
-                                    'value'=>$data->address,
+                                    'value'=>$banks->branch_code,
                                     ]
                                 ],
                             ]
@@ -92,7 +111,7 @@ class XMLController extends Controller
                 array_push($xml_data_structure["content"]["final"]["finalPicture"], $clientobj);
         }
    
-    dd($xml_data_structure);
+    //dd($xml_data_structure);
         $result = ArrayToXml::convert($xml_data_structure, [
             'rootElementName' => 'tns:scrnrpt',
             '_attributes' => [
@@ -100,7 +119,21 @@ class XMLController extends Controller
             ],
         ], true, 'UTF-8');
 
-        dd($client);
+        return $result;
+        //$test = $result->put('test.xml');
+    }
+
+    public function downloadXML(){
+        $file = $this->arrayToXML();
+        //echo base_path('../../downloads','ssss.xml', $file);
+        
+        $path = Storage::disk('c_path')->exists('report_ascc.xml');;
+        if(!File::isDirectory($path)){
+            
+            Storage::makeDirectory($path, 0755, true, true);
+        }
+        Storage::disk('c_path')->put('report_ascc.xml', $file);
+        return redirect('report/user_report')->with('status', 'download successful.. ');
     }
     
 }

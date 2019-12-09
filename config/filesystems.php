@@ -46,6 +46,20 @@ return [
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
+            //'root' => env('ARCHIVE_FILES_ROOT_DIRECTORY', '/home/.../archive/files'),
+            //'url' => env('ARCHIVE_FILES_ROOT_DIRECTORY', '/home/.../archive/files'),
+        ],
+
+        'c_path' => [
+            'driver' => 'local',
+            'root' => 'c:\ASCCReportMaybank'
+        ],
+
+        'sftp' => [
+            'driver' => 'sftp',
+            'host' => 'example.com',
+            'username' => 'your-username',
+            'password' => 'your-password',
         ],
 
         'public' => [

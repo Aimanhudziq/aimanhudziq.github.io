@@ -26,10 +26,7 @@ use Illuminate\Auth\Events\PasswordReset;
 
 class AdminActionController extends Controller
 {
-    /**
-     * Add new user with no dulipcate
-     * 
-     */
+
     use ResetsPasswords;
     
     //redirect user after reset password
@@ -49,11 +46,8 @@ class AdminActionController extends Controller
             'last_name'=>'required',
             'username'=>'required',
             'email'=>'required|email|unique:users',
-            //'password'=>'required',
-            //'user_type'=>'required|email|unique:users',
             'role_category'=>'required',
         ]);
-        //$input['autoOpenModal'] = 'true';
 
         //generate a password for the new users
         $random = str_shuffle('abcdefghjklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ1234567890!$%^&!$%^&');
@@ -67,8 +61,7 @@ class AdminActionController extends Controller
         $user->last_name = $request->input('last_name');
         $user->username = $request->input('username');
         $user->email = $request->input('email');
-        $user->password = bcrypt($password);        //\Hash::make('Mrtesting009@');
-       // $user->user_type = "Normal User";
+        $user->password = bcrypt($password);
         $user->frole_code = $request->input('role_category');
         $user->created_at = Carbon::now();
 

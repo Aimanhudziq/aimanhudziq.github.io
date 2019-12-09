@@ -53,6 +53,10 @@
                     <a href="{{ url('user_search') }}">
                     <i class="menu-icon ti ti-search"></i>{{ trans('sidebar.search') }} </a>
                 </li>
+                <li class="{{ Route::currentRouteNamed('user-report') ? 'active' : '' }}">
+                    <a href="{{ url('report/user_report') }}"><i class="menu-icon ti ti-pencil">
+                    </i>Report</a>
+                </li>
                 @endif
             </ul>
         </div><!-- /.navbar-collapse -->

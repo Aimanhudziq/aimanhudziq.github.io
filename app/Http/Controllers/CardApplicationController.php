@@ -114,7 +114,7 @@ class CardApplicationController extends Controller{
         $client->ic_no = $req->get('ic_no');
         $client->phone_number = $req->get('phone_no');
         $client->email = $req->get('email');
-        $client->address = $banks->branch_address;
+        $client->address = trim($banks->branch_address);
         $client->fstatus_code = 3;
         $client->image_url = $this->getImageUrl();
         $client->fbank_code = $bank_code;
