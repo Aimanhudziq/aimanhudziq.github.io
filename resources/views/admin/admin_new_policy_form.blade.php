@@ -17,6 +17,19 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-addon"><i class="fa fa-id-badge"></i></div>
+                                    <input type="text" id="policy_no" name="policy_no" value="{{ old('policy_no') }}"
+                                        placeholder="Policy Number [eg: CB01]" class="form-control {{ $errors->has('policy_no') ? 'has-error' : '' }}">
+                                </div>
+                                @if($errors->has('policy_no'))
+                                <span class="help-block">
+                                <strong style='color: #a94442'>{{ $errors->first('policy_no') }}</strong>
+                                @endif
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-id-badge"></i></div>
                                     <input type="text" id="policy_name" name="policy_name" value="{{ old('policy_name') }}"
                                         placeholder="Policy Name [eg: (Company) Logos]" class="form-control {{ $errors->has('policy_name') ? 'has-error' : '' }}">
                                 </div>

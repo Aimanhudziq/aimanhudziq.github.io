@@ -109,7 +109,7 @@ class AdminActionController extends Controller
     {
     
         $this->validate($request,[
-            //'policy_no'=>'policy_no',
+            'policy_no'=>'required',
             'policy_name'=>'required',
             'policy_source'=>'required',
             'policy_regulation'=>'required',
@@ -118,14 +118,15 @@ class AdminActionController extends Controller
         $policy = new Policy;
         
         //randomize the policy number to DB insertion
-        $pol_no = substr(str_shuffle("0123456789"), 0, 3);
-        $policy_code = $pol_no;
+       // $pol_no = substr(str_shuffle("0123456789"), 0, 3);
+       // $policy_code = $pol_no;
 
-        $policy->policy_no = $policy_code;
+        $policy->policy_no = $request->input('policy_no');
         $policy->policy_name = $request->input('policy_name');
         $policy->policy_source = $request->input('policy_source');
         $policy->policy_regulation = $request->input('policy_regulation');
 
+        // dd($policy->policy_no,$policy->policy_name,$policy->policy_source,$policy->policy_regulation);
         $policy->save();
         Alert::success($policy->policy_name.' Successful added to the policy list ',' Policy');
 
