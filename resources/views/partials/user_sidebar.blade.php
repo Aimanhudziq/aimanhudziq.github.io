@@ -21,7 +21,7 @@
                     </i>{{ trans('sidebar.search') }} </a>
                 </li>
                 <li class="{{ Route::currentRouteNamed('user-report') ? 'active' : '' }}">
-                    <a href="{{ url('user_report') }}"><i class="menu-icon ti ti-pencil">
+                    <a href="{{ url('report/user_report') }}"><i class="menu-icon ti ti-pencil">
                     </i>Report</a>
                 </li>
             
