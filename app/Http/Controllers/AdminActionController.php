@@ -7,6 +7,8 @@ use App\Bank;
 use App\User;
 use App\Role;
 use App\Policy;
+use App\Allowed;
+use App\NotAllowed;
 use App\BankAssignmentList;
 use App\ClientDetail;
 use Carbon\Carbon;
@@ -113,6 +115,8 @@ class AdminActionController extends Controller
             'policy_name'=>'required',
             'policy_source'=>'required',
             'policy_regulation'=>'required',
+            'allowed_desc'=>'required',
+            'notAllowed_desc'=>'required',
         ]);
 
         $policy = new Policy;
@@ -125,9 +129,21 @@ class AdminActionController extends Controller
         $policy->policy_name = $request->input('policy_name');
         $policy->policy_source = $request->input('policy_source');
         $policy->policy_regulation = $request->input('policy_regulation');
-
-        // dd($policy->policy_no,$policy->policy_name,$policy->policy_source,$policy->policy_regulation);
         $policy->save();
+
+        $allowed = new Allowed;
+
+        $allowed->fpolicy_no = $request->input('policy_no');
+        $allowed->desc = $request->input('allowed_desc');
+        $allowed->save(); 
+
+        $not_allowed = new NotAllowed;
+
+        $not_allowed->fpolicy_no = $request->input('policy_no');
+        $not_allowed->desc = $request->input('notAllowed_desc');
+        $not_allowed->save();
+
+
         Alert::success($policy->policy_name.' Successful added to the policy list ',' Policy');
 
         return redirect('admin_policy_list');

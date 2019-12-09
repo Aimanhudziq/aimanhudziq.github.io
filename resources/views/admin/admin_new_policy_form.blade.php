@@ -59,7 +59,29 @@
                                 <span class="help-block">
                                 <strong style='color: #a94442'>{{ $errors->first('policy_regulation') }}</strong>
                                 @endif
-                            </div>                                             
+                            </div>   
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-check-circle"></i></div>
+                                    <input type="text" id="allowed_desc" name="allowed_desc" value="{{ old('allowed_desc') }}"
+                                        placeholder="Allowed description [eg: Portraits of people not a celebrities ]" class="form-control {{ $errors->has('allowed_desc') ? 'has-error' : '' }}">
+                                </div>
+                                @if($errors->has('allowed_desc'))
+                                <span class="help-block">
+                                <strong style='color: #a94442'>{{ $errors->first('allowed_desc') }}</strong>
+                                @endif
+                            </div>   
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-times-circle"></i></div>
+                                    <input type="text" id="notAllowed_desc" name="notAllowed_desc" value="{{ old('notAllowed_desc') }}"
+                                        placeholder="Not allowed description [eg: Portraits of celebrities ]" class="form-control {{ $errors->has('notAllowed_desc') ? 'has-error' : '' }}">
+                                </div>
+                                @if($errors->has('notAllowed_desc'))
+                                <span class="help-block">
+                                <strong style='color: #a94442'>{{ $errors->first('notAllowed_desc') }}</strong>
+                                @endif
+                            </div>                                                               
                             <div class="modal-footer">
                                 <div class="form-actions form-group">
                                     <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">{{trans('content.cancel')}}</button>
