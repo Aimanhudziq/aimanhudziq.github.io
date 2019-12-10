@@ -85,6 +85,7 @@ return[
     'allowed' => 'Allowed',
     'not_allowed' => 'Not Allowed',
     'violated_policy' => 'Violated Policy',
+    'policy_no' => 'Policy Number',
 
     //Bank
     'bank_assign' => 'Bank Assignment',

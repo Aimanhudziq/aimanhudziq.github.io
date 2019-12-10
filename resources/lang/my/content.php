@@ -87,6 +87,7 @@ return[
     'allowed' => 'Dibenarkan',
     'not_allowed' => 'Tidak Dibenarkan',
     'violated_policy' => 'Kesalahan Polisi',
+    'policy_no' => 'Nombor Polisi',
 
     //Bank
     'bank_assign' => 'Tugasan Bank',
