@@ -23,6 +23,7 @@ return[
     'history' => 'History',
     'from' => 'From',
     'to' => 'To',
+    'policy_code' => 'Policy Code',
     'policy_violated' => 'Policy Violated',
     'search' => 'Search',
     'comment' => 'Comment',

@@ -135,13 +135,14 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                                                 <div class="col-xs-6">
                                                     <label for="policy" class="form-check-label" style="font-size:10px;">
                                                         <input type="checkbox"  id="policy" name="policy[]" value="{{ $p->policy_name }}" 
-                                                            class="form-check-input">
+                                                            class="form-check-input" value1="{{ $p->policy_no }}">
                                                         {{ $p->policy_name }}
                                                     </label>
                                                 </div>
                                             </div>
+                                            
                                         @endforeach
-                                        
+                                        <input type="hidden" name="policy_no" id="txt_policy_no" value=''>
                                         <input type="hidden" name="currentuser" value='{{Auth::user()->first_name}}'>
                                         <input type="hidden" name="currentuserID" value='{{Auth::user()->user_staff_id}}'>
                                         <input type="hidden" name="bank" value="{{request()->route('bank_code')}}">

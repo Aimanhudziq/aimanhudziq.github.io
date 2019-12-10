@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\URL;
 use App\ClientDetail;
 use App\BankBranch;
 use App\Bank;
+use App\Helper\ReferenceNumberHelper as RefGen;
 
 class CardApplicationController extends Controller{
 
@@ -37,41 +38,6 @@ class CardApplicationController extends Controller{
         return redirect()->action('CardApplicationController@index',compact('client_info'));
     }
 
-    /***
-     * generate ref number for client by date + random number
-     */
-
-    private function shuffleString($stringValue, $startWith = "") 
-    {
-        $range = \range(0, \mb_strlen($stringValue));
-        shuffle($range);
-        foreach($range as $index) {
-            $startWith .= \mb_substr($stringValue, $index, 1);
-        }
-        //dd($startWith);
-        return $startWith;
-    }
-
-    /**
-     * 1. generate ref number by using method shuffle string
-     * eg output => g2^x%a)z+=jq$v1oubf#rk_ned3twihc(!lyp@ms&*
-     * shuffle string method will be generate unique id 
-     * 2. includes date ie: year + month + day (20191025)
-     * 3. using sha1 (secure Hash Algorithm);
-     */
-    private function genRefNum()
-    {
-        $strvalue = $this->shuffleString("abcdefghijklmnopqrstuvwxyz123!@#$%^&*()_+=");
-
-        $str_alph = substr(uniqid($strvalue),0,6);
-
-        $today = date("Ymd");
-        $rand = strtoupper(substr(uniqid(sha1(time())),0,4));
-        $ref_number =  strtoupper($today . $rand . $str_alph);
-        //dd($ref_number);
-        return $ref_number;
-    }
-
     /**
      * Upload images file function
      * 
@@ -79,7 +45,6 @@ class CardApplicationController extends Controller{
 
     public function getImageUrl()
     {
-        $bank_code = 101;
         $image_url ="";
 
         $image = request()->input('image_file');  // your base64 encoded
@@ -87,7 +52,7 @@ class CardApplicationController extends Controller{
         {
             $image = str_replace('data:image/png;base64,', '', $image);
             $image = str_replace(' ', '+', $image);
-            $file_name = $bank_code. '_' .request()->input('ic_no').'.png';
+            $file_name = request()->input('reference_no').'.png';
             \File::put(public_path(). '/images/client/' . $file_name, base64_decode($image));
 
             $image_url = '/images/client/' . $file_name; 
@@ -109,7 +74,7 @@ class CardApplicationController extends Controller{
                             ->where('branch_code', $req->get('branch_code'))    
                             ->first();
         
-        $client->reference_no = $this->genRefNum();
+        $client->reference_no = RefGen::genRefNum();
         $client->full_name = $req->get('full_name');
         $client->ic_no = $req->get('ic_no');
         $client->phone_number = $req->get('phone_no');

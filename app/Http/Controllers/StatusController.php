@@ -51,14 +51,12 @@ class StatusController extends Controller
                 $card = new CardApplication;
 
                 $policy = implode(",",(array)request()->get('policy'));
-                //$count = count($policy);
-                //dd($policy);
                 
                 for($i = 0; $i < count($request->get('policy')); $i++)
                 {
                     $card->comment = $request->get('comment');
                     $card->violated_policy = $policy;
-                   
+                    //$card->code_policy = $policy_no;
                 }
 
                     $card->checked_by = request()->get('currentuser');
@@ -72,11 +70,13 @@ class StatusController extends Controller
                 $log = new TrackRecord;
 
                 $policy = implode(",",(array)request()->get('policy'));
+                $policy_no = implode(",",(array)request()->get('policy_no'));
 
                 for($i = 0; $i < count(request()->get('policy')); $i++)
                 {
                 
                     $log->violated_policy = $policy;
+                    $log->code_policy = $policy_no;
                    
                 }
  
@@ -209,11 +209,13 @@ class StatusController extends Controller
                 $log = new TrackRecord;
                 
                 $policy = implode(",",(array)request()->get('policy'));
-                
+                $policy_no = implode(",",(array)request()->get('policy_no'));
+
                 for($i = 0; $i < count(request()->get('policy')); $i++)
                 {
                    
                     $log->violated_policy = $policy;
+                    $log->code_policy = $policy_no;
                     
                 }
                 
@@ -258,6 +260,7 @@ class StatusController extends Controller
                 return back()->withInput();
             }
             else{
+                //$pol_no = implode(",",(array)request()->get('policy_no'));
                 ClientDetail::where('reference_no', $ref_no)
                             ->update(['fstatus_code'=> 0]);
 
@@ -285,11 +288,13 @@ class StatusController extends Controller
             $log = new TrackRecord;
 
             $policy = implode(",",(array)request()->get('policy'));
+            $policy_no = implode(",",(array)request()->get('policy_no'));
 
             for($i = 0; $i < count(request()->get('policy')); $i++)
             {
                 
                 $log->violated_policy = $policy;
+                $log->code_policy = $policy_no;
                
             }
 
@@ -297,6 +302,7 @@ class StatusController extends Controller
                 $log->freference_no = request()->get('refNo');
                 $log->ori_status_code = 2;
                 $log->new_status_code = 0;
+                //$log->code_policy = re;
                 $log->save();
 
                 Alert::success('Application succesfully reject!', 'Rejected Succeed!');

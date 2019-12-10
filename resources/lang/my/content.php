@@ -24,6 +24,7 @@ return[
     'history' => 'Rekod',
     'from' => 'Dari',
     'to' => 'Kepada',
+    'policy_code' => 'Kod Polisi',
     'policy_violated' => 'Kesalahan Polisi',
     'search' => 'Carian',
     'comment' => 'Komen',

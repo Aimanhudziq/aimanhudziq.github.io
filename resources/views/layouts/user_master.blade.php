@@ -93,19 +93,33 @@
             
         });
     });
-/*
-    $(document).ready(function () {
-        $('#tbName').on('input change', function () {
-            if ($(this).val() != '') {
-                $('#submit').prop('disabled', false);
-            }
-            else {
-                $('#submit').prop('disabled', true);
-            }
-        });
-    });
-    */
+
     </script>  
+
+    <script>
+        //admin-bank-assign(pass multiple value)
+        $(document).ready(function() {
+                
+            var policy_no=[];
+
+            $("input[type=checkbox]").change(function(){
+
+                var value = $(this).attr("value1");
+                //alert(policy_no);
+                
+                if ($(this).is(':checked')) {
+                    policy_no.push(value);
+                    $('#txt_policy_no').val(policy_no);
+                }
+                else{
+                    policy_no.pop(value);
+                    $('#txt_policy_no').val(policy_no);
+                }
+
+            });
+                    
+        });    
+    </script>
 
     <script type="text/javascript">
         var locale = '{{ config('app.locale') }}';

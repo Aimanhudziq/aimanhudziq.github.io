@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Auth\Events\PasswordReset;
+use App\Helper\ReferenceNumberHelper as GenRefNo;
 
 class AdminActionController extends Controller
 {
@@ -207,40 +208,6 @@ class AdminActionController extends Controller
    
     }
 
-    /***
-     * generate ref number for client by date + random number
-     */
-
-    private function shuffleString($stringValue, $startWith = "") {
-        $range = \range(0, \mb_strlen($stringValue));
-        shuffle($range);
-        foreach($range as $index) {
-            $startWith .= \mb_substr($stringValue, $index, 1);
-        }
-        //dd($startWith);
-        return $startWith;
-    }
-
-    /**
-     * 1. generate ref number by using method shuffle string
-     * eg output => g2^x%a)z+=jq$v1oubf#rk_ned3twihc(!lyp@ms&*
-     * shuffle string method will be generate unique id 
-     * 2. includes date ie: year + month + day (20191025)
-     * 3. using sha1 (secure Hash Algorithm);
-     */
-    private function genRefNum()
-    {
-        $strvalue = $this->shuffleString("abcdefghijklmnopqrstuvwxyz123!@#$%^&*()_+=");
-
-        $str_alph = substr(uniqid($strvalue),0,6);
-
-        $today = date("Ymd");
-        $rand = strtoupper(substr(uniqid(sha1(time())),0,4));
-        $ref_number =  strtoupper($today . $rand . $str_alph);
-        //dd($ref_number);
-        return $ref_number;
-    }
-
     public function clientDetails()
     {
         $bank_name = Bank::all();    
@@ -290,7 +257,7 @@ class AdminActionController extends Controller
 
         $data_client = new ClientDetail;
 
-        $data_client->reference_no = $this->genRefNum();
+        $data_client->reference_no = RefGen::genRefNum();
         $data_client->full_name = $req->get('full_name');
         $data_client->email = $req->get('email');
         $data_client->phone_number = $req->get('phone_no');

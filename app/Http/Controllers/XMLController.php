@@ -48,11 +48,7 @@ class XMLController extends Controller
         ];
 
         foreach($clients as $data){
-            /*
-           foreach($data->track_record as $dc)
-           {
-               dd($dc->comment);
-           }*/
+            $latestlog=$data->track_record[sizeof($data->track_record)-1];
             $status="";
             $reason="";
             if($data->fstatus_code == 0){
@@ -60,27 +56,14 @@ class XMLController extends Controller
             }else if($data->fstatus_code == 1){
                 $status = "ACCEPTED";
             }
-            foreach($data->track_record as $dc){
-               if($data->reference_no == $dc->freference_no && $data->fstatus_code == $dc->new_status_code)
-               {
-                   $reason = $dc->comment;
-               }
-
-            }
-                    /****** get branch code************************* */
-                    $banks = BankBranch::select('branch_code')
-                    ->where('branch_address',trim($data->address))
-                    ->where('fbank_code', $data->fbank_code)    
-                    ->first();
-                    /************************************************ */  
 
             $clientobj = [
                     'pictureId'=>$data->ic_no,
-                    'name'=>$data->full_name,
+                    'name'=>$data->reference_no,
                     'state'=>$status,
                     'cardtype'=>'maybank',
                     'pictureReasons'=>[
-                        'reason'=>$reason
+                        'reason'=>$latestlog->code_policy
                     ],
                     'additionalData'=>[
                         'property'=>[
@@ -94,7 +77,7 @@ class XMLController extends Controller
                             [
                                 ['_attributes'=>[
                                     'key'=>'idcardlast4digits',
-                                    'value'=>substr($data->ic_no,7,4),
+                                    'value'=>$data->ic_no,
                                     ]
                                 ],
                             ],
