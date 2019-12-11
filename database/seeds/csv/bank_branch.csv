@@ -1,0 +1,290 @@
+branch_code,branch_name,branch_address,branch_city,fbank_code
+1011,Johore Bahru,"Lot M1-22, Level 1-3,
+Johor Bahru City Centre,
+106-108, Jalan Wong Ah Fook,
+80000 Johor Bahru,",JHR,101
+1039,MBB Batu Pahat,"32-4, Jalan Rahmat,
+83000 Batu Pahat,
+Johor",JHR,101
+1048,Muar,"104, Jalan Abdullah, 
+80400 Muar,
+Johor",JHR,101
+1057,"Jalan Awang, Segamat SC","UMNO Building, 
+Jalan Awang, 
+85000 Segamat,
+Johor",JHR,101
+1066,Kluang,"30-34, Jalan Dato Haji Hassan, 
+86000 Kluang,
+Johor",JHR,101
+1075,Kota Tinggi,"18 & 19, Jalan Niaga Satu,
+Pusat Perdagangan,
+81900 Kota Tinggi,
+Johor",JHR,101
+1105,Kulai,"146-7, Jalan Raya, 
+81000 Kulai,
+Johor",JHR,101
+1123,Jalan Tebrau,"69-75, Jalan Meranti Merah, 
+Kebun Teh, 
+80250 Johor Bahru,
+Johor",JHR,101
+1132,Jalan Larkin/Bdr baru Uda,"113-5, Jalan Glasiar,
+Taman Tasek,
+80200 Johor Bahru,
+Johor",JHR,101
+1208,Scudai,"18-20, Jalan Perwira 17, 
+Taman Ungku Tun Aminah, 
+81300 Skudai,
+Johor",JHR,101
+1217,Johor Jaya,"85-87, Jalan Dedap 6, 
+Taman Johor Jaya, 
+81100 Johor Bahru,
+Johor",JHR,101
+1244,Pasir Gudang,"14 Pusat Perdagangan,
+Jalan Bandar,
+81700 Pasir Gudang,
+Johor",JHR,101
+1525,"Jalan Genuang, Segamat","No 62J & 62K, Jln Genuang,
+85000 Segamat
+Johor",JHR,101
+2027,Alor Star Main,"1535, Jalan Sultan Badlishah,
+05000 Alor Star,
+P.O. Box 82,
+05710 Alor Star,
+Kedah",KDH,101
+2054,Sungei Petani,"G27, Ground Floor,
+Central Square Complex,
+23, Jln Kampung Baru,
+08000 Sg Petani,
+Kedah",KDH,101
+3015,Kota Bahru,"3880-E, Jalan Mahmood,
+15200 Kota Bharu,
+P.O. Box 108,
+15710 Kota Bharu,
+Kelantan",KLTN,101
+4021,MBB Malacca Main,"114 & 114A, Graha Peladang,
+Jalan Hang Tuah, 75300 Melaka,
+P.O. Box 173, 75730
+Melaka",MCCA,101
+4067,MBB Taman Malim Jaya,"138 - 142, Jalan Suria 2,
+Taman Malim Jaya, 75250
+Melaka",MCCA,101
+5019,MBB Seremban,"166-169, Jalan Dato\' Bandar Tunggal, 
+70000 Seremban, P.O. Box 163,
+70720 Seremban
+Negeri Sembilan",NS,101
+6016,Kuantan,"Kuantan Chinese Commercial Chamber Industry (KCCCI), Ground & 1st Floor, Lot 46 & 47, Section 18, Jln Bukit Ubi, 25000 Kuantan",PHG,101
+6098,MBB Bukit Ubi,"61-65, Jalan Tun Ismail, 
+25000 Kuantan, P.O. Box 119, 
+25720 Kuantan
+Pahang",PHG,101
+7013,Penang Main,"9, Lebuh Union, 
+10200 Penang,
+P.O. Box 297, 
+10730 Penang
+Pulau Pinang",PP,101
+7040,MBB Plaza Mwe,"Ground Floor, Plaza MWE,
+8, Lebuh Farquhar,
+10200 Penang
+Pulau Pinang",PP,101
+7095,Bukit Mertajam,"447, 448 & 449,
+Jalan Permatang Rawa,
+Bandar Perda,
+14000 Bukit Mertajam
+Pulau Pinang",PP,101
+7116,Butterworth,"4277, Bagan Luar Road,
+12000 Butterworth
+Pulau Pinang",PP,101
+8010,Ipoh Main,"Bangunan Mayban Trust,
+28, Jalan Tun Sambanthan,
+30000 Ipoh,
+P.O. Box 450,
+30912 Ipoh
+Perak",PRK,101
+8029,Jalan Sultan Idris Shah,"194-206, Ground Floor, 
+Jalan Sultan Idris,
+30000 Ipoh
+Perak",PRK,101
+8056,Taiping,"234-237 Jalan Chung Thye Phin
+34000 Taiping
+Perak",PRK,101
+8177,Ipoh Garden,"112, Jalan Canning Estate,
+Ipoh Garden, 
+31400 Ipoh
+Perak",PRK,101
+8298,MBB Setiawan,"Ground & 1st Floor
+5 Persiaran PM 2/2
+Pusat Bandar Sri Manjung
+Seksyen 2
+32040 Sri Manjung, Perak
+Perak",PRK,101
+9017,Kangar,"Upper Grd. Floor, Menara KWSP, 
+Jalan Bukit Lagi, 01000 Kangar, 
+P.O. Box 38, 01700 Kangar, Perlis",PLS,101
+10013,Kota Kinabalu,"9, Beach Street,
+88000 Kota Kinabalu,
+P.O. Box 10862,
+88809 Kota Kinabalu
+Sabah",SBH,101
+10022,Sandakan,"Lot 28, 29 & 30 Block HS-3, Sandakan Harbour Square, 90000 Sandakan.",SBH,101
+10031,Tawau,"262-264, Fajar Complex,
+Jalan Mahkamah,
+91000 Tawau,
+P.O. Box 260,
+91007 Tawau
+Sabah",SBH,101
+10107,"MBB Jalan Perpaduan, KK","Lot 6 & 7, Jalan Perpaduan,
+Kampong Air,
+88000 Kota Kinabalu, Sabah
+Sabah",SBH,101
+10143,Karamunsing Business Centre,"Bangunan Maybank,
+No. 1, Lorong Kemajuan,
+Karamunsing,
+88000 Kota Kinabalu,
+P.O. Box 12599,
+88829 Kota Kinabalu
+Sabah",SBH,101
+11010,Miri,"Lot 112, Jalan Bendahara,
+98008 Miri
+P. O. Box 210
+98007 Miri
+Sarawak",SWK,101
+11038,"MBB Jalan Tar, Kuching","Lots 250-253,
+Jalan Tunku Rahman,
+Section 49,
+93100 Kuching
+Sarawak",SWK,101
+11056,Sibu,"35, 37 & 39, Jalan Kampung Nyabor,
+96000 Sibu,
+P.O. Box 539,
+96007 Sibu
+Sarawak",SWK,101
+11065,Bintulu,"24-25, New Commercial Centre,
+97000 Bintulu,
+P.O. Box 104,
+97007 Bintulu
+Sarawak",SWK,101
+11113,Bangunan Satok,"Level 1, Wisma Satok,
+Jalan Satok,
+93400 Kuching,
+P.O. Box 1963,
+93740 Kuching
+Sarawak",SWK,101
+12017,Rawang,"17, Jalan Bandar Rawang 2
+Bandar Baru Rawang
+48000 Rawang
+Selangor",S'GOR,101
+12026,Kajang,"Ground & Mezzanine Floor
+28-30, Jalan Tukang,
+43000 Kajang
+Selangor",S'GOR,101
+12044,Port Klang,"60-64, Persiaran Raja Muda Musa,
+42000 Port Klang
+Selangor",S'GOR,101
+12101,Shah Alam,"10, Persiaran Perbandaran, 
+Section 14, 
+40000 Shah Alam, 
+P.O. Box 7109, 
+40702 Shah Alam
+Selangor",S'GOR,101
+12110,Klang,"14-22, Jalan Kepayang,
+Off Jalan Meru,
+41050 Klang
+Selangor",S'GOR,101
+12147,MBB Taman Sri Serdang,"Lots 231-3, Jalan 18/23,
+Taman Sri Serdang,
+43300 Seri Kembangan
+Selangor",S'GOR,101
+12183,MBB Taman Setiawangsa,"Wisma Prima Penisular, No 2 Jalan Setiawangsa 11, Taman Setiawangsa, 54200 Kuala Lumpur",FT,101
+12222,Subang Jaya,"C8, C9 & C10, Jalan SS15/4D,
+Subang Jaya,
+47500 Petaling Jaya
+Selangor",S'GOR,101
+12231,"MBB Jalan SS2/63, Pj","8 & 10, Jalan SS 2/63,
+47300 Petaling Jaya,
+Selangor",S'GOR,101
+12268,Bandar Baru Bangi,"No. 2, Jalan 6C/16,
+Section 16,
+Bandar Baru Bangi,
+46650 Kajang
+Selangor",S'GOR,101
+12343,MBB Puchong Jaya,"No. 7, Jalan Kenari 1,
+Bandar Puchong Jaya,
+Jalan Puchong,
+47100 Puchong
+Selangor",S'GOR,101
+12361,MBB Usj Subang,"No 39, Jln USJ 10/1G,
+47620 Subang Jaya
+Selangor",S'GOR,101
+13014,Kuala Terengganu,"No 92, Jalan Sultan Ismail, 
+20200 Kuala Terengganu
+Terengganu",T'GANU,101
+14011,KL Main Office,"1st Floor, Menara Maybank, 
+100, Jalan Tun Perak, 50050
+Kuala Lumpur",KL Main,101
+14048,Jalan Pudu,"418-24, Jalan Pudu,
+55100, Kuala Lumpur",FT,101
+14057,Jalan Ampang,"Lot 1.01, Ampang Park Shopping, 
+Jalan Ampang, 50450
+Kuala Lumpur",FT,101
+14066,Setapak,"Wisma Lee Kay Huan,
+Lot 14408 Jalan Genting Kelang,
+53200 Setapak,
+Kuala Lumpur",FT,101
+14084,Jalan Bukit Bintang,"No 42-2, Ground & 1st Floor, Jalan Sultan Ismail, 50250 Kuala Lumpur",FT,101
+14114,Jalan Kelang Lama,"No. 1 & 3, Jalan Desa,
+Taman Desa, 58100
+Kuala Lumpur",FT,101
+14123,Bangsar Baru,"66, 68 & 70, Jalan Maarof, 
+Bangsar Baru, 59100
+Kuala Lumpur",FT,101
+14169,MBB Petaling Jaya,"50-52, Jalan Sultan (52/4), 
+46200 Petaling Jaya, 
+P.O. Box 270, 
+Jalan Sultan, 
+46730 Petaling Jaya
+Selangor",S'GOR,101
+14178,Sea Park,"1, Jalan 21/11A, 
+SEA Park, 
+46300 Petaling Jaya,
+P.O. Box 235, Jalan Sultan, 
+46200 Petaling Jaya
+Selangor",S'GOR,101
+14196,Damansara Utama,"62-66, Jalan SS21/35,
+Damansara Utama,
+47400 Petaling Jaya
+Selangor",S'GOR,101
+14208,Kepong,"8-10, Jalan 53,
+Desa Jaya, Kepong,
+52100 Kuala Lumpur
+Selangor",S'GOR,101
+14235,Kompleks Bandar,"103-107, Jalan Mega Mendong, 
+Bandar Park, 
+Jalan Kelang Lama, 58000
+Kuala Lumpur",FT,101
+14253,Bangsar Utama/Dataran Maybank,"Level 1, Tower A
+No 1, Jln Maarof,
+Dataran Maybank,
+59000 Kuala Lumpur
+Kuala Lumpur",FT,101
+14271,Taman Tun Dr. Ismail,"2, Lorong Rahim Kajai 14, 
+Taman Tun Dr. Ismail, 60000
+Kuala Lumpur",FT,101
+14329,Damansara Height,"G-Floor, Block C, 
+Kompleks Pejabat Damansara, 
+Jalan Semantan, 
+50490 Bukit Damansara,
+Kuala Lumpur",FT,101
+14347,MBB Medan Tunku SC,"No 1, 3, 5, 7 & 9 
+Medan Tuanku 1,
+50300 Kuala Lumpur
+Kuala Lumpur",FT,101
+14486,Midvalley,"G(E) - 016, Ground Floor, 
+Mid-Valley Megamall, 
+Mid-Valley City, 
+Lingkaran Syed Putra, 59200
+Kuala Lumpur",FT,101
+14495,MBB KLCC,"Lot C-21-C
+Concourse Expansion
+Suria KLCC
+KL City Centre
+50088 Kuala Lumpur",FT,101
