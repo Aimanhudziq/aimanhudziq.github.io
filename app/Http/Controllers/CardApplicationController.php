@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\URL;
 use App\ClientDetail;
 use App\BankBranch;
 use App\Bank;
+use App\State;
 use App\Helper\ReferenceNumberHelper as RefGen;
 
 class CardApplicationController extends Controller{
@@ -36,6 +37,14 @@ class CardApplicationController extends Controller{
         $client_info = "test";
         //dd($client_info);
         return redirect()->action('CardApplicationController@index',compact('client_info'));
+    }
+
+    function getStates(){
+        return response()->json(State::select(['state_code2','state_name'])->get());
+    }
+
+    function getBankBranches(){
+        return response()->json(BankBranch::all());
     }
 
     /**
