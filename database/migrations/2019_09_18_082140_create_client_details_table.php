@@ -16,7 +16,7 @@ class CreateClientDetailsTable extends Migration
         Schema::create('client_details', function (Blueprint $table) {
             $table->increments('id');
             $table->string('reference_no')->unique();
-            $table->string('full_name');
+            $table->string('full_name')->nullable();
             $table->string('email')->unique();
             $table->string('phone_number');
             $table->string('ic_no');
