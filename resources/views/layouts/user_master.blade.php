@@ -30,11 +30,11 @@
 </head>
 
 <body>
+<?php error_reporting(E_ALL ^ E_NOTICE); ?>
     <!-- bank modal for bank -->     
     <!-- side bar -->
     @include('partials.user_sidebar')
     <!-- /side bar -->
-
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
         <!-- Top bar-->
@@ -85,36 +85,100 @@
         $(":checkbox").click(function () {
             var checkbox = $("input:checked").length;
                 if (checkbox > 0) {
-                $("#approve").prop("disabled", this.checked);
+                $("#approve").prop("disabled", true);
                 }
                 else {
-                $("#approve").prop("disabled", !this.checked);
+                $("#approve").prop("disabled", false);
                 }
             
         });
     });
-/*
-    $(document).ready(function () {
-        $('#tbName').on('input change', function () {
-            if ($(this).val() != '') {
-                $('#submit').prop('disabled', false);
-            }
-            else {
-                $('#submit').prop('disabled', true);
-            }
-        });
-    });
-    */
-    </script>  
-    <script>
-        var locale = '{{ config('app.locale') }}';
-        console.log(locale);
 
+    </script>  
+
+    <script>
+        //admin-bank-assign(pass multiple value)
+        $(document).ready(function() {
+                
+            var policy_no=[];
+
+            $("input[type=checkbox]").change(function(){
+
+                var value = $(this).attr("value1");
+                //alert(policy_no);
+                
+                if ($(this).is(':checked')) {
+                    policy_no.push(value);
+                    $('#txt_policy_no').val(policy_no);
+                }
+                else{
+                    policy_no.pop(value);
+                    $('#txt_policy_no').val(policy_no);
+                }
+
+            });
+                    
+        });    
     </script>
+
+    <script type="text/javascript">
+        var locale = '{{ config('app.locale') }}';
+        //console.log({{trans('dashboard.reject')}});
+
+        //*************** for display info to dashboard ******************* */
+        var baru = "{{ $new }}";
+        var kiv = "{{ $kiv }}";
+        var reject = "{{ $reject }}";
+        var approve = "{{ $approve }}";
+        //**************** end dashboard ********************************* */
+        //**************** approve by month ****************************** */
+        var jan = "{{ $jan }}";
+        var feb = "{{ $feb }}";
+        var mac = "{{ $mac }}";
+        var apr = "{{ $apr }}";
+        var mei = "{{ $mei }}";
+        var jun = "{{ $jun }}";
+        var july = "{{ $july }}";
+        var aug = "{{ $aug }}";
+        var sept = "{{ $sept }}";
+        var oct = "{{ $oct }}";
+        var nov = "{{ $nov }}";
+        var dec = "{{ $dec }}";
+        //***************** reject by month **************************** */
+        var jan_r = "{{ $jan_r }}";
+        var feb_r = "{{ $feb_r }}";
+        var mac_r = "{{ $mac_r }}";
+        var apr_r = "{{ $apr_r }}";
+        var mei_r = "{{ $mei_r }}";
+        var jun_r = "{{ $jun_r }}";
+        var july_r = "{{ $july_r }}";
+        var aug_r = "{{ $aug_r }}";
+        var sept_r = "{{ $sept_r }}";
+        var oct_r = "{{ $oct_r }}";
+        var nov_r = "{{ $nov_r }}";
+        var dec_r = "{{ $dec_r }}";
+    </script>
+
     <script type="text/javascript">
         $(document).ready(function() {
           $('#bootstrap-data-table-export').DataTable();
       } );
+    </script>
+    
+    <script>
+
+    function testDisplay(ref){
+    var commentInfo=<?php echo json_encode($allInfo);?>;
+    commentInfo.forEach(function(item){
+        if(ref==item.freference_no){
+   
+        document.getElementById("commentPolicy").innerHTML=item.comment;
+        // tr.appendChild(comment);
+   
+        document.getElementById("violated_policy").innerHTML=item.violated_policy;
+        }
+    });
+    }
     </script>
     
 

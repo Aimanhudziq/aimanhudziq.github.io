@@ -19,6 +19,7 @@ class CreateTrackRecordsTable extends Migration
             $table->integer('ori_status_code')->unsigned()->index();
             $table->integer('new_status_code')->unsigned()->index();
             $table->string('violated_policy')->nullable();
+            $table->string('code_policy')->nullable();
             $table->string('comment')->nullable();
             $table->timestamps();
 

@@ -103,7 +103,7 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-body" style="padding-bottom:0px" >
             <div class="row">
                 <div class="col-md-6">
-                    <img src="{{url($applicant->image_url)}}" alt="client images" height="150px" width="180px">
+                    <img src="{{url($applicant->image_url)}}" alt="client images" height="150px" width="250px">
                 </div>
                 <div class="col-md-6">
                     <div class="row">
@@ -121,25 +121,28 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                         <div class="card">
                             <div class="card-header">
                                 <strong>{{trans('content.policy')}}</strong>
+                                @if($errors->has('policy'))
+                                <span class="help-block">
+                                <strong style='color: #a94442'>{{ $errors->first('policy') }}</strong>
+                                @endif
                             </div> <!--/card header -->
                             <div class="card-body" style="font-size: small; padding-top:0px; padding-bottom:0px">
                                 <form action="" method="GET">
                                     <div class="form-check" >
                                         <div id="app">
-
                                         @foreach($policy as $p)
-                                       
                                             <div class="checkbox">
                                                 <div class="col-xs-6">
                                                     <label for="policy" class="form-check-label" style="font-size:10px;">
                                                         <input type="checkbox"  id="policy" name="policy[]" value="{{ $p->policy_name }}" 
-                                                            class="form-check-input">
+                                                            class="form-check-input" value1="{{ $p->policy_no }}">
                                                         {{ $p->policy_name }}
                                                     </label>
                                                 </div>
                                             </div>
-                                            @endforeach
-                                        
+                                            
+                                        @endforeach
+                                        <input type="hidden" name="policy_no" id="txt_policy_no" value=''>
                                         <input type="hidden" name="currentuser" value='{{Auth::user()->first_name}}'>
                                         <input type="hidden" name="currentuserID" value='{{Auth::user()->user_staff_id}}'>
                                         <input type="hidden" name="bank" value="{{request()->route('bank_code')}}">
@@ -151,7 +154,12 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                                            <label for="textarea-input" class=" form-control-label ml-3">{{trans('content.remarks')}}</label>
                                            <input type="text" textarea style="resize:none;font-size:11px;" name="comment"  placeholder="Content..." 
                                             class="form-control ml-3"></textarea>
-            
+
+                                            @if($errors->has('comment'))
+                                            <span class="help-block">
+                                            <strong style='color: #a94442'>{{ $errors->first('comment') }}</strong>
+                                            @endif
+
                                         </div>
                                             <div class="modal-footer" style="padding-bottom:0px" >
                                                 <button type="submit" formaction="{{url('approve', $applicant->reference_no)}}"class="btn btn-sm btn-success mt-3 mb-3 text-white" id="approve">{{trans('content.approve')}}</button>
@@ -174,8 +182,15 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
     </div>
 </div>
 <!--Modal Body End-->
+
 @endforeach
 
 
-
+@if (count($errors) > 0)
+<script>
+    $( document ).ready(function() {
+        $('#client_detail{{$applicant->ic_no}}').modal('show');
+    });
+</script>
+@endif
 @endsection

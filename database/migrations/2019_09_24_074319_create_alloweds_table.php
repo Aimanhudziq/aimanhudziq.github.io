@@ -15,7 +15,7 @@ class CreateAllowedsTable extends Migration
     {
         Schema::create('alloweds', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('fpolicy_no')->unsigned()->index();
+            $table->string('fpolicy_no')->index();
             $table->string('desc');
             $table->timestamps();
 

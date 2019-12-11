@@ -152,14 +152,25 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                 <!--Body start-->
         <div class="modal-body" style="padding-bottom:0px" >
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <img src="{{url($applicant_reviewer->image_url)}}" alt="client images" height="150px" width="180px">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-9">
                     <div class="row">
                         <div class="col-lg-12">
                         <h6 class="card-text" style="font-size:12px">{{trans('content.ref_num')}} : <span class="badge bg-info" style="font-size:10px">{{$applicant_reviewer->reference_no}}</span></h6>
-                        <h6 class="card-text" style="font-size:12px">{{trans('content.date')}} : <span class="badge bg-info" style="font-size:10px">{{$applicant_reviewer->created_at}}</span> </h6>
+                        <h6 class="card-text" style="font-size:12px">{{trans('content.date')}} : <span class="badge bg-info" style="font-size:10px">{{$applicant_reviewer->created_at}}</span> </h6><br>
+                        <fieldset>
+                            <legend style="font-size:12px"><b>{{trans('content.additional_info')}}</b></legend>
+                            @foreach($allInfo as $info)
+                                @if($applicant_reviewer->reference_no == $info->reference_no)
+                                <h6 class="card-text" 
+                                    style="font-size:8px" ><span class="badge bg-danger">{{trans('content.violated_policy')}}</span> : <u><span style="font-size:11px">{{$info->violated_policy}}</span></u></h6>
+                                <h6 class="card-text" 
+                                    style="font-size:8px"><span class="badge bg-warning">{{trans('content.comment')}}</span> : <span style="font-size:11px">{{$info->comment}}</span> </h6>
+                                @endif
+                            @endforeach
+                        </fieldset>
                         </div>
                     </div>
                 </div>
@@ -170,6 +181,10 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                         <div class="card">
                             <div class="card-header">
                                 <strong>{{trans('content.policy')}}</strong>
+                                @if($errors->has('policy'))
+                                <span class="help-block">
+                                <strong style='color: #a94442'>{{ $errors->first('policy') }}</strong>
+                                @endif
                             </div> <!--/card header -->
                             <div class="card-body" style="font-size: small; padding-top:0px; padding-bottom:0px">
                                 <form action="" method="GET">
@@ -180,12 +195,14 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                                                 <div class="col-xs-6">
                                                     <label for="policy" class="form-check-label" style="font-size:10px;">
                                                         <input type="checkbox" id="policy" name="policy[]" value="{{ $p->policy_name }}"
-                                                            class="form-check-input">
+                                                            class="form-check-input" value1="{{ $p->policy_no }}">
+
                                                         {{ $p->policy_name }}
                                                     </label>
                                                 </div>
                                             </div>
                                         @endforeach
+                                        <input type="hidden" name="policy_no" id="txt_policy_no" value=''>
                                         <input type="hidden" name="currentuser" value='{{Auth::user()->first_name}}'>
                                         <input type="hidden" name="currentuserID" value='{{Auth::user()->user_staff_id}}'>
                                         <input type="hidden" name="bank" value="{{request()->route('bank_code')}}">
@@ -197,12 +214,15 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                                            <label for="textarea-input" class=" form-control-label ml-3">{{trans('content.remarks')}}</label>
                                            <input type="text" textarea style="resize:none;font-size:11px;" name="comment"  placeholder="Content..." 
                                             class="form-control ml-3"></textarea>
-            
+                                            @if($errors->has('comment'))
+                                            <span class="help-block">
+                                            <strong style='color: #a94442'>{{ $errors->first('comment') }}</strong>
+                                            @endif
                                         </div>
                                             <div class="modal-footer" style="padding-bottom:0px" >
-                                                <button type="submit" formaction="{{url('approve_checker', $applicant_reviewer->reference_no)}}" class="btn btn-sm btn-success mt-3 mb-3 text-white" id="approve">{{trans('content.approve')}}</a>
-                                                <button type="submit" formaction="{{url('reject_checker', $applicant_reviewer->reference_no)}}" class="btn btn-sm btn-danger mt-3 mb-3 text-white">{{trans('content.reject')}}</a>
-                                                <button type="submit" formaction="btn btn-secondary" data-dismiss="modal">{{trans('content.cancel')}}</a>
+                                                <button type="submit" formaction="{{url('approve_checker', $applicant_reviewer->reference_no)}}" class="btn btn-sm btn-success mt-3 mb-3 text-white" id="approve">{{trans('content.approve')}}</button>
+                                                <button type="submit" formaction="{{url('reject_checker', $applicant_reviewer->reference_no)}}" class="btn btn-sm btn-danger mt-3 mb-3 text-white">{{trans('content.reject')}}</button>
+                                                <a class="btn btn-secondary" data-dismiss="modal">{{trans('content.cancel')}}</a>
                                             </div>
                                         </div>
                                     </div><!-- form check class-->
@@ -218,19 +238,13 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
 </div>
 <!--Modal Body End-->
 @endforeach
+@if (count($errors) > 0)
 <script>
-function testDisplay(ref){
-var commentInfo=<?php echo json_encode($allInfo);?>;
-commentInfo.forEach(function(item){
-    if(ref==item.freference_no){
-   
-    document.getElementById("commentPolicy").innerHTML=item.comment;
-    // tr.appendChild(comment);
-   
-    document.getElementById("violated_policy").innerHTML=item.violated_policy;
-    }
-});
-}
+    $( document ).ready(function()
+    {
+        $('#client_details{{$applicant_reviewer->ic_no}}').modal('show');
+    });
 </script>
+@endif
 
 @endsection

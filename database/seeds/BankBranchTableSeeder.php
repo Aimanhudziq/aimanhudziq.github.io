@@ -1,9 +1,18 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Flynsarmy\CsvSeeder\CsvSeeder;
 
-class BankBranchTableSeeder extends Seeder
+class BankBranchTableSeeder extends CsvSeeder
 {
+
+    public function __construct()
+    {
+        $this->table = 'bank_branches';
+        $this->filename = base_path(). '/database/seeds/csv/bank_branch.csv';
+        $this->should_trim = true;
+    }
+
     /**
      * Run the database seeds.
      *
@@ -11,37 +20,9 @@ class BankBranchTableSeeder extends Seeder
      */
     public function run()
     {
-       DB::table('bank_branches')->insert([
+        DB::disableQueryLog();
+        DB::table($this->table)->delete();
 
-            [
-                'branch_code'=>'1001',
-                'branch_name'=>'Butterworth, Penang, Malaysia',
-                'branch_address'=>'Butterworth, Penang, Malaysia',
-                'branch_city'=>'Butterworth, Penang, Malaysia',
-                'fbank_code'=>'101'
-            ],
-            [
-                'branch_code'=>'1002',
-                'branch_name'=>'Ipoh Perak',
-                'branch_address'=>'Ipoh Perak',
-                'branch_city'=>'Ipoh Perak',
-                'fbank_code'=>'101'
-            ],
-            [
-                'branch_code'=>'1003',
-                'branch_name'=>'Johor Bahru Johor',
-                'branch_address'=>'Johor Bahru Johor',
-                'branch_city'=>'Johor Bahru Johor',
-                'fbank_code'=>'101'
-            ],
-            [
-                'branch_code'=>'1004',
-                'branch_name'=>'Kota Kinabalu Sabah',
-                'branch_address'=>'Kota Kinabalu Sabah',
-                'branch_city'=>'Kota Kinabalu Sabah',
-                'fbank_code'=>'101'
-            ],
-            
-       ]);
+        parent::run();
     }
 }

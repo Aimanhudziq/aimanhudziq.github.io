@@ -24,6 +24,7 @@ return[
     'history' => 'Rekod',
     'from' => 'Dari',
     'to' => 'Kepada',
+    'policy_code' => 'Kod Polisi',
     'policy_violated' => 'Kesalahan Polisi',
     'search' => 'Carian',
     'comment' => 'Komen',
@@ -85,6 +86,8 @@ return[
     'policy_details'=> 'Butiran Polisi',
     'allowed' => 'Dibenarkan',
     'not_allowed' => 'Tidak Dibenarkan',
+    'violated_policy' => 'Kesalahan Polisi',
+    'policy_no' => 'Nombor Polisi',
 
     //Bank
     'bank_assign' => 'Tugasan Bank',
@@ -104,9 +107,8 @@ return[
     'add_client' => 'Tambah Butiran Pelanggan',
     'address' => 'Alamat',
     'upload' => 'Muatnaik Gambar',
-
-
-
+    
+    'additional_info' => 'Maklumat Tambahan',
 
  
       

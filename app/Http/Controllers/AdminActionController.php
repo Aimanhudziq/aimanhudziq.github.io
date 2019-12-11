@@ -7,6 +7,8 @@ use App\Bank;
 use App\User;
 use App\Role;
 use App\Policy;
+use App\Allowed;
+use App\NotAllowed;
 use App\BankAssignmentList;
 use App\ClientDetail;
 use Carbon\Carbon;
@@ -23,38 +25,17 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Auth\Events\PasswordReset;
+use App\Helper\ReferenceNumberHelper as GenRefNo;
 
 class AdminActionController extends Controller
 {
-    /**
-     * Add new user with no dulipcate
-     * 
-     */
+
     use ResetsPasswords;
     
     //redirect user after reset password
     protected $redirectTo = '/user_dashboard';
 
-     /**
-     * show form for user to enter their email
-     * 
-     */
-    public function showLinkRequestForm()
-    {
-        return view('auth.passwords.email');
-    }
-
-    /**
-     * show form for user to reset their password
-     * 
-     */
-    public function showResetForm(Request $request, $token = null)
-    {
-        return view('auth.passwords.reset')
-        ->with(
-            ['token' => $token, 'email' => $request -> email]
-        );
-    }
+   
 
     /**
      * Add new user with no dulipcate
@@ -68,11 +49,8 @@ class AdminActionController extends Controller
             'last_name'=>'required',
             'username'=>'required',
             'email'=>'required|email|unique:users',
-            //'password'=>'required',
-            //'user_type'=>'required|email|unique:users',
             'role_category'=>'required',
         ]);
-        //$input['autoOpenModal'] = 'true';
 
         //generate a password for the new users
         $random = str_shuffle('abcdefghjklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ1234567890!$%^&!$%^&');
@@ -86,11 +64,27 @@ class AdminActionController extends Controller
         $user->last_name = $request->input('last_name');
         $user->username = $request->input('username');
         $user->email = $request->input('email');
-        $user->password = bcrypt($password);        //\Hash::make('Mrtesting009@');
-        $user->user_type = "Normal User";
+        $user->password = bcrypt($password);
         $user->frole_code = $request->input('role_category');
         $user->created_at = Carbon::now();
 
+
+        
+        if($user->frole_code == 1)
+        {
+            $user->user_type = "Admin";
+        }
+        else if($user->frole_code == 2)
+        {
+            $user->user_type = "Reviewer";
+        }
+        else
+        {
+            $user->user_type = "Normal User";
+        }   
+        
+        // dd($user->user_staff_id,$user->first_name,$user->last_name,$user->username,$user->email,
+        // $user->password,$user->frole_code,$user->created_at,$user->user_type);
         $user->save();
 
 
@@ -109,180 +103,7 @@ class AdminActionController extends Controller
         ];
     }
 
-    /**
-     * reset user password
-     */
-    public function reset(Request $request)
-    {
-        $request->validate($this->rules(), $this->validationErrorMessages());
-        // Here we will attempt to reset the user's password. If it is successful we
-        // will update the password on an actual user model and persist it to the
-        // database. Otherwise we will parse the error and return the response.
-        $response = $this->broker()->reset(
-            $this->credentials($request), function ($user, $password) {
-                $this->resetPassword($user, $password);
-            }
-        );
-        // If the password was successfully reset, we will redirect the user back to
-        // the application's home authenticated view. If there is an error we can
-        // redirect them back to where they came from with their error message.
-        
-        return $response == Password::PASSWORD_RESET
-                    ? $this->sendResetResponse($request, $response)
-                    : $this->sendResetFailedResponse($request, $response);
-
-    }
-     /**
-     * use in reset function 
-     * 
-     */
-    protected function sendResetResponse(Request $request, $response)
-    {
-        return redirect($this->redirectPath())
-                            ->with('status', trans($response));
-    }
-
-    /**
-     * use in reset function 
-     * 
-     */
-    protected function sendResetFailedResponse(Request $request, $response)
-    {
-        return redirect()->back()
-                    ->withInput($request->only('email'))
-                    ->withErrors(['email' => trans($response)]);
-    }
-
-    /**
-     * use in reset function 
-     * 
-     */
-    protected function validationErrorMessages()
-    {
-        return [];
-    }
-
-    /**
-     * use in reset function 
-     * 
-     */
-    protected function rules()
-    {
-        return [
-            'token' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|confirmed|min:8',
-        ];
-    }
-
-    /**
-     * use in reset function 
-     * 
-     */
-    protected function credentials(Request $request)
-    {
-        return $request->only(
-            'email', 'password', 'password_confirmation', 'token'
-        );
-    }
-
-    /**
-     * use in reset function 
-     * 
-     */
-    protected function resetPassword($user, $password)
-    {
-        $user->password = Hash::make($password);
-
-        $user->setRememberToken(Str::random(60));
-
-        $user->save();
-
-        event(new PasswordReset($user));
-
-        $this->guard()->login($user);
-
-       // protected function resetPassword($user, $password)
-
-       /* $user->forceFill([
-            'password' => bcrypt($password),
-            'remember_token' => Str::random(60),
-        ])->save();*/
-
-    }
-
-    /**
-     * use in reset function 
-     * 
-     */
-    public function broker()
-    {
-        return Password::broker();
-    }
-
-    /**
-     * send password reset link to user
-     * 
-     */
-    public function sendResetLinkEmail(Request $request)
-    {
-        //dd($request->all());
-        $this->validateEmail($request);
-        // We will send the password reset link to this user. Once we have attempted
-        // to send the link, we will examine the response then see the message we
-        // need to show to the user. Finally, we'll send out a proper response.
-        $response = $this->broker()->sendResetLink(
-            $this->credentials($request)
-        );
-        return $response == Password::RESET_LINK_SENT
-                    ? $this->sendResetLinkResponse($request, $response)
-                    : $this->sendResetLinkFailedResponse($request, $response); 
-    
-    }
-    
-    /**
-     * Validate the email for the given request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return void
-     */
-    protected function validateEmail(Request $request)
-    {
-        $request->validate(['email' => 'required|email']);
-    }
-    /**
-     * Get the needed authentication credentials from the request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-
-    /**
-     * Get the response for a successful password reset link.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  string  $response
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
-     */
-    protected function sendResetLinkResponse(Request $request, $response)
-    {
-        return back()->with('status', trans($response));
-    }
-    /**
-     * Get the response for a failed password reset link.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  string  $response
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
-     */
-    protected function sendResetLinkFailedResponse(Request $request, $response)
-    {
-        return back()
-                ->withInput($request->only('email'))
-                ->withErrors(['email' => trans($response)]);
-    }
-
-
+  
     /**
      * Add new policy to the system
      */
@@ -291,24 +112,39 @@ class AdminActionController extends Controller
     {
     
         $this->validate($request,[
-            //'policy_no'=>'policy_no',
+            'policy_no'=>'required',
             'policy_name'=>'required',
             'policy_source'=>'required',
             'policy_regulation'=>'required',
+            'allowed_desc'=>'required',
+            'notAllowed_desc'=>'required',
         ]);
 
         $policy = new Policy;
         
         //randomize the policy number to DB insertion
-        $pol_no = substr(str_shuffle("0123456789"), 0, 3);
-        $policy_code = $pol_no;
+       // $pol_no = substr(str_shuffle("0123456789"), 0, 3);
+       // $policy_code = $pol_no;
 
-        $policy->policy_no = $policy_code;
+        $policy->policy_no = $request->input('policy_no');
         $policy->policy_name = $request->input('policy_name');
         $policy->policy_source = $request->input('policy_source');
         $policy->policy_regulation = $request->input('policy_regulation');
-
         $policy->save();
+
+        $allowed = new Allowed;
+
+        $allowed->fpolicy_no = $request->input('policy_no');
+        $allowed->desc = $request->input('allowed_desc');
+        $allowed->save(); 
+
+        $not_allowed = new NotAllowed;
+
+        $not_allowed->fpolicy_no = $request->input('policy_no');
+        $not_allowed->desc = $request->input('notAllowed_desc');
+        $not_allowed->save();
+
+
         Alert::success($policy->policy_name.' Successful added to the policy list ',' Policy');
 
         return redirect('admin_policy_list');
@@ -389,40 +225,6 @@ class AdminActionController extends Controller
    
     }
 
-    /***
-     * generate ref number for client by date + random number
-     */
-
-    private function shuffleString($stringValue, $startWith = "") {
-        $range = \range(0, \mb_strlen($stringValue));
-        shuffle($range);
-        foreach($range as $index) {
-            $startWith .= \mb_substr($stringValue, $index, 1);
-        }
-        //dd($startWith);
-        return $startWith;
-    }
-
-    /**
-     * 1. generate ref number by using method shuffle string
-     * eg output => g2^x%a)z+=jq$v1oubf#rk_ned3twihc(!lyp@ms&*
-     * shuffle string method will be generate unique id 
-     * 2. includes date ie: year + month + day (20191025)
-     * 3. using sha1 (secure Hash Algorithm);
-     */
-    private function genRefNum()
-    {
-        $strvalue = $this->shuffleString("abcdefghijklmnopqrstuvwxyz123!@#$%^&*()_+=");
-
-        $str_alph = substr(uniqid($strvalue),0,6);
-
-        $today = date("Ymd");
-        $rand = strtoupper(substr(uniqid(sha1(time())),0,4));
-        $ref_number =  strtoupper($today . $rand . $str_alph);
-        //dd($ref_number);
-        return $ref_number;
-    }
-
     public function clientDetails()
     {
         $bank_name = Bank::all();    
@@ -472,7 +274,7 @@ class AdminActionController extends Controller
 
         $data_client = new ClientDetail;
 
-        $data_client->reference_no = $this->genRefNum();
+        $data_client->reference_no = RefGen::genRefNum();
         $data_client->full_name = $req->get('full_name');
         $data_client->email = $req->get('email');
         $data_client->phone_number = $req->get('phone_no');

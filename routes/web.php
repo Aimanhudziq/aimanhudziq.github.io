@@ -31,14 +31,14 @@ Route::post('password_reset', 'Auth\ResetPasswordController@reset')
                 ->name('password-update'); 
 
 //Reset password after  user/reviewer has been added into system 
-Route::get('password_reset', 'AdminActionController@showLinkRequestForm')
-                ->name('password-request'); 
-Route::post('password_email', 'AdminActionController@sendResetLinkEmail')
-                ->name('password-email');
-Route::get('password_reset/{token}', 'AdminActionController@showResetForm')
-                ->name('password-reset'); 
-Route::post('password_reset', 'AdminActionController@reset')
-                ->name('password-update'); 
+// Route::get('password_reset', 'AdminActionController@showLinkRequestForm')
+//                 ->name('password-request'); 
+// Route::post('password_email', 'AdminActionController@sendResetLinkEmail')
+//                 ->name('password-email');
+// Route::get('password_reset/{token}', 'AdminActionController@showResetForm')
+//                 ->name('password-reset'); 
+// Route::post('password_reset', 'AdminActionController@reset')
+//                 ->name('password-update'); 
 
 Route::get('user_dashboard', 'UserController@userDashboard')
                 ->name('user-dashboard')
@@ -60,8 +60,8 @@ Route::get('reviewer_list_bank', 'UserController@reviewerListBank')
                 ->name('reviewer-list-bank');
                 //->middleware('reviewer'); //access by reviewer only
 
-Route::get('reviewer_kiv', 'UserController@reviewerKiv')
-                ->name('reviewer-kiv');
+/*Route::get('reviewer_kiv', 'UserController@reviewerKiv')
+                ->name('reviewer-kiv')->middleware('reviewer');*/
 
 Route::get('user_track_log', 'UserController@userTrackLog')
                 ->name('user-track-log')
@@ -81,7 +81,15 @@ Route::get('forgot_password', 'UserController@forgotPassword')
 
 Route::post('forgot_password', 'UserController@changePassword')
                 ->name('forgot-passwordReset')
-                ->middleware('user');   
+                ->middleware('user');
+                
+Route::get('forgot_passwordAdmin', 'AdminController@forgotPassword')
+                ->name('forgot_passwordAdmin')
+                ->middleware('admin');
+                
+Route::post('forgot_passwordAdmin', 'AdminController@changePasswordAdmin')
+                ->name('forgot-passwordResetAdmin')
+                ->middleware('admin'); 
 
 Route::get('admin_user_list', 'AdminController@getAllUser')
                 ->name('admin-user-list')
@@ -152,19 +160,28 @@ Route::get('approve_checker/{ref_no}', 'StatusController@approveChecker')
                 //->middleware('reviewer');
 
 
-Route::get('user_excel_report', 'ReportController@export')
-                ->name('user-excel-report')
-                ->middleware('normal_user');
+
 
 // Route::get('/htmlPDF', 'PDFController@index');
+Route::group(['prefix'=>'report'], function(){
 
-Route::get('/htmlPDF/pdf', 'PDFController@pdf')
-                ->name('html-pdf')
-                ->middleware('normal_user');
-
-Route::get('user_report', 'ReportController@userReport')
+    Route::get('/user_report', 'ReportController@userReport')
                 ->name('user-report')
-                ->middleware('normal_user'); //access by normal user only
+                ->middleware('user');
+
+    Route::get('/pdf_report', 'PDFController@pdf')
+                ->name('html-pdf')
+                ->middleware('user');
+
+    Route::get('user_excel_report', 'ReportController@export')
+                ->name('user-excel-report')
+                ->middleware('user');
+
+    Route::get('/download_xml','XMLController@downloadXML')
+                ->name('xml-report')
+                ->middleware('user');
+});
+
 
 
 Route::group(['prefix' => 'maybank'], function()

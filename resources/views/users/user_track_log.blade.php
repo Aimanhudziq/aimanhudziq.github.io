@@ -135,8 +135,9 @@
                                                     <th>{{trans('content.date')}}</th>
                                                     <th>{{trans('content.from')}}</th>
                                                     <th>{{trans('content.to')}}</th>
+                                                    <th>{{trans('content.policy_code')}}</th>
                                                     <th>{{trans('content.policy_violated')}}</th>
-                                                    <th>Comment</th>
+                                                    <th>{{trans('content.comment')}}</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="tablebody">
@@ -185,17 +186,20 @@ trackrec.forEach(function(item){
     var date = document.createElement('td');
     var orist = document.createElement('td');
     var newst = document.createElement('td');
+    var policy_code = document.createElement('td');
     var policy = document.createElement('td');
     var comment = document.createElement('td');
 
     date.appendChild(document.createTextNode(item.created_at));
     orist.appendChild(document.createTextNode(getstrcode(item.ori_status_code)));
     newst.appendChild(document.createTextNode(getstrcode(item.new_status_code)));
+    policy_code.appendChild(document.createTextNode(item.code_policy));
     policy.appendChild(document.createTextNode(item.violated_policy));
     comment.appendChild(document.createTextNode(item.comment));
     tr.appendChild(date);
     tr.appendChild(orist);
     tr.appendChild(newst);
+    tr.appendChild(policy_code);
     tr.appendChild(policy);
     tr.appendChild(comment);
     var container=document.getElementById("tablebody");
@@ -229,6 +233,7 @@ trackrec.forEach(function(item){
 
 function getstrcode(stcd){
     var strcode="";
+    var className ="";
 switch(stcd){
     case 3:
         strcode="new";

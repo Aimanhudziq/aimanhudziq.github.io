@@ -23,6 +23,7 @@ return[
     'history' => 'History',
     'from' => 'From',
     'to' => 'To',
+    'policy_code' => 'Policy Code',
     'policy_violated' => 'Policy Violated',
     'search' => 'Search',
     'comment' => 'Comment',
@@ -83,6 +84,8 @@ return[
     'policy_details'=> 'Policy Details',
     'allowed' => 'Allowed',
     'not_allowed' => 'Not Allowed',
+    'violated_policy' => 'Violated Policy',
+    'policy_no' => 'Policy Number',
 
     //Bank
     'bank_assign' => 'Bank Assignment',
@@ -103,7 +106,7 @@ return[
     'address' => 'Address',
     'upload' => 'Upload Image',
     
-    
+    'additional_info' => 'Additional Infomation',
 
 
 

@@ -13,6 +13,7 @@
             <table id="bootstrap-data-table" class="table table-striped table-bordered">
                 <thead>
                     <tr>
+                        <th>{{trans('content.policy_no')}}</th>
                         <th>{{trans('content.policy_name')}}</th>
                         <th>{{trans('content.policy_source')}}</th>
                         <th>{{trans('content.policy_regulation')}}</th>
@@ -22,6 +23,7 @@
                 <tbody>
                     @foreach($policies as $policy)
                     <tr>
+                        <td class="col-md-2">{{ $policy->policy_no }}</td>
                         <td class="col-md-5">{{ $policy->policy_name }}</td>
                         <td><span class="badge bg-dark">
                             {{ $policy->policy_source }}
