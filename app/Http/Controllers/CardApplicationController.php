@@ -75,7 +75,7 @@ class CardApplicationController extends Controller{
                             ->first();
         
         $client->reference_no = RefGen::genRefNum();
-        $client->full_name = $req->get('full_name');
+        //$client->full_name = $req->get('full_name');
         $client->ic_no = $req->get('ic_no');
         $client->phone_number = $req->get('phone_no');
         $client->email = $req->get('email');
