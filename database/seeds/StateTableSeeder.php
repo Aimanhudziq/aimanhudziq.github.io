@@ -3,13 +3,13 @@
 use Illuminate\Database\Seeder;
 use Flynsarmy\CsvSeeder\CsvSeeder;
 
-class BankBranchTableSeeder extends CsvSeeder
+class StateTableSeeder extends CsvSeeder
 {
 
     public function __construct()
     {
-        $this->table = 'bank_branches';
-        $this->filename = base_path(). '/database/seeds/csv/bank_branch.csv';
+        $this->table = 'states';
+        $this->filename = base_path(). '/database/seeds/csv/states.csv';
         $this->should_trim = true;
     }
 
@@ -21,7 +21,9 @@ class BankBranchTableSeeder extends CsvSeeder
     public function run()
     {
         DB::disableQueryLog();
-        DB::table($this->table)->delete();
+        //DB::table($this->table)->truncate();
+        DB::table('bank_branches')->delete();
+
 
         parent::run();
     }

@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(BankTableSeeder::class);
         $this->call(StatusTableSeeder::class);
         $this->call(BankBranchTableSeeder::class);
-        //$this->call(TrackRecordSeeder::class);
+        $this->call(StateTableSeeder::class);
 
         //1.run 'composer dump-autoload'
         //2.run 'php artisan db:seed or db:seed --class=UserTableSeeder' for singular

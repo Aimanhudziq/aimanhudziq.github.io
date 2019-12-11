@@ -18,11 +18,12 @@ class CreateBankBranchesTable extends Migration
             $table->integer('branch_code')->unsigned()->index();
             $table->string('branch_name')->nullable();
             $table->string('branch_address')->nullable();
-            $table->string('branch_city')->nullable();
             $table->integer('fbank_code')->unsigned()->index();
+            $table->string('fstate_code2')->index();
             $table->timestamps();
 
             $table->foreign('fbank_code')->references('bank_code')->on('banks')->onDelete('cascade');
+            $table->foreign('fstate_code2')->references('state_code2')->on('states')->onDelete('cascade');
         });
     }
 
