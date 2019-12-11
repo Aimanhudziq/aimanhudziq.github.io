@@ -19,6 +19,7 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 import store from '../js/vuex/store';
+import Cropper from 'cropperjs';
 Vue.component('cardapplication', require('./components/CardApplication/CardApplicationFormComponent.vue').default);
 
 /**
@@ -29,5 +30,5 @@ Vue.component('cardapplication', require('./components/CardApplication/CardAppli
 
 const app = new Vue({
     el: '#app',
-    store
+    store,
 });

@@ -11650,3 +11650,9 @@ a.text-dark:focus {
   cursor: not-allowed;
 }
 
+.wr {
+  color: #212529;
+  background-color: #ffcc00;
+  border-color: #ffcc00;
+}
+
