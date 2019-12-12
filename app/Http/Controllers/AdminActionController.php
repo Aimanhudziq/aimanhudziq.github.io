@@ -26,6 +26,7 @@ use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Auth\Events\PasswordReset;
 use App\Helper\ReferenceNumberHelper as GenRefNo;
+use Intervention\Image\Facades\Image as Image;
 
 class AdminActionController extends Controller
 {
@@ -246,8 +247,10 @@ class AdminActionController extends Controller
             //$destination_path =  request()->file('image_file')->store('images/client');
             $destination_path =  'images/client';
             $image_url = $image_file->move($destination_path, $image_name);
-            //dd($image_url);
-            return $image_url; 
+
+            $image = Image::make($image_url)->resize(1036,664);
+            $image->save($image_url);
+            return $image; 
             
         }
      }
@@ -274,7 +277,7 @@ class AdminActionController extends Controller
 
         $data_client = new ClientDetail;
 
-        $data_client->reference_no = RefGen::genRefNum();
+        $data_client->reference_no = GenRefNo::genRefNum();
         $data_client->full_name = $req->get('full_name');
         $data_client->email = $req->get('email');
         $data_client->phone_number = $req->get('phone_no');

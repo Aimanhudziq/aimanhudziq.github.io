@@ -9,6 +9,7 @@ use App\BankBranch;
 use App\Bank;
 use App\State;
 use App\Helper\ReferenceNumberHelper as RefGen;
+use Intervention\Image\Facades\Image as Image;
 
 class CardApplicationController extends Controller{
 
@@ -52,7 +53,7 @@ class CardApplicationController extends Controller{
      * 
      */
 
-    public function getImageUrl()
+    public function getImageUrl($ref_no)
     {
         $image_url ="";
 
@@ -61,8 +62,13 @@ class CardApplicationController extends Controller{
         {
             $image = str_replace('data:image/png;base64,', '', $image);
             $image = str_replace(' ', '+', $image);
-            $file_name = request()->input('reference_no').'.png';
-            \File::put(public_path(). '/images/client/' . $file_name, base64_decode($image));
+            $image_decoded = base64_decode($image);
+
+
+            $file_name = $ref_no.'.png';
+            $img = Image::make($image_decoded)->resize(1036,664)->stream('png','100');
+
+            \File::put(public_path(). '/images/client/' . $file_name, $img);
 
             $image_url = '/images/client/' . $file_name; 
         }
@@ -84,13 +90,14 @@ class CardApplicationController extends Controller{
                             ->first();
         
         $client->reference_no = RefGen::genRefNum();
+        //dd($client->reference_no);
         //$client->full_name = $req->get('full_name');
         $client->ic_no = $req->get('ic_no');
         $client->phone_number = $req->get('phone_no');
         $client->email = $req->get('email');
         $client->address = trim($banks->branch_address);
         $client->fstatus_code = 3;
-        $client->image_url = $this->getImageUrl();
+        $client->image_url = $this->getImageUrl($client->reference_no);
         $client->fbank_code = $bank_code;
     
         $check_client = ClientDetail::where('ic_no', $client->ic_no)->get();

@@ -245,8 +245,9 @@ class UserController extends Controller
                     ->where('ba.fuser_staff_id', Auth::user()->user_staff_id)
                     ->where('cd.fbank_code', $bank_code)
                     ->whereIn('cd.fstatus_code',['3'])
+                    ->select('cd.*')
                     ->get(); 
-                    
+        //dd($client);            
         $policy = Policy::all(); 
         
         
