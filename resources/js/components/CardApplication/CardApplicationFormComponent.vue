@@ -69,7 +69,7 @@
         <div class="form-group row">
         <label for="icnumber" class="col-sm-2 col-form-label"><b>State</b></label>
         <div class="col-sm-6">
-        <select class="form-control" v-model="selected_state">
+        <select class="form-control" v-model="selected_state" >
             <option v-for="(item,index) in state_list" v-bind:key="index">{{item.state_name}}</option>
         </select>
         </div>
@@ -109,7 +109,8 @@
                 axios.get('/api/maybank/branches')])
      .then(axios.spread((statelist, branchlist) => {  
          ap.state_list=statelist.data;
-         ap.branch_list
+         ap.branch_list=branchlist.data;
+         console.log(branchlist.data);
      }))
      .catch(error => console.log(error)); 
         },
@@ -194,6 +195,9 @@
             }
             this.image_file_selection_status="no images";
             this.editstate=false;
+        },
+        onSelectState:function(){
+
         },
         submitApplication:function(){
             this.invalid={};

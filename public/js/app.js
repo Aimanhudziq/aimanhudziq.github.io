@@ -1952,7 +1952,8 @@ __webpack_require__.r(__webpack_exports__);
     var ap = this;
     axios.all([axios.get('/api/maybank/states'), axios.get('/api/maybank/branches')]).then(axios.spread(function (statelist, branchlist) {
       ap.state_list = statelist.data;
-      ap.branch_list;
+      ap.branch_list = branchlist.data;
+      console.log(branchlist.data);
     }))["catch"](function (error) {
       return console.log(error);
     });
@@ -2041,6 +2042,7 @@ __webpack_require__.r(__webpack_exports__);
       this.image_file_selection_status = "no images";
       this.editstate = false;
     },
+    onSelectState: function onSelectState() {},
     submitApplication: function submitApplication() {
       var _this2 = this;
 
