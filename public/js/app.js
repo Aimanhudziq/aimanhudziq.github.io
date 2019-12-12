@@ -1941,7 +1941,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -1953,7 +1952,6 @@ __webpack_require__.r(__webpack_exports__);
     axios.all([axios.get('/api/maybank/states'), axios.get('/api/maybank/branches')]).then(axios.spread(function (statelist, branchlist) {
       ap.state_list = statelist.data;
       ap.branch_list = branchlist.data;
-      console.log(branchlist.data);
     }))["catch"](function (error) {
       return console.log(error);
     });
@@ -1973,7 +1971,7 @@ __webpack_require__.r(__webpack_exports__);
       last4digitic: "",
       selected_branch_code: "",
       selected_image: "",
-      selected_state: "",
+      state_code: "",
       image_file_selection_status: "not selected",
       editstate: false,
       isfileuploaded: false,
@@ -2027,7 +2025,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     save: function save() {
       this.cropper.destroy();
-      this.image_file_selection_status = "modified image";
       this.isfileuploaded = false;
       this.editstate = false;
     },
@@ -2039,10 +2036,13 @@ __webpack_require__.r(__webpack_exports__);
         image.style.backgroundImage = 'url(' + '#' + ')';
       }
 
-      this.image_file_selection_status = "no images";
       this.editstate = false;
     },
-    onSelectState: function onSelectState() {},
+    onSelectState: function onSelectState() {
+      this.derived_branch_list = _.filter(this.branch_list, {
+        'fstate_code2': this.state_code
+      });
+    },
     submitApplication: function submitApplication() {
       var _this2 = this;
 
@@ -47662,31 +47662,38 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.selected_state,
-                      expression: "selected_state"
+                      value: _vm.state_code,
+                      expression: "state_code"
                     }
                   ],
                   staticClass: "form-control",
                   on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.selected_state = $event.target.multiple
-                        ? $$selectedVal
-                        : $$selectedVal[0]
-                    }
+                    change: [
+                      function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.state_code = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      },
+                      function($event) {
+                        return _vm.onSelectState()
+                      }
+                    ]
                   }
                 },
                 _vm._l(_vm.state_list, function(item, index) {
-                  return _c("option", { key: index }, [
-                    _vm._v(_vm._s(item.state_name))
-                  ])
+                  return _c(
+                    "option",
+                    { key: index, domProps: { value: item.state_code2 } },
+                    [_vm._v(_vm._s(item.state_name))]
+                  )
                 }),
                 0
               )
@@ -47725,10 +47732,12 @@ var render = function() {
                     }
                   }
                 },
-                _vm._l(_vm.branch_list, function(item, index) {
-                  return _c("option", { key: index }, [
-                    _vm._v(_vm._s(item.branch_code))
-                  ])
+                _vm._l(_vm.derived_branch_list, function(item, index) {
+                  return _c(
+                    "option",
+                    { key: index, domProps: { value: item.branch_code } },
+                    [_vm._v(_vm._s(item.branch_name))]
+                  )
                 }),
                 0
               ),

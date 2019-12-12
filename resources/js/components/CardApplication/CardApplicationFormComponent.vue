@@ -69,8 +69,8 @@
         <div class="form-group row">
         <label for="icnumber" class="col-sm-2 col-form-label"><b>State</b></label>
         <div class="col-sm-6">
-        <select class="form-control" v-model="selected_state" >
-            <option v-for="(item,index) in state_list" v-bind:key="index">{{item.state_name}}</option>
+        <select class="form-control" v-model="state_code"  @change="onSelectState()">
+            <option v-for="(item,index) in state_list" v-bind:key="index" v-bind:value="item.state_code2">{{item.state_name}}</option>
         </select>
         </div>
         </div>
@@ -79,12 +79,11 @@
         <label for="icnumber" class="col-sm-2 col-form-label"><b>Branch name</b></label>
         <div class="col-sm-6">
         <select class="form-control" v-model="selected_branch_code">
-            <option v-for="(item,index) in branch_list" v-bind:key="index">{{item.branch_code}}</option>
+            <option v-for="(item,index) in derived_branch_list" v-bind:key="index" v-bind:value="item.branch_code">{{item.branch_name}}</option>
         </select>
         {{invalid.selected_branch_code}}
         </div>
         </div>
-
         <div class="form-group row">
             <div class="col-sm-10">
             <button class="btn wr col-sm-3" style="margin-left:21%" @click="submitApplication"><b>submit</b></button>
@@ -107,13 +106,12 @@
             axios.all([
                 axios.get('/api/maybank/states'),
                 axios.get('/api/maybank/branches')])
-     .then(axios.spread((statelist, branchlist) => {  
-         ap.state_list=statelist.data;
-         ap.branch_list=branchlist.data;
-         console.log(branchlist.data);
-     }))
-     .catch(error => console.log(error)); 
-        },
+            .then(axios.spread((statelist, branchlist) => {  
+                ap.state_list=statelist.data;
+                ap.branch_list=branchlist.data;
+            }))
+            .catch(error => console.log(error)); 
+            },
         data:function(){
             return{
                 branch_list:[],
@@ -129,7 +127,7 @@
                 last4digitic:"",
                 selected_branch_code:"",
                 selected_image:"",
-                selected_state:"",
+                state_code:"",
                 image_file_selection_status:"not selected",
                 editstate:false,
                 isfileuploaded:false,
@@ -144,7 +142,6 @@
             if (files && files[0]) {
                     var reader = new FileReader();
                     reader.onload = function(e){
-                        
                          ap.src=e.target.result;
                          ap.isfileuploaded=true;
                         
@@ -182,7 +179,6 @@
         },
         save:function(){
             this.cropper.destroy();
-            this.image_file_selection_status="modified image";
             this.isfileuploaded=false;
             this.editstate=false;
         },
@@ -193,11 +189,10 @@
                 var image=document.getElementById("destimage");
                 image.style.backgroundImage='url(' +'#'+ ')';
             }
-            this.image_file_selection_status="no images";
             this.editstate=false;
         },
         onSelectState:function(){
-
+            this.derived_branch_list=_.filter(this.branch_list,{'fstate_code2':this.state_code});
         },
         submitApplication:function(){
             this.invalid={};
