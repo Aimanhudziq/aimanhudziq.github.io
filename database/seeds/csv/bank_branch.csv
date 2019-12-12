@@ -1,4 +1,4 @@
-branch_code,branch_name,branch_address,fbank_code,fstate_code2
+﻿branch_code,branch_name,branch_address,fbank_code,fstate_code2
 14011,Kuala Lumpur Main ,"1st Floor, Menara Maybank, 
 100, Jalan Tun Perak, 50050
 Kuala Lumpur",101,KLMAIN
@@ -465,7 +465,7 @@ Bandar Sg Long
 Selangor",101,SGOR
 12802,Equine Park,"B-1, Block B, Persiaran Akademi Perdana, Taman Equine, Bandar Putra Permai, 43300 Seri Kembangan Selangor
 Selangor",101,SGOR
-12866,Bandar Utama***,"Lot C.01, Concourse Level,
+12866,Bandar Utama,"Lot C.01, Concourse Level,
 8 First Avenue,
 Bandar Utama,
 47800 Petaling Jaya
@@ -1147,7 +1147,7 @@ Sarawak",101,SWK
 11168,Bau,"80-82, Jalan Temenggong Salau,
 94000 Bau
 Sarawak",101,SWK
-11186,"Boulevard Centre, Miri **","Lots 2429 & 2430,
+11186,"Boulevard Centre, Miri ","Lots 2429 & 2430,
 Boulevard Centre,
 Jalan Permaisuri Pujut,
 98000 Miri
