@@ -187,6 +187,8 @@ Route::group(['prefix'=>'report'], function(){
 Route::group(['prefix' => 'maybank'], function()
 {
     Route::get('/','CardApplicationController@index')->name('maybankui');
+    Route::get('/states','CardApplicationController@getStates');
+    Route::get('/branches','CardApplicationController@getBankBranches');
 });
 
 

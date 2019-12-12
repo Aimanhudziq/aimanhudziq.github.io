@@ -1942,7 +1942,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -1951,13 +1950,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     var ap = this;
-    axios.get('/api/maybank/view_all_branches/101').then(function (response) {
-      ap.branch_list = response.data;
+    axios.all([axios.get('/api/maybank/states'), axios.get('/api/maybank/branches')]).then(axios.spread(function (statelist, branchlist) {
+      ap.state_list = statelist.data;
+      ap.branch_list;
+    }))["catch"](function (error) {
+      return console.log(error);
     });
   },
   data: function data() {
     return {
       branch_list: [],
+      state_list: [],
+      derived_branch_list: [],
       cropper: {},
       destination: "images/frontcard.png",
       src: "images/frontcard.png",
@@ -47677,11 +47681,12 @@ var render = function() {
                     }
                   }
                 },
-                [
-                  _c("option", [_vm._v("johor")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("selangor")])
-                ]
+                _vm._l(_vm.state_list, function(item, index) {
+                  return _c("option", { key: index }, [
+                    _vm._v(_vm._s(item.state_name))
+                  ])
+                }),
+                0
               )
             ])
           ]),

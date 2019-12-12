@@ -70,8 +70,7 @@
         <label for="icnumber" class="col-sm-2 col-form-label"><b>State</b></label>
         <div class="col-sm-6">
         <select class="form-control" v-model="selected_state">
-            <option>johor</option>
-            <option>selangor</option>
+            <option v-for="(item,index) in state_list" v-bind:key="index">{{item.state_name}}</option>
         </select>
         </div>
         </div>
@@ -105,14 +104,20 @@
     export default {
         mounted(){
             var ap=this;
-             axios.get('/api/maybank/view_all_branches/101')
-                .then(function (response) {
-                    ap.branch_list=response.data;
-                });    
+            axios.all([
+                axios.get('/api/maybank/states'),
+                axios.get('/api/maybank/branches')])
+     .then(axios.spread((statelist, branchlist) => {  
+         ap.state_list=statelist.data;
+         ap.branch_list
+     }))
+     .catch(error => console.log(error)); 
         },
         data:function(){
             return{
                 branch_list:[],
+                state_list:[],
+                derived_branch_list:[],
                 cropper:{},
                 destination:"images/frontcard.png",
                 src:"images/frontcard.png",
