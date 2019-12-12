@@ -2011,6 +2011,8 @@ __webpack_require__.r(__webpack_exports__);
         viewMode: 2,
         checkCrossOrigin: false,
         cropBoxResizable: true,
+        minCropBoxWidth: 1036,
+        minCropBoxHeight: 664,
         crop: function crop() {
           var canvas = _this.cropper.getCroppedCanvas();
 

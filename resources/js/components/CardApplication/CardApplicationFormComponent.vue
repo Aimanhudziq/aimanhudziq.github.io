@@ -164,6 +164,8 @@
                 viewMode:2,
                 checkCrossOrigin:false,
                 cropBoxResizable: true,
+                minCropBoxWidth:1036,
+                minCropBoxHeight:664,
                 crop:()=>{
                     const canvas=this.cropper.getCroppedCanvas();
                     var image=document.getElementById("destimage");
