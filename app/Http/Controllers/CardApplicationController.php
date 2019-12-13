@@ -12,6 +12,9 @@ use App\Helper\ReferenceNumberHelper as RefGen;
 use Intervention\Image\Facades\Image as Image;
 
 class CardApplicationController extends Controller{
+    public function __constructor(){
+        $this->middleware('icchecker')->only('submitCardApplication');
+    }
 
     function index(Request $request){
         
@@ -100,19 +103,16 @@ class CardApplicationController extends Controller{
         $client->image_url = $this->getImageUrl($client->reference_no);
         $client->fbank_code = $bank_code;
     
-        $check_client = ClientDetail::where('ic_no', $client->ic_no)->get();
+        
+            
+        
 
-        if(count($check_client) > 0)
-        {
-            //return redirect()->back()->with('error','Client already registered to the system!');
+        if($client->save()){
+            return response()->json(['status' => 'success', 'message' => 'Client successfully registered!']);
+        }else{
             return response()->json(['status' => 'error', 'message' => 'Client already registered to the system!']);
         }
-
-        $client->save();
-
-        //return redirect()->back()->with('success','Client successfully registered!');
-        return response()->json(['status' => 'success', 'message' => 'Client successfully registered!']);
-        
+  
     }
 
 }

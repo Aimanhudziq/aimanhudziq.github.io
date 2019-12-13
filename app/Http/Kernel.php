@@ -67,7 +67,7 @@ class Kernel extends HttpKernel
         'user' => \App\Http\Middleware\User::class,
         'normal_user' => \App\Http\Middleware\NormalUserOnly::class,
         'reviewer' => \App\Http\Middleware\ReviewerOnly::class,
-
+        'icchecker'=>\App\Http\Middleware\CheckIfICExist::class,
     ];
 
     /**
