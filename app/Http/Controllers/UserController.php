@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\policy;
+use App\Policy;
 use App\User;
 use App\BankAssignmentList;
 use App\Bank;
