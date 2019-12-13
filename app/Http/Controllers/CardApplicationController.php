@@ -93,8 +93,6 @@ class CardApplicationController extends Controller{
                             ->first();
         
         $client->reference_no = RefGen::genRefNum();
-        //dd($client->reference_no);
-        //$client->full_name = $req->get('full_name');
         $client->ic_no = $req->get('ic_no');
         $client->phone_number = $req->get('phone_no');
         $client->email = $req->get('email');
@@ -102,7 +100,8 @@ class CardApplicationController extends Controller{
         $client->fstatus_code = 3;
         $client->image_url = $this->getImageUrl($client->reference_no);
         $client->fbank_code = $bank_code;
-    
+        
+        
         
             
         
