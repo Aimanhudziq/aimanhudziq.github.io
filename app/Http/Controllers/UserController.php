@@ -228,7 +228,8 @@ class UserController extends Controller
                }
         }
 
-        $policy = Policy::all(); 
+        $policy = Policy::where('status',0)
+                        ->get(); 
 
         
 
@@ -248,9 +249,9 @@ class UserController extends Controller
                     ->select('cd.*')
                     ->get(); 
         //dd($client);            
-        $policy = Policy::all(); 
-        
-        
+        $policy = Policy::where('status',0)
+                        ->get();; 
+
         return view('users.user_new_task')->with(['policy'=>$policy, 
                                                 'client'=>$client]);
     }

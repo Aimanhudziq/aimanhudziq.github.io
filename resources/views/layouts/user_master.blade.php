@@ -161,7 +161,7 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-          $('#bootstrap-data-table-export').DataTable();
+          $('#bootstrap-data-table').DataTable();
       } );
     </script>
     

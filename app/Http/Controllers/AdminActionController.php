@@ -104,6 +104,22 @@ class AdminActionController extends Controller
         ];
     }
 
+    /**
+     * activate/deactivate status policy
+     */
+
+    public function changeStatus(Request $request)
+    {
+        
+        //$a = Policy::findOrFail($request->policy_no);
+        
+        $pol = Policy::findOrFail($request->policy_id);
+        $pol->status = $request->status;
+        $pol->save();
+
+
+        return response()->json(['success'=>'Status change successfully.']);
+    }
   
     /**
      * Add new policy to the system
