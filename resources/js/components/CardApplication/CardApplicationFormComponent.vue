@@ -18,7 +18,7 @@
     <img :src="src" id="originalimage" style="height:227px;width:364px;" data-toggle="tooltip" title="uploaded image" data-placement="right"/>
     </div>
     <div class="col-sm-6">
-    <img :src="destination" id="destimage" data-toggle="tooltip" title="preview edited image" data-placement="left" class="img-preview image-dest" style="height:227px;width:364px;border-radius:13px;border-style:solid;border-width:thin;box-shadow:1px 1px 3px 3px  #9e9b96;border-color:#9e9b96;">
+    <img :src="destination" id="destimage" data-toggle="tooltip" title="edited image" data-placement="left" class="img-preview image-dest" style="height:227px;width:364px;border-radius:13px;border-style:solid;border-width:thin;box-shadow:1px 1px 3px 3px  #9e9b96;border-color:#9e9b96;">
     </div>
    
 </div>
