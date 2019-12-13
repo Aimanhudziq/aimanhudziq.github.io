@@ -47505,7 +47505,7 @@ var render = function() {
               src: _vm.destination,
               id: "destimage",
               "data-toggle": "tooltip",
-              title: "preview edited image",
+              title: "edited image",
               "data-placement": "left"
             }
           })
