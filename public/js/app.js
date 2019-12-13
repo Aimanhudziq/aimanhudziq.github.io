@@ -2076,11 +2076,14 @@ __webpack_require__.r(__webpack_exports__);
       if (result == 1) {
         Swal.fire('Application has Been Submitted', '', 'success');
         this.resetInput();
+        var image = document.getElementById("destimage");
+        image.style.backgroundImage = 'url(' + '#' + ')';
       } else {
         Swal.fire('fail to submit application', '', 'error');
       }
     },
     resetInput: function resetInput() {
+      this.selected_image = "";
       this.mobile = "";
       this.email = "";
       this.confirm_email = "";
@@ -47488,7 +47491,7 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "col-sm-6" }, [
           _c("img", {
-            staticClass: "img-preview",
+            staticClass: "img-preview image-dest",
             staticStyle: {
               height: "227px",
               width: "364px",

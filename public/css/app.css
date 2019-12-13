@@ -11656,3 +11656,16 @@ a.text-dark:focus {
   border-color: #ffcc00;
 }
 
+@media (max-width: 600px) {
+  .image-dest {
+    margin-top: 15px;
+    margin-bottom: 5px;
+  }
+}
+
+@media (min-width: 601px) {
+  .image-dest {
+    margin-left: 20px;
+  }
+}
+
