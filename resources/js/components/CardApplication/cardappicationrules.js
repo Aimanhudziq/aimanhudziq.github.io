@@ -8,6 +8,9 @@ const CardapplicationValidator={
         var constrains={
                 ic:{
                     presence:true,
+                    numericality:{
+                        message:"input is not a  number"
+                    },
                     length:{
                         minimum:4,
                         maximum:4,
@@ -18,18 +21,24 @@ const CardapplicationValidator={
                     presence:true,
                     format:{
                         pattern:/^(\+?6?01)[0-46-9]-*[0-9]{7,8}$/,
-                        message:"number is not valid"
+                        message:"^%{value} is not valid"
                         
                     }
                 },
                 email:{
-                    presence:true
+                    presence:true,
+                    email:{
+                        message:"^%{value} is not valid"
+                    }
                 },
                 confirm_email:{
-                    presence:true,
+                    presence:{},
+                    email:{
+                        message:"^%{value} is not valid"
+                    },
                     equality:{
                         attribute:"email",
-                        message:"email in different",
+                        message:"^email in different",
                         comparator:function(email,confirm_email){
                             return email==confirm_email;
                         }
@@ -37,8 +46,7 @@ const CardapplicationValidator={
                 },
                 selected_branch_code:{
                     presence:{
-                        attributeName :"branch name",
-                        message:"please select"
+                        message:"^Branch Name is not selected"
                     }
                 },
                 image_file:{

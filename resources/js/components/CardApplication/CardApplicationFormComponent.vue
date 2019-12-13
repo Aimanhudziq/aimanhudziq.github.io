@@ -15,10 +15,10 @@
 
 <div class="row" >
     <div class="col-sm-6">
-    <img :src="src" id="originalimage" style="height:227px;width:364px;"/>
+    <img :src="src" id="originalimage" style="height:227px;width:364px;" data-toggle="tooltip" title="uploaded image" data-placement="right"/>
     </div>
     <div class="col-sm-6">
-    <img :src="destination" id="destimage" class="img-preview" style="height:227px;width:364px;border-radius:10px;">
+    <img :src="destination" id="destimage" data-toggle="tooltip" title="preview edited image" data-placement="left" class="img-preview" style="height:227px;width:364px;border-radius:13px;border-style:solid;border-width:thin;box-shadow:1px 1px 3px 3px  #9e9b96;border-color:gray;">
     </div>
    
 </div>
@@ -165,8 +165,8 @@
                 viewMode:2,
                 checkCrossOrigin:false,
                 cropBoxResizable: true,
-                minCropBoxWidth:1036,
-                minCropBoxHeight:664,
+                minCropBoxWidth:291.2,
+                minCropBoxHeight:181.6,
                 crop:()=>{
                     const canvas=this.cropper.getCroppedCanvas();
                     var image=document.getElementById("destimage");
@@ -195,13 +195,14 @@
             this.editstate=false;
         },
         onSelectState:function(){
+            this.selected_branch_code="";
             this.derived_branch_list=_.filter(this.branch_list,{'fstate_code2':this.state_code});
         },
         submitApplication:function(){
             this.invalid={};
             var ap=this;
             var data={
-                mobile:this.mobile,
+                mobile:this.mobile==""?null:this.mobile,
                 ic:this.last4digitic==""?null:this.last4digitic,
                 email:this.email==""?null:this.email,
                 confirm_email:this.confirm_email==""?null:this.confirm_email, 
@@ -243,4 +244,8 @@
         }
        }
     }
+
+    $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
 </script>

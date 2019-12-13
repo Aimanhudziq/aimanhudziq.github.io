@@ -2012,8 +2012,8 @@ __webpack_require__.r(__webpack_exports__);
         viewMode: 2,
         checkCrossOrigin: false,
         cropBoxResizable: true,
-        minCropBoxWidth: 1036,
-        minCropBoxHeight: 664,
+        minCropBoxWidth: 291.2,
+        minCropBoxHeight: 181.6,
         crop: function crop() {
           var canvas = _this.cropper.getCroppedCanvas();
 
@@ -2042,6 +2042,7 @@ __webpack_require__.r(__webpack_exports__);
       this.editstate = false;
     },
     onSelectState: function onSelectState() {
+      this.selected_branch_code = "";
       this.derived_branch_list = _.filter(this.branch_list, {
         'fstate_code2': this.state_code
       });
@@ -2052,7 +2053,7 @@ __webpack_require__.r(__webpack_exports__);
       this.invalid = {};
       var ap = this;
       var data = {
-        mobile: this.mobile,
+        mobile: this.mobile == "" ? null : this.mobile,
         ic: this.last4digitic == "" ? null : this.last4digitic,
         email: this.email == "" ? null : this.email,
         confirm_email: this.confirm_email == "" ? null : this.confirm_email,
@@ -2081,6 +2082,9 @@ __webpack_require__.r(__webpack_exports__);
       }
     }
   }
+});
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip();
 });
 
 /***/ }),
@@ -47465,7 +47469,13 @@ var render = function() {
         _c("div", { staticClass: "col-sm-6" }, [
           _c("img", {
             staticStyle: { height: "227px", width: "364px" },
-            attrs: { src: _vm.src, id: "originalimage" }
+            attrs: {
+              src: _vm.src,
+              id: "originalimage",
+              "data-toggle": "tooltip",
+              title: "uploaded image",
+              "data-placement": "right"
+            }
           })
         ]),
         _vm._v(" "),
@@ -47475,9 +47485,19 @@ var render = function() {
             staticStyle: {
               height: "227px",
               width: "364px",
-              "border-radius": "10px"
+              "border-radius": "13px",
+              "border-style": "solid",
+              "border-width": "thin",
+              "box-shadow": "1px 1px 3px 3px  #9e9b96",
+              "border-color": "gray"
             },
-            attrs: { src: _vm.destination, id: "destimage" }
+            attrs: {
+              src: _vm.destination,
+              id: "destimage",
+              "data-toggle": "tooltip",
+              title: "preview edited image",
+              "data-placement": "left"
+            }
           })
         ])
       ]),
@@ -61305,6 +61325,9 @@ var CardapplicationValidator = {
       var constrains = {
         ic: {
           presence: true,
+          numericality: {
+            message: "input is not a  number"
+          },
           length: {
             minimum: 4,
             maximum: 4,
@@ -61315,17 +61338,23 @@ var CardapplicationValidator = {
           presence: true,
           format: {
             pattern: /^(\+?6?01)[0-46-9]-*[0-9]{7,8}$/,
-            message: "number is not valid"
+            message: "^%{value} is not valid"
           }
         },
         email: {
-          presence: true
+          presence: true,
+          email: {
+            message: "^%{value} is not valid"
+          }
         },
         confirm_email: {
-          presence: true,
+          presence: {},
+          email: {
+            message: "^%{value} is not valid"
+          },
           equality: {
             attribute: "email",
-            message: "email in different",
+            message: "^email in different",
             comparator: function comparator(email, confirm_email) {
               return email == confirm_email;
             }
@@ -61333,8 +61362,7 @@ var CardapplicationValidator = {
         },
         selected_branch_code: {
           presence: {
-            attributeName: "branch name",
-            message: "please select"
+            message: "^Branch Name is not selected"
           }
         },
         image_file: {
