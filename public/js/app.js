@@ -1941,6 +1941,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -47752,12 +47753,16 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group row" }, [
-            _c("div", { staticClass: "col-sm-10" }, [
+            _c("label", {
+              staticClass: "col-sm-2 col-form-label",
+              attrs: { for: "" }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-6" }, [
               _c(
                 "button",
                 {
-                  staticClass: "btn wr col-sm-3",
-                  staticStyle: { "margin-left": "21%" },
+                  staticClass: "btn wr col-sm-6",
                   on: { click: _vm.submitApplication }
                 },
                 [_c("b", [_vm._v("submit")])]

@@ -85,8 +85,9 @@
         </div>
         </div>
         <div class="form-group row">
-            <div class="col-sm-10">
-            <button class="btn wr col-sm-3" style="margin-left:21%" @click="submitApplication"><b>submit</b></button>
+            <label for="" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-6">
+                 <button class="btn wr col-sm-6"  @click="submitApplication"><b>submit</b></button>
             </div>
         </div>
     </div>
