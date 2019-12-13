@@ -29,33 +29,7 @@
     <script  src="https://code.jquery.com/jquery-3.2.1.min.js" ></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
     <!-- Popup End -->
-</head>
-
-<body>
-        
-    <!-- side bar -->
-    @include('partials.admin_sidebar')
-    <!-- /side bar -->
-
-    <!-- Right Panel -->
-    <div id="right-panel" class="right-panel">
-        <!-- Top bar-->
-        @include('partials.admin_topbar')
-
-        <!-- Content -->
-        <div class="content">
-            <div class="animated fadeIn">
-                <div class="row">
-                    @yield('content')
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        @include('partials.footer')
-
-    </div><!-- right panel -->
-
+    
     <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
@@ -83,43 +57,52 @@
     <script src="{{ asset('assets/js/lib/data-table/buttons.print.min.js') }}"></script>
     <script src="{{ asset('assets/js/lib/data-table/buttons.colVis.min.js') }}"></script>
     <script src="{{ asset('assets/js/init/datatables-init.js') }}"></script>
+    <script src="{{ asset('assets/js/init/datatables-init.js') }}"></script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"  />
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+
+<body>
+    
+    <!-- side bar -->
+    @include('partials.admin_sidebar')
+    <!-- /side bar -->
+
+    <!-- Right Panel -->
+    <div id="right-panel" class="right-panel">
+        <!-- Top bar-->
+        @include('partials.admin_topbar')
+
+        <!-- Content -->
+        <div class="content">
+            <div class="animated fadeIn">
+                <div class="row">
+                    @yield('content')
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        @include('partials.footer')
+
+    </div><!-- right panel -->
     @include('sweet::alert')
     <script>
         var locale = '{{ config('app.locale') }}';
         console.log(locale);
     </script>
-    <script type="text/javascript">//load data table
+    
+    <script type="text/javascript">
         $(document).ready(function() {
-          $('#bootstrap-data-table-export').DataTable();
+          $('#bootstrap-data-table').DataTable();
       } );
     </script>
-    <script>// dropdown with text search in assign bank
-        $('.bank_list').select2({
-            placeholder: "Select Bank List",
-        });
-    </script>
-<!--
-    <script>
-        //admin-bank-assign(pass multiple value)
-        $('#normal_user').change(function () {
-            var staff_id = $(this).find('option:selected').attr('value');
-            var staff_email = $(this).find('option:selected').attr('email-value');
-            var staff_category = $(this).find('option:selected').attr('category-value');
-            $('#user_staff_id').val(staff_id);
-            $('#staff_email').val(staff_email);
-            $('#user_category').val(staff_category);
-        });
-    </script>
--->
-<script>
-function test(){
-    var id = document.getElementById('bank_list');
-    var selectedValue = id.options[id.selectedIndex].value;
+    
 
-    //alert(selectedValue);
-}
-</script>
 </body>
 </html>

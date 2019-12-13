@@ -159,7 +159,7 @@ Route::get('approve_checker/{ref_no}', 'StatusController@approveChecker')
                 ->name('approve_checker');
                 //->middleware('reviewer');
 
-
+Route::get('/changeStatus', 'AdminActionController@changeStatus')->middleware('admin');
 
 
 // Route::get('/htmlPDF', 'PDFController@index');
