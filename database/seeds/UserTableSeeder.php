@@ -24,6 +24,16 @@ class UserTableSeeder extends Seeder
                     'frole_code' => 1,
                 ],
                 [
+                    'user_staff_id' => '5050',
+                    'first_name' => 'Admin',
+                    'last_name' => 'Modular',
+                    'username' => 'admin',
+                    'email' => 'admin@modular-corp.com',
+                    'password' => \Hash::make('Admin009@'),
+                    'user_type' => 'Admin',
+                    'frole_code' => 1,
+                ],
+                [
                     'user_staff_id' => '12345',
                     'first_name' => 'Jurin',
                     'last_name' => 'Liyun',
