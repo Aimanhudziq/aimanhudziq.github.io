@@ -1964,7 +1964,7 @@ __webpack_require__.r(__webpack_exports__);
       derived_branch_list: [],
       cropper: {},
       destination: "images/frontcard.png",
-      src: "images/frontcard.png",
+      src: "",
       croppedimagebase64: {},
       mobile: "",
       email: "",
@@ -47489,7 +47489,7 @@ var render = function() {
               "border-style": "solid",
               "border-width": "thin",
               "box-shadow": "1px 1px 3px 3px  #9e9b96",
-              "border-color": "gray"
+              "border-color": "#9e9b96"
             },
             attrs: {
               src: _vm.destination,
