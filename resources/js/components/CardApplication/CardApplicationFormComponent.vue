@@ -98,7 +98,6 @@
 <script>
     import {mapState} from 'vuex';
     import Cropper from 'cropperjs';
-    import {frontCard} from './CardTemplate';
     import {validate} from 'validate.js';
     import {CardapplicationValidator} from './cardappicationrules';
     export default {
@@ -234,6 +233,7 @@
                     '',
                     'success'
                   )
+                this.resetInput()
             }else{
                 Swal.fire(
                     'fail to submit application',
@@ -241,6 +241,14 @@
                     'error'
                   )
             }
+        },
+        resetInput:function(){
+            this.mobile="";
+            this.email="";
+            this.confirm_email="";
+            this.last4digitic="";
+            this.derived_branch_list=[];
+            this.selected_branch_code="";
         }
        }
     }
