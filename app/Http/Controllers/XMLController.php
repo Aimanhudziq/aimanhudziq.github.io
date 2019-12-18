@@ -48,7 +48,12 @@ class XMLController extends Controller
         ];
 
         foreach($clients as $data){
+
+            //dd($dat);
+
             $latestlog=$data->track_record[sizeof($data->track_record)-1];
+            //dd($latestlog);
+
             $status="";
             $reason="";
             if($data->fstatus_code == 0){
@@ -58,8 +63,8 @@ class XMLController extends Controller
             }
 
             $clientobj = [
-                    'pictureId'=>$data->ic_no,
-                    'name'=>$data->reference_no,
+                    'pictureId'=>$data->reference_no,
+                    'name'=>$data->reference_no.'.png',
                     'state'=>$status,
                     'cardtype'=>'maybank',
                     'pictureReasons'=>[
@@ -84,7 +89,7 @@ class XMLController extends Controller
                             [
                                 ['_attributes'=>[
                                     'key'=>'branch',
-                                    'value'=>$banks->branch_code,
+                                    'value'=>$data->branch_code,
                                     ]
                                 ],
                             ]
@@ -92,7 +97,7 @@ class XMLController extends Controller
                     ]
                 ];
                 array_push($xml_data_structure["content"]["final"]["finalPicture"], $clientobj);
-        }
+        }//foreach
    
     //dd($xml_data_structure);
         $result = ArrayToXml::convert($xml_data_structure, [
@@ -101,21 +106,25 @@ class XMLController extends Controller
                 'xmlns:tns' => 'http://uri.gi-de.de/SCRNRPT/v202',
             ],
         ], true, 'UTF-8');
-
+        
         return $result;
+        //dd($result);
         //$test = $result->put('test.xml');
     }
 
     public function downloadXML(){
         $file = $this->arrayToXML();
+        //dd($file);
         //echo base_path('../../downloads','ssss.xml', $file);
         
-        $path = Storage::disk('c_path')->exists('report_ascc.xml');;
+        $path = Storage::disk('c_path')->exists('report_ascc.xml');
+        //dd($path);
         if(!File::isDirectory($path)){
             
             Storage::makeDirectory($path, 0755, true, true);
         }
         Storage::disk('c_path')->put('report_ascc.xml', $file);
+        
         return redirect('report/user_report')->with('status', 'download successful.. ');
     }
     
