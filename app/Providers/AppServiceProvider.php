@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
 
             $headers = [
                 'Content-type'        => 'text/xml',
-                'Content-Disposition' => 'attachment; filename="report_asscc.xml"',
+                'Content-Disposition' => 'attachment; filename="report_ascc.xml"',
             ];
         
             return \Response::make($content, 200, $headers);
