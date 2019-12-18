@@ -145,8 +145,12 @@ class DailyReportASCC extends Command
      */
     public function handle()
     {
-        $test="test";
-        
+        $test=[
+            "header"=>[
+                'filetype'=>'SCRNRPT',
+            ]
+        ];
+
         $result = ArrayToXml::convert($test, [
             'rootElementName' => 'tns:scrnrpt',
             '_attributes' => [
