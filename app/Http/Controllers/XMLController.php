@@ -24,6 +24,8 @@ class XMLController extends Controller
                  
         $clients = ClientDetail::with('track_record')->get();
 
+        //dd($clients[0]);
+
         $xml_data_structure = [
             'header'=>[
                 'filetype'=>'SCRNRPT',
@@ -49,10 +51,9 @@ class XMLController extends Controller
 
         foreach($clients as $data){
 
-            //dd($dat);
-
-            $latestlog = $data->track_record[sizeof($data->track_record)-1];
-            //dd($latestlog);
+            $latestlog=$data->track_record->count()>= 1 ? $data->track_record[sizeof($data->track_record)-1]:null;
+            $policy_code = $latestlog == null ? '' : $latestlog->code_policy;
+            //dd($policy_code);
 
             $status="";
             $reason="";
@@ -68,7 +69,7 @@ class XMLController extends Controller
                     'state'=>$status,
                     'cardtype'=>'maybank',
                     'pictureReasons'=>[
-                        'reason'=>$latestlog->code_policy
+                        'reason'=>$policy_code
                     ],
                     'additionalData'=>[
                         'property'=>[
@@ -113,20 +114,11 @@ class XMLController extends Controller
     }
 
     public function downloadXML(){
+        
         $file = $this->arrayToXML();
-        //dd($file);
-        //echo base_path('../../downloads','ssss.xml', $file);
-        /*
-        $path = Storage::disk('c_path')->exists('report_ascc.xml');
-        //dd($path);
-        if(!File::isDirectory($path)){
-            
-            Storage::makeDirectory($path, 0755, true, true);
-        }
-        Storage::disk('c_path')->put('report_ascc.xml', $file);
-        */
+
         return response()->attachment($file);
-        //return redirect('report/user_report')->with('status', 'download successful.. ');
+        
     }
     
 }
