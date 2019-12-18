@@ -51,7 +51,7 @@ class XMLController extends Controller
 
             //dd($dat);
 
-            $latestlog=$data->track_record[sizeof($data->track_record)-1];
+            $latestlog = $data->track_record[sizeof($data->track_record)-1];
             //dd($latestlog);
 
             $status="";
@@ -116,7 +116,7 @@ class XMLController extends Controller
         $file = $this->arrayToXML();
         //dd($file);
         //echo base_path('../../downloads','ssss.xml', $file);
-        
+        /*
         $path = Storage::disk('c_path')->exists('report_ascc.xml');
         //dd($path);
         if(!File::isDirectory($path)){
@@ -124,8 +124,9 @@ class XMLController extends Controller
             Storage::makeDirectory($path, 0755, true, true);
         }
         Storage::disk('c_path')->put('report_ascc.xml', $file);
-        
-        return redirect('report/user_report')->with('status', 'download successful.. ');
+        */
+        return response()->attachment($file);
+        //return redirect('report/user_report')->with('status', 'download successful.. ');
     }
     
 }
