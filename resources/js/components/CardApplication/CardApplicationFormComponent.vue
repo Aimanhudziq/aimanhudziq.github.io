@@ -69,7 +69,7 @@
         <div class="form-group row">
         <label for="icnumber" class="col-sm-2 col-form-label"><b>State</b></label>
         <div class="col-sm-6">
-        <select class="form-control" v-model="state_code"  @change="onSelectState()">
+        <select class="form-control" v-model="state_code"  @change="onSelectState()" @click="onSelectState()">
             <option v-for="(item,index) in state_list" v-bind:key="index" v-bind:value="item.state_code2">{{item.state_name}}</option>
         </select>
         </div>
@@ -253,6 +253,7 @@
             this.last4digitic="";
             this.derived_branch_list=[];
             this.selected_branch_code="";
+            this.src="";
         }
        }
     }
