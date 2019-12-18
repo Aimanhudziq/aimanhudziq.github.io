@@ -12,3 +12,15 @@
         background-color:rgb(255, 204, 0);
         border-color:rgb(255, 204, 0);
       }
+@media (max-width:600px){
+  .image-dest{
+    margin-top:15px;
+    margin-bottom: 5px;
+  }
+}
+
+@media (min-width:601px){
+  .image-dest{
+    margin-left:20px;
+  }
+}
