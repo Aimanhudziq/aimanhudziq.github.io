@@ -145,19 +145,8 @@ class DailyReportASCC extends Command
      */
     public function handle()
     {
-        $test=[
-            "header"=>[
-                'filetype'=>'SCRNRPT',
-            ]
-        ];
-
-        $result = ArrayToXml::convert($test, [
-            'rootElementName' => 'tns:scrnrpt',
-            '_attributes' => [
-                'xmlns:tns' => 'http://uri.gi-de.de/SCRNRPT/v202',
-            ],
-        ], true, 'UTF-8');
-        //$result = $this->arrayToXML();
+        
+        $result = $this->arrayToXML();
         Storage::put('ReportMaybank/ascc_daily_report.xml', $result);
         //SSH::into('staging')->get($remotePath, $localPath);
     }
