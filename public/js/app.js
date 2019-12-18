@@ -2090,6 +2090,7 @@ __webpack_require__.r(__webpack_exports__);
       this.last4digitic = "";
       this.derived_branch_list = [];
       this.selected_branch_code = "";
+      this.src = "";
     }
   }
 });
@@ -47726,7 +47727,10 @@ var render = function() {
                       function($event) {
                         return _vm.onSelectState()
                       }
-                    ]
+                    ],
+                    click: function($event) {
+                      return _vm.onSelectState()
+                    }
                   }
                 },
                 _vm._l(_vm.state_list, function(item, index) {
