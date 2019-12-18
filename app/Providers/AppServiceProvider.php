@@ -23,6 +23,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        \Response::macro('attachment', function ($content) {
+
+            $headers = [
+                'Content-type'        => 'text/xml',
+                'Content-Disposition' => 'attachment; filename="report_ascc.xml"',
+            ];
+        
+            return \Response::make($content, 200, $headers);
+        
+        });
     }
 }
