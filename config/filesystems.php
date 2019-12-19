@@ -45,7 +45,7 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => storage_path('app'),
+            'root' => public_path(). 'report',
             //'root' => env('ARCHIVE_FILES_ROOT_DIRECTORY', '/home/.../archive/files'),
             //'url' => env('ARCHIVE_FILES_ROOT_DIRECTORY', '/home/.../archive/files'),
         ],

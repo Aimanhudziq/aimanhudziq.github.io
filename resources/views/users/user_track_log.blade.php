@@ -194,9 +194,13 @@ trackrec.forEach(function(item){
         var comment = document.createElement('td');
 
         date.appendChild(document.createTextNode(item.created_at));
+
         cardapplication.forEach(function(item2){
+            var chkedby=[];
            if(item2.freference_no == ref){
-               check_by.appendChild(document.createTextNode(item2.checked_by));
+                 chkedby = item2.checked_by;
+                var strArr= chkedby.split(',');
+                check_by.appendChild(document.createTextNode(strArr));
            }
         });
         

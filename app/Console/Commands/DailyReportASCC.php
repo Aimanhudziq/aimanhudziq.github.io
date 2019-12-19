@@ -145,10 +145,15 @@ class DailyReportASCC extends Command
      */
     public function handle()
     {
-        
+        $today = Carbon::now();
+        $today->toDateTimeString();
         $result = $this->arrayToXML();
-        Storage::put('ReportMaybank/ascc_daily_report.xml', $result);
         
+        //$myfilename = $today.'ascc_daily_report.xml';
+
+        //$destinationPath = 'public/'.$myfilename;
+        Storage::put('ReportMaybank/ascc_daily_report.xml',$result);
+
         $this->info('Succesful generate report for ASCC Maybank Picture Card');
         //SSH::into('staging')->get($remotePath, $localPath);
     }
