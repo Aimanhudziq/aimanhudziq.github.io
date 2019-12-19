@@ -148,6 +148,8 @@ class DailyReportASCC extends Command
         
         $result = $this->arrayToXML();
         Storage::put('ReportMaybank/ascc_daily_report.xml', $result);
+        
+        $this->info('Succesful generate report for ASCC Maybank Picture Card');
         //SSH::into('staging')->get($remotePath, $localPath);
     }
 }

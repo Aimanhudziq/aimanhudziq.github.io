@@ -109,6 +109,7 @@ return[
     'upload' => 'Muatnaik Gambar',
     
     'additional_info' => 'Maklumat Tambahan',
+    'checked_by' => 'Disemak Oleh',
 
  
       
