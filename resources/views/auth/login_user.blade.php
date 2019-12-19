@@ -36,7 +36,7 @@
                 {{ trans('login.select_language') }}: 
                 <a href="{{ url(url()->current() . $mark . 'lang=my') }}">my</a> |
                 <a href="{{ url(url()->current() . $mark . 'lang=en') }}">
-                eng</a> 
+                en</a> 
                 <hr>
             </div>
                 <div class="login-logo">
@@ -84,7 +84,7 @@
                             </span>
                             @endif
                         </div>
-                         <button type="submit" class="btn btn-info btn-flat m-b-30 m-t-30 btn-md" >Login</button>
+                         <button type="submit" class="btn btn-info btn-flat m-b-20 m-t-30" >Login</button>
                         <div class="register-link m-t-15 text-center">
                              <a class="reset_pass" href="{{ route('password-request') }}">{{ trans('login.forgot_password') }}</a>
                         </div>
