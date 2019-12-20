@@ -7,7 +7,7 @@ use Spatie\ArrayToXml\ArrayToXml;
 use Carbon\Carbon;
 use App\ClientDetail;
 use App\BankBranch;
-use Hash, Str, SSH;
+use Hash, Str, File, Storage;
 
 class DailyReportASCC extends Command
 {
@@ -35,14 +35,11 @@ class DailyReportASCC extends Command
         parent::__construct();
     }
 
-    /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
-    public function handle()
-    {
 
+
+    //*********************************************** */
+    public function arrayToXML()
+    {
         $timestamp = Carbon::now();
         $current_time = $timestamp->toTimeString();
         $current_date = $timestamp->toDateString();
@@ -51,6 +48,8 @@ class DailyReportASCC extends Command
         $rejected = ClientDetail::where('fstatus_code',['0'])->count();
                  
         $clients = ClientDetail::with('track_record')->get();
+
+        //dd($clients[0]);
 
         $xml_data_structure = [
             'header'=>[
@@ -76,11 +75,11 @@ class DailyReportASCC extends Command
         ];
 
         foreach($clients as $data){
-            /*
-           foreach($data->track_record as $dc)
-           {
-               dd($dc->comment);
-           }*/
+
+            $latestlog=$data->track_record->count()>= 1 ? $data->track_record[sizeof($data->track_record)-1]:null;
+            $policy_code = $latestlog == null ? '' : $latestlog->code_policy;
+            //dd($policy_code);
+
             $status="";
             $reason="";
             if($data->fstatus_code == 0){
@@ -88,26 +87,14 @@ class DailyReportASCC extends Command
             }else if($data->fstatus_code == 1){
                 $status = "ACCEPTED";
             }
-            foreach($data->track_record as $dc){
-               if($data->reference_no == $dc->freference_no && $data->fstatus_code == $dc->new_status_code)
-               {
-                   $reason = $dc->comment;
-               }
-            }
-                    /****** get branch code************************* */
-                    $banks = BankBranch::select('branch_code')
-                    ->where('branch_address',trim($data->address))
-                    ->where('fbank_code', $data->fbank_code)    
-                    ->first();
-                    /************************************************ */  
 
             $clientobj = [
-                    'pictureId'=>$data->ic_no,
-                    'name'=>$data->full_name,
+                    'pictureId'=>$data->reference_no,
+                    'name'=>$data->reference_no.'.png',
                     'state'=>$status,
                     'cardtype'=>'maybank',
                     'pictureReasons'=>[
-                        'reason'=>$reason
+                        'reason'=>$policy_code
                     ],
                     'additionalData'=>[
                         'property'=>[
@@ -121,14 +108,14 @@ class DailyReportASCC extends Command
                             [
                                 ['_attributes'=>[
                                     'key'=>'idcardlast4digits',
-                                    'value'=>substr($data->ic_no,7,4),
+                                    'value'=>$data->ic_no,
                                     ]
                                 ],
                             ],
                             [
                                 ['_attributes'=>[
                                     'key'=>'branch',
-                                    'value'=>$banks->branch_code,
+                                    'value'=>$data->branch_code,
                                     ]
                                 ],
                             ]
@@ -136,16 +123,38 @@ class DailyReportASCC extends Command
                     ]
                 ];
                 array_push($xml_data_structure["content"]["final"]["finalPicture"], $clientobj);
-        }
+        }//foreach
    
+    //dd($xml_data_structure);
         $result = ArrayToXml::convert($xml_data_structure, [
             'rootElementName' => 'tns:scrnrpt',
             '_attributes' => [
                 'xmlns:tns' => 'http://uri.gi-de.de/SCRNRPT/v202',
             ],
         ], true, 'UTF-8');
+        
+        return $result;
+        //dd($result);
+        //$test = $result->put('test.xml');
+    }
 
-        \Storage::put('ReportMaybank/ascc_daily_report.xml', $result);
+    /**
+     * Execute the console command.
+     *
+     * @return mixed
+     */
+    public function handle()
+    {
+        $today = Carbon::now();
+        $today->toDateTimeString();
+        $result = $this->arrayToXML();
+        
+        //$myfilename = $today.'ascc_daily_report.xml';
+
+        //$destinationPath = 'public/'.$myfilename;
+        Storage::put('ReportMaybank/ascc_daily_report.xml',$result);
+
+        $this->info('Succesful generate report for ASCC Maybank Picture Card');
         //SSH::into('staging')->get($remotePath, $localPath);
     }
 }

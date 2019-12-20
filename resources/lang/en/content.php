@@ -107,6 +107,7 @@ return[
     'upload' => 'Upload Image',
     
     'additional_info' => 'Additional Infomation',
+    'checked_by' => 'Checked By',
 
 
 

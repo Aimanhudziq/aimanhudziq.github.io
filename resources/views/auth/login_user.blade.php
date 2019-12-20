@@ -25,7 +25,32 @@
             margin-top: -25px;
             position: relative;
             z-index: 2;
-        }           
+        }
+        .popover-title {
+            text-align: center;
+        }
+
+        .custom-popover li {
+            border: none!important;
+            text-align: center;
+        }
+
+        .custom-popover li:nth-child(2) {
+            border-top: 1px solid #ccc!important;
+        }
+
+        .custom-popover li:last-child {
+            border-top: 1px solid #ccc!important;
+        }    
+        .popover{
+            background-color:#b94a48;
+            border:none;
+            border-radius:unset;
+            min-width:100px;
+            width:100%;
+            max-width:400px;
+            overflow-wrap:break-word;
+        }      
     </style>
 <body class="bg-white">
     <div class="sufee-login d-flex align-content-center flex-wrap">
@@ -36,7 +61,7 @@
                 {{ trans('login.select_language') }}: 
                 <a href="{{ url(url()->current() . $mark . 'lang=my') }}">my</a> |
                 <a href="{{ url(url()->current() . $mark . 'lang=en') }}">
-                eng</a> 
+                en</a> 
                 <hr>
             </div>
                 <div class="login-logo">
@@ -76,7 +101,7 @@
                             <input type="password" class="form-control {{ $errors->has('password') ? 'has-error' : '' }}" name="password" 
                                 placeholder="{{ trans('login.placeholder_password') }}" value="{{ old('password') }}" id="password-field"
                                     title="{{ trans('login.password') }}" data-toggle="popover"
-                                        data-content="{{ trans('login.popover_info_password') }}">
+                                        >
                                         <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                             @if ($errors->has('password'))
                             <span class="help-block">
@@ -84,7 +109,7 @@
                             </span>
                             @endif
                         </div>
-                         <button type="submit" class="btn btn-info btn-flat m-b-30 m-t-30 btn-md" >Login</button>
+                         <button type="submit" class="btn btn-info btn-flat m-b-20 m-t-30" >Login</button>
                         <div class="register-link m-t-15 text-center">
                              <a class="reset_pass" href="{{ route('password-request') }}">{{ trans('login.forgot_password') }}</a>
                         </div>
@@ -93,21 +118,40 @@
             </div>
         </div>
     </div>
-
+    <!-- loaded popover content -->
+    <div id="popover-content" style="display: none">
+        <ul class="list-group custom-popover">
+            <li class="list-group-item">{{trans('login.popover_pwd_rule1')}}</li>
+            <li class="list-group-item">{{trans('login.popover_pwd_rule2')}}</li>
+            <li class="list-group-item">{{trans('login.popover_pwd_rule3')}}</li>
+            <li class="list-group-item">{{trans('login.popover_pwd_rule4')}}</li>
+            <li class="list-group-item">{{trans('login.popover_pwd_rule5')}}</li>
+        </ul>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
-    <script type='text/javascript'src='http://code.jquery.com/jquery-1.9.1.js'></script>
-    <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-    <script type='text/javascript'src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script type='text/javascript'src="{{ asset('assets/js/jquery-1.9.1.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script type='text/javascript'src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
     <!-- tooltip -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
     <script>
-        $("[data-toggle=popover]").popover();
+        //$("[data-toggle=popover]").popover();
+        $(document).ready(function() {
+            $('[data-toggle="popover"]').popover({
+                html: true,
+                container: 'body',
+                content: function() {
+                    return $('#popover-content').html();
+                }
+            });
+        });
+
     </script>
     <script>
         $(".toggle-password").click(function() {

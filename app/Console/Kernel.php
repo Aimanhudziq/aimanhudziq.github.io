@@ -26,7 +26,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('dailyreport:ascc')
                 ->everyMinute()
-                ->emailOutputTo('jasvin@modular-corp.com');
+                ->appendOutputTo(storage_path('logs/logs_report.log'));
     }
 
     /**

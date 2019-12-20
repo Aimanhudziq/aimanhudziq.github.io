@@ -18,7 +18,7 @@
                 <div class="user-area">
                     <?php $mark = (preg_match('/\?/', url()->current())) ? '&' : '?'; ?>
                     <a href="{{ url(url()->current() . $mark . 'lang=my') }}">my</a> |
-                    <a href="{{ url(url()->current() . $mark . 'lang=en') }}">eng</a>
+                    <a href="{{ url(url()->current() . $mark . 'lang=en') }}">en</a>
                 </div>
 
                 <div class="user-menu dropdown-menu">

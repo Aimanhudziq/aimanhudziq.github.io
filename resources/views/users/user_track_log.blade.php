@@ -63,7 +63,7 @@
                                 </td>
                                 <td>
                                     <a type="button" class="btn btn-white mb-1" data-toggle="modal"  onclick="test('<?php echo $log->reference_no;?>')"
-                                        data-target="#track_log"><i  class="fa fa-cog"></i>
+                                        data-target="#track_log"><i  class="fa fa-cog">{{trans('content.review')}}</i>
                                     </a>
                                 </td>
                             </tr>
@@ -133,6 +133,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>{{trans('content.date')}}</th>
+                                                    <th>{{trans('content.checked_by')}}</th>
                                                     <th>{{trans('content.from')}}</th>
                                                     <th>{{trans('content.to')}}</th>
                                                     <th>{{trans('content.policy_code')}}</th>
@@ -176,6 +177,7 @@ function test(ref){
 var trackrec=<?php echo  json_encode($trackRec);?>;
 var clientdetail=<?php echo  json_encode($logs);?>;
 var cardapplication=<?php echo  json_encode($cardApp);?>;
+//console
 var data=<?php  echo json_encode($data);?>;
 document.getElementById("tablebody").innerHTML=""
 trackrec.forEach(function(item){
@@ -183,27 +185,41 @@ trackrec.forEach(function(item){
     document.getElementById("newstatus").innerHTML=item.new_status_code;
     document.getElementById("date").innerHTML=item.created_at;
     var tr = document.createElement('tr');
-    var date = document.createElement('td');
-    var orist = document.createElement('td');
-    var newst = document.createElement('td');
-    var policy_code = document.createElement('td');
-    var policy = document.createElement('td');
-    var comment = document.createElement('td');
+        var date = document.createElement('td');
+        var check_by = document.createElement('td');
+        var orist = document.createElement('td');
+        var newst = document.createElement('td');
+        var policy_code = document.createElement('td');
+        var policy = document.createElement('td');
+        var comment = document.createElement('td');
 
-    date.appendChild(document.createTextNode(item.created_at));
-    orist.appendChild(document.createTextNode(getstrcode(item.ori_status_code)));
-    newst.appendChild(document.createTextNode(getstrcode(item.new_status_code)));
-    policy_code.appendChild(document.createTextNode(item.code_policy));
-    policy.appendChild(document.createTextNode(item.violated_policy));
-    comment.appendChild(document.createTextNode(item.comment));
-    tr.appendChild(date);
-    tr.appendChild(orist);
-    tr.appendChild(newst);
-    tr.appendChild(policy_code);
-    tr.appendChild(policy);
-    tr.appendChild(comment);
-    var container=document.getElementById("tablebody");
-    container.appendChild(tr);
+        date.appendChild(document.createTextNode(item.created_at));
+
+        cardapplication.forEach(function(item2){
+            var chkedby=[];
+           if(item2.freference_no == ref){
+                 chkedby = item2.checked_by;
+                var strArr= chkedby.split(',');
+                check_by.appendChild(document.createTextNode(strArr));
+           }
+        });
+        
+        orist.appendChild(document.createTextNode(getstrcode(item.ori_status_code)));
+        newst.appendChild(document.createTextNode(getstrcode(item.new_status_code)));
+        policy_code.appendChild(document.createTextNode(item.code_policy));
+        policy.appendChild(document.createTextNode(item.violated_policy));
+        comment.appendChild(document.createTextNode(item.comment));
+
+        tr.appendChild(date);
+        tr.appendChild(check_by);
+        tr.appendChild(orist);
+        tr.appendChild(newst);
+        tr.appendChild(policy_code);
+        tr.appendChild(policy);
+        tr.appendChild(comment);
+
+        var container=document.getElementById("tablebody");
+        container.appendChild(tr);
 
     // document.getElementById("clientimage").src=item.image_url;
     // document.getElementById("refno").innerHTML=item.reference_no;
