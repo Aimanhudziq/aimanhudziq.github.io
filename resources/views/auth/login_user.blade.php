@@ -25,7 +25,32 @@
             margin-top: -25px;
             position: relative;
             z-index: 2;
-        }           
+        }
+        .popover-title {
+            text-align: center;
+        }
+
+        .custom-popover li {
+            border: none!important;
+            text-align: center;
+        }
+
+        .custom-popover li:nth-child(2) {
+            border-top: 1px solid #ccc!important;
+        }
+
+        .custom-popover li:last-child {
+            border-top: 1px solid #ccc!important;
+        }    
+        .popover{
+            background-color:#b94a48;
+            border:none;
+            border-radius:unset;
+            min-width:100px;
+            width:100%;
+            max-width:400px;
+            overflow-wrap:break-word;
+        }      
     </style>
 <body class="bg-white">
     <div class="sufee-login d-flex align-content-center flex-wrap">
@@ -76,7 +101,7 @@
                             <input type="password" class="form-control {{ $errors->has('password') ? 'has-error' : '' }}" name="password" 
                                 placeholder="{{ trans('login.placeholder_password') }}" value="{{ old('password') }}" id="password-field"
                                     title="{{ trans('login.password') }}" data-toggle="popover"
-                                        data-content="{{ trans('login.popover_info_password') }}">
+                                        >
                                         <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                             @if ($errors->has('password'))
                             <span class="help-block">
@@ -93,7 +118,16 @@
             </div>
         </div>
     </div>
-
+    <!-- loaded popover content -->
+    <div id="popover-content" style="display: none">
+        <ul class="list-group custom-popover">
+            <li class="list-group-item">{{trans('login.popover_pwd_rule1')}}</li>
+            <li class="list-group-item">{{trans('login.popover_pwd_rule2')}}</li>
+            <li class="list-group-item">{{trans('login.popover_pwd_rule3')}}</li>
+            <li class="list-group-item">{{trans('login.popover_pwd_rule4')}}</li>
+            <li class="list-group-item">{{trans('login.popover_pwd_rule5')}}</li>
+        </ul>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
@@ -107,7 +141,17 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
     <script>
-        $("[data-toggle=popover]").popover();
+        //$("[data-toggle=popover]").popover();
+        $(document).ready(function() {
+            $('[data-toggle="popover"]').popover({
+                html: true,
+                container: 'body',
+                content: function() {
+                    return $('#popover-content').html();
+                }
+            });
+        });
+
     </script>
     <script>
         $(".toggle-password").click(function() {
