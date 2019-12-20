@@ -43104,7 +43104,7 @@ return Q;
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
-* sweetalert2 v9.5.3
+* sweetalert2 v9.4.0
 * Released under the MIT License.
 */
 (function (global, factory) {
@@ -43416,7 +43416,7 @@ var prefix = function prefix(items) {
 
   return result;
 };
-var swalClasses = prefix(['container', 'shown', 'height-auto', 'iosfix', 'popup', 'modal', 'no-backdrop', 'toast', 'toast-shown', 'toast-column', 'show', 'hide', 'close', 'title', 'header', 'content', 'html-container', 'actions', 'confirm', 'cancel', 'footer', 'icon', 'icon-content', 'image', 'input', 'file', 'range', 'select', 'radio', 'checkbox', 'label', 'textarea', 'inputerror', 'validation-message', 'progress-steps', 'active-progress-step', 'progress-step', 'progress-step-line', 'loading', 'styled', 'top', 'top-start', 'top-end', 'top-left', 'top-right', 'center', 'center-start', 'center-end', 'center-left', 'center-right', 'bottom', 'bottom-start', 'bottom-end', 'bottom-left', 'bottom-right', 'grow-row', 'grow-column', 'grow-fullscreen', 'rtl', 'timer-progress-bar', 'scrollbar-measure', 'icon-success', 'icon-warning', 'icon-info', 'icon-question', 'icon-error']);
+var swalClasses = prefix(['container', 'shown', 'height-auto', 'iosfix', 'popup', 'modal', 'no-backdrop', 'toast', 'toast-shown', 'toast-column', 'show', 'hide', 'close', 'title', 'header', 'content', 'html-container', 'actions', 'confirm', 'cancel', 'footer', 'icon', 'icon-content', 'image', 'input', 'file', 'range', 'select', 'radio', 'checkbox', 'label', 'textarea', 'inputerror', 'validation-message', 'progress-steps', 'active-progress-step', 'progress-step', 'progress-step-line', 'loading', 'styled', 'top', 'top-start', 'top-end', 'top-left', 'top-right', 'center', 'center-start', 'center-end', 'center-left', 'center-right', 'bottom', 'bottom-start', 'bottom-end', 'bottom-left', 'bottom-right', 'grow-row', 'grow-column', 'grow-fullscreen', 'rtl', 'timer-progress-bar', 'scrollbar-measure']);
 var iconTypes = prefix(['success', 'warning', 'info', 'question', 'error']);
 
 var getContainer = function getContainer() {
@@ -43944,14 +43944,7 @@ var renderContainer = function renderContainer(instance, params) {
   handlePositionParam(container, params.position);
   handleGrowParam(container, params.grow); // Custom class
 
-  applyCustomClass(container, params, 'container'); // Set queue step attribute for getQueueStep() method
-
-  var queueStep = document.body.getAttribute('data-swal2-queue-step');
-
-  if (queueStep) {
-    container.setAttribute('data-queue-step', queueStep);
-    document.body.removeAttribute('data-swal2-queue-step');
-  }
+  applyCustomClass(container, params, 'container');
 };
 
 /**
@@ -44275,71 +44268,6 @@ var renderImage = function renderImage(instance, params) {
   applyCustomClass(image, params, 'image');
 };
 
-var currentSteps = [];
-/*
- * Global function for chaining sweetAlert popups
- */
-
-var queue = function queue(steps) {
-  var Swal = this;
-  currentSteps = steps;
-
-  var resetAndResolve = function resetAndResolve(resolve, value) {
-    currentSteps = [];
-    resolve(value);
-  };
-
-  var queueResult = [];
-  return new Promise(function (resolve) {
-    (function step(i, callback) {
-      if (i < currentSteps.length) {
-        document.body.setAttribute('data-swal2-queue-step', i);
-        Swal.fire(currentSteps[i]).then(function (result) {
-          if (typeof result.value !== 'undefined') {
-            queueResult.push(result.value);
-            step(i + 1, callback);
-          } else {
-            resetAndResolve(resolve, {
-              dismiss: result.dismiss
-            });
-          }
-        });
-      } else {
-        resetAndResolve(resolve, {
-          value: queueResult
-        });
-      }
-    })(0);
-  });
-};
-/*
- * Global function for getting the index of current popup in queue
- */
-
-var getQueueStep = function getQueueStep() {
-  return getContainer().getAttribute('data-queue-step');
-};
-/*
- * Global function for inserting a popup to the queue
- */
-
-var insertQueueStep = function insertQueueStep(step, index) {
-  if (index && index < currentSteps.length) {
-    return currentSteps.splice(index, 0, step);
-  }
-
-  return currentSteps.push(step);
-};
-/*
- * Global function for deleting a popup from the queue
- */
-
-var deleteQueueStep = function deleteQueueStep(index) {
-  if (typeof currentSteps[index] !== 'undefined') {
-    currentSteps.splice(index, 1);
-  }
-};
-
 var createStepElement = function createStepElement(step) {
   var stepEl = document.createElement('li');
   addClass(stepEl, swalClasses['progress-step']);
@@ -44367,7 +44295,7 @@ var renderProgressSteps = function renderProgressSteps(instance, params) {
 
   show(progressStepsContainer);
   progressStepsContainer.innerHTML = '';
-  var currentProgressStep = parseInt(params.currentProgressStep === undefined ? getQueueStep() : params.currentProgressStep);
+  var currentProgressStep = parseInt(params.currentProgressStep === null ? Swal.getQueueStep() : params.currentProgressStep);
 
   if (currentProgressStep >= params.progressSteps.length) {
     warn('Invalid currentProgressStep parameter, it should be less than progressSteps.length ' + '(currentProgressStep like JS arrays starts from 0)');
@@ -44429,15 +44357,10 @@ var renderPopup = function renderPopup(instance, params) {
 
   if (params.background) {
     popup.style.background = params.background;
-  } // Classes
+  } // Default Class
 
 
-  addClasses(popup, params);
-};
-
-var addClasses = function addClasses(popup, params) {
-  // Default Class + showClass when updating Swal.update({})
-  popup.className = "".concat(swalClasses.popup, " ").concat(isVisible(popup) ? params.showClass.popup : '');
+  popup.className = swalClasses.popup;
 
   if (params.toast) {
     addClass([document.documentElement, document.body], swalClasses['toast-shown']);
@@ -44451,11 +44374,11 @@ var addClasses = function addClasses(popup, params) {
 
   if (typeof params.customClass === 'string') {
     addClass(popup, params.customClass);
-  } // Icon class (#1842)
+  } // Add showClass when updating Swal.update({})
 
 
-  if (params.icon) {
-    addClass(popup, swalClasses["icon-".concat(params.icon)]);
+  if (isVisible(popup)) {
+    addClass(popup, params.showClass.popup);
   }
 };
 
@@ -44546,6 +44469,73 @@ function mixin(mixinParams) {
 
   return MixinSwal;
 }
+
+// private global state for the queue feature
+var currentSteps = [];
+/*
+ * Global function for chaining sweetAlert popups
+ */
+
+var queue = function queue(steps) {
+  var Swal = this;
+  currentSteps = steps;
+
+  var resetAndResolve = function resetAndResolve(resolve, value) {
+    currentSteps = [];
+    document.body.removeAttribute('data-swal2-queue-step');
+    resolve(value);
+  };
+
+  var queueResult = [];
+  return new Promise(function (resolve) {
+    (function step(i, callback) {
+      if (i < currentSteps.length) {
+        document.body.setAttribute('data-swal2-queue-step', i);
+        Swal.fire(currentSteps[i]).then(function (result) {
+          if (typeof result.value !== 'undefined') {
+            queueResult.push(result.value);
+            step(i + 1, callback);
+          } else {
+            resetAndResolve(resolve, {
+              dismiss: result.dismiss
+            });
+          }
+        });
+      } else {
+        resetAndResolve(resolve, {
+          value: queueResult
+        });
+      }
+    })(0);
+  });
+};
+/*
+ * Global function for getting the index of current popup in queue
+ */
+
+var getQueueStep = function getQueueStep() {
+  return document.body.getAttribute('data-swal2-queue-step');
+};
+/*
+ * Global function for inserting a popup to the queue
+ */
+
+var insertQueueStep = function insertQueueStep(step, index) {
+  if (index && index < currentSteps.length) {
+    return currentSteps.splice(index, 0, step);
+  }
+
+  return currentSteps.push(step);
+};
+/*
+ * Global function for deleting a popup from the queue
+ */
+
+var deleteQueueStep = function deleteQueueStep(index) {
+  if (typeof currentSteps[index] !== 'undefined') {
+    currentSteps.splice(index, 1);
+  }
+};
 
 /**
  * Show spinner instead of Confirm button
@@ -44667,8 +44657,8 @@ var defaultParams = {
   text: '',
   html: '',
   footer: '',
-  icon: undefined,
-  iconHtml: undefined,
+  icon: null,
+  iconHtml: null,
   toast: false,
   animation: true,
   showClass: {
@@ -44681,7 +44671,7 @@ var defaultParams = {
     backdrop: 'swal2-backdrop-hide',
     icon: 'swal2-icon-hide'
   },
-  customClass: undefined,
+  customClass: '',
   target: 'body',
   backdrop: true,
   heightAuto: true,
@@ -44692,13 +44682,13 @@ var defaultParams = {
   keydownListenerCapture: false,
   showConfirmButton: true,
   showCancelButton: false,
-  preConfirm: undefined,
+  preConfirm: null,
   confirmButtonText: 'OK',
   confirmButtonAriaLabel: '',
-  confirmButtonColor: undefined,
+  confirmButtonColor: null,
   cancelButtonText: 'Cancel',
   cancelButtonAriaLabel: '',
-  cancelButtonColor: undefined,
+  cancelButtonColor: null,
   buttonsStyling: true,
   reverseButtons: false,
   focusConfirm: true,
@@ -44707,33 +44697,33 @@ var defaultParams = {
   closeButtonHtml: '&times;',
   closeButtonAriaLabel: 'Close this dialog',
   showLoaderOnConfirm: false,
-  imageUrl: undefined,
-  imageWidth: undefined,
-  imageHeight: undefined,
+  imageUrl: null,
+  imageWidth: null,
+  imageHeight: null,
   imageAlt: '',
-  timer: undefined,
+  timer: null,
   timerProgressBar: false,
-  width: undefined,
-  padding: undefined,
-  background: undefined,
-  input: undefined,
+  width: null,
+  padding: null,
+  background: null,
+  input: null,
   inputPlaceholder: '',
   inputValue: '',
   inputOptions: {},
   inputAutoTrim: true,
   inputAttributes: {},
-  inputValidator: undefined,
-  validationMessage: undefined,
+  inputValidator: null,
+  validationMessage: null,
   grow: false,
   position: 'center',
   progressSteps: [],
-  currentProgressStep: undefined,
-  progressStepsDistance: undefined,
-  onBeforeOpen: undefined,
-  onOpen: undefined,
-  onRender: undefined,
-  onClose: undefined,
-  onAfterClose: undefined,
+  currentProgressStep: null,
+  progressStepsDistance: null,
+  onBeforeOpen: null,
+  onOpen: null,
+  onRender: null,
+  onClose: null,
+  onAfterClose: null,
   scrollbarPadding: true
 };
 var updatableParams = ['title', 'titleText', 'text', 'html', 'icon', 'customClass', 'showConfirmButton', 'showCancelButton', 'confirmButtonText', 'confirmButtonAriaLabel', 'confirmButtonColor', 'cancelButtonText', 'cancelButtonAriaLabel', 'cancelButtonColor', 'buttonsStyling', 'reverseButtons', 'imageUrl', 'imageWidth', 'imageHeight', 'imageAlt', 'progressSteps', 'currentProgressStep'];
@@ -45363,7 +45353,7 @@ var openPopup = function openPopup(params) {
     params.onBeforeOpen(popup);
   }
 
-  addClasses$1(container, popup, params); // scrolling is 'hidden' until animation is done, after that 'auto'
+  addClasses(container, popup, params); // scrolling is 'hidden' until animation is done, after that 'auto'
 
   setScrollingVisibility(container, popup);
 
@@ -45385,11 +45375,7 @@ var openPopup = function openPopup(params) {
 var setScrollingVisibility = function setScrollingVisibility(container, popup) {
   if (animationEndEvent && hasCssAnimation(popup)) {
     container.style.overflowY = 'hidden';
-    popup.addEventListener(animationEndEvent, function (e) {
-      if (e.target === popup) {
-        swalOpenAnimationFinished.bind(null, popup, container);
-      }
-    });
+    popup.addEventListener(animationEndEvent, swalOpenAnimationFinished.bind(null, popup, container));
   } else {
     container.style.overflowY = 'auto';
   }
@@ -45410,7 +45396,7 @@ var fixScrollContainer = function fixScrollContainer(container, scrollbarPadding
   });
 };
 
-var addClasses$1 = function addClasses(container, popup, params) {
+var addClasses = function addClasses(container, popup, params) {
   addClass(container, params.showClass.backdrop);
   show(popup); // Animate popup right after showing it
 
@@ -46096,7 +46082,7 @@ Object.keys(instanceMethods).forEach(function (key) {
   };
 });
 SweetAlert.DismissReason = DismissReason;
-SweetAlert.version = '9.5.3';
+SweetAlert.version = '9.4.0';
 
 var Swal = SweetAlert;
 Swal["default"] = Swal;
@@ -47485,7 +47471,7 @@ var render = function() {
               attrs: { type: "file", disabled: _vm.editstate == true },
               on: { input: _vm.onSelectFile }
             }),
-            _vm._v("\n    " + _vm._s(_vm.invalid.image_file) + "\n")
+            _vm._v("\r\n    " + _vm._s(_vm.invalid.image_file) + "\r\n")
           ])
         ]
       ),
@@ -47542,7 +47528,7 @@ var render = function() {
             },
             [_c("b", [_vm._v("Edit Image")])]
           ),
-          _vm._v("\n      "),
+          _vm._v("\r\n      "),
           _c(
             "button",
             {
@@ -47556,7 +47542,7 @@ var render = function() {
             },
             [_c("b", [_vm._v("Cancel")])]
           ),
-          _vm._v("\n      "),
+          _vm._v("\r\n      "),
           _c(
             "button",
             {
@@ -47600,7 +47586,9 @@ var render = function() {
                   }
                 }
               }),
-              _vm._v("\n        " + _vm._s(_vm.invalid.mobile) + "\n        ")
+              _vm._v(
+                "\r\n        " + _vm._s(_vm.invalid.mobile) + "\r\n        "
+              )
             ])
           ]),
           _vm._v(" "),
@@ -47629,7 +47617,9 @@ var render = function() {
                   }
                 }
               }),
-              _vm._v("\n        " + _vm._s(_vm.invalid.email) + "\n        ")
+              _vm._v(
+                "\r\n        " + _vm._s(_vm.invalid.email) + "\r\n        "
+              )
             ])
           ]),
           _vm._v(" "),
@@ -47659,7 +47649,9 @@ var render = function() {
                 }
               }),
               _vm._v(
-                "\n        " + _vm._s(_vm.invalid.confirm_email) + "\n        "
+                "\r\n        " +
+                  _vm._s(_vm.invalid.confirm_email) +
+                  "\r\n        "
               )
             ])
           ]),
@@ -47689,7 +47681,7 @@ var render = function() {
                   }
                 }
               }),
-              _vm._v("\n        " + _vm._s(_vm.invalid.ic) + "\n        ")
+              _vm._v("\r\n        " + _vm._s(_vm.invalid.ic) + "\r\n        ")
             ])
           ]),
           _vm._v(" "),
@@ -47787,9 +47779,9 @@ var render = function() {
                 0
               ),
               _vm._v(
-                "\n        " +
+                "\r\n        " +
                   _vm._s(_vm.invalid.selected_branch_code) +
-                  "\n        "
+                  "\r\n        "
               )
             ])
           ]),
@@ -61432,9 +61424,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/bankpica.msascc.com/maybankpica/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /var/www/bankpica.msascc.com/maybankpica/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /var/www/bankpica.msascc.com/maybankpica/node_modules/cropperjs/src/index.scss */"./node_modules/cropperjs/src/index.scss");
+__webpack_require__(/*! C:\Users\modular\Documents\dev\maybankpica\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\modular\Documents\dev\maybankpica\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\Users\modular\Documents\dev\maybankpica\node_modules\cropperjs\src\index.scss */"./node_modules/cropperjs/src/index.scss");
 
 
 /***/ })
