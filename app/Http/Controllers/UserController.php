@@ -50,10 +50,25 @@ class UserController extends Controller
             //Current password and new password are same
             return redirect()->back()->with("error","New Password cannot be same as your current password. Please choose a different password.");
         }
+        /*
         $validatedData = $request->validate([ 
             'current-password' => 'required',
             'new-password' => 'required|string|min:8|confirmed',
+        ]);*/
+        $validator = \Validator::make($request->all(), [
+            'current-password' => ['required'],
+            'new-password' => ['required','string','min:8', 
+            'regex:/[a-z]/',      // must contain at least one lowercase letter
+            'regex:/[A-Z]/',      // must contain at least one uppercase letter
+            'regex:/[0-9]/',      // must contain at least one digit
+            'regex:/[@$!%*#?&]/'] // must contain a special character],
         ]);
+
+        if ($validator->fails()) {
+            return redirect('/forgot_password')->withErrors($validator)->withInput();
+        }
+
+
         //Change Password
         $user = Auth::user();
         $user->password = bcrypt($request->get('new-password'));

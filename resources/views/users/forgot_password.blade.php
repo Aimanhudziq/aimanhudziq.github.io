@@ -11,13 +11,14 @@
         </div>
 
         <div class="card-body">
-            @if (session('error'))
-                <div class="alert alert-danger">
-                    {{ session('error') }}
+
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
                 </div>
             @endif
-            @if (session('success'))
-                <div class="alert alert-success">
+            @if(session('error'))
+                <div class="alert alert-danger">
                     {{ session('success') }}
                 </div>
             @endif
@@ -27,14 +28,14 @@
         <div class="box-body">
                 <div class="col-md-5 offset-md-2">
                     <div class="login-form">
-                        <div class="form-group{{ $errors->has('current-password') ? ' has-error' : '' }}">
+                        <div class="form-group">
                                 
                             <label for="new-password">Current Password</label>
              
                             <input type="password" id="password" placeholder="{{ trans('passwords.placeholder_currentPassword')}} "
-                                name="current-password" class="form-control centered" required>
+                                name="current-password" class="form-control centered" value="{{old('current-password')}}">
 
-                            @if ($errors->has('current-password'))
+                            @if($errors->has('current-password'))
                                 <span class="help-block">
                                 <strong>{{ $errors->first('current-password') }}</strong></span>
                             @endif
@@ -43,7 +44,7 @@
                                
                             <label for="new-password">New Password</label>
                             <input type="password" id="new-password" placeholder="{{ trans('passwords.placeholder_newPassword')}} "
-                                name="new-password" class="form-control"  required>
+                                name="new-password" class="form-control"  value="{{old('new-password')}}">
 
                                 @if ($errors->has('new-password'))
                                 <span class="help-block">
@@ -55,7 +56,7 @@
                                 
                             <label for="new-confirm-password">Confirm Password</label>
                             <input type="password" id="new-confirm-password" placeholder="{{ trans('passwords.placeholder_passwordConfirmation')}}"
-                                name="new-password_confirmation" class="form-control" required>
+                                name="new-password_confirmation" class="form-control" value="{{old('new-confirm-password')}}"> 
 
                                 @if ($errors->has('password_confirmation'))
                                 <span class="help-block"><strong>{{ $errors->first('password_confirmation') }}</strong></span>
