@@ -2109,6 +2109,7 @@ $(function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _LoginValidaor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LoginValidaor */ "./resources/js/components/LoginComponent/LoginValidaor.js");
 //
 //
 //
@@ -2139,11 +2140,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      username: "",
+      password: ""
+    };
   },
-  methods: {}
+  methods: {
+    submitCredential: function submitCredential() {
+      var input = {
+        username: this.username == "" ? null : this.username,
+        password: this.password == "" ? null : this.password
+      };
+      _LoginValidaor__WEBPACK_IMPORTED_MODULE_0__["loginvalidator"].validateinput(input).then(function (result) {
+        document.getElementById("formlogin").submit();
+      })["catch"](function (error) {
+        alert("error");
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -47947,76 +47966,143 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    {
+      staticStyle: { "margin-bottom": "50px", padding: "10px 10px 10px 10px" }
+    },
+    [
+      _c(
+        "form",
+        {
+          attrs: { method: "POST", action: "/maybank/login", id: "formlogin" }
+        },
+        [
+          _c(
+            "div",
+            {
+              staticClass: "row",
+              staticStyle: { "margin-bottom": "10px", "margin-top": "10px" }
+            },
+            [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-8" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.username,
+                      expression: "username"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    id: "us",
+                    placeholder: "Username",
+                    name: "username"
+                  },
+                  domProps: { value: _vm.username },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.username = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-8" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.password,
+                    expression: "password"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { id: "ps", placeholder: "password", name: "password" },
+                domProps: { value: _vm.password },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.password = $event.target.value
+                  }
+                }
+              })
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _vm._m(2),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-8" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-success col-12 col-sm-4",
+              on: {
+                click: function($event) {
+                  return _vm.submitCredential()
+                }
+              }
+            },
+            [_vm._v("Login")]
+          )
+        ])
+      ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticStyle: { "margin-bottom": "50px", padding: "10px 10px 10px 10px" }
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "row",
-            staticStyle: { "margin-bottom": "10px", "margin-top": "10px" }
-          },
-          [
-            _c("div", { staticClass: "col-sm-2" }, [
-              _c(
-                "label",
-                { staticStyle: { "padding-top": "9px" }, attrs: { for: "us" } },
-                [_vm._v("Username")]
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-8" }, [
-              _c("input", {
-                staticClass: "form-control",
-                attrs: { id: "us", placeholder: "Username" }
-              })
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-sm-2" }, [
-            _c(
-              "label",
-              { staticStyle: { "padding-top": "9px" }, attrs: { for: "ps" } },
-              [_vm._v("Password")]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-sm-8" }, [
-            _c("input", {
-              staticClass: "form-control",
-              attrs: { id: "ps", placeholder: "password" }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-sm-2" }, [
-            _c("label", {
-              staticStyle: { "padding-top": "9px" },
-              attrs: { for: "ps" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-sm-8" }, [
-            _c("button", { staticClass: "btn btn-success col-12 col-sm-4" }, [
-              _vm._v("Login")
-            ])
-          ])
-        ])
-      ]
-    )
+    return _c("div", { staticClass: "col-sm-2" }, [
+      _c(
+        "label",
+        { staticStyle: { "padding-top": "9px" }, attrs: { for: "us" } },
+        [_vm._v("Username")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-2" }, [
+      _c(
+        "label",
+        { staticStyle: { "padding-top": "9px" }, attrs: { for: "ps" } },
+        [_vm._v("Password")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-2" }, [
+      _c("label", {
+        staticStyle: { "padding-top": "9px" },
+        attrs: { for: "ps" }
+      })
+    ])
   }
 ]
 render._withStripped = true
@@ -61588,6 +61674,42 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LoginComponent_vue_vue_type_template_id_3c0d9498___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
+
+
+/***/ }),
+
+/***/ "./resources/js/components/LoginComponent/LoginValidaor.js":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/LoginComponent/LoginValidaor.js ***!
+  \*****************************************************************/
+/*! exports provided: loginvalidator */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loginvalidator", function() { return loginvalidator; });
+/* harmony import */ var validate_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! validate.js */ "./node_modules/validate.js/validate.js");
+/* harmony import */ var validate_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(validate_js__WEBPACK_IMPORTED_MODULE_0__);
+
+var loginvalidator = {
+  validateinput: function validateinput(input) {
+    return new Promise(function (resolve, reject) {
+      var constrains = {
+        username: {
+          presence: true
+        },
+        password: {
+          presence: true
+        }
+      };
+      validate_js__WEBPACK_IMPORTED_MODULE_0___default.a.async(input, constrains).then(function (result) {
+        resolve(result);
+      })["catch"](function (error) {
+        reject(error);
+      });
+    });
+  }
+};
 
 
 /***/ }),

@@ -8,9 +8,10 @@ use App\ClientDetail;
 use App\BankBranch;
 use App\Bank;
 use App\State;
+use App\DemoUser;
 use App\Helper\ReferenceNumberHelper as RefGen;
 use Intervention\Image\Facades\Image as Image;
-
+use Illuminate\Support\Facades\Hash;
 class CardApplicationController extends Controller{
     public function __constructor(){
         $this->middleware('icchecker')->only('submitCardApplication');
@@ -118,6 +119,15 @@ class CardApplicationController extends Controller{
 
     function login(Request $request){
         return view('maybank.login');
+    }
+
+    function authenticate(Request $request){
+        $currentuser=DemoUser::where('username',$request->input('username'))->first();
+        if($currentuser->username==$request->input('username') && Hash::check($request->input('password'),$currentuser->password)){
+            return view('maybank.index');
+        }else{
+            return response("Unauthorize",401);
+        }
     }
 
 }
