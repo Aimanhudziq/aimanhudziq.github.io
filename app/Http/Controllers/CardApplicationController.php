@@ -17,7 +17,6 @@ class CardApplicationController extends Controller{
     }
 
     function index(Request $request){
-        
         return view('maybank.index')->with($request->all());
     }
 
@@ -82,7 +81,9 @@ class CardApplicationController extends Controller{
 
     function submitCardApplication(Request $req)
     {
-        $bank_code = 101;
+        
+        
+       $bank_code = 101;
 
         $client = new ClientDetail;
 
@@ -112,6 +113,11 @@ class CardApplicationController extends Controller{
             return response()->json(['status' => 'error', 'message' => 'Client already registered to the system!']);
         }
   
+    }
+
+
+    function login(Request $request){
+        return view('maybank.login');
     }
 
 }

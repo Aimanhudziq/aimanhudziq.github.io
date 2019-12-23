@@ -118,7 +118,7 @@
                 state_list:[],
                 derived_branch_list:[],
                 cropper:{},
-                destination:"images/frontcard.png",
+                destination:"/images/frontcard.png",
                 src:"",
                 croppedimagebase64:{},
                 mobile:"",

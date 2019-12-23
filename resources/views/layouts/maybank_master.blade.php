@@ -14,7 +14,7 @@
   <div class="container" id="app">  
   <div class="row"> 
     <div class="col-sm-12" style="background-color:#fc0;">
-    <a href="#"><img src="images/maybank-logo-customer.png" style="background-color:#fc0;height:60px;"></a>
+    <a href="#"><img src="/images/maybank-logo-customer.png" style="background-color:#fc0;height:60px;"></a>
     </div>
     <div class="col-sm-12" style="background-color:#d9d9d9;margin-top:10px;">
     @yield('content')
