@@ -2142,12 +2142,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       username: "",
-      password: ""
+      password: "",
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
     };
   },
   methods: {
@@ -47974,10 +47976,29 @@ var render = function() {
     [
       _c(
         "form",
-        {
-          attrs: { method: "POST", action: "/maybank/login", id: "formlogin" }
-        },
+        { attrs: { method: "POST", action: "/demo/login", id: "formlogin" } },
         [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.csrf,
+                expression: "csrf"
+              }
+            ],
+            attrs: { name: "_token", type: "hidden" },
+            domProps: { value: _vm.csrf },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.csrf = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
           _c(
             "div",
             {

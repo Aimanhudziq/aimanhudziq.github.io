@@ -1,7 +1,8 @@
 <template>
 
 <div style="margin-bottom:50px;padding:10px 10px 10px 10px;">
-    <form method="POST" action="/maybank/login" id="formlogin">
+    <form method="POST" action="/demo/login" id="formlogin">
+        <input name="_token" v-model="csrf" type="hidden"/>
         <div class="row" style="margin-bottom:10px;margin-top:10px;">
        <div class="col-sm-2">
                 <label for="us" style="padding-top:9px;">Username</label>
@@ -36,7 +37,8 @@ export default {
         data:function(){
             return {
                 username:"",
-                password:""
+                password:"",
+                csrf:document.querySelector('meta[name="csrf-token"]').getAttribute('content')
             }
         },
         methods:{
