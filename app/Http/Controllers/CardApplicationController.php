@@ -124,7 +124,7 @@ class CardApplicationController extends Controller{
     function authenticate(Request $request){
         $currentuser=DemoUser::where('username',$request->input('username'))->first();
         if($currentuser->username==$request->input('username') && Hash::check($request->input('password'),$currentuser->password)){
-            return view('maybank.index');
+            return redirect()->action('CardApplicationController@index');
         }else{
             return response("Unauthorize",401);
         }
