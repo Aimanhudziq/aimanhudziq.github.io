@@ -1941,6 +1941,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -47582,6 +47586,12 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
       _c("div", { staticClass: "row", staticStyle: { "margin-top": "10px" } }, [
         _c("div", { staticClass: "col-sm-12" }, [
           _c(
@@ -47627,11 +47637,11 @@ var render = function() {
       _c("hr"),
       _vm._v(" "),
       _c("div", { staticClass: "row" }, [
-        _vm._m(0),
+        _vm._m(1),
         _vm._v(" "),
         _c("div", { staticClass: "col-sm-12" }, [
           _c("div", { staticClass: "form-group row" }, [
-            _vm._m(1),
+            _vm._m(2),
             _vm._v(" "),
             _c("div", { staticClass: "col-sm-6" }, [
               _c("input", {
@@ -47662,7 +47672,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group row" }, [
-            _vm._m(2),
+            _vm._m(3),
             _vm._v(" "),
             _c("div", { staticClass: "col-sm-6" }, [
               _c("input", {
@@ -47693,7 +47703,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group row" }, [
-            _vm._m(3),
+            _vm._m(4),
             _vm._v(" "),
             _c("div", { staticClass: "col-sm-6" }, [
               _c("input", {
@@ -47726,7 +47736,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group row" }, [
-            _vm._m(4),
+            _vm._m(5),
             _vm._v(" "),
             _c("div", { staticClass: "col-sm-6" }, [
               _c("input", {
@@ -47755,7 +47765,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group row" }, [
-            _vm._m(5),
+            _vm._m(6),
             _vm._v(" "),
             _c("div", { staticClass: "col-sm-6" }, [
               _c(
@@ -47807,7 +47817,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group row" }, [
-            _vm._m(6),
+            _vm._m(7),
             _vm._v(" "),
             _c("div", { staticClass: "col-sm-6" }, [
               _c(
@@ -47878,6 +47888,15 @@ var render = function() {
   )
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h6", [
+      _c("b", [_vm._v("info :")]),
+      _vm._v(" minimum resolution is 1036*664")
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

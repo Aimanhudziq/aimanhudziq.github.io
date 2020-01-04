@@ -22,6 +22,9 @@
     </div>
    
 </div>
+<hr>
+<h6><b>info :</b> minimum resolution is 1036*664</h6>
+<hr>
 <div class="row" style="margin-top:10px;">
     <div class="col-sm-12">
     <button class="btn wr" @click="editImage" :disabled="isfileuploaded==false||isfileuploaded==true&&editstate==true"><b>Edit Image</b></button>
@@ -29,6 +32,7 @@
      &nbsp;<button class="btn wr" @click="save" :disabled="editstate==false"><b>Save</b></button>
     </div>
 </div>
+
 <hr>
 <div class="row">
     <div class="col-sm-12">
