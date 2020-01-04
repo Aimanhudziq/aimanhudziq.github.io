@@ -87,14 +87,31 @@ class AdminController extends Controller
             // The passwords matches
             return redirect()->back()->with("error","Your current password does not matches with the password you provided. Please try again.");
         }
-        if(strcmp($request->get('current-password'), $request->get('new-password')) == 0){
+        else  if(strcmp($request->get('current-password'), $request->get('new-password')) == 0){
             //Current password and new password are same
             return redirect()->back()->with("error","New Password cannot be same as your current password. Please choose a different password.");
         }
-        $validatedData = $request->validate([ 
-            'current-password' => 'required',
-            'new-password' => 'required|string|min:8|confirmed',
-        ]);
+        else{
+            $validator = \Validator::make($request->all(), [
+                'current-password' => ['required'],
+                'new-password' => ['required','string','min:8', 'confirmed', 
+                'regex:/[a-z]/',      // must contain at least one lowercase letter
+                'regex:/[A-Z]/',      // must contain at least one uppercase letter
+                'regex:/[0-9]/',      // must contain at least one digit
+                'regex:/[@$!%*#?&]/'], // must contain a special character],
+                'new-password_confirmation' => ['required','string','min:8', 
+                'regex:/[a-z]/',      // must contain at least one lowercase letter
+                'regex:/[A-Z]/',      // must contain at least one uppercase letter
+                'regex:/[0-9]/',      // must contain at least one digit
+                'regex:/[@$!%*#?&]/'], // must contain a special character],
+            ]);
+    
+            if ($validator->fails()) {
+                return redirect('/forgot_password')->withErrors($validator)->withInput();
+            }
+        }
+        
+        
         //Change Password
         $user = Auth::user();
         $user->password = bcrypt($request->get('new-password'));
