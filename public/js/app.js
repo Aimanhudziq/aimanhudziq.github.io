@@ -1985,6 +1985,7 @@ __webpack_require__.r(__webpack_exports__);
     onSelectFile: function onSelectFile() {
       var input = this.$refs.fileInput;
       var files = input.files;
+      var byteinmb = 1048576;
       var ap = this;
 
       if (files && files[0]) {
@@ -1993,6 +1994,10 @@ __webpack_require__.r(__webpack_exports__);
         reader.onload = function (e) {
           ap.src = e.target.result;
           ap.isfileuploaded = true;
+          var base64str = e.target.result.substr(23); //get only the base64
+
+          var decoded = atob(base64str);
+          console.log("FileSize: " + decoded.length / byteinmb + "mb");
         };
 
         reader.readAsDataURL(files[0]);

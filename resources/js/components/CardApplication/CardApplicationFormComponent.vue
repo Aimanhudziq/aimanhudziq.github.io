@@ -142,16 +142,22 @@
            onSelectFile:function(){
             const input = this.$refs.fileInput;
             const files = input.files;
+            const byteinmb=1048576;
             var ap=this;
-            if (files && files[0]) {
+            
+                if (files && files[0]) {
                     var reader = new FileReader();
                     reader.onload = function(e){
                          ap.src=e.target.result;
                          ap.isfileuploaded=true;
-                        
+                         
+                        var base64str = e.target.result.substr(23);//get only the base64
+                        var decoded = atob(base64str);
+                        console.log("FileSize: " + decoded.length/byteinmb+"mb");
                     }
                     reader.readAsDataURL(files[0]);
             }
+            
            
         },
         editImage:function(){
@@ -261,7 +267,7 @@
         }
        }
     }
-
+    
     $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
