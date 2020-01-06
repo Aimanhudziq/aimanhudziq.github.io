@@ -11,7 +11,7 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        if(DB::table('users')->get()->count() < 5){
+        if(DB::table('users')->get()->count() < 10){
             DB::table('users')->insert([
                 [
                     'user_staff_id' => '123',
@@ -62,6 +62,26 @@ class UserTableSeeder extends Seeder
                     'password' => \Hash::make('Mrjukchin009@'),
                     'user_type' => 'Normal User',
                     'frole_code' => 3,
+                ],
+                [
+                    'user_staff_id' => '3000',
+                    'first_name' => 'user',
+                    'last_name' => 'A',
+                    'username' => 'userA',
+                    'email' => 'userA@yahoo.com',
+                    'password' => \Hash::make('User@009'),
+                    'user_type' => 'Normal User',
+                    'frole_code' => 3,
+                ],
+                [
+                    'user_staff_id' => '4000',
+                    'first_name' => 'reviewer',
+                    'last_name' => 'A',
+                    'username' => 'reviewerA',
+                    'email' => 'reviewer@yahoo.com',
+                    'password' => \Hash::make('Reviewer@009'),
+                    'user_type' => 'Reviewer',
+                    'frole_code' => 2,
                 ]
                 
             ]);

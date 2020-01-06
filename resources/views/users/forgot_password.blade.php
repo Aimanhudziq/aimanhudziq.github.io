@@ -85,7 +85,7 @@
                             <label for="current-password">Current Password</label>
              
                             <input type="password" id="password-field" placeholder="{{ trans('passwords.placeholder_currentPassword')}} "
-                                name="current-password" class="form-control centered" value="{{old('current-password')}}" 
+                                name="current-password" class="form-control {{ $errors->has('current-password') ? ' has-error' : '' }} centered" value="{{old('current-password')}}" 
                                 data-toggle="collapse">
                                 <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                             @if($errors->has('current-password'))
@@ -93,11 +93,11 @@
                                 <strong style='color: #a94442'>{{ $errors->first('current-password') }}</strong></span>
                             @endif
                         </div>
-                        <div class="form-group{{ $errors->has('new-password') ? ' has-error' : '' }}">
+                        <div class="form-group">
                                
                             <label for="new-password">New Password</label>
                             <input type="password" id="password-field" placeholder="{{ trans('passwords.placeholder_newPassword')}} "
-                                name="new-password" class="form-control"  value="{{old('new-password')}}" data-toggle="collapse">
+                                name="new-password" class="form-control {{ $errors->has('new-password') ? ' has-error' : '' }}"  value="{{old('new-password')}}" data-toggle="collapse">
                                 <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                 @if ($errors->has('new-password'))
                                 <span class="help-block">
@@ -109,7 +109,7 @@
                                 
                             <label for="new-confirm-password">Confirm Password</label>
                             <input type="password" id="password-field" placeholder="{{ trans('passwords.placeholder_passwordConfirmation')}}"
-                                name="new-password_confirmation" class="form-control" value="{{old('new-confirm-password')}}" data-toggle="collapse"> 
+                                name="new-password_confirmation" class="form-control {{ $errors->has('new-password') ? ' has-error' : '' }}" value="{{old('new-confirm-password')}}" data-toggle="collapse"> 
                                 <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                 @if ($errors->has('new-password_confirmation'))
                                 <span class="help-block">

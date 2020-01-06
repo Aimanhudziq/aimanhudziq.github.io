@@ -71,16 +71,6 @@
         </div>
 
         <div class="card-body">
-            @if (session('error'))
-                <div class="alert alert-danger">
-                    {{ session('error') }}
-                </div>
-            @endif
-            @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
         <form role="form" method="POST" action="{{ route('forgot-passwordResetAdmin') }}">
         {{ csrf_field() }}
         
@@ -92,7 +82,7 @@
                             <label for="current-password">Current Password</label>
              
                             <input type="password" id="password" placeholder="{{ trans('passwords.placeholder_currentPassword')}} "
-                                name="current-password" class="form-control centered" required>
+                                name="current-password" class="form-control centered" value="{{old('current-password')}}" data-toggle="collapse">
                                 <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                             @if ($errors->has('current-password'))
                                 <span class="help-block">
@@ -103,7 +93,7 @@
                                
                             <label for="new-password">New Password</label>
                             <input type="password" id="new-password" placeholder="{{ trans('passwords.placeholder_newPassword')}} "
-                                name="new-password" class="form-control"  required>
+                                name="new-password" class="form-control"  value="{{old('new-password')}}" data-toggle="collapse">
                                 <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                 @if ($errors->has('new-password'))
                                 <span class="help-block">
@@ -115,7 +105,7 @@
                                 
                             <label for="new-confirm-password">Confirm Password</label>
                             <input type="password" id="new-confirm-password" placeholder="{{ trans('passwords.placeholder_passwordConfirmation')}}"
-                                name="new-password_confirmation" class="form-control" required>
+                                name="new-password_confirmation" class="form-control" value="{{old('new-password_confirmation')}}" data-toggle="collapse">
                                 <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                 @if ($errors->has('password_confirmation'))
                                 <span class="help-block"><strong>{{ $errors->first('password_confirmation') }}</strong></span>
@@ -132,5 +122,18 @@
     </div>
         
 </div>
-
+<script>
+        $(".toggle-password").click(function() {
+            $(this).toggleClass("fa-eye fa-eye-slash");
+            var input = $($(this).attr("toggle"));
+            if (input.attr("type") == "password") 
+            {
+                input.attr("type", "text");
+            } 
+            else 
+            {
+                input.attr("type", "password");
+            }
+        });
+    </script>
 @endsection
