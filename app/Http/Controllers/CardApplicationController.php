@@ -9,18 +9,33 @@ use App\BankBranch;
 use App\Bank;
 use App\State;
 use App\DemoUser;
+use \Auth;
 use App\Helper\ReferenceNumberHelper as RefGen;
 use Intervention\Image\Facades\Image as Image;
 use Illuminate\Support\Facades\Hash;
 class CardApplicationController extends Controller{
     public function __constructor(){
         $this->middleware('icchecker')->only('submitCardApplication');
+        
     }
 
     function index(Request $request){
-        return view('maybank.index')->with($request->all());
+        if($request->ip()!="192.168.3.175"){
+            return "unauthorized";
+        }else{
+            return "success";
+        }
+        //    return view('maybank.index');
+          
     }
-
+    
+    function demo(){
+        if(Auth::guard('demouser')->guest()){
+            return redirect('/demo/login');
+        }else{
+            return view('maybank.demo');
+        }
+    }
     function viewAllBankBranch($bank_code)
     {
         
@@ -121,10 +136,18 @@ class CardApplicationController extends Controller{
         return view('maybank.login');
     }
 
+    function logout(){
+        Auth::guard('demouser')->logout();
+        return redirect()->intended('/demo/login');
+    }
     function authenticate(Request $request){
-        $currentuser=DemoUser::where('username',$request->input('username'))->first();
-        if($currentuser->username==$request->input('username') && Hash::check($request->input('password'),$currentuser->password)){
-            return view('maybank.index');
+        
+        $credentials = [
+            'username' => $request->input('username'),
+            'password' => $request->input('password'),
+        ];
+        if(Auth::guard('demouser')->attempt($credentials)){
+            return redirect()->action('CardApplicationController@demo');
         }else{
             return response("Unauthorize",401);
         }

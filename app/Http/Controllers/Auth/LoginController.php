@@ -104,7 +104,6 @@ class LoginController extends Controller
     public function logout(Request $requset)
     {
         Auth::logout();
-        \Session::flush();
         return redirect()->intended('/');
         
     }

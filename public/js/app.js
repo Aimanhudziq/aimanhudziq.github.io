@@ -1941,6 +1941,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -1981,6 +1985,7 @@ __webpack_require__.r(__webpack_exports__);
     onSelectFile: function onSelectFile() {
       var input = this.$refs.fileInput;
       var files = input.files;
+      var byteinmb = 1048576;
       var ap = this;
 
       if (files && files[0]) {
@@ -1989,6 +1994,10 @@ __webpack_require__.r(__webpack_exports__);
         reader.onload = function (e) {
           ap.src = e.target.result;
           ap.isfileuploaded = true;
+          var base64str = e.target.result.substr(23); //get only the base64
+
+          var decoded = atob(base64str);
+          console.log("FileSize: " + decoded.length / byteinmb + "mb");
         };
 
         reader.readAsDataURL(files[0]);
@@ -2142,12 +2151,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       username: "",
-      password: ""
+      password: "",
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
     };
   },
   methods: {
@@ -47580,6 +47591,12 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
       _c("div", { staticClass: "row", staticStyle: { "margin-top": "10px" } }, [
         _c("div", { staticClass: "col-sm-12" }, [
           _c(
@@ -47625,11 +47642,11 @@ var render = function() {
       _c("hr"),
       _vm._v(" "),
       _c("div", { staticClass: "row" }, [
-        _vm._m(0),
+        _vm._m(1),
         _vm._v(" "),
         _c("div", { staticClass: "col-sm-12" }, [
           _c("div", { staticClass: "form-group row" }, [
-            _vm._m(1),
+            _vm._m(2),
             _vm._v(" "),
             _c("div", { staticClass: "col-sm-6" }, [
               _c("input", {
@@ -47660,7 +47677,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group row" }, [
-            _vm._m(2),
+            _vm._m(3),
             _vm._v(" "),
             _c("div", { staticClass: "col-sm-6" }, [
               _c("input", {
@@ -47691,7 +47708,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group row" }, [
-            _vm._m(3),
+            _vm._m(4),
             _vm._v(" "),
             _c("div", { staticClass: "col-sm-6" }, [
               _c("input", {
@@ -47724,7 +47741,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group row" }, [
-            _vm._m(4),
+            _vm._m(5),
             _vm._v(" "),
             _c("div", { staticClass: "col-sm-6" }, [
               _c("input", {
@@ -47753,7 +47770,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group row" }, [
-            _vm._m(5),
+            _vm._m(6),
             _vm._v(" "),
             _c("div", { staticClass: "col-sm-6" }, [
               _c(
@@ -47805,7 +47822,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group row" }, [
-            _vm._m(6),
+            _vm._m(7),
             _vm._v(" "),
             _c("div", { staticClass: "col-sm-6" }, [
               _c(
@@ -47876,6 +47893,15 @@ var render = function() {
   )
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h6", [
+      _c("b", [_vm._v("info :")]),
+      _vm._v(" minimum resolution is 1036*664")
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -47974,10 +48000,29 @@ var render = function() {
     [
       _c(
         "form",
-        {
-          attrs: { method: "POST", action: "/maybank/login", id: "formlogin" }
-        },
+        { attrs: { method: "POST", action: "/demo/login", id: "formlogin" } },
         [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.csrf,
+                expression: "csrf"
+              }
+            ],
+            attrs: { name: "_token", type: "hidden" },
+            domProps: { value: _vm.csrf },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.csrf = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
           _c(
             "div",
             {

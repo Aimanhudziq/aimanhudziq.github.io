@@ -189,8 +189,14 @@ Route::group(['prefix' => 'maybank'], function()
     Route::get('/','CardApplicationController@index')->name('maybankui');
     Route::get('/states','CardApplicationController@getStates');
     Route::get('/branches','CardApplicationController@getBankBranches');
+    
+});
+
+Route::group(['prefix'=>'demo'],function(){
+    Route::get('/','CardApplicationController@demo');
     Route::get('/login','CardApplicationController@login');
     Route::post('/login','CardApplicationController@authenticate');
+    Route::get('/logout','CardApplicationController@logout');
 });
 
 

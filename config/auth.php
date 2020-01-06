@@ -46,6 +46,10 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+        'demouser'=>[
+            'driver'=>'session',
+            'provider'=>'demousers'
+        ],
     ],
 
     /*
@@ -70,7 +74,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
-
+        'demousers'=>[
+            'driver'=>'eloquent',
+            'model'=>App\DemoUser::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
@@ -95,6 +102,11 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'demousers' => [
+            'provider' => 'demousers',
             'table' => 'password_resets',
             'expire' => 60,
         ],

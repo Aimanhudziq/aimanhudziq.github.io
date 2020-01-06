@@ -22,6 +22,9 @@
     </div>
    
 </div>
+<hr>
+<h6><b>info :</b> minimum resolution is 1036*664</h6>
+<hr>
 <div class="row" style="margin-top:10px;">
     <div class="col-sm-12">
     <button class="btn wr" @click="editImage" :disabled="isfileuploaded==false||isfileuploaded==true&&editstate==true"><b>Edit Image</b></button>
@@ -29,6 +32,7 @@
      &nbsp;<button class="btn wr" @click="save" :disabled="editstate==false"><b>Save</b></button>
     </div>
 </div>
+
 <hr>
 <div class="row">
     <div class="col-sm-12">
@@ -138,16 +142,22 @@
            onSelectFile:function(){
             const input = this.$refs.fileInput;
             const files = input.files;
+            const byteinmb=1048576;
             var ap=this;
-            if (files && files[0]) {
+            
+                if (files && files[0]) {
                     var reader = new FileReader();
                     reader.onload = function(e){
                          ap.src=e.target.result;
                          ap.isfileuploaded=true;
-                        
+                         
+                        var base64str = e.target.result.substr(23);//get only the base64
+                        var decoded = atob(base64str);
+                        console.log("FileSize: " + decoded.length/byteinmb+"mb");
                     }
                     reader.readAsDataURL(files[0]);
             }
+            
            
         },
         editImage:function(){
@@ -257,7 +267,7 @@
         }
        }
     }
-
+    
     $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
