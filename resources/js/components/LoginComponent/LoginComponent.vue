@@ -16,7 +16,7 @@
                 <label for="ps" style="padding-top:9px;">Password</label>
             </div>
             <div class="col-sm-8">
-                 <input id="ps" placeholder="password" class="form-control" v-model="password" name="password">
+                 <input id="ps" placeholder="password" type="password" class="form-control" v-model="password" name="password">
             </div>
     </div>
     </form>
