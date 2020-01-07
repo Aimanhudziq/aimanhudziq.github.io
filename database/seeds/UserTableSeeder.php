@@ -82,6 +82,16 @@ class UserTableSeeder extends Seeder
                     'password' => \Hash::make('Reviewer@009'),
                     'user_type' => 'Reviewer',
                     'frole_code' => 2,
+                ],
+                [
+                    'user_staff_id' => '5555',
+                    'first_name' => 'mbb02',
+                    'last_name' => 'test',
+                    'username' => 'mbb02',
+                    'email' => 'mbb02@yahoo.com',
+                    'password' => \Hash::make('Maybank@009'),
+                    'user_type' => 'Reviewer',
+                    'frole_code' => 2,
                 ]
                 
             ]);

@@ -17,6 +17,11 @@ class DemoUserTableSeeder extends Seeder
                     'username' => 'guest',
                     'email'=>'guest@gmail.com',
                     'password' => \Hash::make('guest009@'),
+                ],
+                [
+                    'username' => 'mbb01',
+                    'email'=>'mbb01@gmail.com',
+                    'password' => \Hash::make('maybank@001'),
                 ]
             ]);
         }
