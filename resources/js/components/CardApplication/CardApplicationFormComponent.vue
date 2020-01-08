@@ -8,6 +8,7 @@
       ref="fileInput"
       type="file"
       @input="onSelectFile"
+      v-bind:style="inputstyle"
       :disabled="editstate==true"/>
     {{invalid.image_file}}
 </div>
@@ -23,7 +24,7 @@
    
 </div>
 <hr>
-<h6><b>info :</b> minimum resolution is 1036*664</h6>
+<h6><b>info :</b> minimum resolution is 1036*664 pixels @ 300dpi , image file format should be in jpg or png only</h6>
 <hr>
 <div class="row" style="margin-top:10px;">
     <div class="col-sm-12">
@@ -118,6 +119,9 @@
             },
         data:function(){
             return{
+                inputstyle:{
+                    color:'black'
+                },
                 branch_list:[],
                 state_list:[],
                 derived_branch_list:[],
@@ -143,20 +147,37 @@
             const input = this.$refs.fileInput;
             const files = input.files;
             const byteinmb=1048576;
+            const imageminimumfilesize=1;
+            const imagemaximumfilesize=10;
+            var cutsub=0;
             var ap=this;
             
                 if (files && files[0]) {
-                    var reader = new FileReader();
-                    reader.onload = function(e){
-                         ap.src=e.target.result;
-                         ap.isfileuploaded=true;
-                         
-                        var base64str = e.target.result.substr(23);//get only the base64
-                        var decoded = atob(base64str);
-                        console.log("FileSize: " + decoded.length/byteinmb+"mb");
+                    if(files[0].type=="image/jpeg"||files[0].type=="image/png"){
+                        ap.inputstyle.color='black';
+                        cutsub=files[0].type=="image/jpeg"?23:22;
+                        var reader = new FileReader();
+                        reader.onload = function(e){
+                            
+                            
+                            var base64str = e.target.result.substr(cutsub);//get only the base64
+                            var decoded = atob(base64str);
+                            var uploadedimagefilesize=decoded.length/byteinmb;//convert file size from byte to mega byte
+                            if(uploadedimagefilesize>=imageminimumfilesize&&uploadedimagefilesize<=imagemaximumfilesize){
+                                ap.src=e.target.result;
+                                ap.isfileuploaded=true;
+                            }else{
+                                alert("image file size should be in between 1 to 10 mb");
+                            }
+                        }
+                        reader.readAsDataURL(files[0]);
+                    }else{
+                        ap.inputstyle.color='transparent';
+                        alert("only png and jpeg type image is allowed");
+                        
                     }
-                    reader.readAsDataURL(files[0]);
-            }
+                    
+                }
             
            
         },
