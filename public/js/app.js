@@ -1945,6 +1945,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -1961,6 +1962,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      inputstyle: {
+        color: 'black'
+      },
       branch_list: [],
       state_list: [],
       derived_branch_list: [],
@@ -1986,21 +1990,36 @@ __webpack_require__.r(__webpack_exports__);
       var input = this.$refs.fileInput;
       var files = input.files;
       var byteinmb = 1048576;
+      var imageminimumfilesize = 1;
+      var imagemaximumfilesize = 10;
+      var cutsub = 0;
       var ap = this;
 
       if (files && files[0]) {
-        var reader = new FileReader();
+        if (files[0].type == "image/jpeg" || files[0].type == "image/png") {
+          ap.inputstyle.color = 'black';
+          cutsub = files[0].type == "image/jpeg" ? 23 : 22;
+          var reader = new FileReader();
 
-        reader.onload = function (e) {
-          ap.src = e.target.result;
-          ap.isfileuploaded = true;
-          var base64str = e.target.result.substr(23); //get only the base64
+          reader.onload = function (e) {
+            var base64str = e.target.result.substr(cutsub); //get only the base64
 
-          var decoded = atob(base64str);
-          console.log("FileSize: " + decoded.length / byteinmb + "mb");
-        };
+            var decoded = atob(base64str);
+            var uploadedimagefilesize = decoded.length / byteinmb; //convert file size from byte to mega byte
 
-        reader.readAsDataURL(files[0]);
+            if (uploadedimagefilesize >= imageminimumfilesize && uploadedimagefilesize <= imagemaximumfilesize) {
+              ap.src = e.target.result;
+              ap.isfileuploaded = true;
+            } else {
+              alert("image file size should be in between 1 to 10 mb");
+            }
+          };
+
+          reader.readAsDataURL(files[0]);
+        } else {
+          ap.inputstyle.color = 'transparent';
+          alert("only png and jpeg type image is allowed");
+        }
       }
     },
     editImage: function editImage() {
@@ -47546,6 +47565,7 @@ var render = function() {
             _c("input", {
               ref: "fileInput",
               staticClass: "btn wr",
+              style: _vm.inputstyle,
               attrs: { type: "file", disabled: _vm.editstate == true },
               on: { input: _vm.onSelectFile }
             }),
@@ -47899,7 +47919,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("h6", [
       _c("b", [_vm._v("info :")]),
-      _vm._v(" minimum resolution is 1036*664")
+      _vm._v(
+        " minimum resolution is 1036*664 pixels @ 300dpi , image file format should be in jpg or png only"
+      )
     ])
   },
   function() {
@@ -61807,9 +61829,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Jasvin Liyun\Documents\workspace\maybankpica\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Users\Jasvin Liyun\Documents\workspace\maybankpica\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\Users\Jasvin Liyun\Documents\workspace\maybankpica\node_modules\cropperjs\src\index.scss */"./node_modules/cropperjs/src/index.scss");
+__webpack_require__(/*! C:\Users\modular\Documents\dev\maybankpica\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\modular\Documents\dev\maybankpica\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\Users\modular\Documents\dev\maybankpica\node_modules\cropperjs\src\index.scss */"./node_modules/cropperjs/src/index.scss");
 
 
 /***/ })
