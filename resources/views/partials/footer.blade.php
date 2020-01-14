@@ -21,20 +21,26 @@
 <!--About Modal Start-->
 <div class="modal fade"  id="about" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" 
 aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-dialog modal-md" role="document">
         <div class="modal-content" style="padding-bottom:0px" >
             <div class="modal-header" style="padding-bottom:0px" >
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="smallModalLabel">About</h4>
+                <h4 class="modal-title" id="smallModalLabel">
+                <i class="fa fa-info-circle"></i>About</h4>
             </div>
 
             <!--Body start-->
             <div class="modal-body" style="padding-bottom:0px" >
-                <p>Application for customer send request for having a card based on their preferences by sending 
-                    their own materials such as pictures to be approved or rejected.
-                </p>
+                <div class="box box-primary">
+                    <span class="badge bg-info">system version</span>
+                    <span class="badge bg-dark">v1.0</span>
+                    <hr>
+                    <span class="badge bg-info">Last Updated</span>
+                    <span class="badge bg-dark">14-Jan-2020</span>
+                    <hr>
+                </div>
             </div>
             <!--Body end-->            
         </div>
@@ -51,7 +57,8 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="smallModalLabel">Contact Us</h4>
+                <h4 class="modal-title" id="smallModalLabel">
+                <i class="fa fa-address-book"></i>Contact Us</h4>
             </div>
 
             <!--Body start-->
@@ -68,7 +75,7 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                 </div>
                 <div class="row" style="padding-left: 15px; padding-top:15px; padding-bottom:20px">
                     <span><i  class="ti ti-world"></i>
-                    Website: www.modularsoft.com.my
+                    Website: <a href="{{ url('www.modularsoft.com.my') }}" target="_blank">modularsoft sdn bhd</a>
                     </span>
                 </div>
             </div>
