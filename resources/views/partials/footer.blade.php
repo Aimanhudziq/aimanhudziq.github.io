@@ -9,7 +9,7 @@
             </div>
             <div class="col-sm-4 float-right">
                 <div>
-                &copy;<a href="http://www.modularsoft.com.my/" target="_blank">Modularsoft Sdn Bhd</a>
+                    <a href="http://stackoverflow.com" target="_blank">Modularsoft Sdn Bhd</a>
                 </div>
             </div>
         </div>
@@ -21,7 +21,7 @@
 <!--About Modal Start-->
 <div class="modal fade"  id="about" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel" 
 aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-md" role="document">
+    <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content" style="padding-bottom:0px" >
             <div class="modal-header" style="padding-bottom:0px" >
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -39,8 +39,7 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                     <hr>
                     <span class="badge bg-info">Last Updated</span>
                     <span class="badge bg-dark">14-Jan-2020</span>
-                    <hr>
-                </div>
+                </div><br>
             </div>
             <!--Body end-->            
         </div>

@@ -62,7 +62,7 @@
                                 @endif
                                 </td>
                                 <td>
-                                    <a type="button" class="btn btn-white mb-1" data-toggle="modal"  onclick="test('<?php echo $log->reference_no;?>')"
+                                    <a type="button" class="btn btn-white mb-1" data-toggle="modal"  onclick="modalShow('<?php echo $log->reference_no;?>')"
                                         data-target="#track_log"><i  class="fa fa-cog">{{trans('content.review')}}</i>
                                     </a>
                                 </td>
@@ -173,16 +173,29 @@
 
 
 <script>
-function test(ref){
+function modalShow(ref){
 var trackrec=<?php echo  json_encode($trackRec);?>;
 var clientdetail=<?php echo  json_encode($logs);?>;
 var cardapplication=<?php echo  json_encode($cardApp);?>;
+var status="";
 //console
 var data=<?php  echo json_encode($data);?>;
 document.getElementById("tablebody").innerHTML=""
 trackrec.forEach(function(item){
     if(ref==item.freference_no){
-    document.getElementById("newstatus").innerHTML=item.new_status_code;
+        if(item.new_status_code == 0){
+            status="Rejected";
+        }
+        else if(item.new_status_code == 1){
+            status="Approved";
+        }
+        else if(item.new_status_code == 2){
+            status="KIV";
+        }
+        else{
+            status="New";
+        }
+    document.getElementById("newstatus").innerHTML=status;
     document.getElementById("date").innerHTML=item.created_at;
     var tr = document.createElement('tr');
         var date = document.createElement('td');
