@@ -117,7 +117,7 @@
                                                             <h6 class="card-text" style="font-size: small">{{trans('content.ref_num')}} : 
                                                                                         <span class="badge bg-info" id="refno"></span></h6>
                                                             <h6 class="card-text" style="font-size: small">{{trans('content.status')}} : 
-                                                                                        <span class="badge bg-secondary" id="newstatus"></span></h6>
+                                                                                        <span id="newstatus"></span></h6>
                                                             <h6 class="card-text" style="font-size: small">{{trans('content.date')}} : 
                                                                                         <span class="badge bg-dark" id="date"></span></h6>
                                                         </div>
