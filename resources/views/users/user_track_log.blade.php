@@ -184,10 +184,10 @@ document.getElementById("tablebody").innerHTML=""
 trackrec.forEach(function(item){
     if(ref==item.freference_no){
         if(item.new_status_code == 0){
-            status="Rejected";
+            status="<span class='badge bg-danger'>Rejected</span>";
         }
         else if(item.new_status_code == 1){
-            status="Approved";
+            status="<span class='badge bg-success'>Rejected</span>Approved";
         }
         else if(item.new_status_code == 2){
             status="KIV";
