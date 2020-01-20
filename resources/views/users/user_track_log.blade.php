@@ -187,13 +187,13 @@ trackrec.forEach(function(item){
             status="<span class='badge bg-danger'>Rejected</span>";
         }
         else if(item.new_status_code == 1){
-            status="<span class='badge bg-success'>Rejected</span>Approved";
+            status="<span class='badge bg-success'>Approved</span>";
         }
         else if(item.new_status_code == 2){
-            status="KIV";
+            status="<span class='badge bg-warning'>KIV</span>";
         }
         else{
-            status="New";
+            status="<span class='badge bg-info'>New</span>";
         }
     document.getElementById("newstatus").innerHTML=status;
     document.getElementById("date").innerHTML=item.created_at;
