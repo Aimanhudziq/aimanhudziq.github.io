@@ -49,16 +49,16 @@ Route::get('user_new_task/{bank_code}', 'UserController@userNewTask')
                 ->middleware('normal_user'); //access by normal user only
 
 Route::get('reviewer_new_task/{bank_code}', 'UserController@reviewerNewTask')
-                ->name('reviewer-new-task');
-                //->middleware('reviewer'); //access by normal user only
+                ->name('reviewer-new-task')
+                ->middleware('reviewer'); //access by normal user only
 
 Route::get('user_list_bank', 'UserController@userListBank')
                 ->name('user-list-bank')
                 ->middleware('normal_user'); //access by normal user only
 
 Route::get('reviewer_list_bank', 'UserController@reviewerListBank')
-                ->name('reviewer-list-bank');
-                //->middleware('reviewer'); //access by reviewer only
+                ->name('reviewer-list-bank')
+                ->middleware('reviewer'); //access by reviewer only
 
 /*Route::get('reviewer_kiv', 'UserController@reviewerKiv')
                 ->name('reviewer-kiv')->middleware('reviewer');*/
@@ -152,12 +152,12 @@ Route::get('kiv/{ref_no}', 'StatusController@kiv')
                 ->middleware('normal_user');
 
 Route::get('reject_checker/{ref_no}', 'StatusController@rejectChecker')
-                ->name('reject_checker');
-                //->middleware('reviewer');
+                ->name('reject_checker')
+                ->middleware('reviewer');
 
 Route::get('approve_checker/{ref_no}', 'StatusController@approveChecker')
-                ->name('approve_checker');
-                //->middleware('reviewer');
+                ->name('approve_checker')
+                ->middleware('reviewer');
 
 Route::get('/changeStatus', 'AdminActionController@changeStatus')->middleware('admin');
 

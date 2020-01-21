@@ -16,7 +16,8 @@ class ReviewerOnly
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user() && Auth::user()->frole_id == 2)  
+        //dd(Auth::user()->frole_code);
+        if(Auth::user() && Auth::user()->frole_code == 2)  
         {
             return $next($request);
         }
