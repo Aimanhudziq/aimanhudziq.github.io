@@ -1,7 +1,7 @@
 @extends('layouts.admin_master')
 
 @section('content')
-<div class="col-sm-6 col-lg-3">
+<div class="col-sm-4 col-lg-3">
     <div class="card text-white bg-flat-color-3">
         <div class="card-body">
             <div class="card-left float-left text-left">
@@ -20,8 +20,8 @@
     </div>
 </div>
 
-<!-- KIV -->
-<div class="col-sm-6 col-lg-3">
+<!-- total policy -->
+<div class="col-sm-4 col-lg-3">
     <div class="card text-white bg-flat-color-2">
         <div class="card-body">
             <div class="card-right pt-1 float-right">
@@ -30,7 +30,7 @@
                     <span class="count">{{ $policy_list }}</span>
                 </h3>
             </a>
-                <p class="text-light mt-1 m-0">{{ trans('dashboard.policy') }}</p>
+                <p class="text-light mt-1 m-0">{{ trans('dashboard.total_policy') }}</p>
             </div><!-- /.card-left -->
 
             <div class="card-left float-left text-left">
@@ -38,10 +38,30 @@
             </div><!-- /.card-right -->
         </div>
     </div>
-</div><!-- KIV -->
+</div><!-- policy -->
 
-<!-- Reject -->
-<div class="col-sm-6 col-lg-3">
+<!-- active policy -->
+<div class="col-sm-4 col-lg-3">
+    <div class="card text-white bg-flat-color-5">
+        <div class="card-body">
+            <div class="card-right pt-1 float-right">
+            <a href="{{ url('admin_policy_list') }}">
+                <h3 class="mb-0 fw-r">
+                    <span class="count">{{ $active_policy }}</span>
+                </h3>
+            </a>
+                <p class="text-light mt-1 m-0">{{ trans('dashboard.active_policy') }}</p>
+            </div><!-- /.card-left -->
+
+            <div class="card-left float-left text-left">
+                <i class="icon fade-5 icon-lg fa fa-shield"></i>
+            </div><!-- /.card-right -->
+        </div>
+    </div>
+</div><!-- policy -->
+
+<!-- total bank -->
+<div class="col-sm-4 col-lg-3">
     <div class="card text-white bg-danger">
         <div class="card-body">
             <div class="card-right pt-1 float-right">
@@ -61,5 +81,5 @@
 
         </div>
     </div>
-</div> <!--/Reject -->
+</div> <!--/Total bank -->
 @endsection

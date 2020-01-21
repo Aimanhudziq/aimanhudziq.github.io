@@ -12,5 +12,7 @@ return[
 
     'user' => 'Users',
     'policy' => 'Policy',
+    'total_policy' => 'Total Policy',
+    'active_policy' => 'Active Policy',
     'bank' => 'Bank',
 ];

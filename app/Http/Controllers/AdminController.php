@@ -18,11 +18,13 @@ class AdminController extends Controller
     {   
         $user_list = User::whereIn('frole_code', ['2','3'])->get()->count();
         $policy_list = Policy::all()->count();
+        $active_policy = Policy::whereIn('status',['0'])->count();
         $bank_assginment = BankAssignmentList::all()->count();
         //($policy_list);
         //dd($user_list);
         return view('admin_dashboard', compact('user_list',$user_list,
                                                'policy_list', $policy_list,
+                                               'active_policy', $active_policy,
                                                 'bank_assginment', $bank_assginment));
     }
 

@@ -12,5 +12,7 @@ return[
 
     'user' => 'Pengguna',
     'policy' => 'Polisi',
+    'total_policy' => 'Jumlah Polisi',
+    'active_policy' => 'Aktif Polisi',
     'bank' => 'Bank',
 ];
