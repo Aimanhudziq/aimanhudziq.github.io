@@ -12,6 +12,7 @@
                 <thead>
                     <tr>
                         <th>{{trans('content.full_name')}}</th>
+                        <th>{{trans('content.username')}}</th>
                         <th>{{trans('content.staff_id')}}</th>
                         <th>{{trans('content.email')}}</th>
                         <th>{{trans('content.category')}}</th>
@@ -22,6 +23,8 @@
                     <tr>
                         <td><span class="badge bg-secondary">
                             {{ $admin->first_name }} {{ $admin->last_name}}</span></td>
+                        <td><span class="badge bg-primary">
+                        {{ $admin->username }}</span></td>
                         <td><span class="badge bg-dark">
                             {{ $admin->user_staff_id }}
                         </span></td>

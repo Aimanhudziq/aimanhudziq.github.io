@@ -13,7 +13,9 @@ use \Auth;
 use App\Helper\ReferenceNumberHelper as RefGen;
 use Intervention\Image\Facades\Image as Image;
 use Illuminate\Support\Facades\Hash;
+
 class CardApplicationController extends Controller{
+    
     public function __constructor(){
         $this->middleware('icchecker')->only('submitCardApplication');
         
@@ -118,11 +120,6 @@ class CardApplicationController extends Controller{
         $client->image_url = $this->getImageUrl($client->reference_no);
         $client->fbank_code = $bank_code;
         
-        
-        
-            
-        
-
         if($client->save()){
             return response()->json(['status' => 'success', 'message' => 'Client successfully registered!']);
         }else{
