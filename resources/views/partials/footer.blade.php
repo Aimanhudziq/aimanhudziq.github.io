@@ -9,7 +9,7 @@
             </div>
             <div class="col-sm-4 float-right">
                 <div>
-                    <a href="http://stackoverflow.com" target="_blank">Modularsoft Sdn Bhd</a>
+                    <a href="http://www.modularsoft.com.my/" target="_blank">Modularsoft Sdn Bhd</a>
                 </div>
             </div>
         </div>
