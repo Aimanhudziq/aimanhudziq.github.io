@@ -74,7 +74,7 @@ aria-hidden="true" data-backdrop="static" data-keyboard="false">
                 </div>
                 <div class="row" style="padding-left: 15px; padding-top:15px; padding-bottom:20px">
                     <span><i  class="ti ti-world"></i>
-                    Website: <a href="{{ url('www.modularsoft.com.my') }}" target="_blank">modularsoft sdn bhd</a>
+                    Website: <a href="http://www.modularsoft.com.my/" target="_blank">modularsoft sdn bhd</a>
                     </span>
                 </div>
             </div>
