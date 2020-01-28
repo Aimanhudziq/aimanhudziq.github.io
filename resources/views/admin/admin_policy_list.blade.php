@@ -68,9 +68,13 @@
             type: "GET",
             dataType: "json",
             url: '/changeStatus',
-            data: {'status': status, 'policy_id': policy_id},
+            data: {
+                'status': status, 
+                'policy_id': policy_id
+            },
             success: function(data){
               console.log(data.success)
+              console.log(data.policy_id)
             }
         });
     })
