@@ -28,6 +28,7 @@ class CheckForMaintenanceMode extends Middleware
         'assign_bank_to_staff',
         'admin_user_bank_list',
         'changeStatus',
-        '/'
+        '/',
+        'logout'
     ];
 }
