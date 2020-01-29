@@ -73,6 +73,7 @@ return[
     'bank_assign' => 'Bank Assign',
     'delete' => 'Delete',
     'report' => 'Report',
+    'maintenance' => 'System Maintenance',
 
     //Policy
     'policy_list' => 'Policy List',

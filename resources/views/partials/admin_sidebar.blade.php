@@ -48,9 +48,9 @@
                 -->    
                 
 
-                <li class="{{ Route::currentRouteNamed('register-client-details') ? 'active': '' }}">
-                    <a href="{{ url('register/client_details') }}"><i class="menu-icon fa fa-users">
-                    </i>{{trans('content.add_client')}}</a>
+                <li class="{{ Route::currentRouteNamed('maintenance') ? 'active': '' }}">
+                    <a href="{{ url('maintenance') }}" target="_blank"><i class="menu-icon fa fa-wrench">
+                    </i>{{trans('content.maintenance')}}</a>
                 </li>
 
             </ul>

@@ -16,5 +16,18 @@ class CheckForMaintenanceMode extends Middleware
         'maintenance',
         'site/shutdown',
         'site/up',
+
+        //admin
+        'admin_dashboard',
+        'forgot_passwordAdmin',
+        'admin_user_list',
+        'admin_admin_list',
+        'add_new_user',
+        'admin_policy_list',
+        'add_new_policy',
+        'assign_bank_to_staff',
+        'admin_user_bank_list',
+        'changeStatus',
+        '/'
     ];
 }

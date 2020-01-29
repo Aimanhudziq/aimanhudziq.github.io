@@ -75,6 +75,7 @@ return[
     'bank_assign' => 'Tugasan Bank',
     'delete' => 'Padam',
     'report' => 'Laporan',
+    'maintenance' => 'Sistem Penyelenggaraan',
 
     //Policy
     'policy_list' => 'Senarai Polisi',
