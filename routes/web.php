@@ -211,3 +211,15 @@ Route::group(['prefix' => 'admin',  'middleware' => 'auth'], function()
     Route::get('dashboard', function() {} );
 });
 */
+
+Route::get('maintenance','SystemController@maintenance');
+
+Route::get('site/shutdown', function(){
+    return Artisan::call('down');
+});
+
+Route::get('site/up', function(){
+    //@unlink($this->laravel['path.storage'].'/meta/down');
+    @unlink(storage_path().'/framework/down');
+    //dd(storage_path());
+});

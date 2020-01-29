@@ -51,6 +51,9 @@
             width:100%;
             max-width:400px;
             overflow-wrap:break-word;
+        }
+        .has-error {
+            border: 2px solid #e74c3c;
         }      
     </style>
 <body class="bg-white">
@@ -86,7 +89,7 @@
                        {{ csrf_field() }}
                         <div class="form-group">
                             <label>{{ trans('login.username') }}</label>
-                            <input type="text" class="form-control {{ $errors->has('username') ? 'has-error' : '' }}" name="username" 
+                            <input type="text" class="form-control {{($errors->has('username') ? 'has-error' : '' )}}" name="username" 
                                 placeholder="{{ trans('login.placeholder_username') }}" value="{{ old('username') }}"
                                     title="{{ trans('login.username') }}" data-toggle="popover"
                                         data-content="{{ trans('login.popover_info_username') }}">

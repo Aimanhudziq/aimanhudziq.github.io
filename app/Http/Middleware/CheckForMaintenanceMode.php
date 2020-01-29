@@ -13,5 +13,8 @@ class CheckForMaintenanceMode extends Middleware
      */
     protected $except = [
         //
+        'maintenance',
+        'site/shutdown',
+        'site/up',
     ];
 }
