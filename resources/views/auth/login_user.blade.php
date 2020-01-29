@@ -6,6 +6,7 @@
     <title>ASCC Login</title>
     <meta name="description" content="ASCC, Pica image">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Jasvin Liyun">
 
     <link rel="apple-touch-icon" href="{{ asset('images/icon_ascc.png') }}">
 
