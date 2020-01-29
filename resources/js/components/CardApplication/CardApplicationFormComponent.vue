@@ -1,5 +1,10 @@
 
 <template>
+<style
+.red-border {
+  border: 1px solid #f00;
+}
+>
 <div style="margin-bottom:50px;padding:10px 10px 10px 10px;">
     <div class="row" style="margin-bottom:10px;margin-top:10px;">
 <div class="col-sm-12">
@@ -43,7 +48,7 @@
         <div class="form-group row">
         <label for="mobile" class="col-sm-2 col-form-label"><b>Mobile</b></label>
         <div class="col-sm-6">
-        <input type="text"  class="form-control" id="mobile" v-model="mobile">
+        <input type="text"  class="form-control" id="mobile" v-model="mobile" @focus="toggleBorder" :class="{'red-border': inputError}">
         {{invalid.mobile}}
         </div>
         </div>
@@ -122,6 +127,7 @@
                 inputstyle:{
                     color:'black'
                 },
+                inputError:true,
                 branch_list:[],
                 state_list:[],
                 derived_branch_list:[],
@@ -143,6 +149,10 @@
             }
         },
        methods:{
+           toggleBorder: function(event) {
+            this.inputError = true
+            event.target.classList.remove('red-border')
+            },
            onSelectFile:function(){
             const input = this.$refs.fileInput;
             const files = input.files;
