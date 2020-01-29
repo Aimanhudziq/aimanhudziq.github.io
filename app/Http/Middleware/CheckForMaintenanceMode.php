@@ -29,7 +29,7 @@ class CheckForMaintenanceMode extends Middleware
         'admin_user_bank_list',
         'changeStatus',
         '/',
+        'login',
         'logout',
-        'loginProcess'
     ];
 }
